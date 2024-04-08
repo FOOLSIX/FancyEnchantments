@@ -1,0 +1,45 @@
+{
+  "itemGroup.fancyenchantments": "Fancy Enchantments",
+
+  "enchantment.fancyenchantments.lightness": "Lightness",
+  "enchantment.fancyenchantments.lightness.desc": "Increases movement speed while blocking",
+
+  "enchantment.fancyenchantments.counterattack": "Counterattack",
+  "enchantment.fancyenchantments.counterattack.desc": "Increases crit rate after blocking",
+
+  "enchantment.fancyenchantments.advanced_sharpness": "Advanced Sharpness",
+  "enchantment.fancyenchantments.advanced_looting": "Advanced Looting",
+
+  "enchantment.fancyenchantments.reflecting": "Reflecting",
+  "enchantment.fancyenchantments.reflecting.desc": "Reflect enemy projectiles",
+
+  "enchantment.fancyenchantments.gift_of_fire": "Gift of Fire",
+  "enchantment.fancyenchantments.gift_of_fire.desc": "Deals more damage to enemies on fire, but less damage when you are in water",
+
+  "enchantment.fancyenchantments.pyromaniac": "Pyromaniac",
+  "enchantment.fancyenchantments.pyromaniac.desc": "When you would take explosion damage, you will be healed instead",
+
+  "enchantment.fancyenchantments.eater_of_souls": "Eater of Souls",
+  "enchantment.fancyenchantments.eater_of_souls.desc": "The damage increases with Kill Count, but the enemies will not drop exp",
+
+  "enchantment.fancyenchantments.solid_as_a_rock": "Solid As a Rock",
+  "enchantment.fancyenchantments.solid_as_a_rock.desc": "Increases armor and toughness when holding a shield",
+
+  "enchantment.fancyenchantments.ocean_current": "Ocean Current",
+  "enchantment.fancyenchantments.ocean_current.desc": "Increases attack speed, increases more in water",
+
+  "enchantment.fancyenchantments.overflow": "Overflow",
+  "enchantment.fancyenchantments.overflow.desc": "Killing enemies has a probability of generating a puddle of water at their death location",
+
+  "enchantment.fancyenchantments.fire_disaster": "Fire Disaster",
+  "enchantment.fancyenchantments.fire_disaster.desc": "Killing enemies has a probability of generating a fire at their death location",
+
+  "enchantment.fancyenchantments.the_fallen": "THE FALLEN",
+  "enchantment.fancyenchantments.the_fallen.desc": "Weapon damage increases with the number of curse enchantments.",
+
+  "effect.fancyenchantments.crit_rate_boost": "Crit Rate Boost",
+
+  "Curse:": "Curse:",
+  "Kill Count:": "Kill Count: "
+
+}
