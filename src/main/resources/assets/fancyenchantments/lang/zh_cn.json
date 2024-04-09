@@ -1,45 +1,30 @@
 {
   "itemGroup.fancyenchantments": "奇异附魔",
-
   "enchantment.fancyenchantments.lightness": "轻盈",
   "enchantment.fancyenchantments.lightness.desc": "持盾时移速增加",
-
   "enchantment.fancyenchantments.counterattack": "回击",
   "enchantment.fancyenchantments.counterattack.desc": "格挡后一段时间内增加暴击率",
-
   "enchantment.fancyenchantments.advanced_sharpness": "高级锋利",
-
   "enchantment.fancyenchantments.advanced_looting": "高级抢夺",
-
   "enchantment.fancyenchantments.reflecting": "反弹",
   "enchantment.fancyenchantments.reflecting.desc": "反弹敌人的投射物",
-
   "enchantment.fancyenchantments.gift_of_fire": "火之恩赐",
   "enchantment.fancyenchantments.gift_of_fire.desc": "对着火的敌人造成更多伤害,但是自身在水中时造成更少伤害",
-
   "enchantment.fancyenchantments.pyromaniac": "纵火狂",
   "enchantment.fancyenchantments.pyromaniac.desc": "免疫爆炸伤害,将收到的爆炸伤害转为恢复血量",
-
   "enchantment.fancyenchantments.eater_of_souls": "噬魂者",
   "enchantment.fancyenchantments.eater_of_souls.desc": "随杀敌数增加伤害,但是不掉落经验",
-
   "enchantment.fancyenchantments.solid_as_a_rock": "坚如磐石",
   "enchantment.fancyenchantments.solid_as_a_rock.desc": "当持有盾牌时增加护甲和盔甲韧性",
-
   "enchantment.fancyenchantments.ocean_current": "洋流",
   "enchantment.fancyenchantments.ocean_current.desc": "增加攻速,在水中增加更多",
-
   "enchantment.fancyenchantments.overflow": "满溢",
   "enchantment.fancyenchantments.overflow.desc": "杀死敌人有概率在其死亡位置产生一滩水",
-
   "enchantment.fancyenchantments.fire_disaster": "火灾",
   "enchantment.fancyenchantments.fire_disaster.desc": "杀死敌人有概率在其死亡位置产生一团火",
-
   "enchantment.fancyenchantments.the_fallen": "堕落者",
   "enchantment.fancyenchantments.the_fallen.desc": "随武器上的诅咒附魔数量增加伤害.",
-
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
-
   "Curse:": "诅咒:",
   "Kill Count:": "杀敌数:"
 }

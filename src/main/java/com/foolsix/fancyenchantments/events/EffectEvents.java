@@ -16,7 +16,7 @@ public class EffectEvents {
         Entity attacker = e.getSource().getEntity();
         Entity victim = e.getEntity();
         if (attacker instanceof LivingEntity) {
-            ((CritRateBoost)CRIT_RATE_BOOST.get()).effect(e);
+            ((CritRateBoost) CRIT_RATE_BOOST.get()).effect(e);
         }
     }
 }

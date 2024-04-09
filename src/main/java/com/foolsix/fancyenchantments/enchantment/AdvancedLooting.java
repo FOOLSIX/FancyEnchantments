@@ -8,10 +8,10 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
-import org.jetbrains.annotations.NotNull;
 
 public class AdvancedLooting extends Enchantment {
     private static final ModConfig.AdvancedLootingOptions CONFIG = FancyEnchantments.getConfig().advancedLootingOptions;
+
     public AdvancedLooting() {
         super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }

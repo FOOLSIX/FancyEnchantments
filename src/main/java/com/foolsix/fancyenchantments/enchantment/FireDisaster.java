@@ -16,6 +16,7 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.getRandom
 
 public class FireDisaster extends IgnisEnchantment {
     private static final ModConfig.FireDisasterOptions CONFIG = FancyEnchantments.getConfig().fireDisasterOptions;
+
     public FireDisaster() {
         super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }

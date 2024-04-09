@@ -1,6 +1,5 @@
 package com.foolsix.fancyenchantments.util;
 
-import com.foolsix.fancyenchantments.enchantment.FireDisaster;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -38,6 +37,7 @@ public class ModConfig implements ConfigData {
     public final FireDisasterOptions fireDisasterOptions = new FireDisasterOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final TheFallenOptions theFallenOptions = new TheFallenOptions();
+
     public static class AdvancedLootingOptions {
         public int level = 3;
         @Comment("Looting level += level * multiplier (vanilla Looting X provides X looting level)")
@@ -47,15 +47,18 @@ public class ModConfig implements ConfigData {
     public static class AdvancedSharpnessOptions {
         public int level = 5;
     }
+
     public static class CounterattackOptions {
         public int level = 3;
     }
+
     public static class EaterOfSoulsOptions {
         public boolean isTreasure = true;
         public int level = 3;
         @Comment("damage += sqrt(kill count) * level * multiplier")
         public float damageMultiplier = 0.1f;
     }
+
     public static class GiftOfFireOptions {
         public int level = 3;
         @Comment("damage += level * multiplier")
@@ -63,11 +66,13 @@ public class ModConfig implements ConfigData {
         @Comment("damage -= level * multiplier")
         public float harmfulMultiplier = 0.5f;
     }
+
     public static class LightnessOptions {
         public int level = 3;
         @Comment("speed while blocking *= level * multiplier")
         public float speedMultiplier = 0.5f;
     }
+
     public static class OceanCurrentOptions {
         public int level = 3;
         @Comment("attack speed += level * multiplier")
@@ -75,17 +80,20 @@ public class ModConfig implements ConfigData {
         @Comment("attack speed while in water += level * multiplier * extra multiplier")
         public float extraSpeedMultiplier = 1.5f;
     }
+
     public static class PyromaniacOptions {
         public boolean isTreasure = false;
         public int level = 5;
         @Comment("Heal Amount = explosive damage * multiplayer * level")
         public float healMultiplier = 0.1f;
     }
+
     public static class ReflectingOptions {
         public int level = 5;
         @Comment("Reflected project velocity = 1.0 + baseVelocity * level")
         public float baseVelocity = 0.5f;
     }
+
     public static class SolidAsARockOptions {
         public int level = 3;
         @Comment("armor *= 1 + multiplier * level")
@@ -109,12 +117,12 @@ public class ModConfig implements ConfigData {
         @Comment("The probability of generating a fire")
         public double probability = 0.05;
     }
-    
+
     public static class TheFallenOptions {
-        public int level = 2;
+        public int level = 3;
         public boolean isTreasure = false;
         @Comment("attack damage *= 1 + multiplier * level * numberOfCurse")
         public float damageMultiplier = 0.4f;
     }
-    
+
 }

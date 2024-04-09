@@ -44,7 +44,7 @@ public class GiftOfFire extends IgnisEnchantment {
             int level = EnchantmentHelper.getEnchantmentLevel(this, living);
             if (victim.isOnFire() && level > 0) {
                 e.setAmount(e.getAmount() + level * CONFIG.beneficialMultiplier);
-            } else if(living.isInWater()) {
+            } else if (living.isInWater()) {
                 e.setAmount(e.getAmount() - level * CONFIG.harmfulMultiplier);
             }
         }

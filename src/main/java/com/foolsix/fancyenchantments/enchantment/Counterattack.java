@@ -16,6 +16,7 @@ import static com.foolsix.fancyenchantments.effect.EffectReg.CRIT_RATE_BOOST;
 
 public class Counterattack extends Enchantment {
     private static final ModConfig.CounterattackOptions CONFIG = FancyEnchantments.getConfig().counterattackOptions;
+
     public Counterattack() {
         super(Rarity.UNCOMMON, EnchantmentCategory.WEAPON,
                 new EquipmentSlot[]{EquipmentSlot.OFFHAND, EquipmentSlot.MAINHAND});
@@ -35,10 +36,12 @@ public class Counterattack extends Enchantment {
     public int getMaxCost(int pLevel) {
         return getMinCost(pLevel) + 10;
     }
+
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.canPerformAction(ToolActions.SHIELD_BLOCK);
     }
+
     @Override
     public boolean isAllowedOnBooks() {
         return CONFIG.level != 0;

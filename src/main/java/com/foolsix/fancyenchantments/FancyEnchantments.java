@@ -17,8 +17,7 @@ public class FancyEnchantments {
     public static final String MODID = "fancyenchantments";
     private static ModConfig config;
 
-    public FancyEnchantments()
-    {
+    public FancyEnchantments() {
         AutoConfig.register(ModConfig.class, JanksonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
 
@@ -31,6 +30,7 @@ public class FancyEnchantments {
 
         MinecraftForge.EVENT_BUS.register(this);
     }
+
     public static ModConfig getConfig() {
         return config;
     }

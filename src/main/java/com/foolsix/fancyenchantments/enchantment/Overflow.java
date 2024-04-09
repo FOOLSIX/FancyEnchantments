@@ -14,6 +14,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class Overflow extends AquaEnchantment {
     private static final ModConfig.OverflowOptions CONFIG = FancyEnchantments.getConfig().overflowOptions;
+
     public Overflow() {
         super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }

@@ -16,6 +16,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class EaterOfSouls extends Enchantment {
     private static final ModConfig.EaterOfSoulsOptions CONFIG = FancyEnchantments.getConfig().eaterOfSoulsOptions;
+
     public EaterOfSouls() {
         super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }

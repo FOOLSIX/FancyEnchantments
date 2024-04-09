@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
 
 public class Reflecting extends AerEnchentment {
     private static final ModConfig.ReflectingOptions CONFIG = FancyEnchantments.getConfig().reflectingOptions;
+
     public Reflecting() {
         super(Rarity.UNCOMMON, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
@@ -68,7 +69,8 @@ public class Reflecting extends AerEnchentment {
                 && ((EntityHitResult) hitResult).getEntity() instanceof LivingEntity living
                 && living != projectile.getOwner()) {
             int reflectingLevel = EnchantmentHelper.getEnchantmentLevel(this, living);
-            if (reflectingLevel < 1 || !living.isBlocking() || !canBlock(living, projectile.position())) return;
+            if (reflectingLevel < 1 || !living.isBlocking() || !canBlock(living, projectile.position()))
+                return;
             if (projectile instanceof AbstractArrow arrow) {
                 AbstractArrow.Pickup pickup = arrow.pickup;
                 arrow.setOwner(living);

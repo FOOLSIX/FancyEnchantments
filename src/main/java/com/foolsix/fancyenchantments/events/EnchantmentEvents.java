@@ -16,8 +16,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Objects;
-
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 
 
@@ -54,7 +52,7 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void reflectWithShield(ProjectileImpactEvent e) {
         var hit = e.getRayTraceResult();
-        if (hit.getType() == HitResult.Type.ENTITY && ((EntityHitResult)hit).getEntity() instanceof Player player) {
+        if (hit.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hit).getEntity() instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
         }
         ((Reflecting) REFLECTING.get()).projectReflecting(e);
@@ -62,9 +60,9 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void livingEvent(LivingEvent.LivingTickEvent e) {
-        ((Lightness)LIGHTNESS.get()).livingEvent(e);
-        ((SolidAsARock)SOLID_AS_A_ROCK.get()).addArmor(e);
-        ((OceanCurrent)OCEAN_CURRENT.get()).attackSpeedBoost(e);
+        ((Lightness) LIGHTNESS.get()).livingEvent(e);
+        ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
+        ((OceanCurrent) OCEAN_CURRENT.get()).attackSpeedBoost(e);
     }
 
     @SubscribeEvent
@@ -72,8 +70,8 @@ public class EnchantmentEvents {
         Entity attacker = e.getSource().getEntity();
         Entity victim = e.getEntity();
         if (attacker instanceof LivingEntity) {
-            ((GiftOfFire)GIFT_OF_FIRE.get()).doExtraDamage(e);
-            ((Pyromaniac)PYROMANIAC.get()).recieveExplosive(e);
+            ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
+            ((Pyromaniac) PYROMANIAC.get()).recieveExplosive(e);
         }
     }
 

@@ -11,8 +11,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import org.jetbrains.annotations.NotNull;
 
-public class AdvancedSharpness extends Enchantment{
+public class AdvancedSharpness extends Enchantment {
     private static final ModConfig.AdvancedSharpnessOptions CONFIG = FancyEnchantments.getConfig().advancedSharpnessOptions;
+
     public AdvancedSharpness() {
         super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
@@ -36,10 +37,12 @@ public class AdvancedSharpness extends Enchantment{
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.getItem() instanceof AxeItem || super.canApplyAtEnchantingTable(stack);
     }
+
     @Override
     public boolean isAllowedOnBooks() {
         return CONFIG.level != 0;
     }
+
     @Override
     protected boolean checkCompatibility(@NotNull Enchantment pOther) {
         return !(pOther instanceof DamageEnchantment) && super.checkCompatibility(pOther);

@@ -7,11 +7,9 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.accesstransformer.AccessTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class EnchUtils {
     public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
