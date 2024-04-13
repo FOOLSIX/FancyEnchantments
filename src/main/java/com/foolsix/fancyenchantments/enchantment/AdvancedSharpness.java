@@ -7,15 +7,12 @@ import net.minecraft.world.entity.MobType;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.DamageEnchantment;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import org.jetbrains.annotations.NotNull;
 
-public class AdvancedSharpness extends Enchantment {
+public class AdvancedSharpness extends DamageEnchantment {
     private static final ModConfig.AdvancedSharpnessOptions CONFIG = FancyEnchantments.getConfig().advancedSharpnessOptions;
 
     public AdvancedSharpness() {
-        super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+        super(Rarity.RARE, DamageEnchantment.ALL, EquipmentSlot.MAINHAND,EquipmentSlot.OFFHAND);
     }
 
     @Override
@@ -41,11 +38,6 @@ public class AdvancedSharpness extends Enchantment {
     @Override
     public boolean isAllowedOnBooks() {
         return CONFIG.level != 0;
-    }
-
-    @Override
-    protected boolean checkCompatibility(@NotNull Enchantment pOther) {
-        return !(pOther instanceof DamageEnchantment) && super.checkCompatibility(pOther);
     }
 
     @Override
