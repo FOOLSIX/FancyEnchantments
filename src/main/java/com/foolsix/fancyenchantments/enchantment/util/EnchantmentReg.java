@@ -45,6 +45,10 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> FIRE_DISASTER =
             ENCHANTMENTS.register(FIRE_DISASTER_NAME, FireDisaster::new);
+
     public static final RegistryObject<Enchantment> THE_FALLEN =
             ENCHANTMENTS.register(THE_FALLEN_NAME, TheFallen::new);
+
+    public static final RegistryObject<Enchantment> EMPATHY =
+            ENCHANTMENTS.register(EMPATHY_NAME, Empathy::new);
 }

@@ -24,6 +24,9 @@
   "enchantment.fancyenchantments.fire_disaster.desc": "Killing enemies has a probability of generating a fire at their death location",
   "enchantment.fancyenchantments.the_fallen": "THE FALLEN",
   "enchantment.fancyenchantments.the_fallen.desc": "Weapon damage increases with the number of curse enchantments.",
+  "enchantment.fancyenchantments.empathy": "Empathy",
+  "enchantment.fancyenchantments.empathy.desc": "Now you understand how arrows feel...",
+
   "effect.fancyenchantments.crit_rate_boost": "Crit Rate Boost",
   "Curse:": "Curse:",
   "Kill Count:": "Kill Count: "

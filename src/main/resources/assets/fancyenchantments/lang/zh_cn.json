@@ -24,6 +24,9 @@
   "enchantment.fancyenchantments.fire_disaster.desc": "杀死敌人有概率在其死亡位置产生一团火",
   "enchantment.fancyenchantments.the_fallen": "堕落者",
   "enchantment.fancyenchantments.the_fallen.desc": "随武器上的诅咒附魔数量增加伤害.",
+  "enchantment.fancyenchantments.empathy": "换位思考",
+  "enchantment.fancyenchantments.empathy.desc": "现在你理解了箭矢的感受...",
+
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "Curse:": "诅咒:",
   "Kill Count:": "杀敌数:"

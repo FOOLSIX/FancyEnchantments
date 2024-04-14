@@ -8,10 +8,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -80,6 +83,12 @@ public class EnchantmentEvents {
         ((EaterOfSouls) EATER_OF_SOULS.get()).killcount(e);
         ((Overflow) OVERFLOW.get()).generateWater(e);
         ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
+    }
+
+    @SubscribeEvent
+    public void arrowLooseEvent(ArrowLooseEvent e) {
+        //Below cancel the event
+        ((Empathy) EMPATHY.get()).throwPlayer(e);
     }
 
 }

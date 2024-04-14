@@ -32,11 +32,12 @@ public class ModConfig implements ConfigData {
     public final SolidAsARockOptions solidAsARockOptions = new SolidAsARockOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final OverflowOptions overflowOptions = new OverflowOptions();
-
     @ConfigEntry.Gui.CollapsibleObject
     public final FireDisasterOptions fireDisasterOptions = new FireDisasterOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final TheFallenOptions theFallenOptions = new TheFallenOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final EmpathyOptions empathyOptions = new EmpathyOptions();
 
     public static class AdvancedLootingOptions {
         public int level = 3;
@@ -123,6 +124,15 @@ public class ModConfig implements ConfigData {
         public boolean isTreasure = false;
         @Comment("attack damage *= 1 + multiplier * level * numberOfCurse")
         public float damageMultiplier = 0.4f;
+    }
+
+    public static class EmpathyOptions {
+        @Comment("level should be 0 or 1")
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 1)
+        public int level = 1;
+        public boolean isTreasure = true;
+        public boolean isCurse = true;
+        public double shootSpeedMultiplier = 0.1;
     }
 
 }
