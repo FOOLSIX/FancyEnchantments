@@ -1,6 +1,5 @@
 # Fancy Enchantments
 
----
 
 **Dependency : Cloth config api**
 
@@ -17,11 +16,11 @@ This mod aims to provide powerful, fun, and configurable enchantments for advent
 
 此mod旨在为探险提供强大的,有趣的,可配置的附魔.
 
+---
+
 My first mod, WIP.
 
 Comments and suggestions are welcome.
-
----
 
 我的首个模组,仍在学习制作.
 
