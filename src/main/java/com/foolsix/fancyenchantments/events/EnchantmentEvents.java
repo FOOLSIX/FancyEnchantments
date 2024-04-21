@@ -74,7 +74,7 @@ public class EnchantmentEvents {
         Entity victim = e.getEntity();
         if (attacker instanceof LivingEntity) {
             ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
-            ((Pyromaniac) PYROMANIAC.get()).recieveExplosive(e);
+            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
         }
     }
 
