@@ -24,7 +24,7 @@ public class GiftOfFire extends IgnisEnchantment {
 
     @Override
     public int getMinCost(int pLevel) {
-        return 5 + pLevel * 5;
+        return 5 + pLevel * 8;
     }
 
     @Override

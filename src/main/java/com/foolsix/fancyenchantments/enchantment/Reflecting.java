@@ -93,7 +93,7 @@ public class Reflecting extends AerEnchentment {
             }
             living.level.playSound(null, living.blockPosition(), SoundEvents.SHIELD_BLOCK, SoundSource.PLAYERS, 1.0F, 1.5F + living.level.random.nextFloat() * 0.4F);
             ItemStack stack = living.getUseItem();
-            stack.setDamageValue(stack.getDamageValue() + 3);
+            stack.hurtAndBreak(CONFIG.baseDamage, living, (p) -> p.broadcastBreakEvent(living.getUsedItemHand()));
             e.setCanceled(true);
         }
     }

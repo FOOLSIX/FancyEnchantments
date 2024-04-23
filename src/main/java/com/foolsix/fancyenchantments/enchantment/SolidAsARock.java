@@ -31,12 +31,12 @@ public class SolidAsARock extends TerraEnchantment {
 
     @Override
     public int getMinCost(int pLevel) {
-        return 5 + pLevel * 5;
+        return 8 + pLevel * 5;
     }
 
     @Override
     public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 10;
+        return getMinCost(pLevel) + 40;
     }
 
     @Override

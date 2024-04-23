@@ -20,5 +20,8 @@ public class EnchIDs {
     public static final String FIRE_DISASTER_NAME = "fire_disaster";
     public static final String THE_FALLEN_NAME = "the_fallen";
     public static final String EMPATHY_NAME = "empathy";
+    public static final String ROLLING_STONE_NAME = "rolling_stone";
+    public static final String BLESSED_WIND_NAME = "blessed_wind";
+    public static final UUID BLESSED_WIND_UUID = UUID.fromString("99ffaa05-0273-4e18-afa0-c4f608313859");
 
 }

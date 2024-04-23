@@ -24,12 +24,12 @@ public class AdvancedLooting extends LootBonusEnchantment {
 
     @Override
     public int getMinCost(int pLevel) {
-        return 10 + pLevel * 10;
+        return 10 + pLevel * 8;
     }
 
     @Override
     public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 10;
+        return getMinCost(pLevel) + 50;
     }
 
     @Override

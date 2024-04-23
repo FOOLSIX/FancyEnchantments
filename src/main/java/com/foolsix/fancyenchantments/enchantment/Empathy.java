@@ -37,9 +37,9 @@ public class Empathy extends Enchantment {
         int level = EnchantmentHelper.getEnchantmentLevel(this, player);
         if (level > 0) {
             double f = e.getCharge() * CONFIG.shootSpeedMultiplier;
-            System.out.println(f);
             Vec3 look = player.getLookAngle();
             player.push(look.x * f, look.y * f, look.z * f);
+            player.getUseItem().hurtAndBreak(1, player, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
             e.setCanceled(true);
         }
     }

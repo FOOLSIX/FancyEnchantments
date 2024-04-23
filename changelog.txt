@@ -1,3 +1,22 @@
+0.0.2
+change:
+The durability value of chest armor reduced each time Pyromaniac takes effect(configurable)
+The durability value of shield reduced each time Reflecting takes effect(configurable now)
+Increased the default speed attribute of the Lightness
+Pyromaniac is now incompatible with Blast Protection
+Pyromaniac is now less likely to appear on the enchantment table
+Adjust the cost value so that the enchantment can appear correctly in vanilla lv30 enchant table
+
+add:
+Rolling Stone(feet):Reduces damage taken and causes damage to enemies collided with while sprinting(Does not harm friendly or neutral creatures)
+Blessed Wind(feet):Slightly increases movement speed while and increase speed and step height while sprinting
+
+fix:
+Fixed some debugging code that shouldn't exist
+Fixed misleading comments for Lightness in config
+Fixed bug where the same enchantment appears multiple times on the same item
+Fixed some bugs related to durability with Reflecting
+
 0.0.1
 First release
 ADD:

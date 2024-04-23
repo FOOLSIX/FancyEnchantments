@@ -26,6 +26,10 @@
   "enchantment.fancyenchantments.the_fallen.desc": "Weapon damage increases with the number of curse enchantments.",
   "enchantment.fancyenchantments.empathy": "Empathy",
   "enchantment.fancyenchantments.empathy.desc": "Now you understand how arrows feel...",
+  "enchantment.fancyenchantments.rolling_stone": "Rolling Stone",
+  "enchantment.fancyenchantments.rolling_stone.desc": "Reduces damage taken and causes damage to enemies collided with while sprinting",
+  "enchantment.fancyenchantments.blessed_wind": "Blessed Wind",
+  "enchantment.fancyenchantments.blessed_wind.desc": "Slightly increases movement speed, increase speed and step height while sprinting",
 
   "effect.fancyenchantments.crit_rate_boost": "Crit Rate Boost",
   "Curse:": "Curse:",

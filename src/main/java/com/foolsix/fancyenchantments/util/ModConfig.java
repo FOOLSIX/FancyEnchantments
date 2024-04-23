@@ -4,6 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import org.checkerframework.checker.units.qual.C;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 
@@ -38,6 +39,10 @@ public class ModConfig implements ConfigData {
     public final TheFallenOptions theFallenOptions = new TheFallenOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final EmpathyOptions empathyOptions = new EmpathyOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final RollingStoneOptions rollingStoneOptions = new RollingStoneOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BlessedWindOptions blessedWind = new BlessedWindOptions();
 
     public static class AdvancedLootingOptions {
         public int level = 3;
@@ -70,8 +75,8 @@ public class ModConfig implements ConfigData {
 
     public static class LightnessOptions {
         public int level = 3;
-        @Comment("speed while blocking *= level * multiplier")
-        public float speedMultiplier = 0.5f;
+        @Comment("speed while blocking *= 1 + level * multiplier")
+        public float speedMultiplier = 0.8f;
     }
 
     public static class OceanCurrentOptions {
@@ -87,12 +92,17 @@ public class ModConfig implements ConfigData {
         public int level = 5;
         @Comment("Heal Amount = explosive damage * multiplayer * level")
         public float healMultiplier = 0.1f;
+        @Comment("Durability value of armor -= base + healAmount * multiplier")
+        public int armorBaseDamage = 3;
+        public float damageMultiplier = 1.0f;
     }
 
     public static class ReflectingOptions {
         public int level = 5;
         @Comment("Reflected project velocity = 1.0 + baseVelocity * level")
         public float baseVelocity = 0.5f;
+        @Comment("Durability value of shield -= base")
+        public int baseDamage = 3;
     }
 
     public static class SolidAsARockOptions {
@@ -135,4 +145,21 @@ public class ModConfig implements ConfigData {
         public double shootSpeedMultiplier = 0.1;
     }
 
+    public static class RollingStoneOptions {
+        public int level = 3;
+        @Comment("damage += multiplier * level + speed * damageBonusMultiplier")
+        public double damageMultiplier = 3.0;
+        public double damageBonusMultiplier = 0.5;
+        @Comment("damageTaken *= 1 - reducer * level")
+        public double damageReducer = 0.1;
+
+    }
+
+    public static class BlessedWindOptions {
+        public int level = 3;
+        @Comment("speed while sprinting += level * multiplier (The initial walking speed is 0.1 and the sprinting speed is 0.133)")
+        public float sprintSpeedMultiplier = 0.04f;
+        @Comment("speed while walking += level * multiplier")
+        public float walkSpeedMultiplier = 0.01f;
+    }
 }

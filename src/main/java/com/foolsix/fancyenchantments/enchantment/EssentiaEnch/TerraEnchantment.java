@@ -25,6 +25,6 @@ public class TerraEnchantment extends Enchantment {
 
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
-        return !(pOther instanceof AerEnchentment);
+        return super.checkCompatibility(pOther) && !(pOther instanceof AerEnchentment);
     }
 }

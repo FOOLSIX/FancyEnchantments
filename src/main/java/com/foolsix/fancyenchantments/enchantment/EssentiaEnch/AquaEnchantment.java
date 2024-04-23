@@ -23,6 +23,6 @@ public class AquaEnchantment extends Enchantment {
     }
 
     protected boolean checkCompatibility(Enchantment pOther) {
-        return !(pOther instanceof IgnisEnchantment);
+        return super.checkCompatibility(pOther) && !(pOther instanceof IgnisEnchantment);
     }
 }

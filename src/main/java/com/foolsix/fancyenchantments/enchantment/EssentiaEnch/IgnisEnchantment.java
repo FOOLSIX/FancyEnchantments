@@ -24,6 +24,6 @@ public class IgnisEnchantment extends Enchantment {
 
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
-        return !(pOther instanceof AquaEnchantment);
+        return super.checkCompatibility(pOther) && !(pOther instanceof AquaEnchantment);
     }
 }

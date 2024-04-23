@@ -28,12 +28,12 @@ public class OceanCurrent extends AquaEnchantment {
 
     @Override
     public int getMinCost(int pLevel) {
-        return 5 + pLevel * 5;
+        return 10 + pLevel * 5;
     }
 
     @Override
     public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 10;
+        return getMinCost(pLevel) + 50;
     }
 
     @Override

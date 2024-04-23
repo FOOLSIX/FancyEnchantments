@@ -4,14 +4,15 @@ import com.foolsix.fancyenchantments.enchantment.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BookItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -24,7 +25,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EnchantmentEvents {
-
     @SubscribeEvent
     public void tooltip(ItemTooltipEvent e) {
         ItemStack itemStack = e.getItemStack();
@@ -33,6 +33,14 @@ public class EnchantmentEvents {
             if (nbt.contains("eater_of_souls_killcount")) {
                 e.getToolTip().add(Component.translatable("Kill Count:").append(String.valueOf(nbt.getInt("eater_of_souls_killcount"))).withStyle(ChatFormatting.DARK_PURPLE));
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void playerTickEvent(TickEvent.PlayerTickEvent e) {
+        if (e.player != null) {
+            ((RollingStone) ROLLING_STONE.get()).dealDamageWhileSprinting(e);
+            ((BlessedWind) BLESSED_WIND.get()).speedBoostWhileSprinting(e);
         }
     }
 
@@ -53,7 +61,7 @@ public class EnchantmentEvents {
     }
 
     @SubscribeEvent
-    public void reflectWithShield(ProjectileImpactEvent e) {
+    public void projectileImpactEvent(ProjectileImpactEvent e) {
         var hit = e.getRayTraceResult();
         if (hit.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hit).getEntity() instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
@@ -70,11 +78,16 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void hurtEvent(LivingHurtEvent e) {
+        if (e.getSource() == null) {
+            return;
+        }
+
         Entity attacker = e.getSource().getEntity();
         Entity victim = e.getEntity();
         if (attacker instanceof LivingEntity) {
             ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
             ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
+            ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
         }
     }
 
@@ -90,5 +103,6 @@ public class EnchantmentEvents {
         //Below cancel the event
         ((Empathy) EMPATHY.get()).throwPlayer(e);
     }
+
 
 }

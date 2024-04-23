@@ -26,6 +26,10 @@
   "enchantment.fancyenchantments.the_fallen.desc": "随武器上的诅咒附魔数量增加伤害.",
   "enchantment.fancyenchantments.empathy": "换位思考",
   "enchantment.fancyenchantments.empathy.desc": "现在你理解了箭矢的感受...",
+  "enchantment.fancyenchantments.rolling_stone": "滚石",
+  "enchantment.fancyenchantments.rolling_stone.desc": "在疾跑时减少所受伤害并能撞飞敌人",
+  "enchantment.fancyenchantments.blessed_wind": "风之祝福",
+  "enchantment.fancyenchantments.blessed_wind.desc": "稍微增加移速,较多增加疾跑速度,疾跑时能快速上坡",
 
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "Curse:": "诅咒:",

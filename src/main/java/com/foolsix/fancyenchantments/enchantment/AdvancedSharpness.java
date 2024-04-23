@@ -12,7 +12,7 @@ public class AdvancedSharpness extends DamageEnchantment {
     private static final ModConfig.AdvancedSharpnessOptions CONFIG = FancyEnchantments.getConfig().advancedSharpnessOptions;
 
     public AdvancedSharpness() {
-        super(Rarity.RARE, DamageEnchantment.ALL, EquipmentSlot.MAINHAND,EquipmentSlot.OFFHAND);
+        super(Rarity.RARE, DamageEnchantment.ALL, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
     }
 
     @Override
@@ -22,12 +22,12 @@ public class AdvancedSharpness extends DamageEnchantment {
 
     @Override
     public int getMinCost(int pLevel) {
-        return 5 + pLevel * 5;
+        return 7 + pLevel * 5;
     }
 
     @Override
     public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 10;
+        return getMinCost(pLevel) + 45;
     }
 
     @Override
