@@ -1,7 +1,7 @@
 package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchentment;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchIDs;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,16 +13,11 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 
-public class BlessedWind extends AerEnchentment {
+public class BlessedWind extends AerEnchantment {
     private static final ModConfig.BlessedWindOptions CONFIG = FancyEnchantments.getConfig().blessedWind;
 
     public BlessedWind() {
-        super(Rarity.UNCOMMON, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
     }
 
     @Override
@@ -33,11 +28,6 @@ public class BlessedWind extends AerEnchentment {
     @Override
     public int getMaxCost(int pLevel) {
         return getMinCost(pLevel) + 45;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     public void speedBoostWhileSprinting(TickEvent.PlayerTickEvent e) {

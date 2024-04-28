@@ -86,8 +86,10 @@ public class EnchantmentEvents {
         Entity victim = e.getEntity();
         if (attacker instanceof LivingEntity) {
             ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
-            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
+            ((HeavyBlow) HEAVY_BLOW.get()).criticalHit(e);
+            ((WindBlade) WIND_BLADE.get()).damageBoost(e);
             ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
+            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
         }
     }
 

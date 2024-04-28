@@ -21,12 +21,7 @@ public class SolidAsARock extends TerraEnchantment {
     private static final ModConfig.SolidAsARockOptions CONFIG = FancyEnchantments.getConfig().solidAsARockOptions;
 
     public SolidAsARock() {
-        super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     @Override
@@ -42,11 +37,6 @@ public class SolidAsARock extends TerraEnchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.canPerformAction(ToolActions.SHIELD_BLOCK);
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     public void addArmor(LivingEvent.LivingTickEvent e) {

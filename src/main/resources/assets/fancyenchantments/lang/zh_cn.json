@@ -30,6 +30,10 @@
   "enchantment.fancyenchantments.rolling_stone.desc": "在疾跑时减少所受伤害并能撞飞敌人",
   "enchantment.fancyenchantments.blessed_wind": "风之祝福",
   "enchantment.fancyenchantments.blessed_wind.desc": "稍微增加移速,较多增加疾跑速度,疾跑时能快速上坡",
+  "enchantment.fancyenchantments.heavy_blow": "沉重打击",
+  "enchantment.fancyenchantments.heavy_blow.desc": "有几率打出沉重一击",
+  "enchantment.fancyenchantments.wind_blade": "风刃",
+  "enchantment.fancyenchantments.wind_blade.desc": "根据玩家速度属性增加百分比伤害",
 
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "Curse:": "诅咒:",

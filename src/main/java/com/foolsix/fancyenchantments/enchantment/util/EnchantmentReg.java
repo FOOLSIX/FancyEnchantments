@@ -57,4 +57,10 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> BLESSED_WIND =
             ENCHANTMENTS.register(BLESSED_WIND_NAME, BlessedWind::new);
+
+    public static final RegistryObject<Enchantment> HEAVY_BLOW =
+            ENCHANTMENTS.register(HEAVY_BLOW_NAME, HeavyBlow::new);
+
+    public static final RegistryObject<Enchantment> WIND_BLADE =
+            ENCHANTMENTS.register(WIND_BLADE_NAME, WindBlade::new);
 }

@@ -18,12 +18,7 @@ public class OceanCurrent extends AquaEnchantment {
     private static final ModConfig.OceanCurrentOptions CONFIG = FancyEnchantments.getConfig().oceanCurrentOptions;
 
     public OceanCurrent() {
-        super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
     @Override
@@ -34,11 +29,6 @@ public class OceanCurrent extends AquaEnchantment {
     @Override
     public int getMaxCost(int pLevel) {
         return getMinCost(pLevel) + 50;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     public void attackSpeedBoost(LivingEvent.LivingTickEvent e) {

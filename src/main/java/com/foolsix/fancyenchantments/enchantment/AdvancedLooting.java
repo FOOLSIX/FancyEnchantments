@@ -23,6 +23,21 @@ public class AdvancedLooting extends LootBonusEnchantment {
     }
 
     @Override
+    public boolean isTreasureOnly() {
+        return CONFIG.isTreasure;
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return CONFIG.level > 0 && CONFIG.isTradeable;
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return CONFIG.level > 0 && CONFIG.isAllowedOnBooks;
+    }
+
+    @Override
     public int getMinCost(int pLevel) {
         return 10 + pLevel * 8;
     }
@@ -30,11 +45,6 @@ public class AdvancedLooting extends LootBonusEnchantment {
     @Override
     public int getMaxCost(int pLevel) {
         return getMinCost(pLevel) + 50;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     @Override

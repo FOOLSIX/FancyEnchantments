@@ -16,18 +16,7 @@ public class Overflow extends AquaEnchantment {
     private static final ModConfig.OverflowOptions CONFIG = FancyEnchantments.getConfig().overflowOptions;
 
     public Overflow() {
-        super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
-    }
-
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
+        super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     @Override

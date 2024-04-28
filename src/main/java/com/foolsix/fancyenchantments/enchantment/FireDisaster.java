@@ -18,22 +18,12 @@ public class FireDisaster extends IgnisEnchantment {
     private static final ModConfig.FireDisasterOptions CONFIG = FancyEnchantments.getConfig().fireDisasterOptions;
 
     public FireDisaster() {
-        super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     @Override
     public boolean isCurse() {
         return true;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     public void generateFire(LivingDeathEvent e) {

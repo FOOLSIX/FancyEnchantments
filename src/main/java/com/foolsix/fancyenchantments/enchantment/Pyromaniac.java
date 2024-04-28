@@ -3,8 +3,6 @@ package com.foolsix.fancyenchantments.enchantment;
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.IgnisEnchantment;
 import com.foolsix.fancyenchantments.util.ModConfig;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
@@ -19,12 +17,7 @@ public class Pyromaniac extends IgnisEnchantment {
     private static final ModConfig.PyromaniacOptions CONFIG = FancyEnchantments.getConfig().pyromaniacOptions;
 
     public Pyromaniac() {
-        super(Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
     }
 
     @Override
@@ -35,16 +28,6 @@ public class Pyromaniac extends IgnisEnchantment {
     @Override
     public int getMaxCost(int pLevel) {
         return getMinCost(pLevel) + 50;
-    }
-
-    @Override
-    public boolean isTreasureOnly() {
-        return CONFIG.isTreasure;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     @Override
@@ -60,7 +43,7 @@ public class Pyromaniac extends IgnisEnchantment {
                 float damageBonus = Math.min(player.getMaxHealth() - player.getHealth(), healValue);
                 for (ItemStack stack : player.getArmorSlots()) {
                     if (stack.getItem() instanceof ArmorItem armorItem && armorItem.getSlot() == EquipmentSlot.CHEST) {
-                        stack.hurtAndBreak(CONFIG.armorBaseDamage + (int)(CONFIG.damageMultiplier * damageBonus), player, (p) -> p.broadcastBreakEvent(EquipmentSlot.CHEST));
+                        stack.hurtAndBreak(CONFIG.armorBaseDamage + (int) (CONFIG.damageMultiplier * damageBonus), player, (p) -> p.broadcastBreakEvent(EquipmentSlot.CHEST));
                     }
                 }
                 player.heal(healValue);

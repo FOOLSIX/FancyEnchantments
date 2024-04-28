@@ -1,7 +1,7 @@
 package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchentment;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchIDs;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,23 +14,20 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
+import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.LIGHTNESS_NAME;
 
-public class Lightness extends AerEnchentment {
+
+public class Lightness extends AerEnchantment {
     private static final ModConfig.LightnessOptions CONFIG = FancyEnchantments.getConfig().lightnessOptions;
 
     public Lightness() {
-        super(Rarity.COMMON, EnchantmentCategory.WEAPON,
+        super(CONFIG, EnchantmentCategory.WEAPON,
                 new EquipmentSlot[]{EquipmentSlot.OFFHAND, EquipmentSlot.MAINHAND});
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.canPerformAction(ToolActions.SHIELD_BLOCK);
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
     }
 
     @Override
@@ -43,11 +40,6 @@ public class Lightness extends AerEnchentment {
         return getMinCost(pLevel) + 15;
     }
 
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
-    }
-
     public void livingEvent(LivingEvent.LivingTickEvent e) {
         LivingEntity living = e.getEntity();
         AttributeInstance moveSpeedAttr = e.getEntity().getAttribute(Attributes.MOVEMENT_SPEED);
@@ -57,7 +49,7 @@ public class Lightness extends AerEnchentment {
         int l = living.getUseItem().getEnchantmentLevel(this);
         if (l > 0) {
             if (moveSpeedAttr != null) {
-                moveSpeedAttr.addTransientModifier(new AttributeModifier(EnchIDs.LIGHTNESS_UUID, "lightness", CONFIG.speedMultiplier * l, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                moveSpeedAttr.addTransientModifier(new AttributeModifier(EnchIDs.LIGHTNESS_UUID, LIGHTNESS_NAME, CONFIG.speedMultiplier * l, AttributeModifier.Operation.MULTIPLY_TOTAL));
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -10,30 +11,14 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
-public class EaterOfSouls extends Enchantment {
+public class EaterOfSouls extends FEBaseEnchantment {
     private static final ModConfig.EaterOfSoulsOptions CONFIG = FancyEnchantments.getConfig().eaterOfSoulsOptions;
 
     public EaterOfSouls() {
-        super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-    }
-
-    @Override
-    public boolean isTreasureOnly() {
-        return CONFIG.isTreasure;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
     @Override

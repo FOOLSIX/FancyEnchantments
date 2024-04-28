@@ -22,12 +22,7 @@ public class RollingStone extends TerraEnchantment {
     private static final ModConfig.RollingStoneOptions CONFIG = FancyEnchantments.getConfig().rollingStoneOptions;
 
     public RollingStone() {
-        super(Rarity.UNCOMMON, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
     }
 
     @Override
@@ -38,11 +33,6 @@ public class RollingStone extends TerraEnchantment {
     @Override
     public int getMaxCost(int pLevel) {
         return getMinCost(pLevel) + 45;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     public void dealDamageWhileSprinting(TickEvent.PlayerTickEvent e) {

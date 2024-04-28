@@ -1,7 +1,7 @@
 package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchentment;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchantment;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,16 +26,11 @@ import net.minecraftforge.event.entity.ProjectileImpactEvent;
 
 import javax.annotation.Nullable;
 
-public class Reflecting extends AerEnchentment {
+public class Reflecting extends AerEnchantment {
     private static final ModConfig.ReflectingOptions CONFIG = FancyEnchantments.getConfig().reflectingOptions;
 
     public Reflecting() {
-        super(Rarity.UNCOMMON, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return CONFIG.level;
+        super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     @Override
@@ -51,11 +46,6 @@ public class Reflecting extends AerEnchentment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.canPerformAction(ToolActions.SHIELD_BLOCK);
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     //Reference @Tinkers' Construct 3 reflecting

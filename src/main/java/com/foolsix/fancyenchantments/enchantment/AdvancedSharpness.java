@@ -21,6 +21,21 @@ public class AdvancedSharpness extends DamageEnchantment {
     }
 
     @Override
+    public boolean isTreasureOnly() {
+        return CONFIG.isTreasure;
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return CONFIG.level > 0 && CONFIG.isTradeable;
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return CONFIG.level > 0 && CONFIG.isAllowedOnBooks;
+    }
+
+    @Override
     public int getMinCost(int pLevel) {
         return 7 + pLevel * 5;
     }
@@ -33,11 +48,6 @@ public class AdvancedSharpness extends DamageEnchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.getItem() instanceof AxeItem || super.canApplyAtEnchantingTable(stack);
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return CONFIG.level != 0;
     }
 
     @Override

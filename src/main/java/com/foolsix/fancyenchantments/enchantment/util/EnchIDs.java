@@ -23,5 +23,7 @@ public class EnchIDs {
     public static final String ROLLING_STONE_NAME = "rolling_stone";
     public static final String BLESSED_WIND_NAME = "blessed_wind";
     public static final UUID BLESSED_WIND_UUID = UUID.fromString("99ffaa05-0273-4e18-afa0-c4f608313859");
+    public static final String HEAVY_BLOW_NAME = "heavy_blow";
+    public static final String WIND_BLADE_NAME = "wind_blade";
 
 }
