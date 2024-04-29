@@ -122,6 +122,7 @@ public class ModConfig implements ConfigData {
         public float speedMultiplier = 0.5f;
         @Comment("attack speed while in water += level * multiplier * extra multiplier")
         public float extraSpeedMultiplier = 1.5f;
+        public boolean ineffectiveWhenOnFire = true;
         OceanCurrentOptions() {
             super(3, Rarity.RARE);
         }

@@ -17,7 +17,7 @@
   "enchantment.fancyenchantments.solid_as_a_rock": "Solid As a Rock",
   "enchantment.fancyenchantments.solid_as_a_rock.desc": "Increases armor and toughness when holding a shield",
   "enchantment.fancyenchantments.ocean_current": "Ocean Current",
-  "enchantment.fancyenchantments.ocean_current.desc": "Increases attack speed, increases more in water",
+  "enchantment.fancyenchantments.ocean_current.desc": "Increases attack speed, increases more in water,may be ineffective when on fire",
   "enchantment.fancyenchantments.overflow": "Overflow",
   "enchantment.fancyenchantments.overflow.desc": "Killing enemies has a probability of generating a puddle of water at their death location",
   "enchantment.fancyenchantments.fire_disaster": "Fire Disaster",

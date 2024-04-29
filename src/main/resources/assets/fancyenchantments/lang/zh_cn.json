@@ -17,7 +17,7 @@
   "enchantment.fancyenchantments.solid_as_a_rock": "坚如磐石",
   "enchantment.fancyenchantments.solid_as_a_rock.desc": "当持有盾牌时增加护甲和盔甲韧性",
   "enchantment.fancyenchantments.ocean_current": "洋流",
-  "enchantment.fancyenchantments.ocean_current.desc": "增加攻速,在水中增加更多",
+  "enchantment.fancyenchantments.ocean_current.desc": "增加攻速,在水中增加更多,当角色着火时可能失效",
   "enchantment.fancyenchantments.overflow": "满溢",
   "enchantment.fancyenchantments.overflow.desc": "杀死敌人有概率在其死亡位置产生一滩水",
   "enchantment.fancyenchantments.fire_disaster": "火灾",

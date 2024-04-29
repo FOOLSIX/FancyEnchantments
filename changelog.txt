@@ -2,6 +2,8 @@
 change:
 Now enchantment has more attributes that can be configured(rarity,isTreasure,isTradeable,isAllowedOnBooks,isDiscoverable for ALL)
 Add particle effects to Gift of Fire
+Modify the code, now Solid As A Rock can directly display item attributes
+Now Ocean Current will be ineffective when on fire(configurable)
 ---
 add:
 heavy blow(weapon):Chance to hit a heavy blow,slightly reduce attack speed
