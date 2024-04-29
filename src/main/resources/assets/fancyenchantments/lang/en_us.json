@@ -31,9 +31,9 @@
   "enchantment.fancyenchantments.blessed_wind": "Blessed Wind",
   "enchantment.fancyenchantments.blessed_wind.desc": "Slightly increases movement speed, increase speed and step height while sprinting",
   "enchantment.fancyenchantments.heavy_blow": "Heavy Blow",
-  "enchantment.fancyenchantments.heavy_blow.desc": "Chance to hit a heavy blow",
+  "enchantment.fancyenchantments.heavy_blow.desc": "Chance to hit a heavy blow,slightly reduce attack speed",
   "enchantment.fancyenchantments.wind_blade": "Wind Blade",
-  "enchantment.fancyenchantments.wind_blade.desc": "Increases damage by percentage based on movement speed attribute",
+  "enchantment.fancyenchantments.wind_blade.desc": "Increases damage by percentage based on movement speed attribute,slightly reduce attack damage",
 
   "effect.fancyenchantments.crit_rate_boost": "Crit Rate Boost",
   "Curse:": "Curse:",

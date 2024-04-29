@@ -53,10 +53,6 @@ public class ModConfig implements ConfigData {
     public final WindBladeOptions windBladeOptions = new WindBladeOptions();
 
     public static class BaseOptions {
-        BaseOptions(int maxLevel, Rarity rarity) {
-            this.level = maxLevel;
-            this.rarity = rarity;
-        }
         @Comment("====== Basic options below ======")
         public int level;
         public Rarity rarity;
@@ -64,166 +60,181 @@ public class ModConfig implements ConfigData {
         public boolean isTradeable = true;
         public boolean isAllowedOnBooks = true;
         public boolean isDiscoverable = true;
+        BaseOptions(int maxLevel, Rarity rarity) {
+            this.level = maxLevel;
+            this.rarity = rarity;
+        }
 
     }
 
     public static class AdvancedLootingOptions extends BaseOptions {
+        @Comment("Looting level += level * multiplier (vanilla Looting X provides X looting level)")
+        public int lootingLevelMultiplier = 2;
+
         AdvancedLootingOptions() {
             super(3, Rarity.VERY_RARE);
         }
-        @Comment("Looting level += level * multiplier (vanilla Looting X provides X looting level)")
-        public int lootingLevelMultiplier = 2;
     }
 
-    public static class AdvancedSharpnessOptions extends BaseOptions{
+    public static class AdvancedSharpnessOptions extends BaseOptions {
         AdvancedSharpnessOptions() {
             super(5, Rarity.RARE);
         }
     }
 
-    public static class CounterattackOptions extends BaseOptions{
+    public static class CounterattackOptions extends BaseOptions {
         CounterattackOptions() {
             super(3, Rarity.UNCOMMON);
         }
     }
 
-    public static class EaterOfSoulsOptions extends BaseOptions{
+    public static class EaterOfSoulsOptions extends BaseOptions {
+        @Comment("damage += sqrt(kill count) * level * multiplier")
+        public float damageMultiplier = 0.1f;
+
         EaterOfSoulsOptions() {
             super(3, Rarity.VERY_RARE);
             super.isTreasure = true;
         }
-        @Comment("damage += sqrt(kill count) * level * multiplier")
-        public float damageMultiplier = 0.1f;
     }
 
-    public static class GiftOfFireOptions extends BaseOptions{
-        GiftOfFireOptions() {
-            super(3, Rarity.UNCOMMON);
-        }
+    public static class GiftOfFireOptions extends BaseOptions {
         @Comment("damage += level * multiplier")
         public float beneficialMultiplier = 2.0f;
         @Comment("damage -= level * multiplier")
         public float harmfulMultiplier = 0.5f;
+        GiftOfFireOptions() {
+            super(3, Rarity.UNCOMMON);
+        }
     }
 
-    public static class LightnessOptions extends BaseOptions{
+    public static class LightnessOptions extends BaseOptions {
+        @Comment("speed while blocking *= 1 + level * multiplier")
+        public float speedMultiplier = 0.8f;
+
         LightnessOptions() {
             super(3, Rarity.COMMON);
         }
-        @Comment("speed while blocking *= 1 + level * multiplier")
-        public float speedMultiplier = 0.8f;
     }
 
-    public static class OceanCurrentOptions extends BaseOptions{
-        OceanCurrentOptions() {
-            super(3, Rarity.RARE);
-        }
+    public static class OceanCurrentOptions extends BaseOptions {
         @Comment("attack speed += level * multiplier")
         public float speedMultiplier = 0.5f;
         @Comment("attack speed while in water += level * multiplier * extra multiplier")
         public float extraSpeedMultiplier = 1.5f;
+        OceanCurrentOptions() {
+            super(3, Rarity.RARE);
+        }
     }
 
-    public static class PyromaniacOptions extends BaseOptions{
-        PyromaniacOptions() {
-            super(5, Rarity.VERY_RARE);
-        }
+    public static class PyromaniacOptions extends BaseOptions {
         @Comment("Heal Amount = explosive damage * multiplayer * level")
         public float healMultiplier = 0.1f;
         @Comment("Durability value of armor -= base + healAmount * multiplier")
         public int armorBaseDamage = 3;
         public float damageMultiplier = 1.0f;
+        PyromaniacOptions() {
+            super(5, Rarity.VERY_RARE);
+        }
     }
 
-    public static class ReflectingOptions extends BaseOptions{
-        ReflectingOptions() {
-            super(5, Rarity.UNCOMMON);
-        }
+    public static class ReflectingOptions extends BaseOptions {
         @Comment("Reflected project velocity = 1.0 + baseVelocity * level")
         public float baseVelocity = 0.5f;
         @Comment("Durability value of shield -= base")
         public int baseDamage = 3;
+        ReflectingOptions() {
+            super(5, Rarity.UNCOMMON);
+        }
     }
 
-    public static class SolidAsARockOptions extends BaseOptions{
-        SolidAsARockOptions() {
-            super(3, Rarity.RARE);
-        }
+    public static class SolidAsARockOptions extends BaseOptions {
         @Comment("armor *= 1 + multiplier * level")
         public float armorMultiplier = 0.15f;
         @Comment("toughness *= 1 + multiplier * level")
         public float toughnessMultiplier = 0.1f;
+        SolidAsARockOptions() {
+            super(3, Rarity.RARE);
+        }
     }
 
-    public static class OverflowOptions extends BaseOptions{
+    public static class OverflowOptions extends BaseOptions {
+        @Comment("The probability of generating a puddle of water")
+        public double probability = 0.05;
+
         OverflowOptions() {
             super(1, Rarity.RARE);
         }
-        @Comment("The probability of generating a puddle of water")
-        public double probability = 0.05;
     }
 
-    public static class FireDisasterOptions extends BaseOptions{
+    public static class FireDisasterOptions extends BaseOptions {
+        @Comment("The probability of generating a fire")
+        public double probability = 0.05;
+
         FireDisasterOptions() {
             super(1, Rarity.RARE);
         }
-        @Comment("The probability of generating a fire")
-        public double probability = 0.05;
     }
 
     public static class TheFallenOptions extends BaseOptions {
+        @Comment("attack damage *= 1 + multiplier * level * numberOfCurse")
+        public float damageMultiplier = 0.4f;
+
         TheFallenOptions() {
             super(3, Rarity.VERY_RARE);
         }
-        @Comment("attack damage *= 1 + multiplier * level * numberOfCurse")
-        public float damageMultiplier = 0.4f;
     }
 
-    public static class EmpathyOptions extends BaseOptions{
+    public static class EmpathyOptions extends BaseOptions {
+        public double shootPowerMultiplier = 0.1;
+
         EmpathyOptions() {
             super(1, Rarity.RARE);
             super.isTreasure = true;
         }
-        public double shootPowerMultiplier = 0.1;
     }
 
-    public static class RollingStoneOptions extends BaseOptions{
-        RollingStoneOptions() {
-            super(3, Rarity.UNCOMMON);
-        }
+    public static class RollingStoneOptions extends BaseOptions {
         @Comment("damage += multiplier * level + speed * damageBonusMultiplier")
         public double damageMultiplier = 3.0;
         public double damageBonusMultiplier = 0.5;
         @Comment("damageTaken *= 1 - reducer * level")
         public double damageReducer = 0.1;
+        RollingStoneOptions() {
+            super(3, Rarity.UNCOMMON);
+        }
 
     }
 
-    public static class BlessedWindOptions extends BaseOptions{
-        BlessedWindOptions() {
-            super(3, Rarity.UNCOMMON);
-        }
+    public static class BlessedWindOptions extends BaseOptions {
         @Comment("speed while sprinting += level * multiplier (The initial walking speed is 0.1 and the sprinting speed is 0.133)")
         public float sprintSpeedMultiplier = 0.04f;
         @Comment("speed while walking += level * multiplier")
         public float walkSpeedMultiplier = 0.01f;
+        BlessedWindOptions() {
+            super(3, Rarity.UNCOMMON);
+        }
     }
 
-    public static class HeavyBlowOptions extends BaseOptions{
-        HeavyBlowOptions() {
-            super(3, Rarity.VERY_RARE);
-        }
+    public static class HeavyBlowOptions extends BaseOptions {
         @Comment("rate = baseRate * level")
         public double baseRate = 0.1;
         @Comment("damage *= 1 + level * multiplier")
         public double damageMultiplier = 1.0;
+        @Comment("attackSpeed *= 1 - reducer")
+        public double speedReducer = 0.1;
+        HeavyBlowOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
     }
 
-    public static class WindBladeOptions extends BaseOptions{
+    public static class WindBladeOptions extends BaseOptions {
+        @Comment("damage *= 1 + extraSpeedAttributeValue * level * BaseMultiplier")
+        public double baseDamageMultiplier = 0.5;
+        @Comment("damage *= 1 - reducer")
+        public double damageReducer = 0.1;
         WindBladeOptions() {
             super(3, Rarity.VERY_RARE);
         }
-        @Comment("damage *= 1 + extraSpeedAttributeValue * level * BaseMultiplier")
-        public double baseDamageMultiplier = 0.5;
     }
 }

@@ -13,6 +13,7 @@ import java.util.List;
 
 public class EnchUtils {
     public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
+    public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
 
     public static List<BlockPos> getRandomValidPos(Entity entity, Level world, int tryTimes) {
         BlockPos originPos = entity.blockPosition();

@@ -36,7 +36,7 @@ public class GiftOfFire extends IgnisEnchantment {
         Entity victim = e.getEntity();
         if (attacker instanceof LivingEntity living) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, living);
-            if (level > 0){
+            if (level > 0) {
                 if (living.isInWater()) {
                     living.level.playSound(null, living.blockPosition(), SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.5F + living.level.random.nextFloat() * 0.4F);
                     ((ServerLevel) attacker.level).sendParticles(ParticleTypes.SMOKE, victim.getX(), victim.getY(), victim.getZ(), 30, 0.2D, 0.7D, 0.1D, 0);

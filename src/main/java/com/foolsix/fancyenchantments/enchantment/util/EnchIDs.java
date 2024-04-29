@@ -24,6 +24,8 @@ public class EnchIDs {
     public static final String BLESSED_WIND_NAME = "blessed_wind";
     public static final UUID BLESSED_WIND_UUID = UUID.fromString("99ffaa05-0273-4e18-afa0-c4f608313859");
     public static final String HEAVY_BLOW_NAME = "heavy_blow";
+    public static final UUID HEAVY_BLOW_UUID = UUID.fromString("939ddda2-45df-4946-9ab6-82ffb11ede86");
     public static final String WIND_BLADE_NAME = "wind_blade";
+    public static final UUID WIND_BLADE_UUID = UUID.fromString("5daf4e17-1012-411b-bb59-7f50d6d26c66");
 
 }

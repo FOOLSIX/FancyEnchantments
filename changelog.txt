@@ -4,12 +4,13 @@ Now enchantment has more attributes that can be configured(rarity,isTreasure,isT
 Add particle effects to Gift of Fire
 ---
 add:
-heavy blow(weapon):Chance to hit a heavy blow
-wind blade(weapon):Increases damage by percentage based on movement speed attribute
+heavy blow(weapon):Chance to hit a heavy blow,slightly reduce attack speed
+wind blade(weapon):Increases damage by percentage based on movement speed attribute,slightly reduce attack damage
 ---
 fix:
 Fixed a bug where Gift of Fire would not reduce damage correctly with Fire Aspect
 Fixed a bug where attacking in water would always reduce damage(important,my stupid mistake)
+Fixed a bug where Solid As A Rock increased armor beyond expectations
 
 ---
 
