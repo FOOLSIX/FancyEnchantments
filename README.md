@@ -10,6 +10,9 @@ Support [Enchantment-Descriptions](https://legacy.curseforge.com/minecraft/mc-mo
 
 搭载[附魔描述](https://www.mcmod.cn/class/1945.html)
 
+Download:
+[CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-enchantments)
+
 ---
 
 This mod aims to provide powerful, fun, and configurable enchantments for adventure.
