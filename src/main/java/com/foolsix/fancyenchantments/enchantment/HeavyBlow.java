@@ -17,7 +17,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.HEAVY_BLOW_NAME;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.HEAVY_BLOW_UUID;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.MOD_NAME_PREFIX;
+import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.MOD_NAME_PREFIX;
 
 public class HeavyBlow extends TerraEnchantment {
     private static final ModConfig.HeavyBlowOptions CONFIG = FancyEnchantments.getConfig().heavyBlowOptions;

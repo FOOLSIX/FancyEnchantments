@@ -6,6 +6,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.EntityHitResult;
@@ -37,16 +40,27 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void playerTickEvent(TickEvent.PlayerTickEvent e) {
-        if (e.player != null) {
+        if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
             ((RollingStone) ROLLING_STONE.get()).dealDamageWhileSprinting(e);
             ((BlessedWind) BLESSED_WIND.get()).speedBoostWhileSprinting(e);
+        }
+        if (e.player != null && e.side.isClient() && e.phase == TickEvent.Phase.START) {
+            ((Floating) FLOATING.get()).damageReduce(e);
         }
     }
 
     @SubscribeEvent
     public void livingAttackEvent(LivingAttackEvent e) {
-        if (e.getEntity() instanceof Player player) {
+        LivingEntity victim = e.getEntity();
+
+        if (victim instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
+        }
+        if (e.getSource() == null || e.getSource().getEntity() == null) return;
+        Entity attacker = e.getSource().getEntity();
+
+        if (attacker instanceof Player player) {
+            ((Cumbersome) CUMBERSOME.get()).getCooldown(e);
         }
     }
 
@@ -70,8 +84,10 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void livingEvent(LivingEvent.LivingTickEvent e) {
-        ((Lightness) LIGHTNESS.get()).livingEvent(e);
-        ((OceanCurrent) OCEAN_CURRENT.get()).attackSpeedBoost(e);
+        if (e.getEntity() != null && !e.getEntity().level.isClientSide()) {
+            ((Lightness) LIGHTNESS.get()).livingEvent(e);
+            ((OceanCurrent) OCEAN_CURRENT.get()).attackSpeedBoost(e);
+        }
     }
 
     @SubscribeEvent

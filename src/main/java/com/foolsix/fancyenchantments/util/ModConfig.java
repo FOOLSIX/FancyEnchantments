@@ -51,6 +51,10 @@ public class ModConfig implements ConfigData {
     public final HeavyBlowOptions heavyBlowOptions = new HeavyBlowOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final WindBladeOptions windBladeOptions = new WindBladeOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final FloatingOptions floatingOptions = new FloatingOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final CumbersomeOptions cumbersomeOptions = new CumbersomeOptions();
 
     public static class BaseOptions {
         @Comment("====== Basic options below ======")
@@ -236,6 +240,26 @@ public class ModConfig implements ConfigData {
         public double damageReducer = 0.1;
         WindBladeOptions() {
             super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class FloatingOptions extends BaseOptions {
+        @Comment("damage *= 1 - reducer")
+        public double damageReducer = 0.2;
+        FloatingOptions() {
+            super(1, Rarity.RARE);
+        }
+    }
+
+    public static class CumbersomeOptions extends BaseOptions {
+        @Comment("The probability of get debuff")
+        public double probability = 0.05;
+        @Comment("attack speed *= 1 - reducer")
+        public double atkSpeedReducer = 0.2;
+        @Comment("Duration (second)")
+        public int duration = 3;
+        CumbersomeOptions(){
+            super(1, Rarity.RARE);
         }
     }
 }

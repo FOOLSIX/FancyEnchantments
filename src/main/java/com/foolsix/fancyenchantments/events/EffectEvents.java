@@ -13,6 +13,7 @@ import static com.foolsix.fancyenchantments.effect.EffectReg.CRIT_RATE_BOOST;
 public class EffectEvents {
     @SubscribeEvent
     public void hurtEvent(LivingHurtEvent e) {
+        if (e.getSource() == null) return;
         Entity attacker = e.getSource().getEntity();
         Entity victim = e.getEntity();
         if (attacker instanceof LivingEntity) {

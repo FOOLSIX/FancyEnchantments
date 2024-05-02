@@ -22,7 +22,7 @@ public class CritRateBoost extends MobEffect {
             MobEffectInstance effectInstance = living.getEffect(this);
             if (effectInstance != null) {
                 int amplifier = effectInstance.getAmplifier();
-                if (Math.random() < 0.2f * amplifier) {
+                if (Math.random() < 0.2 * amplifier) {
                     e.setAmount(e.getAmount() * 1.5f);
                     ((ServerLevel) attacker.level).sendParticles(ParticleTypes.CRIT, victim.getX(), victim.getY(), victim.getZ(), 10, 0.2D, 0.7D, 0.1D, 0);
                 }

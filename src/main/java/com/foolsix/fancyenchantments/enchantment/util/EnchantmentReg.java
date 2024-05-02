@@ -15,11 +15,13 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> LIGHTNESS =
             ENCHANTMENTS.register(LIGHTNESS_NAME, Lightness::new);
+
     public static final RegistryObject<Enchantment> COUNTERATTACK =
             ENCHANTMENTS.register(COUNTERATTACK_NAME, Counterattack::new);
 
     public static final RegistryObject<Enchantment> ADVANCED_SHARPNESS =
             ENCHANTMENTS.register(ADVANCED_SHARPNESS_NAME, AdvancedSharpness::new);
+
     public static final RegistryObject<Enchantment> ADVANCED_LOOTING =
             ENCHANTMENTS.register(ADVANCED_LOOTING_NAME, AdvancedLooting::new);
 
@@ -31,6 +33,7 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> PYROMANIAC =
             ENCHANTMENTS.register(PYROMANIAC_NAME, Pyromaniac::new);
+
     public static final RegistryObject<Enchantment> EATER_OF_SOULS =
             ENCHANTMENTS.register(EATER_OF_SOULS_NAME, EaterOfSouls::new);
 
@@ -63,4 +66,10 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> WIND_BLADE =
             ENCHANTMENTS.register(WIND_BLADE_NAME, WindBlade::new);
+
+    public static final RegistryObject<Enchantment> FLOATING =
+            ENCHANTMENTS.register(FLOATING_NAME, Floating::new);
+
+    public static final RegistryObject<Enchantment> CUMBERSOME =
+            ENCHANTMENTS.register(CUMBERSOME_NAME, Cumbersome::new);
 }

@@ -7,14 +7,12 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class EnchUtils {
     public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
-    public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
-
     public static List<BlockPos> getRandomValidPos(Entity entity, Level world, int tryTimes) {
         BlockPos originPos = entity.blockPosition();
         RandomSource random = RandomSource.create();

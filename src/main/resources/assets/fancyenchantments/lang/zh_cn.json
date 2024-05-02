@@ -34,8 +34,13 @@
   "enchantment.fancyenchantments.heavy_blow.desc": "有几率打出沉重一击,略微降低攻击速度",
   "enchantment.fancyenchantments.wind_blade": "风刃",
   "enchantment.fancyenchantments.wind_blade.desc": "根据玩家速度属性增加百分比伤害,略微降低基础伤害",
+  "enchantment.fancyenchantments.floating": "漂浮不定",
+  "enchantment.fancyenchantments.floating.desc": "静止不动时减少伤害",
+  "enchantment.fancyenchantments.cumbersome": "笨重",
+  "enchantment.fancyenchantments.cumbersome.desc": "攻击后有概率使使用者减缓攻速一段时间",
 
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
+  "effect.fancyenchantments.cumbersome": "笨重",
   "Curse:": "诅咒:",
   "Kill Count:": "杀敌数:"
 }
