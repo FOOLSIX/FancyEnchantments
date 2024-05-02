@@ -64,6 +64,7 @@ public class ModConfig implements ConfigData {
         public boolean isTradeable = true;
         public boolean isAllowedOnBooks = true;
         public boolean isDiscoverable = true;
+
         BaseOptions(int maxLevel, Rarity rarity) {
             this.level = maxLevel;
             this.rarity = rarity;
@@ -107,6 +108,7 @@ public class ModConfig implements ConfigData {
         public float beneficialMultiplier = 2.0f;
         @Comment("damage -= level * multiplier")
         public float harmfulMultiplier = 0.5f;
+
         GiftOfFireOptions() {
             super(3, Rarity.UNCOMMON);
         }
@@ -127,6 +129,7 @@ public class ModConfig implements ConfigData {
         @Comment("attack speed while in water += level * multiplier * extra multiplier")
         public float extraSpeedMultiplier = 1.5f;
         public boolean ineffectiveWhenOnFire = true;
+
         OceanCurrentOptions() {
             super(3, Rarity.RARE);
         }
@@ -138,6 +141,7 @@ public class ModConfig implements ConfigData {
         @Comment("Durability value of armor -= base + healAmount * multiplier")
         public int armorBaseDamage = 3;
         public float damageMultiplier = 1.0f;
+
         PyromaniacOptions() {
             super(5, Rarity.VERY_RARE);
         }
@@ -148,6 +152,7 @@ public class ModConfig implements ConfigData {
         public float baseVelocity = 0.5f;
         @Comment("Durability value of shield -= base")
         public int baseDamage = 3;
+
         ReflectingOptions() {
             super(5, Rarity.UNCOMMON);
         }
@@ -158,6 +163,7 @@ public class ModConfig implements ConfigData {
         public float armorMultiplier = 0.15f;
         @Comment("toughness *= 1 + multiplier * level")
         public float toughnessMultiplier = 0.1f;
+
         SolidAsARockOptions() {
             super(3, Rarity.RARE);
         }
@@ -205,6 +211,7 @@ public class ModConfig implements ConfigData {
         public double damageBonusMultiplier = 0.5;
         @Comment("damageTaken *= 1 - reducer * level")
         public double damageReducer = 0.1;
+
         RollingStoneOptions() {
             super(3, Rarity.UNCOMMON);
         }
@@ -216,6 +223,7 @@ public class ModConfig implements ConfigData {
         public float sprintSpeedMultiplier = 0.04f;
         @Comment("speed while walking += level * multiplier")
         public float walkSpeedMultiplier = 0.01f;
+
         BlessedWindOptions() {
             super(3, Rarity.UNCOMMON);
         }
@@ -228,6 +236,7 @@ public class ModConfig implements ConfigData {
         public double damageMultiplier = 1.0;
         @Comment("attackSpeed *= 1 - reducer")
         public double speedReducer = 0.1;
+
         HeavyBlowOptions() {
             super(3, Rarity.VERY_RARE);
         }
@@ -238,6 +247,7 @@ public class ModConfig implements ConfigData {
         public double baseDamageMultiplier = 0.5;
         @Comment("damage *= 1 - reducer")
         public double damageReducer = 0.1;
+
         WindBladeOptions() {
             super(3, Rarity.VERY_RARE);
         }
@@ -246,6 +256,7 @@ public class ModConfig implements ConfigData {
     public static class FloatingOptions extends BaseOptions {
         @Comment("damage *= 1 - reducer")
         public double damageReducer = 0.2;
+
         FloatingOptions() {
             super(1, Rarity.RARE);
         }
@@ -258,7 +269,8 @@ public class ModConfig implements ConfigData {
         public double atkSpeedReducer = 0.2;
         @Comment("Duration (second)")
         public int duration = 3;
-        CumbersomeOptions(){
+
+        CumbersomeOptions() {
             super(1, Rarity.RARE);
         }
     }

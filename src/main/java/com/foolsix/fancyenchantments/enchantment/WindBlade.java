@@ -13,9 +13,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.WIND_BLADE_NAME;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.WIND_BLADE_UUID;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.MOD_NAME_PREFIX;
+import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.*;
 
 public class WindBlade extends AerEnchantment {
     private static final ModConfig.WindBladeOptions CONFIG = FancyEnchantments.getConfig().windBladeOptions;

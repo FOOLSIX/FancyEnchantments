@@ -13,7 +13,7 @@ public class Empathy extends FEBaseEnchantment {
     private static final ModConfig.EmpathyOptions CONFIG = FancyEnchantments.getConfig().empathyOptions;
 
     public Empathy() {
-        super(CONFIG, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND,EquipmentSlot.OFFHAND});
+        super(CONFIG, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     @Override

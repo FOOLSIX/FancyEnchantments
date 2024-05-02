@@ -2,7 +2,6 @@ package com.foolsix.fancyenchantments.effect;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;

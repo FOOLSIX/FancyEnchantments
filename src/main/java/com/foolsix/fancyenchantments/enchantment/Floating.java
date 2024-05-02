@@ -9,13 +9,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.*;
 
 public class Floating extends AerEnchantment {
     public static final ModConfig.FloatingOptions CONFIG = FancyEnchantments.getConfig().floatingOptions;
+
     public Floating() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
