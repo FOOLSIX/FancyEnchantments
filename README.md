@@ -11,6 +11,10 @@ Support [Enchantment-Descriptions](https://legacy.curseforge.com/minecraft/mc-mo
 搭载[附魔描述](https://www.mcmod.cn/class/1945.html)
 
 Download:
+
+![CurseForge Downloads](https://cf.way2muchnoise.eu/1006767.svg)
+![Available Versions](https://cf.way2muchnoise.eu/versions/1006767.svg)
+
 [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-enchantments)
 
 ---
