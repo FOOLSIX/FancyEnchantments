@@ -10,11 +10,6 @@ import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 
 @Config(name = MODID)
 public class ModConfig implements ConfigData {
-    @Comment("""
-            Set level = 0 to disable the enchantment.
-            Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
-            The valid value of rarity is: "COMMON" "UNCOMMON" "RARE" "VERY_RARE"
-            """)
     @ConfigEntry.Gui.CollapsibleObject
     public final AdvancedLootingOptions advancedLootingOptions = new AdvancedLootingOptions();
     @ConfigEntry.Gui.CollapsibleObject
@@ -46,7 +41,7 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public final RollingStoneOptions rollingStoneOptions = new RollingStoneOptions();
     @ConfigEntry.Gui.CollapsibleObject
-    public final BlessedWindOptions blessedWind = new BlessedWindOptions();
+    public final BlessedWindOptions blessedWindOptions = new BlessedWindOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final HeavyBlowOptions heavyBlowOptions = new HeavyBlowOptions();
     @ConfigEntry.Gui.CollapsibleObject
@@ -55,6 +50,26 @@ public class ModConfig implements ConfigData {
     public final FloatingOptions floatingOptions = new FloatingOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final CumbersomeOptions cumbersomeOptions = new CumbersomeOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BullyingOptions bullyingOptions = new BullyingOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final HungryOptions hungryOptions = new HungryOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final DominionOptions dominionOptions = new DominionOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BloodthirstyOptions bloodthirstyOptions = new BloodthirstyOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final FallingStoneOptions fallingStoneOptions = new FallingStoneOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final FeatherFallOptions featherFallOptions = new FeatherFallOptions();
+    @Comment("""
+            Set level = 0 to disable the enchantment.
+            Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
+            The valid value of rarity is: "COMMON" "UNCOMMON" "RARE" "VERY_RARE"
+            """)
+
+    @ConfigEntry.Gui.CollapsibleObject
+    public boolean enableIncompatibility = true;
 
     public static class BaseOptions {
         @Comment("====== Basic options below ======")
@@ -73,7 +88,8 @@ public class ModConfig implements ConfigData {
     }
 
     public static class AdvancedLootingOptions extends BaseOptions {
-        @Comment("Looting level += level * multiplier (vanilla Looting X provides X looting level)")
+        @Comment("Looting level += level * multiplier (There is a level / (level + 5) probability of adding additional levels) \n" +
+                "(vanilla Looting X provides X looting level)")
         public int lootingLevelMultiplier = 2;
 
         AdvancedLootingOptions() {
@@ -95,7 +111,7 @@ public class ModConfig implements ConfigData {
 
     public static class EaterOfSoulsOptions extends BaseOptions {
         @Comment("damage += sqrt(kill count) * level * multiplier")
-        public float damageMultiplier = 0.1f;
+        public float damageMultiplier = 0.3f;
 
         EaterOfSoulsOptions() {
             super(3, Rarity.VERY_RARE);
@@ -271,6 +287,60 @@ public class ModConfig implements ConfigData {
         public int duration = 3;
 
         CumbersomeOptions() {
+            super(1, Rarity.RARE);
+        }
+    }
+
+    public static class BullyingOptions extends BaseOptions {
+        BullyingOptions() {
+            super(1, Rarity.RARE);
+            super.isTreasure = true;
+        }
+    }
+
+    public static class HungryOptions extends BaseOptions {
+        @Comment("The probability of generating a copy = level * probability")
+        public double probability = 0.2;
+        HungryOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class DominionOptions extends BaseOptions {
+        @Comment("Damage += sum of enchantment level * multiplier")
+        public float damageMultiplier = 1.0f;
+
+        DominionOptions() {
+            super(1, Rarity.VERY_RARE);
+            super.isTreasure = true;
+            super.isTradeable = false;
+        }
+    }
+
+    public static class BloodthirstyOptions extends BaseOptions {
+        @Comment("Hunger Value += damageValue * multiplier")
+        public float hungerMultiplier = 0.5f;
+        public int hungerUpperLimit = 20;
+        @Comment("Saturation += damageValue * multiplier")
+        public float saturationMultiplier = 0.2f;
+
+        BloodthirstyOptions() {
+            super(1, Rarity.VERY_RARE);
+            super.isTreasure = true;
+        }
+    }
+
+    public static class FallingStoneOptions extends BaseOptions {
+        @Comment("damage = (1 + level * multiplier) * fallingDistance")
+        public float damageMultiplier = 0.5f;
+
+        FallingStoneOptions() {
+            super(3, Rarity.UNCOMMON);
+        }
+    }
+
+    public static class FeatherFallOptions extends BaseOptions {
+        FeatherFallOptions() {
             super(1, Rarity.RARE);
         }
     }

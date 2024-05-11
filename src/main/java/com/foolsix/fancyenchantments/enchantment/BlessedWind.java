@@ -14,7 +14,7 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 
 public class BlessedWind extends AerEnchantment {
-    private static final ModConfig.BlessedWindOptions CONFIG = FancyEnchantments.getConfig().blessedWind;
+    private static final ModConfig.BlessedWindOptions CONFIG = FancyEnchantments.getConfig().blessedWindOptions;
 
     public BlessedWind() {
         super(CONFIG, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});

@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.EssentiaEnch;
 
+import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.ChatFormatting;
@@ -26,6 +27,6 @@ public class TerraEnchantment extends FEBaseEnchantment {
 
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
-        return super.checkCompatibility(pOther) && !(pOther instanceof AerEnchantment);
+        return super.checkCompatibility(pOther) && (!FancyEnchantments.getConfig().enableIncompatibility || !(pOther instanceof AerEnchantment));
     }
 }

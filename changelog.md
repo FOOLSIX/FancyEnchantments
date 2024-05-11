@@ -1,12 +1,20 @@
 # 0.0.4
 ## change:
 - The code for the tick event has been modified, and now Tick events should be correctly called only once
+- Increase the default damage multiplier of Eater of Souls
+- Now you can configure whether to enable incompatibility between mod's enchantments
 
 ## add:
 - Floating(Cursed):Reduce damage when the player is stationary
 - Cumbersome(Cursed):After the attack, there is a probability that the player will attack slowly for a period of time
-## fix
+- Hungry:Mobs drop more food
+- Bloodthirsty:Feeling hungry, obtaining saturation from slaughter
+- Dominion:The power of a weapon increases with sum of its enchantment levels
+- Falling Stone:Fall from a height to cause damage to enemies and avoid falling injuries
+- Feather Fall(feet):Sneaking in the air to gain a Slow Falling effect 
+## fix:
 - Fixed a bug where Empathy does not work when on offhand
+- Fixed bug where RollingStone's damage was not considered player damage
 --- 
 # 0.0.3
 ## change:

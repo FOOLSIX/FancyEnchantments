@@ -3,7 +3,6 @@ package com.foolsix.fancyenchantments.enchantment;
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
 import com.foolsix.fancyenchantments.util.ModConfig;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,50 +13,43 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
-public class RollingStone extends TerraEnchantment {
-    private static final ModConfig.RollingStoneOptions CONFIG = FancyEnchantments.getConfig().rollingStoneOptions;
+public class FallingStone extends TerraEnchantment {
+    private static final ModConfig.FallingStoneOptions CONFIG = FancyEnchantments.getConfig().fallingStoneOptions;
 
-    public RollingStone() {
+    public FallingStone() {
         super(CONFIG, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
     }
 
     @Override
     public int getMinCost(int pLevel) {
-        return 1 + pLevel * 8;
+        return 5 + pLevel * 5;
     }
 
     @Override
     public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 45;
+        return getMinCost(pLevel) + 10;
     }
 
-    public void dealDamageWhileSprinting(TickEvent.PlayerTickEvent e) {
+    public void doFallingDamage(TickEvent.PlayerTickEvent e) {
         Player player = e.player;
         int level = EnchantmentHelper.getEnchantmentLevel(this, player);
-        if (player.isSprinting() && level > 0 && player.level instanceof ServerLevel world) {
-            List<Entity> entities = world.getEntities(player, player.getBoundingBox().expandTowards(0.3, 0.3, 0.3));
+        if (!player.isOnGround() && player.fallDistance > 2) {
+            List<Entity> entities = player.level.getEntities(player, player.getBoundingBox().expandTowards(0.3 * level, 0.3, 0.3 * level));
             for (Entity entity : entities) {
                 if (entity instanceof Monster monster) {
                     if (entity instanceof NeutralMob neutralMob && !neutralMob.isAngryAt(player)) {
                         continue;
                     }
-                    float v = player.getSpeed();
-                    entity.hurt(DamageSource.playerAttack(player), (float) (level * CONFIG.damageMultiplier + v * CONFIG.damageBonusMultiplier));
+                    float fallDist = player.fallDistance;
+                    monster.hurt(DamageSource.playerAttack(player), fallDist * (1 + CONFIG.damageMultiplier * level));
                     Vec3 pushAngel = new Vec3(monster.getX() - player.getX(), 0, monster.getZ() - player.getZ());
-                    entity.push(pushAngel.x * v * 2, 0.2, pushAngel.z * v * 2);
+                    entity.push(pushAngel.x, 0.1, pushAngel.z);
+                    player.fallDistance = 0.0f;
                 }
             }
-        }
-    }
-
-    public void reduceDamageTakenWhileSprinting(LivingHurtEvent e) {
-        int level = EnchantmentHelper.getEnchantmentLevel(this, e.getEntity());
-        if (level > 0) {
-            e.setAmount((e.getAmount() * (float) (1 - CONFIG.damageReducer * level)));
         }
     }
 }

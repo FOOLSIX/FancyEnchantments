@@ -38,11 +38,15 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void playerTickEvent(TickEvent.PlayerTickEvent e) {
         if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
+            ((FeatherFall) FEATHER_FALL.get()).gainEffect(e);
+            ((FallingStone) FALLING_STONE.get()).doFallingDamage(e);
             ((RollingStone) ROLLING_STONE.get()).dealDamageWhileSprinting(e);
             ((BlessedWind) BLESSED_WIND.get()).speedBoostWhileSprinting(e);
+            ((Bloodthirsty) BLOODTHIRSTY.get()).getHungry(e);
         }
         if (e.player != null && e.side.isClient() && e.phase == TickEvent.Phase.START) {
             ((Floating) FLOATING.get()).damageReduce(e);
+
         }
     }
 
@@ -80,7 +84,7 @@ public class EnchantmentEvents {
     }
 
     @SubscribeEvent
-    public void livingEvent(LivingEvent.LivingTickEvent e) {
+    public void livingTickEvent(LivingEvent.LivingTickEvent e) {
         if (e.getEntity() != null && !e.getEntity().level.isClientSide()) {
             ((Lightness) LIGHTNESS.get()).livingEvent(e);
             ((OceanCurrent) OCEAN_CURRENT.get()).attackSpeedBoost(e);
@@ -99,6 +103,7 @@ public class EnchantmentEvents {
             ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
             ((HeavyBlow) HEAVY_BLOW.get()).criticalHit(e);
             ((WindBlade) WIND_BLADE.get()).damageBoost(e);
+            ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
             ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
             ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
         }
@@ -106,9 +111,11 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void livingDeath(LivingDeathEvent e) {
-        ((EaterOfSouls) EATER_OF_SOULS.get()).killcount(e);
-        ((Overflow) OVERFLOW.get()).generateWater(e);
-        ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
+        if (e.getSource() != null) {
+            ((EaterOfSouls) EATER_OF_SOULS.get()).killcount(e);
+            ((Overflow) OVERFLOW.get()).generateWater(e);
+            ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
+        }
     }
 
     @SubscribeEvent
@@ -124,6 +131,13 @@ public class EnchantmentEvents {
         ((WindBlade) WIND_BLADE.get()).damageReduce(e);
         ((HeavyBlow) HEAVY_BLOW.get()).attackSpeedReduce(e);
         ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
+    }
+
+    @SubscribeEvent
+    public void dropEvent(LivingDropsEvent e) {
+        if (e.getSource() != null && e.getSource().getEntity() != null) {
+            ((Hungry) HUNGRY.get()).dropFoods(e);
+        }
     }
 
 }

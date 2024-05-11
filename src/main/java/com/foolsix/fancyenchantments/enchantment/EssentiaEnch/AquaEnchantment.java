@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.EssentiaEnch;
 
+import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.ChatFormatting;
@@ -23,6 +24,6 @@ public class AquaEnchantment extends FEBaseEnchantment {
     }
 
     protected boolean checkCompatibility(Enchantment pOther) {
-        return super.checkCompatibility(pOther) && !(pOther instanceof IgnisEnchantment);
+        return super.checkCompatibility(pOther) && (!FancyEnchantments.getConfig().enableIncompatibility || !(pOther instanceof IgnisEnchantment));
     }
 }

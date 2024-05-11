@@ -25,6 +25,9 @@ public class EnchantmentReg {
     public static final RegistryObject<Enchantment> ADVANCED_LOOTING =
             ENCHANTMENTS.register(ADVANCED_LOOTING_NAME, AdvancedLooting::new);
 
+    public static final RegistryObject<Enchantment> HUNGRY =
+            ENCHANTMENTS.register(HUNGRY_NAME, Hungry::new);
+
     public static final RegistryObject<Enchantment> REFLECTING =
             ENCHANTMENTS.register(REFLECTING_NAME, Reflecting::new);
 
@@ -72,4 +75,19 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> CUMBERSOME =
             ENCHANTMENTS.register(CUMBERSOME_NAME, Cumbersome::new);
+
+    public static final RegistryObject<Enchantment> BULLYING =
+            ENCHANTMENTS.register(BULLYING_NAME, Bullying::new);
+
+    public static final RegistryObject<Enchantment> DOMINION =
+            ENCHANTMENTS.register(DOMINION_NAME, Dominion::new);
+
+    public static final RegistryObject<Enchantment> BLOODTHIRSTY =
+            ENCHANTMENTS.register(BLOODTHIRSTY_NAME, Bloodthirsty::new);
+
+    public static final RegistryObject<Enchantment> FALLING_STONE =
+            ENCHANTMENTS.register(FALLING_STONE_NAME, FallingStone::new);
+
+    public static final RegistryObject<Enchantment> FEATHER_FALL =
+            ENCHANTMENTS.register(FEATHER_FALL_NAME, FeatherFall::new);
 }

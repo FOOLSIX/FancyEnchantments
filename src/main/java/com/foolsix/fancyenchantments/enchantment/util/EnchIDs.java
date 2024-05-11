@@ -31,5 +31,10 @@ public class EnchIDs {
     public static final String FLOATING_NAME = "floating";
     public static final UUID FLOATING_UUID = UUID.fromString("0c8df40f-fdf1-41cc-a3ea-e1477459fce1");
     public static final String CUMBERSOME_NAME = "cumbersome";
-
+    public static final String BULLYING_NAME = "bullying";
+    public static final String HUNGRY_NAME = "hungry";
+    public static final String DOMINION_NAME = "dominion";
+    public static final String BLOODTHIRSTY_NAME = "bloodthirsty";
+    public static final String FALLING_STONE_NAME = "falling_stone";
+    public static final String FEATHER_FALL_NAME = "feather_fall";
 }

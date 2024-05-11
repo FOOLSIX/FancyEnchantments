@@ -1,11 +1,8 @@
 package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TwistedEnchantment;
 import com.foolsix.fancyenchantments.util.ModConfig;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -17,16 +14,11 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import static net.minecraft.world.item.Item.BASE_ATTACK_DAMAGE_UUID;
 
 
-public class TheFallen extends FEBaseEnchantment {
+public class TheFallen extends TwistedEnchantment {
     private static final ModConfig.TheFallenOptions CONFIG = FancyEnchantments.getConfig().theFallenOptions;
 
     public TheFallen() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-    }
-
-    @Override
-    public Component getFullname(int level) {
-        return ((MutableComponent) super.getFullname(level)).withStyle(ChatFormatting.DARK_PURPLE);
     }
 
     @Override
