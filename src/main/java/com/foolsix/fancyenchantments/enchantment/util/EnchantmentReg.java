@@ -90,4 +90,10 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> FEATHER_FALL =
             ENCHANTMENTS.register(FEATHER_FALL_NAME, FeatherFall::new);
+
+    public static final RegistryObject<Enchantment> UNYIELDING_SPIRIT =
+            ENCHANTMENTS.register(UNYIELDING_SPIRIT_NAME, UnyieldingSpirit::new);
+
+    public static final RegistryObject<Enchantment> CURSED_GAZE =
+            ENCHANTMENTS.register(CURSED_GAZE_NAME, CursedGaze::new);
 }

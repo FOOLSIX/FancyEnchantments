@@ -2,13 +2,13 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.NeutralMob;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -41,10 +41,7 @@ public class RollingStone extends TerraEnchantment {
         if (player.isSprinting() && level > 0 && player.level instanceof ServerLevel world) {
             List<Entity> entities = world.getEntities(player, player.getBoundingBox().expandTowards(0.3, 0.3, 0.3));
             for (Entity entity : entities) {
-                if (entity instanceof Monster monster) {
-                    if (entity instanceof NeutralMob neutralMob && !neutralMob.isAngryAt(player)) {
-                        continue;
-                    }
+                if (entity instanceof LivingEntity monster && EnchUtils.isHostileToLivingEntity(monster, player)) {
                     float v = player.getSpeed();
                     entity.hurt(DamageSource.playerAttack(player), (float) (level * CONFIG.damageMultiplier + v * CONFIG.damageBonusMultiplier));
                     Vec3 pushAngel = new Vec3(monster.getX() - player.getX(), 0, monster.getZ() - player.getZ());

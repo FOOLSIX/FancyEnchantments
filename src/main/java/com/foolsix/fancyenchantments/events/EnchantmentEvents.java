@@ -16,6 +16,7 @@ import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -39,6 +40,7 @@ public class EnchantmentEvents {
     public void playerTickEvent(TickEvent.PlayerTickEvent e) {
         if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
             ((FeatherFall) FEATHER_FALL.get()).gainEffect(e);
+            ((CursedGaze) CURSED_GAZE.get()).cursedGaze(e);
             ((FallingStone) FALLING_STONE.get()).doFallingDamage(e);
             ((RollingStone) ROLLING_STONE.get()).dealDamageWhileSprinting(e);
             ((BlessedWind) BLESSED_WIND.get()).speedBoostWhileSprinting(e);
@@ -85,7 +87,7 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void livingTickEvent(LivingEvent.LivingTickEvent e) {
-        if (e.getEntity() != null && !e.getEntity().level.isClientSide()) {
+        if (!e.isCanceled() && e.getEntity() != null && !e.getEntity().level.isClientSide()) {
             ((Lightness) LIGHTNESS.get()).livingEvent(e);
             ((OceanCurrent) OCEAN_CURRENT.get()).attackSpeedBoost(e);
         }
@@ -93,7 +95,7 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void hurtEvent(LivingHurtEvent e) {
-        if (e.getSource() == null) {
+        if (e.isCanceled() || e.getSource() == null) {
             return;
         }
 
@@ -111,22 +113,32 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void livingDeath(LivingDeathEvent e) {
-        if (e.getSource() != null) {
+        if (!e.isCanceled() && e.getSource() != null) {
+            ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).clearTag(e);
             ((EaterOfSouls) EATER_OF_SOULS.get()).killcount(e);
             ((Overflow) OVERFLOW.get()).generateWater(e);
             ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void playerDeath(LivingHurtEvent e) {
+        if (!e.isCanceled() && !e.getEntity().level.isClientSide) {
+            ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).preventDeath(e);
+        }
+    }
+
     @SubscribeEvent
     public void arrowLooseEvent(ArrowLooseEvent e) {
-        //Below cancel the event
-        ((Empathy) EMPATHY.get()).throwPlayer(e);
+        if (!e.isCanceled() && !e.getLevel().isClientSide()) {
+            //Below cancel the event
+            ((Empathy) EMPATHY.get()).throwPlayer(e);
+        }
     }
 
     @SubscribeEvent
     public void itemAttributeModifierEvent(ItemAttributeModifierEvent e) {
-        if (e.getItemStack() == null) return;
+        if (e.isCanceled() || e.getItemStack() == null) return;
 
         ((WindBlade) WIND_BLADE.get()).damageReduce(e);
         ((HeavyBlow) HEAVY_BLOW.get()).attackSpeedReduce(e);
@@ -139,5 +151,11 @@ public class EnchantmentEvents {
             ((Hungry) HUNGRY.get()).dropFoods(e);
         }
     }
+
+    @SubscribeEvent
+    public void equipmentChange(LivingEquipmentChangeEvent e) {
+        ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).unequipped(e);
+    }
+
 
 }

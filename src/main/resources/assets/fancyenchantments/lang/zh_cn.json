@@ -40,8 +40,6 @@
   "enchantment.fancyenchantments.cumbersome.desc": "攻击后有概率使使用者减缓攻速一段时间",
   "enchantment.fancyenchantments.bullying": "凌弱",
   "enchantment.fancyenchantments.bullying.desc": "一击杀死幼小生物",
-  "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
-  "effect.fancyenchantments.cumbersome": "笨重",
   "enchantment.fancyenchantments.hungry": "饥渴",
   "enchantment.fancyenchantments.hungry.desc": "生物掉落更多食物",
   "enchantment.fancyenchantments.dominion": "统御",
@@ -52,6 +50,13 @@
   "enchantment.fancyenchantments.falling_stone.desc": "高处坠落到敌人头上造成伤害,成功造成伤害可以避免摔落伤害",
   "enchantment.fancyenchantments.feather_fall": "羽落",
   "enchantment.fancyenchantments.feather_fall.desc": "在空中潜行获得缓降",
+  "enchantment.fancyenchantments.unyielding_spirit": "不屈的精神",
+  "enchantment.fancyenchantments.unyielding_spirit.desc": "临死前获得额外的生存时间,杀死敌怪以复活",
+  "enchantment.fancyenchantments.cursed_gaze": "诅咒凝视",
+  "enchantment.fancyenchantments.cursed_gaze.desc": "给予你所凝视的敌人虚弱和缓慢效果",
+  "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
+  "effect.fancyenchantments.cumbersome": "笨重",
+  "death.attack.fancyenchantments.give_up": "%1$s 放弃了挣扎...",
   "Curse:": "诅咒:",
   "Kill Count:": "杀敌数:"
 }

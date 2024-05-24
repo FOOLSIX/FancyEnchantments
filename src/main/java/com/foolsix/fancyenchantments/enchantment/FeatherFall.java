@@ -12,6 +12,7 @@ import net.minecraftforge.event.TickEvent;
 
 public class FeatherFall extends AerEnchantment {
     private static final ModConfig.FeatherFallOptions CONFIG = FancyEnchantments.getConfig().featherFallOptions;
+
     public FeatherFall() {
         super(CONFIG, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
     }

@@ -62,6 +62,10 @@ public class ModConfig implements ConfigData {
     public final FallingStoneOptions fallingStoneOptions = new FallingStoneOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final FeatherFallOptions featherFallOptions = new FeatherFallOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final UnyieldingSpiritOptions unyieldingSpiritOptions = new UnyieldingSpiritOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final CursedGazeOptions cursedGazeOptions = new CursedGazeOptions();
     @Comment("""
             Set level = 0 to disable the enchantment.
             Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
@@ -301,6 +305,7 @@ public class ModConfig implements ConfigData {
     public static class HungryOptions extends BaseOptions {
         @Comment("The probability of generating a copy = level * probability")
         public double probability = 0.2;
+
         HungryOptions() {
             super(3, Rarity.RARE);
         }
@@ -342,6 +347,21 @@ public class ModConfig implements ConfigData {
     public static class FeatherFallOptions extends BaseOptions {
         FeatherFallOptions() {
             super(1, Rarity.RARE);
+        }
+    }
+
+    public static class UnyieldingSpiritOptions extends BaseOptions {
+        @Comment("Extra Time To Live (second)")
+        public int extraTime = 5;
+
+        UnyieldingSpiritOptions() {
+            super(1, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class CursedGazeOptions extends BaseOptions {
+        CursedGazeOptions() {
+            super(3, Rarity.VERY_RARE);
         }
     }
 }

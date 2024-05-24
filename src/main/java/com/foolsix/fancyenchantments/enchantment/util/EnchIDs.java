@@ -37,4 +37,6 @@ public class EnchIDs {
     public static final String BLOODTHIRSTY_NAME = "bloodthirsty";
     public static final String FALLING_STONE_NAME = "falling_stone";
     public static final String FEATHER_FALL_NAME = "feather_fall";
+    public static final String UNYIELDING_SPIRIT_NAME = "unyielding_spirit";
+    public static final String CURSED_GAZE_NAME = "cursed_gaze";
 }

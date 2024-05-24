@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments;
 
 import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
+import com.foolsix.fancyenchantments.events.CapabilityEvents;
 import com.foolsix.fancyenchantments.events.EffectEvents;
 import com.foolsix.fancyenchantments.events.EnchantmentEvents;
 import com.foolsix.fancyenchantments.util.ModConfig;
@@ -24,6 +25,8 @@ public class FancyEnchantments {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
         MinecraftForge.EVENT_BUS.register(new EffectEvents());
+        MinecraftForge.EVENT_BUS.register(new CapabilityEvents());
+
 
         EnchantmentReg.ENCHANTMENTS.register(modEventBus);
         EffectReg.EFFECTS.register(modEventBus);

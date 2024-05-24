@@ -1,3 +1,9 @@
+# 0.0.5
+
+## add:
+- Unyielding Spirit(head):Get extra survival time before death, kill monsters to resurrect
+- Cursed Gaze(head):Give the monsters you gaze upon weakness and slowness effects
+
 # 0.0.4
 ## change:
 - The code for the tick event has been modified, and now Tick events should be correctly called only once
@@ -12,6 +18,7 @@
 - Dominion:The power of a weapon increases with sum of its enchantment levels
 - Falling Stone:Fall from a height to cause damage to enemies and avoid falling injuries
 - Feather Fall(feet):Sneaking in the air to gain a Slow Falling effect 
+
 ## fix:
 - Fixed a bug where Empathy does not work when on offhand
 - Fixed bug where RollingStone's damage was not considered player damage

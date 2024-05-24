@@ -11,9 +11,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
+import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
+
 public class EaterOfSouls extends TwistedEnchantment {
     private static final ModConfig.EaterOfSoulsOptions CONFIG = FancyEnchantments.getConfig().eaterOfSoulsOptions;
-    private static final String KILL_COUNT = "eater_of_souls_killcount";
+    private static final String KILL_COUNT = MODID + " eater_of_souls_killcount";
 
     public EaterOfSouls() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});

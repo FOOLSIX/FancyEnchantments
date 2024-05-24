@@ -6,15 +6,13 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.foolsix.fancyenchantments.effect.EffectIDs.CRIT_RATE_BOOST_NAME;
-import static com.foolsix.fancyenchantments.effect.EffectIDs.CUMBERSOME_NAME;
 
 public class EffectReg {
     public static final DeferredRegister<MobEffect> EFFECTS =
             DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, FancyEnchantments.MODID);
     public static final RegistryObject<MobEffect> CRIT_RATE_BOOST =
-            EFFECTS.register(CRIT_RATE_BOOST_NAME, CritRateBoost::new);
+            EFFECTS.register(CritRateBoost.CRIT_RATE_BOOST_NAME, CritRateBoost::new);
     public static final RegistryObject<MobEffect> CUMBERSOME =
-            EFFECTS.register(CUMBERSOME_NAME, Cumbersome::new);
+            EFFECTS.register(Cumbersome.CUMBERSOME_NAME, Cumbersome::new);
 
 }

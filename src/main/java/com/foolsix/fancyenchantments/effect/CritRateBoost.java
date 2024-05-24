@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class CritRateBoost extends MobEffect {
-
+    public static final String CRIT_RATE_BOOST_NAME = "crit_rate_boost";
     CritRateBoost() {
         super(MobEffectCategory.BENEFICIAL, 0xFF0000);
     }

@@ -10,13 +10,13 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public class TwistedEnchantment extends FEBaseEnchantment {
-    protected TwistedEnchantment(ModConfig.BaseOptions options, EnchantmentCategory category, EquipmentSlot[] equipmentSlots) {
+public class HolyEnchantment extends FEBaseEnchantment {
+    protected HolyEnchantment(ModConfig.BaseOptions options, EnchantmentCategory category, EquipmentSlot[] equipmentSlots) {
         super(options, category, equipmentSlots);
     }
 
     public Component getFullname(int level) {
-        MutableComponent name = ((MutableComponent) super.getFullname(level)).withStyle(ChatFormatting.DARK_PURPLE);
+        MutableComponent name = ((MutableComponent) super.getFullname(level)).withStyle(ChatFormatting.WHITE);
         if (isCurse()) {
             name = EnchUtils.CURSE_PREFIX.copy().append(name);
         }
@@ -25,6 +25,6 @@ public class TwistedEnchantment extends FEBaseEnchantment {
 
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
-        return super.checkCompatibility(pOther) && (!FancyEnchantments.getConfig().enableIncompatibility || !(pOther instanceof HolyEnchantment));
+        return super.checkCompatibility(pOther) && (!FancyEnchantments.getConfig().enableIncompatibility || !(pOther instanceof TwistedEnchantment));
     }
 }

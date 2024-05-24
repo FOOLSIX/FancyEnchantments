@@ -2,12 +2,12 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.NeutralMob;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -39,10 +39,7 @@ public class FallingStone extends TerraEnchantment {
         if (!player.isOnGround() && player.fallDistance > 2) {
             List<Entity> entities = player.level.getEntities(player, player.getBoundingBox().expandTowards(0.3 * level, 0.3, 0.3 * level));
             for (Entity entity : entities) {
-                if (entity instanceof Monster monster) {
-                    if (entity instanceof NeutralMob neutralMob && !neutralMob.isAngryAt(player)) {
-                        continue;
-                    }
+                if (entity instanceof LivingEntity monster && EnchUtils.isHostileToLivingEntity(monster, player)) {
                     float fallDist = player.fallDistance;
                     monster.hurt(DamageSource.playerAttack(player), fallDist * (1 + CONFIG.damageMultiplier * level));
                     Vec3 pushAngel = new Vec3(monster.getX() - player.getX(), 0, monster.getZ() - player.getZ());
