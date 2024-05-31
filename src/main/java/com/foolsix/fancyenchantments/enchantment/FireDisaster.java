@@ -15,6 +15,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.getRandomValidPos;
 
 public class FireDisaster extends IgnisEnchantment {
+    public static final String NAME = "fire_disaster";
     private static final ModConfig.FireDisasterOptions CONFIG = FancyEnchantments.getConfig().fireDisasterOptions;
 
     public FireDisaster() {

@@ -13,6 +13,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import java.util.HashSet;
 
 public class Hungry extends TwistedEnchantment {
+    public static final String NAME = "hungry";
     private static final ModConfig.HungryOptions CONFIG = FancyEnchantments.getConfig().hungryOptions;
 
     public Hungry() {

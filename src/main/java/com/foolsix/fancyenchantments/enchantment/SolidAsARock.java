@@ -11,11 +11,13 @@ import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.SOLID_AS_A_ROCK_NAME;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.SOLID_AS_A_ROCK_UUID;
+import java.util.UUID;
+
 import static net.minecraftforge.common.ToolActions.SHIELD_BLOCK;
 
 public class SolidAsARock extends TerraEnchantment {
+    public static final String NAME = "solid_as_a_rock";
+    public static final UUID SOLID_AS_A_ROCK_UUID = UUID.fromString("95a86f29-19c7-4b4f-8c6b-77747f10019b");
     private static final ModConfig.SolidAsARockOptions CONFIG = FancyEnchantments.getConfig().solidAsARockOptions;
 
     public SolidAsARock() {
@@ -43,8 +45,8 @@ public class SolidAsARock extends TerraEnchantment {
         if (!(stack.getItem() instanceof ShieldItem) && !stack.canPerformAction(SHIELD_BLOCK))
             return;
         if (level > 0 && (e.getSlotType() == EquipmentSlot.MAINHAND || e.getSlotType() == EquipmentSlot.OFFHAND)) {
-            e.addModifier(Attributes.ARMOR, new AttributeModifier(SOLID_AS_A_ROCK_UUID, SOLID_AS_A_ROCK_NAME, CONFIG.armorMultiplier * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            e.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(SOLID_AS_A_ROCK_UUID, SOLID_AS_A_ROCK_NAME, CONFIG.toughnessMultiplier * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            e.addModifier(Attributes.ARMOR, new AttributeModifier(SOLID_AS_A_ROCK_UUID, NAME, CONFIG.armorMultiplier * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            e.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(SOLID_AS_A_ROCK_UUID, NAME, CONFIG.toughnessMultiplier * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
     }
 }

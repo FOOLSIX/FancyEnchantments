@@ -10,6 +10,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 
 public class Empathy extends FEBaseEnchantment {
+    public static final String NAME = "empathy";
     private static final ModConfig.EmpathyOptions CONFIG = FancyEnchantments.getConfig().empathyOptions;
 
     public Empathy() {

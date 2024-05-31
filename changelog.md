@@ -1,3 +1,11 @@
+# 0.0.6
+# change:
+- Added configurable attributes for Unyielding Spirit and Cursed Gaze
+
+# add:
+- Calmer(Chest):Gain damage absorption when taking damage
+
+
 # 0.0.5
 
 ## add:

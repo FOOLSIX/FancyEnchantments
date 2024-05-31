@@ -13,9 +13,13 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.*;
+import java.util.UUID;
+
+import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.MOD_NAME_PREFIX;
 
 public class WindBlade extends AerEnchantment {
+    public static final String NAME = "wind_blade";
+    public static final UUID WIND_BLADE_UUID = UUID.fromString("5daf4e17-1012-411b-bb59-7f50d6d26c66");
     private static final ModConfig.WindBladeOptions CONFIG = FancyEnchantments.getConfig().windBladeOptions;
 
     public WindBlade() {
@@ -49,7 +53,7 @@ public class WindBlade extends AerEnchantment {
 
     public void damageReduce(ItemAttributeModifierEvent e) {
         if (e.getItemStack().getEnchantmentLevel(this) > 0 && e.getSlotType() == EquipmentSlot.MAINHAND) {
-            e.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(WIND_BLADE_UUID, MOD_NAME_PREFIX + WIND_BLADE_NAME, -CONFIG.damageReducer, AttributeModifier.Operation.MULTIPLY_BASE));
+            e.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(WIND_BLADE_UUID, MOD_NAME_PREFIX + NAME, -CONFIG.damageReducer, AttributeModifier.Operation.MULTIPLY_BASE));
         }
     }
 

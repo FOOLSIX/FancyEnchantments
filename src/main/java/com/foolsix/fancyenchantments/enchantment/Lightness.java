@@ -2,7 +2,6 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchantment;
-import com.foolsix.fancyenchantments.enchantment.util.EnchIDs;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,10 +13,12 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.LIGHTNESS_NAME;
+import java.util.UUID;
 
 
 public class Lightness extends AerEnchantment {
+    public static final UUID LIGHTNESS_UUID = UUID.fromString("44376746-5129-47fd-850e-dc89ac2d0cdf");
+    public static final String NAME = "lightness";
     private static final ModConfig.LightnessOptions CONFIG = FancyEnchantments.getConfig().lightnessOptions;
 
     public Lightness() {
@@ -44,12 +45,12 @@ public class Lightness extends AerEnchantment {
         LivingEntity living = e.getEntity();
         AttributeInstance moveSpeedAttr = e.getEntity().getAttribute(Attributes.MOVEMENT_SPEED);
         if (moveSpeedAttr != null) {
-            moveSpeedAttr.removeModifier(EnchIDs.LIGHTNESS_UUID);
+            moveSpeedAttr.removeModifier(LIGHTNESS_UUID);
         }
         int l = living.getUseItem().getEnchantmentLevel(this);
         if (l > 0) {
             if (moveSpeedAttr != null) {
-                moveSpeedAttr.addTransientModifier(new AttributeModifier(EnchIDs.LIGHTNESS_UUID, LIGHTNESS_NAME, CONFIG.speedMultiplier * l, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                moveSpeedAttr.addTransientModifier(new AttributeModifier(LIGHTNESS_UUID, NAME, CONFIG.speedMultiplier * l, AttributeModifier.Operation.MULTIPLY_TOTAL));
             }
         }
     }

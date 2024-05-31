@@ -15,6 +15,7 @@ import static net.minecraft.world.item.Item.BASE_ATTACK_DAMAGE_UUID;
 
 
 public class TheFallen extends TwistedEnchantment {
+    public static final String NAME = "the_fallen";
     private static final ModConfig.TheFallenOptions CONFIG = FancyEnchantments.getConfig().theFallenOptions;
 
     public TheFallen() {

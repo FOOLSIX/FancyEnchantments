@@ -11,6 +11,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.TickEvent;
 
 public class FeatherFall extends AerEnchantment {
+    public static final String NAME = "feather_fall";
     private static final ModConfig.FeatherFallOptions CONFIG = FancyEnchantments.getConfig().featherFallOptions;
 
     public FeatherFall() {

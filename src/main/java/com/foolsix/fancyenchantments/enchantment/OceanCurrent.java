@@ -12,10 +12,12 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.OCEAN_CURRENT_NAME;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.OCEAN_CURRENT_UUID;
+import java.util.UUID;
+
 
 public class OceanCurrent extends AquaEnchantment {
+    public static final String NAME = "ocean_current";
+    public static final UUID OCEAN_CURRENT_UUID = UUID.fromString("ee024ab3-16b9-4b03-a31e-946d1811d0ec");
     private static final ModConfig.OceanCurrentOptions CONFIG = FancyEnchantments.getConfig().oceanCurrentOptions;
 
     public OceanCurrent() {
@@ -47,7 +49,7 @@ public class OceanCurrent extends AquaEnchantment {
                     addon *= CONFIG.extraSpeedMultiplier;
                 }
                 if (attackSpeedAttr != null) {
-                    attackSpeedAttr.addTransientModifier(new AttributeModifier(OCEAN_CURRENT_UUID, OCEAN_CURRENT_NAME, addon, AttributeModifier.Operation.ADDITION));
+                    attackSpeedAttr.addTransientModifier(new AttributeModifier(OCEAN_CURRENT_UUID, NAME, addon, AttributeModifier.Operation.ADDITION));
                 }
             }
         }

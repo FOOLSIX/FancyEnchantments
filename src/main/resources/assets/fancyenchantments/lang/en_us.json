@@ -54,6 +54,8 @@
   "enchantment.fancyenchantments.unyielding_spirit.desc": "Get extra survival time before death, kill monsters to resurrect",
   "enchantment.fancyenchantments.cursed_gaze": "Cursed Gaze",
   "enchantment.fancyenchantments.cursed_gaze.desc": "Give the monsters you gaze upon weakness and slowness effects",
+  "enchantment.fancyenchantments.calmer": "Calmer",
+  "enchantment.fancyenchantments.calmer.desc": "Gain damage absorption when taking damage",
   "effect.fancyenchantments.crit_rate_boost": "Crit Rate Boost",
   "effect.fancyenchantments.cumbersome": "Cumbersome",
   "death.attack.fancyenchantments.give_up": "%1$s gave up life...",

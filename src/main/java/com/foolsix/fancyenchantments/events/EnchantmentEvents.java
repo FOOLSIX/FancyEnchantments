@@ -27,13 +27,8 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 public class EnchantmentEvents {
     @SubscribeEvent
     public void tooltip(ItemTooltipEvent e) {
-        ItemStack itemStack = e.getItemStack();
-        if (itemStack.getEnchantmentLevel(EATER_OF_SOULS.get()) > 0) {
-            CompoundTag nbt = itemStack.getOrCreateTag();
-            if (nbt.contains("eater_of_souls_killcount")) {
-                e.getToolTip().add(Component.translatable("Kill Count:").append(String.valueOf(nbt.getInt("eater_of_souls_killcount"))).withStyle(ChatFormatting.DARK_PURPLE));
-            }
-        }
+        ((EaterOfSouls) EATER_OF_SOULS.get()).tooltip(e);
+
     }
 
     @SubscribeEvent
@@ -46,6 +41,7 @@ public class EnchantmentEvents {
             ((BlessedWind) BLESSED_WIND.get()).speedBoostWhileSprinting(e);
             ((Bloodthirsty) BLOODTHIRSTY.get()).getHungry(e);
         }
+
         if (e.player != null && e.side.isClient() && e.phase == TickEvent.Phase.START) {
             ((Floating) FLOATING.get()).damageReduce(e);
 
@@ -118,6 +114,9 @@ public class EnchantmentEvents {
             ((EaterOfSouls) EATER_OF_SOULS.get()).killcount(e);
             ((Overflow) OVERFLOW.get()).generateWater(e);
             ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
+        }
+        if (e.getEntity() instanceof LivingEntity) {
+
         }
     }
 

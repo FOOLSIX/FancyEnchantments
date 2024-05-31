@@ -15,9 +15,14 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.*;
+import java.util.UUID;
+
+import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.MOD_NAME_PREFIX;
+
 
 public class HeavyBlow extends TerraEnchantment {
+    public static final String NAME = "heavy_blow";
+    public static final UUID HEAVY_BLOW_UUID = UUID.fromString("939ddda2-45df-4946-9ab6-82ffb11ede86");
     private static final ModConfig.HeavyBlowOptions CONFIG = FancyEnchantments.getConfig().heavyBlowOptions;
 
     public HeavyBlow() {
@@ -49,7 +54,7 @@ public class HeavyBlow extends TerraEnchantment {
 
     public void attackSpeedReduce(ItemAttributeModifierEvent e) {
         if (e.getItemStack().getEnchantmentLevel(this) > 0 && e.getSlotType() == EquipmentSlot.MAINHAND) {
-            e.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(HEAVY_BLOW_UUID, MOD_NAME_PREFIX + HEAVY_BLOW_NAME, -CONFIG.speedReducer, AttributeModifier.Operation.MULTIPLY_BASE));
+            e.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(HEAVY_BLOW_UUID, MOD_NAME_PREFIX + NAME, -CONFIG.speedReducer, AttributeModifier.Operation.MULTIPLY_BASE));
         }
     }
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class Bullying extends TwistedEnchantment {
+    public static final String NAME = "bullying";
     private static final ModConfig.BullyingOptions CONFIG = FancyEnchantments.getConfig().bullyingOptions;
 
     public Bullying() {

@@ -14,6 +14,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class Bloodthirsty extends TwistedEnchantment {
+    public static final String NAME = "bloodthirsty";
     private static final ModConfig.BloodthirstyOptions CONFIG = FancyEnchantments.getConfig().bloodthirstyOptions;
 
     public Bloodthirsty() {

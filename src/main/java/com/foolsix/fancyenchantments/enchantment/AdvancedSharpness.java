@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.DamageEnchantment;
 
 public class AdvancedSharpness extends DamageEnchantment {
+    public static final String NAME = "advanced_sharpness";
     private static final ModConfig.AdvancedSharpnessOptions CONFIG = FancyEnchantments.getConfig().advancedSharpnessOptions;
 
     public AdvancedSharpness() {

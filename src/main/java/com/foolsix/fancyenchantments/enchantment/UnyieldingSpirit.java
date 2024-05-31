@@ -23,6 +23,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 
 public class UnyieldingSpirit extends HolyEnchantment {
+    public static final String NAME = "unyielding_spirit";
     private static final ModConfig.UnyieldingSpiritOptions CONFIG = FancyEnchantments.getConfig().unyieldingSpiritOptions;
     private static final DamageSource GIVING_UP = new DamageSource("fancyenchantments.give_up").bypassArmor();
 
@@ -45,9 +46,13 @@ public class UnyieldingSpirit extends HolyEnchantment {
             if (e.getSource() != DamageSource.OUT_OF_WORLD && e.getAmount() >= player.getHealth()) {
                 if (TimeToLiveHelper.getTtl(player) == -1) {
                     int extraTime = CONFIG.extraTime * 20;
-                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, extraTime, 2));
-                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, extraTime, 2));
-                    player.setHealth(5);
+                    if (CONFIG.slownessLevel > 0)
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, extraTime, CONFIG.slownessLevel - 1));
+                    if (CONFIG.damageResistanceLevel > 0)
+                        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, extraTime, CONFIG.damageResistanceLevel - 1));
+                    if (CONFIG.enableBlindness)
+                        player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, extraTime));
+                    player.setHealth(player.getMaxHealth() * CONFIG.healthPercentage);
                     TimeToLiveHelper.setTtl(player, extraTime);
                     TimeToLiveHelper.setDamageSource(player, e.getSource());
                     player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(5, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.HEAD));

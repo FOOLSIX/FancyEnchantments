@@ -21,6 +21,8 @@ import java.util.function.Predicate;
 
 public class EnchUtils {
     public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
+    public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
+
     private static final Predicate<Entity> VISIBLE_HOSTILE =
             entity -> !entity.isSpectator() && isHostileToPlayer(entity);
 

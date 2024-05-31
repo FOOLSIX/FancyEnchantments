@@ -11,10 +11,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.TickEvent;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.*;
+import java.util.UUID;
+
+import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.MOD_NAME_PREFIX;
+
 
 public class Floating extends AerEnchantment {
     public static final ModConfig.FloatingOptions CONFIG = FancyEnchantments.getConfig().floatingOptions;
+    public static final String NAME = "floating";
+    public static final UUID FLOATING_UUID = UUID.fromString("0c8df40f-fdf1-41cc-a3ea-e1477459fce1");
 
     public Floating() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
@@ -35,7 +40,7 @@ public class Floating extends AerEnchantment {
                     && (player.isOnGround() || player.getDeltaMovement().y == 0.0)) {
                 if (damageAttr != null) {
                     damageAttr.addTransientModifier(new AttributeModifier(FLOATING_UUID,
-                                                                          MOD_NAME_PREFIX + FLOATING_NAME,
+                                                                          MOD_NAME_PREFIX + NAME,
                                                                           -CONFIG.damageReducer,
                                                                           AttributeModifier.Operation.MULTIPLY_TOTAL));
                 }

@@ -13,6 +13,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import static com.foolsix.fancyenchantments.effect.EffectReg.CUMBERSOME;
 
 public class Cumbersome extends TerraEnchantment {
+    public static final String NAME = "cumbersome";
     private static final ModConfig.CumbersomeOptions CONFIG = FancyEnchantments.getConfig().cumbersomeOptions;
 
     public Cumbersome() {

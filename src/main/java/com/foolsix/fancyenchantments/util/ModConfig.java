@@ -66,6 +66,8 @@ public class ModConfig implements ConfigData {
     public final UnyieldingSpiritOptions unyieldingSpiritOptions = new UnyieldingSpiritOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final CursedGazeOptions cursedGazeOptions = new CursedGazeOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final CalmerOptions calmerOptions = new CalmerOptions();
     @Comment("""
             Set level = 0 to disable the enchantment.
             Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
@@ -353,15 +355,34 @@ public class ModConfig implements ConfigData {
     public static class UnyieldingSpiritOptions extends BaseOptions {
         @Comment("Extra Time To Live (second)")
         public int extraTime = 5;
+        @Comment("The health set when enchantment takes effect, percentage")
+        public float healthPercentage = 0.5f;
+        @Comment("Slowness effect level, set 0 to disable")
+        public int slownessLevel = 3;
+        @Comment("Damage resistance effect level, set 0 to disable")
+        public int damageResistanceLevel = 3;
 
+        public boolean enableBlindness = false;
         UnyieldingSpiritOptions() {
             super(1, Rarity.VERY_RARE);
         }
     }
 
     public static class CursedGazeOptions extends BaseOptions {
+        @Comment("The effective distance = min (level * baseDistance, 128)")
+        public double baseDistance = 5.0;
         CursedGazeOptions() {
             super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class CalmerOptions extends BaseOptions {
+        @Comment("Cooldown (second)")
+        public int cooldown = 5;
+        @Comment("Duration (second)")
+        public int duration = 3;
+        CalmerOptions() {
+            super(5, Rarity.RARE);
         }
     }
 }

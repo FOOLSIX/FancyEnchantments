@@ -14,6 +14,7 @@ import net.minecraftforge.event.TickEvent;
 
 
 public class CursedGaze extends TwistedEnchantment {
+    public static final String NAME = "cursed_gaze";
     private static final ModConfig.CursedGazeOptions CONFIG = FancyEnchantments.getConfig().cursedGazeOptions;
 
     public CursedGaze() {
@@ -33,7 +34,7 @@ public class CursedGaze extends TwistedEnchantment {
     public void cursedGaze(TickEvent.PlayerTickEvent e) {
         int level = EnchantmentHelper.getEnchantmentLevel(this, e.player);
         if (level > 0) {
-            LivingEntity lookAt = EnchUtils.getLookAtLivingEntity(e.player, 1.0F, 5 * level);
+            LivingEntity lookAt = EnchUtils.getLookAtLivingEntity(e.player, 1.0F, Math.min(CONFIG.baseDistance * level, 128));
             if (lookAt != null) {
                 lookAt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, level - 1));
                 lookAt.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, level - 1));

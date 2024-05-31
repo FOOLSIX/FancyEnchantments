@@ -7,93 +7,95 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchIDs.*;
 
 public class EnchantmentReg {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, MODID);
 
     public static final RegistryObject<Enchantment> LIGHTNESS =
-            ENCHANTMENTS.register(LIGHTNESS_NAME, Lightness::new);
+            ENCHANTMENTS.register(Lightness.NAME, Lightness::new);
 
     public static final RegistryObject<Enchantment> COUNTERATTACK =
-            ENCHANTMENTS.register(COUNTERATTACK_NAME, Counterattack::new);
+            ENCHANTMENTS.register(Counterattack.NAME, Counterattack::new);
 
     public static final RegistryObject<Enchantment> ADVANCED_SHARPNESS =
-            ENCHANTMENTS.register(ADVANCED_SHARPNESS_NAME, AdvancedSharpness::new);
+            ENCHANTMENTS.register(AdvancedSharpness.NAME, AdvancedSharpness::new);
 
     public static final RegistryObject<Enchantment> ADVANCED_LOOTING =
-            ENCHANTMENTS.register(ADVANCED_LOOTING_NAME, AdvancedLooting::new);
+            ENCHANTMENTS.register(AdvancedLooting.NAME, AdvancedLooting::new);
 
     public static final RegistryObject<Enchantment> HUNGRY =
-            ENCHANTMENTS.register(HUNGRY_NAME, Hungry::new);
+            ENCHANTMENTS.register(Hungry.NAME, Hungry::new);
 
     public static final RegistryObject<Enchantment> REFLECTING =
-            ENCHANTMENTS.register(REFLECTING_NAME, Reflecting::new);
+            ENCHANTMENTS.register(Reflecting.NAME, Reflecting::new);
 
     public static final RegistryObject<Enchantment> GIFT_OF_FIRE =
-            ENCHANTMENTS.register(GIFT_OF_FIRE_NAME, GiftOfFire::new);
+            ENCHANTMENTS.register(GiftOfFire.NAME, GiftOfFire::new);
 
     public static final RegistryObject<Enchantment> PYROMANIAC =
-            ENCHANTMENTS.register(PYROMANIAC_NAME, Pyromaniac::new);
+            ENCHANTMENTS.register(Pyromaniac.NAME, Pyromaniac::new);
 
     public static final RegistryObject<Enchantment> EATER_OF_SOULS =
-            ENCHANTMENTS.register(EATER_OF_SOULS_NAME, EaterOfSouls::new);
+            ENCHANTMENTS.register(EaterOfSouls.NAME, EaterOfSouls::new);
 
     public static final RegistryObject<Enchantment> SOLID_AS_A_ROCK =
-            ENCHANTMENTS.register(SOLID_AS_A_ROCK_NAME, SolidAsARock::new);
+            ENCHANTMENTS.register(SolidAsARock.NAME, SolidAsARock::new);
 
     public static final RegistryObject<Enchantment> OCEAN_CURRENT =
-            ENCHANTMENTS.register(OCEAN_CURRENT_NAME, OceanCurrent::new);
+            ENCHANTMENTS.register(OceanCurrent.NAME, OceanCurrent::new);
 
     public static final RegistryObject<Enchantment> OVERFLOW =
-            ENCHANTMENTS.register(OVERFLOW_NAME, Overflow::new);
+            ENCHANTMENTS.register(Overflow.NAME, Overflow::new);
 
     public static final RegistryObject<Enchantment> FIRE_DISASTER =
-            ENCHANTMENTS.register(FIRE_DISASTER_NAME, FireDisaster::new);
+            ENCHANTMENTS.register(FireDisaster.NAME, FireDisaster::new);
 
     public static final RegistryObject<Enchantment> THE_FALLEN =
-            ENCHANTMENTS.register(THE_FALLEN_NAME, TheFallen::new);
+            ENCHANTMENTS.register(TheFallen.NAME, TheFallen::new);
 
     public static final RegistryObject<Enchantment> EMPATHY =
-            ENCHANTMENTS.register(EMPATHY_NAME, Empathy::new);
+            ENCHANTMENTS.register(Empathy.NAME, Empathy::new);
 
     public static final RegistryObject<Enchantment> ROLLING_STONE =
-            ENCHANTMENTS.register(ROLLING_STONE_NAME, RollingStone::new);
+            ENCHANTMENTS.register(RollingStone.NAME, RollingStone::new);
 
     public static final RegistryObject<Enchantment> BLESSED_WIND =
-            ENCHANTMENTS.register(BLESSED_WIND_NAME, BlessedWind::new);
+            ENCHANTMENTS.register(BlessedWind.NAME, BlessedWind::new);
 
     public static final RegistryObject<Enchantment> HEAVY_BLOW =
-            ENCHANTMENTS.register(HEAVY_BLOW_NAME, HeavyBlow::new);
+            ENCHANTMENTS.register(HeavyBlow.NAME, HeavyBlow::new);
 
     public static final RegistryObject<Enchantment> WIND_BLADE =
-            ENCHANTMENTS.register(WIND_BLADE_NAME, WindBlade::new);
+            ENCHANTMENTS.register(WindBlade.NAME, WindBlade::new);
 
     public static final RegistryObject<Enchantment> FLOATING =
-            ENCHANTMENTS.register(FLOATING_NAME, Floating::new);
+            ENCHANTMENTS.register(Floating.NAME, Floating::new);
 
     public static final RegistryObject<Enchantment> CUMBERSOME =
-            ENCHANTMENTS.register(CUMBERSOME_NAME, Cumbersome::new);
+            ENCHANTMENTS.register(Cumbersome.NAME, Cumbersome::new);
 
     public static final RegistryObject<Enchantment> BULLYING =
-            ENCHANTMENTS.register(BULLYING_NAME, Bullying::new);
+            ENCHANTMENTS.register(Bullying.NAME, Bullying::new);
 
     public static final RegistryObject<Enchantment> DOMINION =
-            ENCHANTMENTS.register(DOMINION_NAME, Dominion::new);
+            ENCHANTMENTS.register(Dominion.NAME, Dominion::new);
 
     public static final RegistryObject<Enchantment> BLOODTHIRSTY =
-            ENCHANTMENTS.register(BLOODTHIRSTY_NAME, Bloodthirsty::new);
+            ENCHANTMENTS.register(Bloodthirsty.NAME, Bloodthirsty::new);
 
     public static final RegistryObject<Enchantment> FALLING_STONE =
-            ENCHANTMENTS.register(FALLING_STONE_NAME, FallingStone::new);
+            ENCHANTMENTS.register(FallingStone.NAME, FallingStone::new);
 
     public static final RegistryObject<Enchantment> FEATHER_FALL =
-            ENCHANTMENTS.register(FEATHER_FALL_NAME, FeatherFall::new);
+            ENCHANTMENTS.register(FeatherFall.NAME, FeatherFall::new);
 
     public static final RegistryObject<Enchantment> UNYIELDING_SPIRIT =
-            ENCHANTMENTS.register(UNYIELDING_SPIRIT_NAME, UnyieldingSpirit::new);
+            ENCHANTMENTS.register(UnyieldingSpirit.NAME, UnyieldingSpirit::new);
 
     public static final RegistryObject<Enchantment> CURSED_GAZE =
-            ENCHANTMENTS.register(CURSED_GAZE_NAME, CursedGaze::new);
+            ENCHANTMENTS.register(CursedGaze.NAME, CursedGaze::new);
+
+    public static final RegistryObject<Enchantment> CALMER =
+            ENCHANTMENTS.register(Calmer.NAME, Calmer::new);
 }

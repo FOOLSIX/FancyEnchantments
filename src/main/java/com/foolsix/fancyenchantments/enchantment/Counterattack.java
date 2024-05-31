@@ -15,6 +15,7 @@ import static com.foolsix.fancyenchantments.effect.EffectReg.CRIT_RATE_BOOST;
 
 
 public class Counterattack extends FEBaseEnchantment {
+    public static final String NAME = "counterattack";
     private static final ModConfig.CounterattackOptions CONFIG = FancyEnchantments.getConfig().counterattackOptions;
 
     public Counterattack() {

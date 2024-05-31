@@ -54,6 +54,8 @@
   "enchantment.fancyenchantments.unyielding_spirit.desc": "临死前获得额外的生存时间,杀死敌怪以复活",
   "enchantment.fancyenchantments.cursed_gaze": "诅咒凝视",
   "enchantment.fancyenchantments.cursed_gaze.desc": "给予你所凝视的敌人虚弱和缓慢效果",
+  "enchantment.fancyenchantments.calmer": "平静",
+  "enchantment.fancyenchantments.calmer.desc": "受伤时获得伤害吸收效果",
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "effect.fancyenchantments.cumbersome": "笨重",
   "death.attack.fancyenchantments.give_up": "%1$s 放弃了挣扎...",
