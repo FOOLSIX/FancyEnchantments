@@ -105,6 +105,9 @@ public class EnchantmentEvents {
             ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
             ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
         }
+        if (victim instanceof LivingEntity) {
+            ((Calmer) CALMER.get()).gainBuff(e);
+        }
     }
 
     @SubscribeEvent
@@ -115,9 +118,7 @@ public class EnchantmentEvents {
             ((Overflow) OVERFLOW.get()).generateWater(e);
             ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
         }
-        if (e.getEntity() instanceof LivingEntity) {
 
-        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
