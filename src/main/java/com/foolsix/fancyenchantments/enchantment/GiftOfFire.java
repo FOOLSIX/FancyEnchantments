@@ -2,9 +2,9 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.IgnisEnchantment;
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -40,10 +40,10 @@ public class GiftOfFire extends IgnisEnchantment {
             if (level > 0) {
                 if (living.isInWater()) {
                     living.level.playSound(null, living.blockPosition(), SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.5F + living.level.random.nextFloat() * 0.4F);
-                    ((ServerLevel) attacker.level).sendParticles(ParticleTypes.SMOKE, victim.getX(), victim.getY(), victim.getZ(), 30, 0.2D, 0.7D, 0.1D, 0);
+                    EnchUtils.generateSimpleParticleAroundEntity(victim, ParticleTypes.SMOKE);
                     e.setAmount(e.getAmount() - level * CONFIG.harmfulMultiplier);
                 } else if (victim.isOnFire()) {
-                    ((ServerLevel) attacker.level).sendParticles(ParticleTypes.LAVA, victim.getX(), victim.getY(), victim.getZ(), 15, 0.2D, 0.7D, 0.1D, 0);
+                    EnchUtils.generateSimpleParticleAroundEntity(victim, ParticleTypes.LAVA);
                     e.setAmount(e.getAmount() + level * CONFIG.beneficialMultiplier);
                 }
             }

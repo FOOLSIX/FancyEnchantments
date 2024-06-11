@@ -1,13 +1,9 @@
 package com.foolsix.fancyenchantments.events;
 
 import com.foolsix.fancyenchantments.enchantment.*;
-import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -58,7 +54,7 @@ public class EnchantmentEvents {
         if (e.getSource() == null || e.getSource().getEntity() == null) return;
         Entity attacker = e.getSource().getEntity();
 
-        if (attacker instanceof Player player) {
+        if (attacker instanceof Player) {
             ((Cumbersome) CUMBERSOME.get()).getCooldown(e);
         }
     }
@@ -96,33 +92,37 @@ public class EnchantmentEvents {
         }
 
         Entity attacker = e.getSource().getEntity();
-        Entity victim = e.getEntity();
-        if (attacker instanceof LivingEntity) {
+        LivingEntity victim = e.getEntity();
+        if (attacker instanceof LivingEntity living && !living.level.isClientSide()) {
             ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
             ((HeavyBlow) HEAVY_BLOW.get()).criticalHit(e);
             ((WindBlade) WIND_BLADE.get()).damageBoost(e);
             ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
             ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
-            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
+            ((FeintAttack) FEINT_ATTACK.get()).attack(e);
         }
-        if (victim instanceof LivingEntity) {
+        if (victim instanceof LivingEntity && !victim.level.isClientSide) {
             ((Calmer) CALMER.get()).gainBuff(e);
+            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
         }
     }
 
     @SubscribeEvent
     public void livingDeath(LivingDeathEvent e) {
-        if (!e.isCanceled() && e.getSource() != null) {
+        if (!e.isCanceled() && e.getSource() != null && e.getSource().getEntity() != null) {
             ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).clearTag(e);
             ((EaterOfSouls) EATER_OF_SOULS.get()).killcount(e);
             ((Overflow) OVERFLOW.get()).generateWater(e);
             ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
+
+            if (e.getEntity() != null)
+                ((Purifying) PURIFYING.get()).purify(e);
         }
 
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void playerDeath(LivingHurtEvent e) {
+    public void playerDeath(LivingDamageEvent e) {
         if (!e.isCanceled() && !e.getEntity().level.isClientSide) {
             ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).preventDeath(e);
         }

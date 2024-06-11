@@ -2,9 +2,9 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,7 +45,7 @@ public class HeavyBlow extends TerraEnchantment {
             if (level > 0) {
                 if (Math.random() < level * CONFIG.baseRate) {
                     Entity victim = e.getEntity();
-                    ((ServerLevel) attacker.level).sendParticles(ParticleTypes.CRIT, victim.getX(), victim.getY(), victim.getZ(), 30, 0.2D, 0.7D, 0.1D, 0);
+                    EnchUtils.generateSimpleParticleAroundEntity(victim, ParticleTypes.CRIT);
                     e.setAmount((float) (e.getAmount() * (1 + CONFIG.damageMultiplier * level)));
                 }
             }

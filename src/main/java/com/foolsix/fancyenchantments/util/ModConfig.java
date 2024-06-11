@@ -10,6 +10,14 @@ import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 
 @Config(name = MODID)
 public class ModConfig implements ConfigData {
+    @Comment("""
+            Set level = 0 to disable the enchantment.
+            Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
+            The valid value of rarity is: "COMMON" "UNCOMMON" "RARE" "VERY_RARE"
+            """)
+    @ConfigEntry.Gui.CollapsibleObject
+    public boolean enableIncompatibility = true;
+
     @ConfigEntry.Gui.CollapsibleObject
     public final AdvancedLootingOptions advancedLootingOptions = new AdvancedLootingOptions();
     @ConfigEntry.Gui.CollapsibleObject
@@ -68,14 +76,10 @@ public class ModConfig implements ConfigData {
     public final CursedGazeOptions cursedGazeOptions = new CursedGazeOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final CalmerOptions calmerOptions = new CalmerOptions();
-    @Comment("""
-            Set level = 0 to disable the enchantment.
-            Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
-            The valid value of rarity is: "COMMON" "UNCOMMON" "RARE" "VERY_RARE"
-            """)
-
     @ConfigEntry.Gui.CollapsibleObject
-    public boolean enableIncompatibility = true;
+    public final FeintAttackOptions feintAttackOptions = new FeintAttackOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final PurifyingOptions purifyingOptions = new PurifyingOptions();
 
     public static class BaseOptions {
         @Comment("====== Basic options below ======")
@@ -363,6 +367,7 @@ public class ModConfig implements ConfigData {
         public int damageResistanceLevel = 3;
 
         public boolean enableBlindness = false;
+
         UnyieldingSpiritOptions() {
             super(1, Rarity.VERY_RARE);
         }
@@ -371,6 +376,7 @@ public class ModConfig implements ConfigData {
     public static class CursedGazeOptions extends BaseOptions {
         @Comment("The effective distance = min (level * baseDistance, 128)")
         public double baseDistance = 5.0;
+
         CursedGazeOptions() {
             super(3, Rarity.VERY_RARE);
         }
@@ -381,7 +387,29 @@ public class ModConfig implements ConfigData {
         public int cooldown = 5;
         @Comment("Duration (second)")
         public int duration = 3;
+
         CalmerOptions() {
+            super(5, Rarity.RARE);
+        }
+    }
+
+    public static class FeintAttackOptions extends BaseOptions {
+        @Comment("Damage to the target *= 1 - reducer")
+        public float damageReducer = 0.7f;
+        @Comment("Damage to others *= 1 + multiplier * level")
+        public float damageMultiplier = 0.2f;
+
+        public FeintAttackOptions() {
+            super(3, Rarity.RARE);
+            super.isTreasure = true;
+        }
+    }
+
+    public static class PurifyingOptions extends BaseOptions {
+        @Comment("Damage to undead += 1 + addon * level")
+        public float addon = 3.0f;
+
+        PurifyingOptions() {
             super(5, Rarity.RARE);
         }
     }

@@ -4,7 +4,12 @@
 
 # add:
 - Calmer(Chest):Gain damage absorption when taking damage
+- Feint Attack(Weapon):Reduces damage to the enemy that attack directly, and deals heavy damage to enemies around it
+- Purifying(Weapon):A more powerful smith,and can purify zombie villagers
 
+# fix:
+- Fixed a bug where pyromaniac didn't work on certain types of explosions
+- Fix a bug where the triggering condition for Unyielding Sprite is incorrect
 
 # 0.0.5
 

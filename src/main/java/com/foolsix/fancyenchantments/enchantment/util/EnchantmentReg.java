@@ -98,4 +98,10 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> CALMER =
             ENCHANTMENTS.register(Calmer.NAME, Calmer::new);
+
+    public static final RegistryObject<Enchantment> PURIFYING =
+            ENCHANTMENTS.register(Purifying.NAME, Purifying::new);
+
+    public static final RegistryObject<Enchantment> FEINT_ATTACK =
+            ENCHANTMENTS.register(FeintAttack.NAME, FeintAttack::new);
 }

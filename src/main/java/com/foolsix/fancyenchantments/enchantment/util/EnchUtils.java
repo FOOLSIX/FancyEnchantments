@@ -2,8 +2,10 @@ package com.foolsix.fancyenchantments.enchantment.util;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,6 +40,21 @@ public class EnchUtils {
         }
         return blockPosList;
     }
+
+    public static void generateSimpleParticleAroundEntity(Entity entity, SimpleParticleType type) {
+        if (entity.getLevel() instanceof ServerLevel level) {
+            level.sendParticles(type, entity.getX(), entity.getY(), entity.getZ(),
+                                30, 0.2D, 0.7D, 0.2D, 0);
+        }
+    }
+
+    public static void generateSimpleParticleAroundEntity(Entity entity, SimpleParticleType type, int pParticleCount, double pXOffset, double pYOffset, double pZOffset, double pSpeed) {
+        if (entity.getLevel() instanceof ServerLevel level) {
+            level.sendParticles(type, entity.getX(), entity.getY(), entity.getZ(),
+                                pParticleCount, pXOffset, pYOffset, pZOffset, pSpeed);
+        }
+    }
+
 
     public static boolean isHostileToPlayer(Entity entity) {
         return entity instanceof Monster && !(entity instanceof NeutralMob neutralMob && !neutralMob.isAngry());
