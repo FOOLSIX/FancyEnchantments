@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.util;
 
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -12,11 +13,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -24,6 +27,36 @@ import java.util.function.Predicate;
 public class EnchUtils {
     public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
     public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
+
+    public static final int ELEMENT_COUNT = 6;
+
+    public enum Element {
+        AER, AQUA, IGNIS, TERRA, HOLY, TWISTED;
+
+        @Nullable
+        public static Element getElement(Enchantment enchantment) {
+            if (enchantment instanceof AerEnchantment) {
+                return AER;
+            }
+            if (enchantment instanceof AquaEnchantment) {
+                return AQUA;
+            }
+            if (enchantment instanceof IgnisEnchantment) {
+                return IGNIS;
+            }
+            if (enchantment instanceof TerraEnchantment) {
+                return TERRA;
+            }
+            if (enchantment instanceof HolyEnchantment) {
+                return HOLY;
+            }
+            if (enchantment instanceof TwistedEnchantment) {
+                return TWISTED;
+            }
+            return null;
+        }
+
+    }
 
     private static final Predicate<Entity> VISIBLE_HOSTILE =
             entity -> !entity.isSpectator() && isHostileToPlayer(entity);

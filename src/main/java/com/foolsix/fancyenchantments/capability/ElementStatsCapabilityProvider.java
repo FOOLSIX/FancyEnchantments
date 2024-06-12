@@ -11,33 +11,34 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class TimeToLiveCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<TimeToLiveCapability> PLAYER_TTL = CapabilityManager.get(new CapabilityToken<TimeToLiveCapability>() {
+public class ElementStatsCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+    public static Capability<ElementStatsCapability> PLAYER_ELEMENT_STATS = CapabilityManager.get(new CapabilityToken<>() {
     });
-    private TimeToLiveCapability ttl = null;
-    private final LazyOptional<TimeToLiveCapability> optional = LazyOptional.of(this::createTimeToLive);
+    private ElementStatsCapability elementStats = null;
+    private final LazyOptional<ElementStatsCapability> optional = LazyOptional.of(this::createElementStats);
 
-    private TimeToLiveCapability createTimeToLive() {
-        if (this.ttl == null) {
-            this.ttl = new TimeToLiveCapability();
+
+    private ElementStatsCapability createElementStats() {
+        if (this.elementStats == null) {
+            this.elementStats = new ElementStatsCapability();
         }
-        return this.ttl;
+        return this.elementStats;
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        return PLAYER_TTL.orEmpty(cap, optional);
+        return PLAYER_ELEMENT_STATS.orEmpty(cap, optional);
     }
 
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag nbt = new CompoundTag();
-        createTimeToLive().saveNBTData(nbt);
+        createElementStats().saveNBTData(nbt);
         return nbt;
     }
 
     @Override
     public void deserializeNBT(CompoundTag nbt) {
-        createTimeToLive().loadNBTData(nbt);
+        createElementStats().loadNBTData(nbt);
     }
 }
