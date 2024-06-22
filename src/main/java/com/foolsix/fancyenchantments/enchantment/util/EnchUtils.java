@@ -58,7 +58,7 @@ public class EnchUtils {
 
     }
 
-    private static final Predicate<Entity> VISIBLE_HOSTILE =
+    public static final Predicate<Entity> VISIBLE_HOSTILE =
             entity -> !entity.isSpectator() && isHostileToPlayer(entity);
 
     public static List<BlockPos> getRandomValidPos(Entity entity, Level world, int tryTimes) {

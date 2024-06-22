@@ -102,9 +102,12 @@ public class EnchantmentEvents {
             ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
             ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
             ((FeintAttack) FEINT_ATTACK.get()).attack(e);
+            ((PaladinsShield) PALADINS_SHIELD.get()).reduceDamage(e);
         }
         if (victim instanceof LivingEntity && !victim.level.isClientSide) {
             ((Calmer) CALMER.get()).gainBuff(e);
+            ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
+            //below cancel the event
             ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
         }
     }
@@ -127,6 +130,13 @@ public class EnchantmentEvents {
     public void playerDeath(LivingDamageEvent e) {
         if (!e.isCanceled() && !e.getEntity().level.isClientSide) {
             ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).preventDeath(e);
+        }
+    }
+
+    @SubscribeEvent
+    public void LivingDamageEvent(LivingDamageEvent e) {
+        if (!e.isCanceled() && !e.getEntity().level.isClientSide) {
+            ((PaladinsShield) PALADINS_SHIELD.get()).whenHurtTransDamage(e);
         }
     }
 

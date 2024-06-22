@@ -104,4 +104,10 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> FEINT_ATTACK =
             ENCHANTMENTS.register(FeintAttack.NAME, FeintAttack::new);
+
+    public static final RegistryObject<Enchantment> DUELLIST =
+            ENCHANTMENTS.register(DuellistsPrerogative.NAME, DuellistsPrerogative::new);
+
+    public static final RegistryObject<Enchantment> PALADINS_SHIELD =
+            ENCHANTMENTS.register(PaladinsShield.NAME, PaladinsShield::new);
 }

@@ -81,6 +81,10 @@ public class ModConfig implements ConfigData {
     public final FeintAttackOptions feintAttackOptions = new FeintAttackOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final PurifyingOptions purifyingOptions = new PurifyingOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final DuellistsPrerogativeOptions duellistsPrerogativeOptions = new DuellistsPrerogativeOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final PaladinsShieldOptions paladinsShieldOptions = new PaladinsShieldOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -421,6 +425,29 @@ public class ModConfig implements ConfigData {
 
         PurifyingOptions() {
             super(5, Rarity.RARE);
+        }
+    }
+
+    public static class DuellistsPrerogativeOptions extends BaseOptions {
+        @Comment("Damage *= 1 + multiplier * level")
+        public float damageMultiplier = 0.2f;
+
+        DuellistsPrerogativeOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class PaladinsShieldOptions extends BaseOptions {
+        public float damageTransferRatio = 0.5f;
+        @Comment("Damage reduction while holding a shield -= baseDamageReductionRatio * level")
+        public float baseDamageReductionRatio = 0.05f;
+        @Comment("Damage the enchantment holder receives = damage * damageTransferRatio * transferredDamageRatio")
+        public float transferredDamageRatio = 0.5f;
+        @Comment("If the final damage exceeds the upperLimit * receiver's maxHealth, it will not be transferred.")
+        public float upperLimit = 0.5f;
+
+        PaladinsShieldOptions() {
+            super(3, Rarity.VERY_RARE);
         }
     }
 }

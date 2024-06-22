@@ -1,3 +1,13 @@
+# 0.0.7
+# add:
+- add Element Stat system(Apply effects based on the level of the special elemental enchantment)
+- add a command to get Element Stat (/fancyenchantments elementstat)
+- add Duellist's Prerogative(weapon):When there are no other creatures around you and the target, the damage you deal to it is increased
+- add Paladin's Shield(shield):Reduce the damage you receive, and take some of the damage for nearby companions or other players at a lower cost
+
+# fix:
+- Fixed a bug where the isDiscoverable might not work correctly on Advanced Sharpness and Advanced Looting
+
 # 0.0.6
 # change:
 - Added configurable attributes for Unyielding Spirit and Cursed Gaze

@@ -16,7 +16,7 @@ public class ElementStatCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("fancyenchantments")
                                     .then(Commands.literal("elementstats")
-                                    .executes((command) -> getElementStat(command.getSource()))));
+                                                  .executes((command) -> getElementStat(command.getSource()))));
     }
 
     private static int getElementStat(CommandSourceStack source) {

@@ -51,8 +51,9 @@ public class CapabilityEvents {
 
     @SubscribeEvent
     public void elementPlayerTick(TickEvent.PlayerTickEvent e) {
-        if (e.player == null || e.isCanceled() || !e.side.isServer() || e.phase != TickEvent.Phase.START) return;
-            //Calculate once per second
+        if (e.player == null || e.isCanceled() || !e.side.isServer() || e.phase != TickEvent.Phase.START)
+            return;
+        //Calculate once per second
         if (e.player.tickCount % 20 != 0) {
             e.player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(elementStats -> {
                 if (elementStats.getPoint(Element.AER) >= CONFIG.aerLevelToGetSpeed) {
