@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TimeToLiveCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<TimeToLiveCapability> PLAYER_TTL = CapabilityManager.get(new CapabilityToken<TimeToLiveCapability>() {
+    public static Capability<TimeToLiveCapability> PLAYER_TTL = CapabilityManager.get(new CapabilityToken<>() {
     });
     private TimeToLiveCapability ttl = null;
     private final LazyOptional<TimeToLiveCapability> optional = LazyOptional.of(this::createTimeToLive);

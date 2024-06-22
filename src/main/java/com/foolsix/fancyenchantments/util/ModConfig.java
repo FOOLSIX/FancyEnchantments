@@ -16,8 +16,9 @@ public class ModConfig implements ConfigData {
             The valid value of rarity is: "COMMON" "UNCOMMON" "RARE" "VERY_RARE"
             """)
     @ConfigEntry.Gui.CollapsibleObject
-    public boolean enableIncompatibility = true;
-
+    public final boolean enableIncompatibility = true;
+    @ConfigEntry.Gui.CollapsibleObject
+    public final ElementStatOptions elementStatOptions = new ElementStatOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final AdvancedLootingOptions advancedLootingOptions = new AdvancedLootingOptions();
     @ConfigEntry.Gui.CollapsibleObject
@@ -80,6 +81,15 @@ public class ModConfig implements ConfigData {
     public final FeintAttackOptions feintAttackOptions = new FeintAttackOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final PurifyingOptions purifyingOptions = new PurifyingOptions();
+
+    public static class ElementStatOptions {
+        public int aerLevelToGetSpeed = 5;
+        public int ignisLevelToGetFireResistance = 8;
+        @Comment("Can amplify the effect")
+        public int aquaLevelToGetRegeneration = 6;
+        @Comment("Can amplify the effect")
+        public int terraLevelToGetResistance = 9;
+    }
 
     public static class BaseOptions {
         @Comment("====== Basic options below ======")

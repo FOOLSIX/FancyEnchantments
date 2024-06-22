@@ -60,16 +60,18 @@ public class EnchantmentEvents {
     }
 
     @SubscribeEvent
-    public void lootingLevelEvent(LootingLevelEvent lootingLevelEvent) {
-        if (lootingLevelEvent.getDamageSource() == null)
+    public void lootingLevelEvent(LootingLevelEvent e) {
+        if (e.isCanceled() || e.getDamageSource() == null)
             return;
-        if (lootingLevelEvent.getDamageSource().getEntity() instanceof Player player) {
-            ((AdvancedLooting) ADVANCED_LOOTING.get()).lootingHandle(lootingLevelEvent, player);
+        if (e.getDamageSource().getEntity() instanceof Player player) {
+            ((AdvancedLooting) ADVANCED_LOOTING.get()).lootingHandle(e, player);
         }
     }
 
     @SubscribeEvent
     public void projectileImpactEvent(ProjectileImpactEvent e) {
+        if (e.isCanceled() || e.getEntity() == null || e.getEntity().level.isClientSide()) return;
+
         var hit = e.getRayTraceResult();
         if (hit.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hit).getEntity() instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);

@@ -37,6 +37,11 @@ public class AdvancedSharpness extends DamageEnchantment {
     }
 
     @Override
+    public boolean isDiscoverable() {
+        return CONFIG.level > 0 && CONFIG.isDiscoverable;
+    }
+
+    @Override
     public int getMinCost(int pLevel) {
         return 7 + pLevel * 5;
     }

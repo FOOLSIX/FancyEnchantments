@@ -39,6 +39,11 @@ public class AdvancedLooting extends LootBonusEnchantment {
     }
 
     @Override
+    public boolean isDiscoverable() {
+        return CONFIG.level > 0 && CONFIG.isDiscoverable;
+    }
+
+    @Override
     public int getMinCost(int pLevel) {
         return 10 + pLevel * 8;
     }

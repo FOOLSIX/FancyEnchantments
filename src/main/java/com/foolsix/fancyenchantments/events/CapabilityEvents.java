@@ -1,9 +1,11 @@
 package com.foolsix.fancyenchantments.events;
 
+import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.capability.ElementStatsCapability;
 import com.foolsix.fancyenchantments.capability.ElementStatsCapabilityProvider;
 import com.foolsix.fancyenchantments.capability.TimeToLiveCapabilityProvider;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils.Element;
+import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -21,6 +23,8 @@ import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = MODID)
 public class CapabilityEvents {
+    private final ModConfig.ElementStatOptions CONFIG = FancyEnchantments.getConfig().elementStatOptions;
+
     @SubscribeEvent
     public void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> e) {
         if (!(e.getObject() instanceof Player player)) return;
@@ -37,7 +41,6 @@ public class CapabilityEvents {
     public void timeToLivePlayerTick(TickEvent.PlayerTickEvent e) {
         if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
             e.player.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(ttl -> {
-
                 if (ttl.getTtl() == 0) {
                     e.player.hurt(ttl.getDamageSource().bypassArmor(), Float.MAX_VALUE / 16);
                 }
@@ -48,10 +51,25 @@ public class CapabilityEvents {
 
     @SubscribeEvent
     public void elementPlayerTick(TickEvent.PlayerTickEvent e) {
-        if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
+        if (e.player == null || e.isCanceled() || !e.side.isServer() || e.phase != TickEvent.Phase.START) return;
+            //Calculate once per second
+        if (e.player.tickCount % 20 != 0) {
             e.player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(elementStats -> {
-                if (elementStats.getPoint(Element.AER) >= 5) {
+                if (elementStats.getPoint(Element.AER) >= CONFIG.aerLevelToGetSpeed) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20));
+                }
+                if (elementStats.getPoint(Element.IGNIS) >= CONFIG.ignisLevelToGetFireResistance) {
+                    e.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20));
+                }
+                if (elementStats.getPoint(Element.TERRA) >= CONFIG.terraLevelToGetResistance) {
+                    e.player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,
+                                                             20,
+                                                             elementStats.getPoint(Element.TERRA) / CONFIG.terraLevelToGetResistance));
+                }
+                if (elementStats.getPoint(Element.AQUA) >= CONFIG.aquaLevelToGetRegeneration) {
+                    e.player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,
+                                                             20,
+                                                             elementStats.getPoint(Element.AQUA) / CONFIG.aquaLevelToGetRegeneration));
                 }
             });
         }
