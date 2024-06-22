@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments;
 
+import com.foolsix.fancyenchantments.command.ElementStatCommand;
 import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
 import com.foolsix.fancyenchantments.events.CapabilityEvents;
@@ -9,7 +10,9 @@ import com.foolsix.fancyenchantments.util.ModConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -36,5 +39,10 @@ public class FancyEnchantments {
 
     public static ModConfig getConfig() {
         return config;
+    }
+
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent e) {
+        ElementStatCommand.register(e.getDispatcher());
     }
 }
