@@ -93,6 +93,12 @@ public class ModConfig implements ConfigData {
         public int aquaLevelToGetRegeneration = 6;
         @Comment("Can amplify the effect")
         public int terraLevelToGetResistance = 9;
+        @Comment("actually twisted level - holy level")
+        public int twistedLevelToGetDebuff = 10;
+        @Comment("The probability of getting a debuff per second")
+        public float probabilityToGetDebuff = 0.02f;
+        @Comment("second")
+        public int debuffDuration = 3;
     }
 
     public static class BaseOptions {

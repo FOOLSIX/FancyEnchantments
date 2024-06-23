@@ -8,6 +8,7 @@ import com.foolsix.fancyenchantments.enchantment.util.EnchUtils.Element;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -20,10 +21,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
+import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.Element.*;
+
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = MODID)
 public class CapabilityEvents {
     private final ModConfig.ElementStatOptions CONFIG = FancyEnchantments.getConfig().elementStatOptions;
+    private final MobEffect[] DEBUFF = new MobEffect[]{MobEffects.WEAKNESS, MobEffects.DARKNESS, MobEffects.MOVEMENT_SLOWDOWN};
 
     @SubscribeEvent
     public void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> e) {
@@ -56,21 +60,27 @@ public class CapabilityEvents {
         //Calculate once per second
         if (e.player.tickCount % 20 != 0) {
             e.player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(elementStats -> {
-                if (elementStats.getPoint(Element.AER) >= CONFIG.aerLevelToGetSpeed) {
+                if (elementStats.getPoint(AER) >= CONFIG.aerLevelToGetSpeed) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20));
                 }
-                if (elementStats.getPoint(Element.IGNIS) >= CONFIG.ignisLevelToGetFireResistance) {
+                if (elementStats.getPoint(IGNIS) >= CONFIG.ignisLevelToGetFireResistance) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20));
                 }
-                if (elementStats.getPoint(Element.TERRA) >= CONFIG.terraLevelToGetResistance) {
+                if (elementStats.getPoint(TERRA) >= CONFIG.terraLevelToGetResistance) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,
                                                              20,
-                                                             elementStats.getPoint(Element.TERRA) / CONFIG.terraLevelToGetResistance));
+                                                             elementStats.getPoint(TERRA) / CONFIG.terraLevelToGetResistance));
                 }
-                if (elementStats.getPoint(Element.AQUA) >= CONFIG.aquaLevelToGetRegeneration) {
+                if (elementStats.getPoint(AQUA) >= CONFIG.aquaLevelToGetRegeneration) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,
                                                              20,
-                                                             elementStats.getPoint(Element.AQUA) / CONFIG.aquaLevelToGetRegeneration));
+                                                             elementStats.getPoint(AQUA) / CONFIG.aquaLevelToGetRegeneration));
+                }
+                if (elementStats.getPoint(TWISTED) - elementStats.getPoint(HOLY) >= CONFIG.twistedLevelToGetDebuff) {
+                    if (Math.random() < CONFIG.probabilityToGetDebuff) {
+                        MobEffect debuff = DEBUFF[e.player.getRandom().nextInt(DEBUFF.length)];
+                        e.player.addEffect(new MobEffectInstance(debuff, 20 * CONFIG.debuffDuration));
+                    }
                 }
             });
         }
