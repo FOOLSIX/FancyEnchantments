@@ -34,10 +34,10 @@ public class Bloodthirsty extends TwistedEnchantment {
                 FoodData foodData = player.getFoodData();
                 float damageValue = e.getAmount();
                 int foodLevel = foodData.getFoodLevel();
-                foodData.setSaturation(foodData.getSaturationLevel() + damageValue / 5);
                 //If other mods cause hunger values to exceed the upper limit, I will not handle it
                 if (foodLevel < CONFIG.hungerUpperLimit)
-                    foodData.setFoodLevel((int) Math.min(CONFIG.hungerUpperLimit, foodLevel + damageValue / 2));
+                    foodData.setFoodLevel((int) Math.min(CONFIG.hungerUpperLimit, foodLevel + damageValue * CONFIG.hungerMultiplier));
+                foodData.setSaturation(foodData.getSaturationLevel() + damageValue * CONFIG.saturationMultiplier);
             }
         }
     }

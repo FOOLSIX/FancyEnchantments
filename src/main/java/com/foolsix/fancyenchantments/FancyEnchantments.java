@@ -6,6 +6,7 @@ import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
 import com.foolsix.fancyenchantments.events.CapabilityEvents;
 import com.foolsix.fancyenchantments.events.EffectEvents;
 import com.foolsix.fancyenchantments.events.EnchantmentEvents;
+import com.foolsix.fancyenchantments.loot.LootModifierReg;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
@@ -33,6 +34,7 @@ public class FancyEnchantments {
 
         EnchantmentReg.ENCHANTMENTS.register(modEventBus);
         EffectReg.EFFECTS.register(modEventBus);
+        LootModifierReg.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

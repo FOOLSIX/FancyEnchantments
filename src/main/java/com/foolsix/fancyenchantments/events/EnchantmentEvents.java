@@ -6,6 +6,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
@@ -21,10 +23,11 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EnchantmentEvents {
+
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void tooltip(ItemTooltipEvent e) {
         ((EaterOfSouls) EATER_OF_SOULS.get()).tooltip(e);
-
     }
 
     @SubscribeEvent

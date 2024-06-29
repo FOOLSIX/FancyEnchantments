@@ -54,8 +54,8 @@ public class EaterOfSouls extends TwistedEnchantment {
         ItemStack itemStack = e.getItemStack();
         if (itemStack.getEnchantmentLevel(EATER_OF_SOULS.get()) > 0) {
             CompoundTag nbt = itemStack.getOrCreateTag();
-            if (nbt.contains("eater_of_souls_killcount")) {
-                e.getToolTip().add(Component.translatable("Kill Count:").append(String.valueOf(nbt.getInt("eater_of_souls_killcount"))).withStyle(ChatFormatting.DARK_PURPLE));
+            if (nbt.contains(KILL_COUNT)) {
+                e.getToolTip().add(Component.translatable("Kill Count:").append(String.valueOf(nbt.getInt(KILL_COUNT))).withStyle(ChatFormatting.DARK_PURPLE));
             }
         }
     }

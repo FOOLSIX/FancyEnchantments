@@ -58,7 +58,7 @@ public class AdvancedSharpness extends DamageEnchantment {
 
     @Override
     public float getDamageBonus(int level, MobType mobType, ItemStack enchantedItem) {
-        return (1.5f + 0.8f * level);
+        return CONFIG.baseDamage + CONFIG.damageMultiplier * level;
     }
 
 }

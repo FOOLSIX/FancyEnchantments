@@ -128,6 +128,10 @@ public class ModConfig implements ConfigData {
     }
 
     public static class AdvancedSharpnessOptions extends BaseOptions {
+        @Comment("Damage += base + multiplier * level")
+        public float baseDamage = 1.5f;
+        public float damageMultiplier = 0.8f;
+
         AdvancedSharpnessOptions() {
             super(5, Rarity.RARE);
         }

@@ -1,3 +1,12 @@
+# 0.0.8
+# add:
+
+# change:
+- Added configurable attributes for Advanced Sharpness
+
+# fix:
+- Fixed a bug where the configuration file for Bloodthirsty might not work correctly
+- Fixed a bug where the tooltip file for Eater of Souls didn't display
 # 0.0.7
 # add:
 - add Element Stat system(Apply effects based on the level of the special elemental enchantment)
