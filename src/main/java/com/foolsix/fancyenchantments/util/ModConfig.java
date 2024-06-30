@@ -85,6 +85,11 @@ public class ModConfig implements ConfigData {
     public final DuellistsPrerogativeOptions duellistsPrerogativeOptions = new DuellistsPrerogativeOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final PaladinsShieldOptions paladinsShieldOptions = new PaladinsShieldOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final EucharistOptions eucharistOptions = new EucharistOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final LavaBurstOptions lavaBurstOptions = new LavaBurstOptions();
+
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -460,4 +465,28 @@ public class ModConfig implements ConfigData {
             super(3, Rarity.VERY_RARE);
         }
     }
+
+    public static class EucharistOptions extends BaseOptions {
+        @Comment("The minimum hunger point to obtain the buff")
+        public int minimumHunger = 6;
+        @Comment("The effect duration = multiplier * foodSaturation")
+        public int durationMultiplier = 3;
+
+        EucharistOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class LavaBurstOptions extends BaseOptions {
+        @Comment("The probability of generating a burst = level * probability")
+        public double probability = 0.1;
+
+        LavaBurstOptions() {
+            super(3, Rarity.VERY_RARE);
+            isTreasure = true;
+            isTradeable = false;
+            isDiscoverable = false;
+        }
+    }
+
 }

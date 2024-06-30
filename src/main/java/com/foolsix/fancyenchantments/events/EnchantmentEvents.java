@@ -172,5 +172,9 @@ public class EnchantmentEvents {
         ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).unequipped(e);
     }
 
+    @SubscribeEvent
+    public void useItemFinish(LivingEntityUseItemEvent.Finish e) {
+        ((Eucharist) EUCHARIST.get()).getBuff(e);
+    }
 
 }

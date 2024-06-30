@@ -64,8 +64,11 @@
   "enchantment.fancyenchantments.duellists_prerogative.desc": "你和目标没有其他生物时,提高你造成的伤害",
   "enchantment.fancyenchantments.paladins_shield": "帕拉丁之盾",
   "enchantment.fancyenchantments.paladins_shield.desc": "减少受到的伤害,以较小的代价替附近的同伴或其他玩家承受部分伤害",
+  "enchantment.fancyenchantments.eucharist": "圣餐",
+  "enchantment.fancyenchantments.eucharist.desc": "使用高质量的食物后获得圣盾之佑BUFF",
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "effect.fancyenchantments.cumbersome": "笨重",
+  "effect.fancyenchantments.templar_shield": "圣盾之佑",
   "death.attack.fancyenchantments.give_up": "%1$s 放弃了挣扎...",
   "Curse:": "诅咒:",
   "Kill Count:": "杀敌数:"
