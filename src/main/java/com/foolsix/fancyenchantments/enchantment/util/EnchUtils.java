@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment.util;
 
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.*;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
@@ -110,5 +111,32 @@ public class EnchUtils {
             return (LivingEntity) result.getEntity();
 
         return null;
+    }
+
+
+    public static int lerp(int start, int end, double t) {
+        return (int) (start + (end - start) * t);
+    }
+
+    public static int gradualColor(int color1, int color2, int cycleLength) {
+        double t = 0;
+
+        if (Minecraft.getInstance().level != null) {
+            t = Math.cos((Math.abs(Minecraft.getInstance().level.getGameTime() % cycleLength - cycleLength / 2)) / ((double) cycleLength / 4) * Math.PI) / 2 + 0.5;
+        }
+
+        int red1 = (color1 >> 16) & 0xFF;
+        int green1 = (color1 >> 8) & 0xFF;
+        int blue1 = color1 & 0xFF;
+
+        int red2 = (color2 >> 16) & 0xFF;
+        int green2 = (color2 >> 8) & 0xFF;
+        int blue2 = color2 & 0xFF;
+
+        int red = lerp(red1, red2, t);
+        int green = lerp(green1, green2, t);
+        int blue = lerp(blue1, blue2, t);
+
+        return (red << 16) | (green << 8) | blue;
     }
 }
