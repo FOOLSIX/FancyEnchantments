@@ -262,11 +262,12 @@ public class ModConfig implements ConfigData {
 
     public static class RollingStoneOptions extends BaseOptions {
         @Comment("damage += multiplier * level + speed * damageBonusMultiplier")
-        public double damageMultiplier = 3.0;
-        public double damageBonusMultiplier = 0.5;
+        public float damageMultiplier = 3.0f;
+        public float damageBonusMultiplier = 0.5f;
         @Comment("damageTaken *= 1 - reducer * level")
-        public double damageReducer = 0.1;
-
+        public float damageReducer = 0.1f;
+        @Comment("Lower limit, Minimum percentage of damage taken")
+        public float lowerLimit = 0.5f;
         RollingStoneOptions() {
             super(3, Rarity.UNCOMMON);
         }
