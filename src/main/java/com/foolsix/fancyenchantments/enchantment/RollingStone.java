@@ -44,7 +44,7 @@ public class RollingStone extends TerraEnchantment {
             for (Entity entity : entities) {
                 if (entity instanceof LivingEntity monster && EnchUtils.isHostileToLivingEntity(monster, player)) {
                     float v = player.getSpeed();
-                    entity.hurt(DamageSource.playerAttack(player), (float) (level * CONFIG.damageMultiplier + v * CONFIG.damageBonusMultiplier));
+                    entity.hurt(DamageSource.playerAttack(player), (level * CONFIG.damageMultiplier + v * CONFIG.damageBonusMultiplier));
                     Vec3 pushAngel = new Vec3(monster.getX() - player.getX(), 0, monster.getZ() - player.getZ());
                     entity.push(pushAngel.x * v * 2, 0.2, pushAngel.z * v * 2);
                 }
@@ -55,7 +55,7 @@ public class RollingStone extends TerraEnchantment {
     public void reduceDamageTakenWhileSprinting(LivingHurtEvent e) {
         int level = EnchantmentHelper.getEnchantmentLevel(this, e.getEntity());
         if (level > 0) {
-            e.setAmount((e.getAmount() * (float) (1 - CONFIG.damageReducer * level)));
+            e.setAmount((e.getAmount() * Math.max(1 - CONFIG.damageReducer * level, CONFIG.lowerLimit)));
         }
     }
 }

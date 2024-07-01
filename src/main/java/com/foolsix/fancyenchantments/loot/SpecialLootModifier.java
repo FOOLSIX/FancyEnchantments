@@ -1,6 +1,7 @@
 package com.foolsix.fancyenchantments.loot;
 
 import com.foolsix.fancyenchantments.capability.ElementStatsCapabilityProvider;
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
@@ -29,7 +30,9 @@ public class SpecialLootModifier extends LootModifier {
         if (isChest(context)) {
             if (context.getParamOrNull(LootContextParams.THIS_ENTITY) instanceof ServerPlayer player) {
                 player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(stats -> {
-                    //todo
+                    int ignis = stats.getPoint(EnchUtils.Element.IGNIS);
+                    int terra = stats.getPoint(EnchUtils.Element.TERRA);
+
                 });
             }
         }
