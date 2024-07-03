@@ -20,6 +20,8 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public final ElementStatOptions elementStatOptions = new ElementStatOptions();
     @ConfigEntry.Gui.CollapsibleObject
+    public final ChestLootOptions chestLootOptions = new ChestLootOptions();
+    @ConfigEntry.Gui.CollapsibleObject
     public final AdvancedLootingOptions advancedLootingOptions = new AdvancedLootingOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final AdvancedSharpnessOptions advancedSharpnessOptions = new AdvancedSharpnessOptions();
@@ -104,6 +106,11 @@ public class ModConfig implements ConfigData {
         public float probabilityToGetDebuff = 0.02f;
         @Comment("second")
         public int debuffDuration = 3;
+    }
+
+    public static class ChestLootOptions{
+        @Comment("The chance of spawning a mod enchanted book")
+        public double chanceOfSpawningBook = 1f;
     }
 
     public static class BaseOptions {
@@ -261,9 +268,8 @@ public class ModConfig implements ConfigData {
     }
 
     public static class RollingStoneOptions extends BaseOptions {
-        @Comment("damage += multiplier * level + speed * damageBonusMultiplier")
-        public float damageMultiplier = 3.0f;
-        public float damageBonusMultiplier = 0.5f;
+        @Comment("damage += multiplier * level * speed")
+        public float damageMultiplier = 25f;
         @Comment("damageTaken *= 1 - reducer * level")
         public float damageReducer = 0.1f;
         @Comment("Lower limit, Minimum percentage of damage taken")
@@ -388,7 +394,7 @@ public class ModConfig implements ConfigData {
 
     public static class UnyieldingSpiritOptions extends BaseOptions {
         @Comment("Extra Time To Live (second)")
-        public int extraTime = 5;
+        public int extraTime = 8;
         @Comment("The health set when enchantment takes effect, percentage")
         public float healthPercentage = 0.5f;
         @Comment("Slowness effect level, set 0 to disable")

@@ -19,17 +19,21 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ENCHANTMENTS;
+
 public class EnchUtils {
     public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
     public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
 
     public static final int ELEMENT_COUNT = 6;
+    private static List<RegistryObject<Enchantment>> enchantments = null;
 
     public enum Element {
         AER, AQUA, IGNIS, TERRA, HOLY, TWISTED;
@@ -138,5 +142,12 @@ public class EnchUtils {
         int blue = lerp(blue1, blue2, t);
 
         return (red << 16) | (green << 8) | blue;
+    }
+
+    public static Enchantment getRandomModEnchantment(RandomSource rand) {
+        if (enchantments == null) {
+            enchantments = ENCHANTMENTS.getEntries().stream().filter(obj -> obj.get().isDiscoverable()).toList();
+        }
+        return enchantments.get(rand.nextInt(enchantments.size())).get();
     }
 }

@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -68,6 +69,12 @@ public class UnyieldingSpirit extends HolyEnchantment {
                 TimeToLiveHelper.setTtl(player, -1);
                 player.setHealth(player.getMaxHealth());
                 EnchUtils.generateSimpleParticleAroundEntity(player, ParticleTypes.TOTEM_OF_UNDYING, 100, 1.0, 1.0, 1.0, 0.5);
+                player.clearFire();
+                player.getActiveEffects().forEach(effect -> {
+                    if (effect.getEffect().getCategory() == MobEffectCategory.HARMFUL) {
+                        player.removeEffect(effect.getEffect());
+                    }
+                });
                 player.getLevel().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 3.0F, 1.0F);
             }
         }
