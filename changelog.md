@@ -6,7 +6,7 @@
 - Added configurable attributes for Advanced Sharpness
 - Adjust damage of Rolling Stone
 - Enhance UnyieldingSpirit, which will remove all debuffs upon resurrection, add the configuration of consuming durability
-
+- Feint Attack and Duellist's Prerogative are incompatible now
 # fix:
 - Fixed a bug where the configuration file for Bloodthirsty might not work correctly
 - Fixed a bug where the tooltip file for Eater of Souls didn't display

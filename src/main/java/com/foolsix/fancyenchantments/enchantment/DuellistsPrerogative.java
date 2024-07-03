@@ -6,11 +6,14 @@ import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
+
+import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.FEINT_ATTACK;
 
 public class DuellistsPrerogative extends FEBaseEnchantment {
     public static final String NAME = "duellists_prerogative";
@@ -18,6 +21,11 @@ public class DuellistsPrerogative extends FEBaseEnchantment {
 
     public DuellistsPrerogative() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    }
+
+    @Override
+    protected boolean checkCompatibility(Enchantment pOther) {
+        return super.checkCompatibility(pOther) && pOther != FEINT_ATTACK.get();
     }
 
     public void hurtSingle(LivingHurtEvent e) {

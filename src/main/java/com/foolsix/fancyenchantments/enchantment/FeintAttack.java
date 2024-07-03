@@ -20,6 +20,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
+import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUELLIST;
+
 
 public class FeintAttack extends FEBaseEnchantment {
     private static final ModConfig.FeintAttackOptions CONFIG = FancyEnchantments.getConfig().feintAttackOptions;
@@ -32,7 +34,7 @@ public class FeintAttack extends FEBaseEnchantment {
 
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
-        return super.checkCompatibility(pOther) && pOther != Enchantments.SWEEPING_EDGE;
+        return super.checkCompatibility(pOther) && pOther != Enchantments.SWEEPING_EDGE && pOther != DUELLIST.get();
     }
 
     public void attack(LivingHurtEvent e) {
