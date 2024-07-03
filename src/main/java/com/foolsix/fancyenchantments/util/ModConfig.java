@@ -110,7 +110,7 @@ public class ModConfig implements ConfigData {
 
     public static class ChestLootOptions{
         @Comment("The chance of spawning a mod enchanted book")
-        public double chanceOfSpawningBook = 1f;
+        public double chanceOfSpawningBook = 0.5f;
     }
 
     public static class BaseOptions {
@@ -395,6 +395,8 @@ public class ModConfig implements ConfigData {
     public static class UnyieldingSpiritOptions extends BaseOptions {
         @Comment("Extra Time To Live (second)")
         public int extraTime = 8;
+        @Comment("Durability value of shield -= base")
+        public int baseDamage = 5;
         @Comment("The health set when enchantment takes effect, percentage")
         public float healthPercentage = 0.5f;
         @Comment("Slowness effect level, set 0 to disable")

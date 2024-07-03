@@ -5,7 +5,7 @@
 # change:
 - Added configurable attributes for Advanced Sharpness
 - Adjust damage of Rolling Stone
-- Enhance UnyieldingSpirit, which will remove all debuffs upon resurrection
+- Enhance UnyieldingSpirit, which will remove all debuffs upon resurrection, add the configuration of consuming durability
 
 # fix:
 - Fixed a bug where the configuration file for Bloodthirsty might not work correctly

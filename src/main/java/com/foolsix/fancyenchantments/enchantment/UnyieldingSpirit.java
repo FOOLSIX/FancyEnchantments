@@ -56,7 +56,7 @@ public class UnyieldingSpirit extends HolyEnchantment {
                     player.setHealth(player.getMaxHealth() * CONFIG.healthPercentage);
                     TimeToLiveHelper.setTtl(player, extraTime);
                     TimeToLiveHelper.setDamageSource(player, e.getSource());
-                    player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(5, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.HEAD));
+                    player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(CONFIG.baseDamage, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.HEAD));
                     e.setCanceled(true);
                 }
             }
