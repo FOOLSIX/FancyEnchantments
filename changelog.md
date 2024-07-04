@@ -1,7 +1,7 @@
 # 0.0.8
 # add:
 - Eucharist(Chest):Gain a templar shield buff after eating high quality food
-
+- Melter(Weapon):
 # change:
 - Added configurable attributes for Advanced Sharpness
 - Adjust damage of Rolling Stone
