@@ -42,13 +42,14 @@ public class PaladinsShield extends HolyEnchantment {
     }
 
     public void whenHurtTransDamage(LivingDamageEvent e) {
+        //if the damage caused by this or other enchantment, do not handle it
         if (e.getSource().isBypassEnchantments()) return;
 
         LivingEntity victim = e.getEntity();
         List<Player> transTo = null;
-        if (victim instanceof OwnableEntity) {
+        if (victim instanceof OwnableEntity ownable) {
             transTo = victim.level.getEntitiesOfClass(Player.class, victim.getBoundingBox().inflate(5),
-                                                      player -> Objects.equals(((OwnableEntity) victim).getOwnerUUID(), player.getUUID())
+                                                      player -> Objects.equals(ownable.getOwnerUUID(), player.getUUID())
                                                               && EnchantmentHelper.getEnchantmentLevel(this, player) > 0);
         } else if (victim instanceof ServerPlayer) {
             transTo = victim.level.getEntitiesOfClass(Player.class, victim.getBoundingBox().inflate(5),
