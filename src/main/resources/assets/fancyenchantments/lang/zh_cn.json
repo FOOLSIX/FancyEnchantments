@@ -66,6 +66,8 @@
   "enchantment.fancyenchantments.paladins_shield.desc": "减少受到的伤害,以较小的代价替附近的同伴或其他玩家承受部分伤害",
   "enchantment.fancyenchantments.eucharist": "圣餐",
   "enchantment.fancyenchantments.eucharist.desc": "使用高质量的食物后获得圣盾之佑BUFF",
+  "enchantment.fancyenchantments.melter": "熔化",
+  "enchantment.fancyenchantments.melter.desc": "减少武器伤害,攻击时暂时减少敌方护甲",
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "effect.fancyenchantments.cumbersome": "笨重",
   "effect.fancyenchantments.templar_shield": "圣盾之佑",

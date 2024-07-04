@@ -111,9 +111,14 @@ public class EnchantmentReg {
     public static final RegistryObject<Enchantment> PALADINS_SHIELD =
             ENCHANTMENTS.register(PaladinsShield.NAME, PaladinsShield::new);
 
-    public static final RegistryObject<Enchantment> LAVA_BURST =
-            ENCHANTMENTS.register(LavaBurst.NAME, LavaBurst::new);
-
     public static final RegistryObject<Enchantment> EUCHARIST =
             ENCHANTMENTS.register(Eucharist.NAME, Eucharist::new);
+
+    public static final RegistryObject<Enchantment> MELTER =
+            ENCHANTMENTS.register(Melter.NAME, Melter::new);
+
+//    public static final RegistryObject<Enchantment> LAVA_BURST =
+//            ENCHANTMENTS.register(LavaBurst.NAME, LavaBurst::new);
+
+
 }

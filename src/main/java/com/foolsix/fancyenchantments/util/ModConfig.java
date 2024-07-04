@@ -90,7 +90,10 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public final EucharistOptions eucharistOptions = new EucharistOptions();
     @ConfigEntry.Gui.CollapsibleObject
+    public final MelterOptions melterOptions = new MelterOptions();
+    @ConfigEntry.Gui.CollapsibleObject
     public final LavaBurstOptions lavaBurstOptions = new LavaBurstOptions();
+
 
 
     public static class ElementStatOptions {
@@ -478,11 +481,23 @@ public class ModConfig implements ConfigData {
     public static class EucharistOptions extends BaseOptions {
         @Comment("The minimum hunger point to obtain the buff")
         public int minimumHunger = 6;
-        @Comment("The effect duration = multiplier * foodSaturation")
+        @Comment("The effect duration = multiplier * foodSaturation (second)")
         public int durationMultiplier = 3;
 
         EucharistOptions() {
             super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class MelterOptions extends BaseOptions {
+        @Comment("All level, reduce base damage")
+        public double damageReducer = 0.5;
+        @Comment("Armor *= 1 - reducer * level")
+        public double armorReducer = 0.2;
+        @Comment("The effect duration = level * duration (second)")
+        public int duration = 3;
+        MelterOptions(){
+            super(3, Rarity.RARE);
         }
     }
 

@@ -54,12 +54,7 @@ public class EnchantmentEvents {
         if (victim instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
         }
-        if (e.getSource() == null || e.getSource().getEntity() == null) return;
-        Entity attacker = e.getSource().getEntity();
 
-        if (attacker instanceof Player) {
-            ((Cumbersome) CUMBERSOME.get()).getCooldown(e);
-        }
     }
 
     @SubscribeEvent
@@ -158,6 +153,7 @@ public class EnchantmentEvents {
         ((WindBlade) WIND_BLADE.get()).damageReduce(e);
         ((HeavyBlow) HEAVY_BLOW.get()).attackSpeedReduce(e);
         ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
+        ((Melter) MELTER.get()).attribute(e);
     }
 
     @SubscribeEvent
@@ -174,7 +170,9 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void useItemFinish(LivingEntityUseItemEvent.Finish e) {
-        ((Eucharist) EUCHARIST.get()).getBuff(e);
+        if (!e.isCanceled()) {
+            ((Eucharist) EUCHARIST.get()).getBuff(e);
+        }
     }
 
 }
