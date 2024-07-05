@@ -1,6 +1,0 @@
-{
-  "parent": "effect/generated",
-  "textures": {
-    "layer0": "fancyenchantments:effect/crit_rate_boost"
-  }
-}
