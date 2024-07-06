@@ -42,8 +42,10 @@ public class SpecialLootModifier extends LootModifier {
                     if (Math.random() < CONFIG.chanceOfSpawningBook) {
                         ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
                         Enchantment enchantment = EnchUtils.getRandomModEnchantment(rand);
-                        EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(enchantment, rand.nextInt(enchantment.getMaxLevel()) + 1));
-                        loots.add(enchantedBook);
+                        if (enchantment != null){
+                            EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(enchantment, rand.nextInt(enchantment.getMaxLevel()) + 1));
+                            loots.add(enchantedBook);
+                        }
                     }
 
                     int ignis = stats.getPoint(EnchUtils.Element.IGNIS);

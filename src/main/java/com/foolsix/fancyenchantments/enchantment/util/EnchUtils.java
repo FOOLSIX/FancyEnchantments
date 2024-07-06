@@ -148,6 +148,10 @@ public class EnchUtils {
         if (enchantments == null) {
             enchantments = ENCHANTMENTS.getEntries().stream().filter(obj -> obj.get().isDiscoverable()).toList();
         }
+
+        //it's ok to set all enchantments undiscoverable
+        if (enchantments.isEmpty()) return null;
+
         return enchantments.get(rand.nextInt(enchantments.size())).get();
     }
 }

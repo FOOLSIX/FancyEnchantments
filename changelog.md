@@ -1,12 +1,15 @@
 # 0.0.8
 # add:
 - Eucharist(Chest):Gain a templar shield buff after eating high quality food
-- Melter(Weapon):
+- Melter(Weapon):Reduces weapon damage and temporarily reduces enemy armor when attacking
+
 # change:
 - Added configurable attributes for Advanced Sharpness
 - Adjust damage of Rolling Stone
 - Enhance UnyieldingSpirit, which will remove all debuffs upon resurrection, add the configuration of consuming durability
 - Feint Attack and Duellist's Prerogative are incompatible now
+- Add modded enchantment books to the chest loot that can configure probability 
+
 # fix:
 - Fixed a bug where the configuration file for Bloodthirsty might not work correctly
 - Fixed a bug where the tooltip file for Eater of Souls didn't display

@@ -42,10 +42,10 @@ public class FeintAttack extends FEBaseEnchantment {
             int level = EnchantmentHelper.getEnchantmentLevel(this, player);
             if (level > 0 && player.getMainHandItem().canPerformAction(ToolActions.SWORD_SWEEP)) {
                 if (!e.getSource().isBypassEnchantments() && player.getAttackStrengthScale(0.5F) > 0.9) {
-                    List<Entity> entities = world.getEntities(e.getEntity(), e.getEntity().getBoundingBox().inflate(3));
+                    List<Entity> entities = world.getEntities(e.getEntity(), e.getEntity().getBoundingBox().inflate(3), EnchUtils::isHostileToPlayer);
                     DamageSource damageSource = DamageSource.playerAttack(player).bypassEnchantments();
                     for (Entity entity : entities) {
-                        if (entity instanceof LivingEntity living && EnchUtils.isHostileToPlayer(living)) {
+                        if (entity instanceof LivingEntity living) {
                             world.sendParticles(ParticleTypes.SOUL, living.getX(), living.getY(), living.getZ(), 30, 0.2D, 0.7D, 0.1D, 0);
                             living.hurt(damageSource, e.getAmount() * (1 + CONFIG.damageMultiplier * level));
                         }
