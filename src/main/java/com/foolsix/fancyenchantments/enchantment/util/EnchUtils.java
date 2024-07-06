@@ -15,6 +15,7 @@ import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
@@ -144,10 +145,15 @@ public class EnchUtils {
         return (red << 16) | (green << 8) | blue;
     }
 
+    @Nullable
     public static Enchantment getRandomModEnchantment(RandomSource rand) {
         if (enchantments == null) {
             enchantments = ENCHANTMENTS.getEntries().stream().filter(obj -> obj.get().isDiscoverable()).toList();
         }
+
+        //it's ok to set all enchantments undiscoverable
+        if (enchantments.isEmpty()) return null;
+
         return enchantments.get(rand.nextInt(enchantments.size())).get();
     }
 }
