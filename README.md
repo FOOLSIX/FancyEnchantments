@@ -10,6 +10,8 @@ Support [Enchantment-Descriptions](https://legacy.curseforge.com/minecraft/mc-mo
 
 搭载[附魔描述](https://www.mcmod.cn/class/1945.html)
 
+中文资料:[MCMOD](https://www.mcmod.cn/class/15242.html)
+
 Download:
 
 ![CurseForge Downloads](https://cf.way2muchnoise.eu/1006767.svg)
