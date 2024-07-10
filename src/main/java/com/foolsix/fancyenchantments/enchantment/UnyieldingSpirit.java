@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.capability.TimeToLiveHelper;
+import com.foolsix.fancyenchantments.damage.FEDamageSource;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.HolyEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
@@ -82,9 +83,7 @@ public class UnyieldingSpirit extends HolyEnchantment {
     public void unequipped(LivingEquipmentChangeEvent e) {
         if (e.getEntity() instanceof ServerPlayer player && TimeToLiveHelper.getTtl(player) != -1 && e.getSlot() == EquipmentSlot.HEAD) {
             if (e.getTo().getEnchantmentLevel(this) < 1) {
-                //todo : fix,use damage source
-                player.die(player.damageSources().magic());
-                player.setHealth(0);
+                player.hurt(FEDamageSource.giveUpDamage(player), 100000);
             }
         }
     }

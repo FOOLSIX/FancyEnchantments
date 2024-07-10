@@ -71,7 +71,7 @@
   "effect.fancyenchantments.crit_rate_boost": "Crit Rate Boost",
   "effect.fancyenchantments.cumbersome": "Cumbersome",
   "effect.fancyenchantments.templar_shield": "Templar Shield",
-  "death.attack.fancyenchantments.give_up": "%1$s gave up life...",
+  "death.attack.give_up": "%1$s gave up life...",
   "Curse:": "Curse:",
   "Kill Count:": "Kill Count: "
 }
