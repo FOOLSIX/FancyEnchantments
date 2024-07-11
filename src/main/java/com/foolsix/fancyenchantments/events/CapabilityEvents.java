@@ -47,6 +47,7 @@ public class CapabilityEvents {
             e.player.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(ttl -> {
                 if (ttl.getTtl() == 0) {
                     //todo : use damage source
+                    e.player.die(ttl.getDamageSource());
                     e.player.setHealth(0);
                 }
                 ttl.subTtl(1);
