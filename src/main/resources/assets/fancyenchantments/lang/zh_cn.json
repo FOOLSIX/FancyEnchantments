@@ -70,6 +70,8 @@
   "enchantment.fancyenchantments.melter.desc": "减少武器伤害,攻击时暂时减少敌方护甲",
   "enchantment.fancyenchantments.stacking_waves": "叠浪",
   "enchantment.fancyenchantments.stacking_waves.desc": "降低武器攻击初始速度，连续攻击时增加攻击速度",
+  "enchantment.fancyenchantments.charge": "冲锋",
+  "enchantment.fancyenchantments.charge.desc": "攻击敌人后向前冲刺一段距离，冲刺过程无敌",
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "effect.fancyenchantments.cumbersome": "笨重",
   "effect.fancyenchantments.templar_shield": "圣盾之佑",
