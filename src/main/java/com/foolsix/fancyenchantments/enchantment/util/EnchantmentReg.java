@@ -117,6 +117,12 @@ public class EnchantmentReg {
     public static final RegistryObject<Enchantment> MELTER =
             ENCHANTMENTS.register(Melter.NAME, Melter::new);
 
+    public static final RegistryObject<Enchantment> STACKING_WAVES =
+            ENCHANTMENTS.register(StackingWaves.NAME, StackingWaves::new);
+
+    public static final RegistryObject<Enchantment> CHARGE =
+            ENCHANTMENTS.register(Charge.NAME, Charge::new);
+
 //    public static final RegistryObject<Enchantment> LAVA_BURST =
 //            ENCHANTMENTS.register(LavaBurst.NAME, LavaBurst::new);
 

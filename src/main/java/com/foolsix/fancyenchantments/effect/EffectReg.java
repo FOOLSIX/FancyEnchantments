@@ -18,4 +18,8 @@ public class EffectReg {
             EFFECTS.register(TemplarShield.NAME, TemplarShield::new);
     public static final RegistryObject<MobEffect> MELTING =
             EFFECTS.register(Melting.NAME, Melting::new);
+    public static final RegistryObject<MobEffect> ATTACK_SPEED_BOOST =
+            EFFECTS.register(AttackSpeedBoost.NAME, AttackSpeedBoost::new);
+    public static final RegistryObject<MobEffect> INVINCIBLE =
+            EFFECTS.register(Invincible.NAME, Invincible::new);
 }

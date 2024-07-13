@@ -92,6 +92,10 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public final MelterOptions melterOptions = new MelterOptions();
     @ConfigEntry.Gui.CollapsibleObject
+    public final StackingWavesOptions stackingWavesOptions = new StackingWavesOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final ChargeOptions chargeOptions = new ChargeOptions();
+    @ConfigEntry.Gui.CollapsibleObject
     public final LavaBurstOptions lavaBurstOptions = new LavaBurstOptions();
 
 
@@ -169,7 +173,7 @@ public class ModConfig implements ConfigData {
 
     public static class GiftOfFireOptions extends BaseOptions {
         @Comment("damage += level * multiplier")
-        public float beneficialMultiplier = 2.0f;
+        public float beneficialMultiplier = 2.5f;
         @Comment("damage -= level * multiplier")
         public float harmfulMultiplier = 0.5f;
 
@@ -189,7 +193,7 @@ public class ModConfig implements ConfigData {
 
     public static class OceanCurrentOptions extends BaseOptions {
         @Comment("attack speed += level * multiplier")
-        public float speedMultiplier = 0.5f;
+        public float speedMultiplier = 0.2f;
         @Comment("attack speed while in water += level * multiplier * extra multiplier")
         public float extraSpeedMultiplier = 1.5f;
         public boolean ineffectiveWhenOnFire = true;
@@ -499,6 +503,29 @@ public class ModConfig implements ConfigData {
 
         MelterOptions() {
             super(3, Rarity.RARE);
+        }
+    }
+
+    public static class StackingWavesOptions extends BaseOptions {
+        public float attackSpeedMultiplier = 0.3f;
+        @Comment("Attack speed * = 1 - reducer * level")
+        public float attackSpeedReducer = 0.1f;
+        @Comment("second")
+        public int duration = 2;
+
+        StackingWavesOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class ChargeOptions extends BaseOptions {
+        public float chargeDistanceMultiplier = 2f;
+        @Comment(" Duration = 5 + durationPerLevel * level")
+        public int invincibleDurationPerLevel = 5;
+
+        ChargeOptions() {
+            super(3, Rarity.RARE);
+            isTreasure = true;
         }
     }
 
