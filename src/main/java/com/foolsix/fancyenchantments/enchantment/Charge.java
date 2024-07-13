@@ -4,9 +4,7 @@ import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.util.ModConfig;
-import com.mojang.blaze3d.shaders.Effect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -27,8 +25,8 @@ public class Charge extends FEBaseEnchantment {
         int level = EnchantmentHelper.getEnchantmentLevel(this, living);
         if (level > 0) {
             Vec3 lookAt = living.getLookAngle();
-            living.push(lookAt.x * 2, lookAt.y * 2, lookAt.z * 2);
-            living.addEffect(new MobEffectInstance(EffectReg.INVINCIBLE.get(), 5 + 5 * level));
+            living.push(lookAt.x * CONFIG.chargeDistanceMultiplier, lookAt.y * CONFIG.chargeDistanceMultiplier, lookAt.z * CONFIG.chargeDistanceMultiplier);
+            living.addEffect(new MobEffectInstance(EffectReg.INVINCIBLE.get(), 5 + CONFIG.invincibleDurationPerLevel * level));
         }
     }
 }

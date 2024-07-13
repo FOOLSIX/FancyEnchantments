@@ -3,7 +3,6 @@ package com.foolsix.fancyenchantments.enchantment.util;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;

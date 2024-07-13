@@ -517,7 +517,9 @@ public class ModConfig implements ConfigData {
     }
 
     public static class ChargeOptions extends BaseOptions  {
-
+        public float chargeDistanceMultiplier = 2f;
+        @Comment(" Duration = 5 + durationPerLevel * level")
+        public int invincibleDurationPerLevel = 5;
         ChargeOptions() {
             super(3, Rarity.RARE);
             isTreasure = true;
@@ -527,7 +529,6 @@ public class ModConfig implements ConfigData {
     public static class LavaBurstOptions extends BaseOptions {
         @Comment("The probability of generating a burst = level * probability")
         public double probability = 0.1;
-
         LavaBurstOptions() {
             super(3, Rarity.VERY_RARE);
             isTreasure = true;
