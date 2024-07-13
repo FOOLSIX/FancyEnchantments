@@ -3,12 +3,15 @@ package com.foolsix.fancyenchantments.enchantment.util;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
@@ -144,14 +147,20 @@ public class EnchUtils {
         return (red << 16) | (green << 8) | blue;
     }
 
-    public static Enchantment getRandomModEnchantment(RandomSource rand) {
+    public static @Nullable Enchantment getRandomModEnchantment(RandomSource rand) {
         if (enchantments == null) {
             enchantments = ENCHANTMENTS.getEntries().stream().filter(obj -> obj.get().isDiscoverable()).toList();
         }
-
         //it's ok to set all enchantments undiscoverable
         if (enchantments.isEmpty()) return null;
 
         return enchantments.get(rand.nextInt(enchantments.size())).get();
+    }
+
+    public void modifyEffectLevel(LivingEntity living, MobEffect effect, int amplifier) {
+        MobEffectInstance instance = living.getEffect(effect);
+        if (instance != null) {
+            living.forceAddEffect(new MobEffectInstance(effect, instance.getDuration(), amplifier), null);
+        }
     }
 }

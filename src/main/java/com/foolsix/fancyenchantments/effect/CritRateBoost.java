@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 
 public class CritRateBoost extends MobEffect {
     public static final String CRIT_RATE_BOOST_NAME = "crit_rate_boost";

@@ -1,39 +1,61 @@
+# 0.0.9
+## add:
+- StackingWaves(Weapon):Reduces the initial attack speed of the weapon, and increases the attack speed during continuous attacks
+- Charge(Weapon):Charge forward a certain distance after attacking the enemy, and become invincible during the charge
+
+
+- 叠浪（武器）：降低武器攻击初始速度，连续攻击时增加攻击速度
+- 冲锋（武器）：攻击敌人后向前冲刺一段距离，冲刺过程无敌
+
+## change:
+- Weakened the initial attack speed bonus of ocean currents
+- Enhanced the initial damage bonus of the Gift Of Fire
+
+- 削弱了洋流的初始攻速加成
+- 增强了火之恩赐的初始伤害加成
+
+##fix:
+- Fixed a bug where Empathy doesn't work
+
+- 修复了换位思考附魔失效的bug
+- 添加了缺失的语言文件条目
+
 # 0.0.8
-# add:
+## add:
 - Eucharist(Chest):Gain a templar shield buff after eating high quality food
 - Melter(Weapon):Reduces weapon damage and temporarily reduces enemy armor when attacking
 
-# change:
+## change:
 - Added configurable attributes for Advanced Sharpness
 - Adjust damage of Rolling Stone
 - Enhance UnyieldingSpirit, which will remove all debuffs upon resurrection, add the configuration of consuming durability
 - Feint Attack and Duellist's Prerogative are incompatible now
 - Add modded enchantment books to the chest loot that can configure probability 
 
-# fix:
+## fix:
 - Fixed a bug where the configuration file for Bloodthirsty might not work correctly
 - Fixed a bug where the tooltip file for Eater of Souls didn't display
 
 # 0.0.7
-# add:
+## add:
 - add Element Stat system(Apply effects based on the level of the special elemental enchantment)
 - add a command to get Element Stat (/fancyenchantments elementstat)
 - add Duellist's Prerogative(weapon):When there are no other creatures around you and the target, the damage you deal to it is increased
 - add Paladin's Shield(shield):Reduce the damage you receive, and take some of the damage for nearby companions or other players at a lower cost
 
-# fix:
+## fix:
 - Fixed a bug where the isDiscoverable might not work correctly on Advanced Sharpness and Advanced Looting
 
 # 0.0.6
-# change:
+## change:
 - Added configurable attributes for Unyielding Spirit and Cursed Gaze
 
-# add:
+## add:
 - Calmer(Chest):Gain damage absorption when taking damage
 - Feint Attack(Weapon):Reduces damage to the enemy that attack directly, and deals heavy damage to enemies around it
 - Purifying(Weapon):A more powerful smith,and can purify zombie villagers
 
-# fix:
+## fix:
 - Fixed a bug where pyromaniac didn't work on certain types of explosions
 - Fix a bug where the triggering condition for Unyielding Sprite is incorrect
 

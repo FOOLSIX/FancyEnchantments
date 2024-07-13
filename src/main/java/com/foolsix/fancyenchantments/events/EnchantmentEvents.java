@@ -1,6 +1,7 @@
 package com.foolsix.fancyenchantments.events;
 
 import com.foolsix.fancyenchantments.enchantment.*;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -50,11 +51,15 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void livingAttackEvent(LivingAttackEvent e) {
         LivingEntity victim = e.getEntity();
-
+        DamageSource source = e.getSource();
         if (victim instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
         }
 
+        if (source != null && source.getEntity() instanceof LivingEntity) {
+            //use entity.push(), should be called at client and server
+            ((Charge) CHARGE.get()).charge(e);
+        }
     }
 
     @SubscribeEvent
@@ -140,7 +145,7 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void arrowLooseEvent(ArrowLooseEvent e) {
-        if (!e.isCanceled() && !e.getLevel().isClientSide()) {
+        if (!e.isCanceled()) {
             //Below cancel the event
             ((Empathy) EMPATHY.get()).throwPlayer(e);
         }
@@ -154,6 +159,7 @@ public class EnchantmentEvents {
         ((HeavyBlow) HEAVY_BLOW.get()).attackSpeedReduce(e);
         ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
         ((Melter) MELTER.get()).attribute(e);
+        ((StackingWaves) STACKING_WAVES.get()).attribute(e);
     }
 
     @SubscribeEvent
