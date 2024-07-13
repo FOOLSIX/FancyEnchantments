@@ -3,7 +3,6 @@
 - StackingWaves(Weapon):Reduces the initial attack speed of the weapon, and increases the attack speed during continuous attacks
 - Charge(Weapon):Charge forward a certain distance after attacking the enemy, and become invincible during the charge
 
-
 - 叠浪（武器）：降低武器攻击初始速度，连续攻击时增加攻击速度
 - 冲锋（武器）：攻击敌人后向前冲刺一段距离，冲刺过程无敌
 
@@ -14,7 +13,7 @@
 - 削弱了洋流的初始攻速加成
 - 增强了火之恩赐的初始伤害加成
 
-##fix:
+## fix:
 - Fixed a bug where Empathy doesn't work
 
 - 修复了换位思考附魔失效的bug
