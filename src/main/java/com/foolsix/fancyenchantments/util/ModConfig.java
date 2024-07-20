@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.util;
 
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils.Element;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -14,6 +15,7 @@ public class ModConfig implements ConfigData {
             Set level = 0 to disable the enchantment.
             Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
             The valid value of rarity is: "COMMON" "UNCOMMON" "RARE" "VERY_RARE"
+            The elemental conditions in order are Aer, Aqua, Ignis, Terra, Twisted, Holy
             """)
     @ConfigEntry.Gui.CollapsibleObject
     public final boolean enableIncompatibility = true;
@@ -21,6 +23,9 @@ public class ModConfig implements ConfigData {
     public final ElementStatOptions elementStatOptions = new ElementStatOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final ChestLootOptions chestLootOptions = new ChestLootOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final JEIInfoOptions jeiInfoOptions = new JEIInfoOptions();
+
     @ConfigEntry.Gui.CollapsibleObject
     public final AdvancedLootingOptions advancedLootingOptions = new AdvancedLootingOptions();
     @ConfigEntry.Gui.CollapsibleObject
@@ -97,6 +102,8 @@ public class ModConfig implements ConfigData {
     public final ChargeOptions chargeOptions = new ChargeOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final LavaBurstOptions lavaBurstOptions = new LavaBurstOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final ArmorForgingOptions armorForgingOptions = new ArmorForgingOptions();
 
 
     public static class ElementStatOptions {
@@ -119,8 +126,15 @@ public class ModConfig implements ConfigData {
         public double chanceOfSpawningBook = 0.5f;
     }
 
+    public static class JEIInfoOptions {
+        public boolean enableDescription = true;
+        public boolean enableMaxLevel = true;
+        public boolean enableRarity = true;
+    }
+
     public static class BaseOptions {
         @Comment("====== Basic options below ======")
+        @ConfigEntry.BoundedDiscrete(max = 255)
         public int level;
         public Rarity rarity;
         public boolean isTreasure = false;
@@ -133,6 +147,20 @@ public class ModConfig implements ConfigData {
             this.rarity = rarity;
         }
 
+    }
+
+    public static class LootEnchantmentOptions extends BaseOptions {
+        @Comment("====== Chest Loot Condition ======")
+        public double probabilityOfGeneration;
+        public int[] elementalCondition = new int[Element.values().length];
+
+        LootEnchantmentOptions(int maxLevel, Rarity rarity, double probability) {
+            super(maxLevel, rarity);
+            isTreasure = true;
+            isTradeable = false;
+            isDiscoverable = false;
+            this.probabilityOfGeneration = probability;
+        }
     }
 
     public static class AdvancedLootingOptions extends BaseOptions {
@@ -199,7 +227,7 @@ public class ModConfig implements ConfigData {
         public boolean ineffectiveWhenOnFire = true;
 
         OceanCurrentOptions() {
-            super(3, Rarity.RARE);
+            super(3, Rarity.VERY_RARE);
         }
     }
 
@@ -520,7 +548,7 @@ public class ModConfig implements ConfigData {
 
     public static class ChargeOptions extends BaseOptions {
         public float chargeDistanceMultiplier = 2f;
-        @Comment(" Duration = 5 + durationPerLevel * level")
+        @Comment("Duration = 5 + durationPerLevel * level (tick)")
         public int invincibleDurationPerLevel = 5;
 
         ChargeOptions() {
@@ -529,16 +557,28 @@ public class ModConfig implements ConfigData {
         }
     }
 
-    public static class LavaBurstOptions extends BaseOptions {
+    public static class LavaBurstOptions extends LootEnchantmentOptions {
         @Comment("The probability of generating a burst = level * probability")
-        public double probability = 0.1;
+        public double probability = 0.2;
 
         LavaBurstOptions() {
-            super(3, Rarity.VERY_RARE);
-            isTreasure = true;
-            isTradeable = false;
-            isDiscoverable = false;
+            super(3, Rarity.VERY_RARE, 0.25);
+            elementalCondition[Element.IGNIS.ordinal()] = 8;
+            elementalCondition[Element.TERRA.ordinal()] = 5;
         }
     }
 
+    public static class ArmorForgingOptions extends LootEnchantmentOptions {
+        @Comment("Upper limit of forging value = value * level")
+        public int forgingValue = 1000;
+        @Comment("Increased armor = value / base * 100%")
+        public int armorBase = 5000;
+        public int toughnessBase = 10000;
+
+        ArmorForgingOptions() {
+            super(3, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.IGNIS.ordinal()] = 8;
+            elementalCondition[Element.TERRA.ordinal()] = 8;
+        }
+    }
 }

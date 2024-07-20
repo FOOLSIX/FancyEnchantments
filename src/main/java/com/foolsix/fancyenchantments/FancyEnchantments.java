@@ -20,11 +20,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(FancyEnchantments.MODID)
 public class FancyEnchantments {
     public static final String MODID = "fancyenchantments";
-    private static ModConfig config;
+    private static final ModConfig config;
 
-    public FancyEnchantments() {
+    static {
         AutoConfig.register(ModConfig.class, JanksonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+    }
+
+    public FancyEnchantments() {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
@@ -47,4 +50,6 @@ public class FancyEnchantments {
     public void onRegisterCommands(RegisterCommandsEvent e) {
         ElementStatCommand.register(e.getDispatcher());
     }
+
+
 }

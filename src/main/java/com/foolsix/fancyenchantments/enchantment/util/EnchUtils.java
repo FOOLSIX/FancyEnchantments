@@ -9,6 +9,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
@@ -21,6 +23,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.RegistryObject;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +35,17 @@ public class EnchUtils {
     public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
     public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
 
-    public static final int ELEMENT_COUNT = 6;
-    private static List<RegistryObject<Enchantment>> enchantments = null;
+    public static final int ELEMENT_COUNT = Element.values().length;
+    public static final int[] EMPTY_CONDITION = new int[ELEMENT_COUNT];
+    private static final List<RegistryObject<Enchantment>> enchantments =
+            ENCHANTMENTS.getEntries().stream().filter(
+                            enchantment -> enchantment.get().isDiscoverable())
+                    .toList();
+    private static final List<RegistryObject<Enchantment>> specialLootEnchantment =
+            ENCHANTMENTS.getEntries().stream().filter(
+                            enchantment -> enchantment.get() instanceof FEBaseEnchantment fe
+                                    && fe.isSpecialLoot() && fe.getMaxLevel() > 0)
+                    .toList();
 
     public enum Element {
         AER, AQUA, IGNIS, TERRA, HOLY, TWISTED;
@@ -61,6 +73,19 @@ public class EnchUtils {
             return null;
         }
 
+        @Nullable
+        public static ChatFormatting getChatFormatting(Element element) {
+            ChatFormatting chatFormatting = ChatFormatting.RESET;
+            switch (element) {
+                case AER -> chatFormatting = ChatFormatting.YELLOW;
+                case AQUA -> chatFormatting = ChatFormatting.AQUA;
+                case IGNIS -> chatFormatting = ChatFormatting.GOLD;
+                case TERRA -> chatFormatting = ChatFormatting.GREEN;
+                case HOLY -> chatFormatting = ChatFormatting.WHITE;
+                case TWISTED -> chatFormatting = ChatFormatting.DARK_PURPLE;
+            }
+            return chatFormatting;
+        }
     }
 
     public static final Predicate<Entity> VISIBLE_HOSTILE =
@@ -82,7 +107,7 @@ public class EnchUtils {
     public static void generateSimpleParticleAroundEntity(Entity entity, SimpleParticleType type) {
         if (entity.level() instanceof ServerLevel level) {
             level.sendParticles(type, entity.getX(), entity.getY(), entity.getZ(),
-                    15, 0.2D, 0.7D, 0.2D, 0);
+                    30, 0.2D, 0.7D, 0.2D, 0);
         }
     }
 
@@ -144,15 +169,21 @@ public class EnchUtils {
         return (red << 16) | (green << 8) | blue;
     }
 
-    @Nullable
-    public static Enchantment getRandomModEnchantment(RandomSource rand) {
-        if (enchantments == null) {
-            enchantments = ENCHANTMENTS.getEntries().stream().filter(obj -> obj.get().isDiscoverable()).toList();
-        }
-
+    public static @Nullable Enchantment getRandomModEnchantment(RandomSource rand) {
         //it's ok to set all enchantments undiscoverable
         if (enchantments.isEmpty()) return null;
 
         return enchantments.get(rand.nextInt(enchantments.size())).get();
+    }
+
+    public static @Nonnull List<RegistryObject<Enchantment>> getAllSpecialLootEnchantment() {
+        return specialLootEnchantment;
+    }
+
+    public void modifyEffectLevel(LivingEntity living, MobEffect effect, int amplifier) {
+        MobEffectInstance instance = living.getEffect(effect);
+        if (instance != null) {
+            living.forceAddEffect(new MobEffectInstance(effect, instance.getDuration(), amplifier), null);
+        }
     }
 }

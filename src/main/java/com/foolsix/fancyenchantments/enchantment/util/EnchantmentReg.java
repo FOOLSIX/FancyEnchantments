@@ -123,8 +123,11 @@ public class EnchantmentReg {
     public static final RegistryObject<Enchantment> CHARGE =
             ENCHANTMENTS.register(Charge.NAME, Charge::new);
 
-//    public static final RegistryObject<Enchantment> LAVA_BURST =
-//            ENCHANTMENTS.register(LavaBurst.NAME, LavaBurst::new);
+    public static final RegistryObject<Enchantment> LAVA_BURST =
+            ENCHANTMENTS.register(LavaBurst.NAME, LavaBurst::new);
+
+    public static final RegistryObject<Enchantment> ARMOR_FORGING =
+            ENCHANTMENTS.register(ArmorForging.NAME, ArmorForging::new);
 
 
 }
