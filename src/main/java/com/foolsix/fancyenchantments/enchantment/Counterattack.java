@@ -20,7 +20,7 @@ public class Counterattack extends FEBaseEnchantment {
 
     public Counterattack() {
         super(CONFIG, EnchantmentCategory.WEAPON,
-              new EquipmentSlot[]{EquipmentSlot.OFFHAND, EquipmentSlot.MAINHAND});
+                new EquipmentSlot[]{EquipmentSlot.OFFHAND, EquipmentSlot.MAINHAND});
     }
 
     @Override

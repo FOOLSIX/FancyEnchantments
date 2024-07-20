@@ -20,6 +20,7 @@ public class StackingWaves extends AquaEnchantment {
     private static final ModConfig.StackingWavesOptions CONFIG = FancyEnchantments.getConfig().stackingWavesOptions;
     private static final UUID ID = UUID.fromString("4c7fc7c6-3b9d-a2e8-1d4a-d6dbc002b55d");
     public static final String NAME = "stacking_waves";
+
     public StackingWaves() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }

@@ -35,6 +35,11 @@ public class ElementStatsCapability implements IElementStatsCapability {
         Arrays.fill(stats, 0);
     }
 
+    @Override
+    public int[] getStats() {
+        return this.stats;
+    }
+
     public void saveNBTData(CompoundTag nbt) {
         for (Element element : Element.values()) {
             nbt.putInt(element.name().toLowerCase(), stats[element.ordinal()]);

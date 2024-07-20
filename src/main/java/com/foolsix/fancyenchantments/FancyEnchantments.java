@@ -22,9 +22,12 @@ public class FancyEnchantments {
     public static final String MODID = "fancyenchantments";
     private static ModConfig config;
 
-    public FancyEnchantments() {
+    static {
         AutoConfig.register(ModConfig.class, JanksonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+    }
+
+    public FancyEnchantments() {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());

@@ -68,13 +68,13 @@ public class CapabilityEvents {
                 }
                 if (elementStats.getPoint(TERRA) >= CONFIG.terraLevelToGetResistance) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,
-                                                             20,
-                                                             elementStats.getPoint(TERRA) / CONFIG.terraLevelToGetResistance));
+                            20,
+                            elementStats.getPoint(TERRA) / CONFIG.terraLevelToGetResistance));
                 }
                 if (elementStats.getPoint(AQUA) >= CONFIG.aquaLevelToGetRegeneration) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,
-                                                             20,
-                                                             elementStats.getPoint(AQUA) / CONFIG.aquaLevelToGetRegeneration));
+                            20,
+                            elementStats.getPoint(AQUA) / CONFIG.aquaLevelToGetRegeneration));
                 }
                 if (elementStats.getPoint(TWISTED) - elementStats.getPoint(HOLY) >= CONFIG.twistedLevelToGetDebuff) {
                     if (Math.random() < CONFIG.probabilityToGetDebuff) {

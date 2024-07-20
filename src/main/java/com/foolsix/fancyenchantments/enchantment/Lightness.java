@@ -23,7 +23,7 @@ public class Lightness extends AerEnchantment {
 
     public Lightness() {
         super(CONFIG, EnchantmentCategory.WEAPON,
-              new EquipmentSlot[]{EquipmentSlot.OFFHAND, EquipmentSlot.MAINHAND});
+                new EquipmentSlot[]{EquipmentSlot.OFFHAND, EquipmentSlot.MAINHAND});
     }
 
     @Override

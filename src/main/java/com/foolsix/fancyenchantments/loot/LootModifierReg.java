@@ -13,4 +13,5 @@ public class LootModifierReg {
             DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> SPECIAL_LOOT_MODIFIER_REGISTRY =
             LOOT_MODIFIER_SERIALIZERS.register("special_loot_modifier", SpecialLootModifier.CODEC);
+
 }

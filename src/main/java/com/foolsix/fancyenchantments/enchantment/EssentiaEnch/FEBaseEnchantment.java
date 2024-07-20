@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.EssentiaEnch;
 
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -37,4 +38,35 @@ public class FEBaseEnchantment extends Enchantment {
     public boolean isDiscoverable() {
         return CONFIG.level > 0 && CONFIG.isDiscoverable;
     }
+
+    @Override
+    public int getMaxCost(int pLevel) {
+        return this.getMinCost(pLevel) + 50;
+    }
+
+    public boolean isSpecialLoot() {
+        return CONFIG instanceof ModConfig.LootEnchantmentOptions;
+    }
+
+    public double getChestGenerationProbability() {
+        if (CONFIG instanceof ModConfig.LootEnchantmentOptions loot) return loot.probabilityOfGeneration;
+        return 0;
+    }
+
+    public int[] getChestGenerationCondition() {
+        if (CONFIG instanceof ModConfig.LootEnchantmentOptions loot) return loot.elementalCondition;
+        return EnchUtils.EMPTY_CONDITION;
+    }
+
+    public boolean tryGenerateOnce(int[] elementalStat) {
+        int[] condition = getChestGenerationCondition();
+        if (Math.random() > getChestGenerationProbability() || elementalStat.length != condition.length) return false;
+        for (int i = 0; i < condition.length; ++i) {
+            if (condition[i] > elementalStat[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

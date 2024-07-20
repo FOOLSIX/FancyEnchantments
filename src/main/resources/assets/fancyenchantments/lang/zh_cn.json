@@ -72,6 +72,10 @@
   "enchantment.fancyenchantments.stacking_waves.desc": "降低武器攻击初始速度，连续攻击时增加攻击速度",
   "enchantment.fancyenchantments.charge": "冲锋",
   "enchantment.fancyenchantments.charge.desc": "攻击敌人后向前冲刺一段距离，冲刺过程无敌",
+  "enchantment.fancyenchantments.lava_burst": "熔岩爆发",
+  "enchantment.fancyenchantments.lava_burst.desc": "攻击敌人时有概率产生爆炸",
+  "enchantment.fancyenchantments.armor_forging": "百炼锻甲术",
+  "enchantment.fancyenchantments.armor_forging.desc": "东方的神秘魔咒,记载着利用受击锤炼盔甲的技术",
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "effect.fancyenchantments.cumbersome": "笨重",
   "effect.fancyenchantments.templar_shield": "圣盾之佑",
@@ -80,5 +84,9 @@
   "effect.fancyenchantments.invincible": "无敌",
   "death.attack.fancyenchantments.give_up": "%1$s 放弃了挣扎...",
   "Curse:": "诅咒:",
-  "Kill Count:": "杀敌数:"
+  "Kill Count:": "杀敌数:",
+  "enchantment.fancyenchantments.max_level": "§1最高等级: %s",
+  "enchantment.fancyenchantments.rarity": "§2稀有度: %s",
+  "enchantment.fancyenchantments.probability_from_chest": "§3从宝箱战利品中取得的概率: %s",
+  "enchantment.fancyenchantments.condition": "§4最低元素属性条件:"
 }

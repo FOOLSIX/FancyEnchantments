@@ -49,11 +49,11 @@ public class PaladinsShield extends HolyEnchantment {
         List<Player> transTo = null;
         if (victim instanceof OwnableEntity ownable) {
             transTo = victim.level.getEntitiesOfClass(Player.class, victim.getBoundingBox().inflate(5),
-                                                      player -> Objects.equals(ownable.getOwnerUUID(), player.getUUID())
-                                                              && EnchantmentHelper.getEnchantmentLevel(this, player) > 0);
+                    player -> Objects.equals(ownable.getOwnerUUID(), player.getUUID())
+                            && EnchantmentHelper.getEnchantmentLevel(this, player) > 0);
         } else if (victim instanceof ServerPlayer) {
             transTo = victim.level.getEntitiesOfClass(Player.class, victim.getBoundingBox().inflate(5),
-                                                      player -> EnchantmentHelper.getEnchantmentLevel(this, player) > 0);
+                    player -> EnchantmentHelper.getEnchantmentLevel(this, player) > 0);
         }
         if (transTo != null && !transTo.isEmpty()) {
             Player player = transTo.get(0);

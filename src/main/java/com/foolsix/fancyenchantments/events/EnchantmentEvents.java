@@ -110,6 +110,7 @@ public class EnchantmentEvents {
         if (victim instanceof LivingEntity && !victim.level.isClientSide) {
             ((Calmer) CALMER.get()).gainBuff(e);
             ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
+            ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
             //below cancel the event
             ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
         }
@@ -160,6 +161,7 @@ public class EnchantmentEvents {
         ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
         ((Melter) MELTER.get()).attribute(e);
         ((StackingWaves) STACKING_WAVES.get()).attribute(e);
+        ((ArmorForging) ARMOR_FORGING.get()).modifyArmor(e);
     }
 
     @SubscribeEvent

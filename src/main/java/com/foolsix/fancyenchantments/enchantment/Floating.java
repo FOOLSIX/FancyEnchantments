@@ -40,9 +40,9 @@ public class Floating extends AerEnchantment {
                     && (player.isOnGround() || player.getDeltaMovement().y == 0.0)) {
                 if (damageAttr != null) {
                     damageAttr.addTransientModifier(new AttributeModifier(FLOATING_UUID,
-                                                                          MOD_NAME_PREFIX + NAME,
-                                                                          -CONFIG.damageReducer,
-                                                                          AttributeModifier.Operation.MULTIPLY_TOTAL));
+                            MOD_NAME_PREFIX + NAME,
+                            -CONFIG.damageReducer,
+                            AttributeModifier.Operation.MULTIPLY_TOTAL));
                 }
             }
         }

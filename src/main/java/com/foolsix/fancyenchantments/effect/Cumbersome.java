@@ -17,9 +17,9 @@ public class Cumbersome extends MobEffect {
     public Cumbersome() {
         super(MobEffectCategory.HARMFUL, 0x24B262);
         this.addAttributeModifier(Attributes.ATTACK_SPEED,
-                                   CUMBERSOME_UUID.toString(),
-                                   -CONFIG.atkSpeedReducer,
-                                   AttributeModifier.Operation.MULTIPLY_TOTAL);
+                CUMBERSOME_UUID.toString(),
+                -CONFIG.atkSpeedReducer,
+                AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
 }

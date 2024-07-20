@@ -1,3 +1,25 @@
+# 0.0.10
+## add:
+- Lava Burst (Weapon): There is a chance of explosion when attacking an enemy
+- Armor Forging (Armor): Taking damage can strengthen the armor
+- New mechanism: Element attributes must meet certain conditions in order to obtain some special enchantments from treasure chest loot
+- Add JEI compatibility, currently only adding partial information, can be configured
+
+- 熔岩爆发（武器）：攻击敌人时有概率产生爆炸
+- 百炼锻甲术（盔甲）：承受伤害可以强化盔甲
+- 新的机制：需要在元素属性满足一定条件，才能从宝箱战利品获得一些特殊的附魔
+- 添加JEI兼容，目前仅仅添加部分信息，可以配置
+
+## change:
+- Increased the maximum enchanting level for most enchantments
+
+- 提高了大部分附魔的最大附魔等级
+
+## fix:
+- Fix bugs where advanced sharpness and advanced snatching of certain configurations do not work
+
+- 修复高级锋利和高级抢夺某些配置不起效的bug
+
 # 0.0.9
 ## add:
 - StackingWaves(Weapon):Reduces the initial attack speed of the weapon, and increases the attack speed during continuous attacks

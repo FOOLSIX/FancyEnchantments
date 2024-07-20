@@ -72,6 +72,10 @@
   "enchantment.fancyenchantments.stacking_waves.desc": "Reduces weapon damage and temporarily reduces enemy armor when attacking",
   "enchantment.fancyenchantments.charge": "Charge",
   "enchantment.fancyenchantments.charge.desc": "Charge forward a certain distance after attacking the enemy, and become invincible during the charge",
+  "enchantment.fancyenchantments.lava_burst": "Lava Burst",
+  "enchantment.fancyenchantments.lava_burst.desc": "There is a chance of explosion when attacking an enemy",
+  "enchantment.fancyenchantments.armor_forging": "Armor Forging",
+  "enchantment.fancyenchantments.armor_forging.desc": "A mysterious record from the East, recording the technique of using damage to forge armor",
   "effect.fancyenchantments.crit_rate_boost": "Crit Rate Boost",
   "effect.fancyenchantments.cumbersome": "Cumbersome",
   "effect.fancyenchantments.templar_shield": "Templar Shield",
@@ -80,5 +84,9 @@
   "effect.fancyenchantments.invincible": "Invincible",
   "death.attack.fancyenchantments.give_up": "%1$s gave up life...",
   "Curse:": "Curse:",
-  "Kill Count:": "Kill Count: "
+  "Kill Count:": "Kill Count: ",
+  "enchantment.fancyenchantments.max_level": "§1Max Level: %s",
+  "enchantment.fancyenchantments.rarity": "§2Rarity: %s",
+  "enchantment.fancyenchantments.probability_from_chest": "§3From Chest Loot: %s",
+  "enchantment.fancyenchantments.condition": "§4Minimum Element Stats Condition:"
 }
