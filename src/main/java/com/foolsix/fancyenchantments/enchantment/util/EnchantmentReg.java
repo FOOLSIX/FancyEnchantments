@@ -93,7 +93,17 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> ARMOR_FORGING = reg(ArmorForging.NAME, ArmorForging::new);
 
-    public static void register(IEventBus eventBus){
+    public static final RegistryObject<Enchantment> NIRVANA = reg(Nirvana.NAME, Nirvana::new);
+
+    public static final RegistryObject<Enchantment> SELF_IMMOLATION = reg(SelfImmolation.NAME, SelfImmolation::new);
+
+    public static final RegistryObject<Enchantment> BUBBLE_SHIELD = reg(BubbleShield.NAME, BubbleShield::new);
+
+    public static final RegistryObject<Enchantment> DROWNING = reg(Drowning.NAME, Drowning::new);
+
+    public static final RegistryObject<Enchantment> PERVERT = reg(Pervert.NAME, Pervert::new);
+
+    public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }
 

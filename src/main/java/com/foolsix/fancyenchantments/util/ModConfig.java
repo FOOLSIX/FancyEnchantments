@@ -104,6 +104,16 @@ public class ModConfig implements ConfigData {
     public final LavaBurstOptions lavaBurstOptions = new LavaBurstOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final ArmorForgingOptions armorForgingOptions = new ArmorForgingOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final NirvanaOptions nirvanaOptions = new NirvanaOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final SelfImmolationOptions selfImmolationOptions = new SelfImmolationOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BubbleShieldOptions bubbleShieldOptions = new BubbleShieldOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final DrowningOptions drowningOptions = new DrowningOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final PervertOptions pervertOptions = new PervertOptions();
 
 
     public static class ElementStatOptions {
@@ -579,6 +589,56 @@ public class ModConfig implements ConfigData {
             super(3, Rarity.VERY_RARE, 0.1);
             elementalCondition[Element.IGNIS.ordinal()] = 8;
             elementalCondition[Element.TERRA.ordinal()] = 8;
+        }
+    }
+
+    public static class NirvanaOptions extends BaseOptions {
+        @Comment("Minimum health ratio to trigger the effect")
+        public double minimumHealthRatio = 0.5;
+
+        NirvanaOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class SelfImmolationOptions extends BaseOptions {
+        public double baseProbability = 0.05;
+        @Comment("Probability of being ignited if target is on fire")
+        public double probabilityWithFire = 0.5;
+        @Comment("Second")
+        public int fireTime = 3;
+
+        SelfImmolationOptions() {
+            super(1, Rarity.RARE);
+        }
+    }
+
+    public static class BubbleShieldOptions extends BaseOptions {
+        @Comment("Triggering condition: airSupplyValue >= maxValue * Ratio")
+        public double airSupplyRatio = 0.8;
+        public double costRatio = 0.7;
+        @Comment("damage -= airSupplyValue * costRatio * multiplier * level")
+        public double multiplier = 0.1;
+
+        BubbleShieldOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class DrowningOptions extends BaseOptions {
+        public int airSupplyValue = -10;
+        public float damage = 1.0f;
+
+        DrowningOptions() {
+            super(1, Rarity.RARE);
+        }
+    }
+
+    public static class PervertOptions extends BaseOptions {
+        public double dropProbability = 0.9;
+
+        PervertOptions() {
+            super(1, Rarity.VERY_RARE);
         }
     }
 }

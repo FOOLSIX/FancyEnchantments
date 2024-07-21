@@ -54,7 +54,7 @@ public class ArmorForging extends FEBaseEnchantment {
                 if (level > 0) {
                     CompoundTag nbt = stack.getOrCreateTag();
                     int forgingValue = nbt.getInt(TAG_NAME);
-                    if (forgingValue < level * CONFIG.forgingValue){
+                    if (forgingValue < level * CONFIG.forgingValue) {
                         nbt.putInt(TAG_NAME, Math.min(forgingValue + (int) Math.ceil(e.getAmount()), level * CONFIG.forgingValue));
                         break;
                     }

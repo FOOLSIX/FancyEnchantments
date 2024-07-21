@@ -59,7 +59,7 @@ public class EnchantmentJEIPlugin implements IModPlugin {
             if (CONFIG.enableRarity)
                 description.append(I18n.get(getLangKey("rarity"), enchantment.getRarity().toString()));
             if (CONFIG.enableMaxLevel || CONFIG.enableRarity) description.append('\n');
-            if (enchantment instanceof FEBaseEnchantment fe && fe.isSpecialLoot()) {
+            if (enchantment instanceof FEBaseEnchantment fe && fe.getChestGenerationProbability() > 0) {
                 description.append(I18n.get(getLangKey("condition")));
                 final int[] condition = fe.getChestGenerationCondition();
                 for (int i = 0; i < EnchUtils.ELEMENT_COUNT; ++i) {
