@@ -37,15 +37,8 @@ public class EnchUtils {
 
     public static final int ELEMENT_COUNT = Element.values().length;
     public static final int[] EMPTY_CONDITION = new int[ELEMENT_COUNT];
-    private static final List<RegistryObject<Enchantment>> enchantments =
-            ENCHANTMENTS.getEntries().stream().filter(
-                            enchantment -> enchantment.get().isDiscoverable())
-                    .toList();
-    private static final List<RegistryObject<Enchantment>> specialLootEnchantment =
-            ENCHANTMENTS.getEntries().stream().filter(
-                            enchantment -> enchantment.get() instanceof FEBaseEnchantment fe
-                                    && fe.isSpecialLoot() && fe.getMaxLevel() > 0)
-                    .toList();
+    private static List<Enchantment> FE_DISCOVERABLE_ENCHANTMENT = null;
+    private static List<Enchantment> SPECIAL_LOOT_ENCHANTMENT = null;
 
     public enum Element {
         AER, AQUA, IGNIS, TERRA, HOLY, TWISTED;
@@ -170,14 +163,43 @@ public class EnchUtils {
     }
 
     public static @Nullable Enchantment getRandomModEnchantment(RandomSource rand) {
-        //it's ok to set all enchantments undiscoverable
-        if (enchantments.isEmpty()) return null;
+        if (FE_DISCOVERABLE_ENCHANTMENT == null) {
+            FE_DISCOVERABLE_ENCHANTMENT =
+                    ENCHANTMENTS.getEntries().stream()
+                            .map(RegistryObject::get)
+                            .filter(Enchantment::isDiscoverable)
+                            .toList();
+        }
 
-        return enchantments.get(rand.nextInt(enchantments.size())).get();
+        //it's ok to set all enchantments undiscoverable
+        if (FE_DISCOVERABLE_ENCHANTMENT.isEmpty()) return null;
+
+        return FE_DISCOVERABLE_ENCHANTMENT.get(rand.nextInt(FE_DISCOVERABLE_ENCHANTMENT.size()));
     }
 
-    public static @Nonnull List<RegistryObject<Enchantment>> getAllSpecialLootEnchantment() {
-        return specialLootEnchantment;
+    public static @Nonnull List<Enchantment> getAllSpecialLootEnchantment() {
+        if (SPECIAL_LOOT_ENCHANTMENT == null) {
+            SPECIAL_LOOT_ENCHANTMENT =
+                    ENCHANTMENTS.getEntries().stream()
+                            .map(RegistryObject::get)
+                            .filter(e -> e instanceof FEBaseEnchantment fe && fe.isSpecialLoot())
+                            .toList();
+        }
+
+        return SPECIAL_LOOT_ENCHANTMENT;
+    }
+
+    public static String getLangName(String name) {
+        StringBuilder sb = new StringBuilder(name);
+        for (int i = 0; i < sb.length(); ++i) {
+            char c = sb.charAt(i);
+            if (i == 0 || i - 1 == ' ') {
+                sb.setCharAt(i, Character.toUpperCase(c));
+            } else if (c == '_') {
+                sb.setCharAt(i, ' ');
+            }
+        }
+        return sb.toString();
     }
 
     public void modifyEffectLevel(LivingEntity living, MobEffect effect, int amplifier) {

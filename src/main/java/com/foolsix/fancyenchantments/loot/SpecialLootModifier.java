@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.loot;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.capability.ElementStatsCapabilityProvider;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import com.google.common.base.Supplier;
@@ -38,19 +39,22 @@ public class SpecialLootModifier extends LootModifier {
         RandomSource rand = context.getRandom();
         if (isChest(context)) {
             if (context.getParamOrNull(LootContextParams.THIS_ENTITY) instanceof ServerPlayer player) {
+                if (Math.random() < CONFIG.chanceOfSpawningBook) {
+                    ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
+                    Enchantment enchantment = EnchUtils.getRandomModEnchantment(rand);
+                    if (enchantment != null) {
+                        EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(enchantment, rand.nextInt(enchantment.getMaxLevel()) + 1));
+                        loots.add(enchantedBook);
+                    }
+                }
                 player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(stats -> {
-                    if (Math.random() < CONFIG.chanceOfSpawningBook) {
-                        ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
-                        Enchantment enchantment = EnchUtils.getRandomModEnchantment(rand);
-                        if (enchantment != null) {
-                            EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(enchantment, rand.nextInt(enchantment.getMaxLevel()) + 1));
+                    for (final Enchantment enchantment : EnchUtils.getAllSpecialLootEnchantment()) {
+                        if (enchantment instanceof FEBaseEnchantment fe && fe.tryGenerateOnce(stats.getStats())) {
+                            ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
+                            EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(fe, 1));
                             loots.add(enchantedBook);
                         }
                     }
-
-                    int ignis = stats.getPoint(EnchUtils.Element.IGNIS);
-                    int terra = stats.getPoint(EnchUtils.Element.TERRA);
-
                 });
             }
         }

@@ -116,7 +116,7 @@ public class ModConfig implements ConfigData {
         @Comment("actually twisted level - holy level")
         public int twistedLevelToGetDebuff = 10;
         @Comment("The probability of getting a debuff per second")
-        public float probabilityToGetDebuff = 0.02f;
+        public double probabilityToGetDebuff = 0.02;
         @Comment("second")
         public int debuffDuration = 3;
     }

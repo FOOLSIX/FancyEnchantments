@@ -12,6 +12,8 @@ public interface IElementStatsCapability {
 
     void resetPoint();
 
+    int[] getStats();
+
     void saveNBTData(CompoundTag nbt);
 
     void loadNBTData(CompoundTag nbt);

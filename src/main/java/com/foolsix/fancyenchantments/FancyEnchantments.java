@@ -30,16 +30,16 @@ public class FancyEnchantments {
     public FancyEnchantments() {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        MinecraftForge.EVENT_BUS.register(this);
+
+        EnchantmentReg.register(modEventBus);
+        EffectReg.EFFECTS.register(modEventBus);
+        LootModifierReg.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
+
         MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
         MinecraftForge.EVENT_BUS.register(new EffectEvents());
         MinecraftForge.EVENT_BUS.register(new CapabilityEvents());
 
-
-        EnchantmentReg.ENCHANTMENTS.register(modEventBus);
-        EffectReg.EFFECTS.register(modEventBus);
-        LootModifierReg.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
-
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public static ModConfig getConfig() {
