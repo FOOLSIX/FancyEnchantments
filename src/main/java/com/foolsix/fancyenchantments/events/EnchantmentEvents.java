@@ -40,6 +40,7 @@ public class EnchantmentEvents {
             ((RollingStone) ROLLING_STONE.get()).dealDamageWhileSprinting(e);
             ((BlessedWind) BLESSED_WIND.get()).speedBoostWhileSprinting(e);
             ((Bloodthirsty) BLOODTHIRSTY.get()).getHungry(e);
+            ((Nirvana) NIRVANA.get()).getRegeneration(e);
         }
 
         if (e.player != null && e.side.isClient() && e.phase == TickEvent.Phase.START) {

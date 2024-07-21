@@ -48,8 +48,8 @@ public class SpecialLootModifier extends LootModifier {
                     }
                 }
                 player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(stats -> {
-                    for (var registryObject : EnchUtils.getAllSpecialLootEnchantment()) {
-                        if (registryObject.get() instanceof FEBaseEnchantment fe && fe.tryGenerateOnce(stats.getStats())) {
+                    for (final Enchantment enchantment : EnchUtils.getAllSpecialLootEnchantment()) {
+                        if (enchantment instanceof FEBaseEnchantment fe && fe.tryGenerateOnce(stats.getStats())) {
                             ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
                             EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(fe, 1));
                             loots.add(enchantedBook);
