@@ -2,11 +2,22 @@
 ## add:
 - Lava Burst (Weapon): There is a chance of explosion when attacking an enemy
 - Armor Forging (Armor): Taking damage can strengthen the armor
+- Nirvana (Chest): When the health is low and on fire, health recovery is faster
+- Self-immolation (Weapon): Attacking the enemy has a small chance of igniting yourself, and the probability is higher when the target is on fire
+- Bubble shield (Chest): When the character has sufficient oxygen, consume a part of the oxygen to reduce the damage
+- Drowning (Weapon): Each attack consumes oxygen, and when the oxygen value is 0, the attack will cause damage
+- Perversion (Leggings): Likes to wear nothing
 - New mechanism: Element attributes must meet certain conditions in order to obtain some special enchantments from treasure chest loot
 - Add JEI compatibility, currently only adding partial information, can be configured
 
+
 - 熔岩爆发（武器）：攻击敌人时有概率产生爆炸
 - 百炼锻甲术（盔甲）：承受伤害可以强化盔甲
+- 涅槃（胸甲）：低生命值且处于着火状态时,生命回复加快
+- 自焚（武器）：攻击敌人小概率点燃自身,目标处于着火状态时概率更高
+- 气泡护盾（胸甲）： 当角色氧气值充足时,消耗一部分氧气值减少受到的伤害
+- 溺亡（武器）：每次攻击都会消耗氧气值,氧气值为0时攻击则受到伤害
+- 变态（护腿）：喜欢真空出行
 - 新的机制：需要在元素属性满足一定条件，才能从宝箱战利品获得一些特殊的附魔
 - 添加JEI兼容，目前仅仅添加部分信息，可以配置
 

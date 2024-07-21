@@ -108,7 +108,9 @@ public class EnchantmentEvents {
             ((FeintAttack) FEINT_ATTACK.get()).attack(e);
             ((PaladinsShield) PALADINS_SHIELD.get()).reduceDamage(e);
         }
-        if (victim instanceof LivingEntity && !victim.level.isClientSide) {
+
+        if (victim != null && !victim.level.isClientSide) {
+            ((BubbleShield) BUBBLE_SHIELD.get()).reduceDamage(e);
             ((Calmer) CALMER.get()).gainBuff(e);
             ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
             ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
@@ -174,6 +176,7 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void equipmentChange(LivingEquipmentChangeEvent e) {
+        ((Pervert) PERVERT.get()).dropOnWear(e);
         ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).unequipped(e);
     }
 

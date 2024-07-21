@@ -49,16 +49,18 @@ public class FEBaseEnchantment extends Enchantment {
     }
 
     public double getChestGenerationProbability() {
-        if (CONFIG instanceof ModConfig.LootEnchantmentOptions loot) return loot.probabilityOfGeneration;
+        if (CONFIG.level > 0 && CONFIG instanceof ModConfig.LootEnchantmentOptions loot)
+            return loot.probabilityOfGeneration;
         return 0;
     }
 
     public int[] getChestGenerationCondition() {
-        if (CONFIG instanceof ModConfig.LootEnchantmentOptions loot) return loot.elementalCondition;
+        if (CONFIG.level > 0 && CONFIG instanceof ModConfig.LootEnchantmentOptions loot) return loot.elementalCondition;
         return EnchUtils.EMPTY_CONDITION;
     }
 
     public boolean tryGenerateOnce(int[] elementalStat) {
+        if (CONFIG.level <= 0) return false;
         int[] condition = getChestGenerationCondition();
         if (Math.random() > getChestGenerationProbability() || elementalStat.length != condition.length) return false;
         for (int i = 0; i < condition.length; ++i) {

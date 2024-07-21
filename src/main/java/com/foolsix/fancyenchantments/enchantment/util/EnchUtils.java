@@ -193,7 +193,7 @@ public class EnchUtils {
         StringBuilder sb = new StringBuilder(name);
         for (int i = 0; i < sb.length(); ++i) {
             char c = sb.charAt(i);
-            if (i == 0 || i - 1 == ' ') {
+            if (i == 0 || sb.charAt(i - 1) == ' ') {
                 sb.setCharAt(i, Character.toUpperCase(c));
             } else if (c == '_') {
                 sb.setCharAt(i, ' ');
