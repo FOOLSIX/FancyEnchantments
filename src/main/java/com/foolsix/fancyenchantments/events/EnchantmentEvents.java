@@ -1,6 +1,7 @@
 package com.foolsix.fancyenchantments.events;
 
 import com.foolsix.fancyenchantments.enchantment.*;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -40,11 +41,12 @@ public class EnchantmentEvents {
             ((RollingStone) ROLLING_STONE.get()).dealDamageWhileSprinting(e);
             ((BlessedWind) BLESSED_WIND.get()).speedBoostWhileSprinting(e);
             ((Bloodthirsty) BLOODTHIRSTY.get()).getHungry(e);
+            ((Nirvana) NIRVANA.get()).getRegeneration(e);
+            ((SharpRock) SHARP_ROCK.get()).updateDamage(e);
         }
 
         if (e.player != null && e.side.isClient() && e.phase == TickEvent.Phase.START) {
             ((Floating) FLOATING.get()).damageReduce(e);
-
         }
     }
 
@@ -70,6 +72,7 @@ public class EnchantmentEvents {
             return;
         if (e.getDamageSource().getEntity() instanceof Player player) {
             ((AdvancedLooting) ADVANCED_LOOTING.get()).lootingHandle(e, player);
+            ((GreedySupremeLooting) GREEDY_SUPREME_LOOTING.get()).lootingHandle(e, player);
         }
     }
 
@@ -107,12 +110,12 @@ public class EnchantmentEvents {
             ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
             ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
             ((FeintAttack) FEINT_ATTACK.get()).attack(e);
+            ((BloodSacrifice) BLOOD_SACRIFICE.get()).attack(e);
             ((PaladinsShield) PALADINS_SHIELD.get()).reduceDamage(e);
         }
 
         if (victim instanceof LivingEntity && !victim.level().isClientSide) {
             ((BubbleShield) BUBBLE_SHIELD.get()).reduceDamage(e);
-            ((Calmer) CALMER.get()).gainBuff(e);
             ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
             ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
             //below cancel the event
@@ -161,12 +164,14 @@ public class EnchantmentEvents {
     public void itemAttributeModifierEvent(ItemAttributeModifierEvent e) {
         if (e.isCanceled() || e.getItemStack() == null) return;
 
+        ((TheFallen) THE_FALLEN.get()).addDamageBonus(e);
         ((WindBlade) WIND_BLADE.get()).damageReduce(e);
         ((HeavyBlow) HEAVY_BLOW.get()).attackSpeedReduce(e);
         ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
         ((Melter) MELTER.get()).attribute(e);
         ((StackingWaves) STACKING_WAVES.get()).attribute(e);
         ((ArmorForging) ARMOR_FORGING.get()).modifyArmor(e);
+        ((SharpRock) SHARP_ROCK.get()).attachAttributes(e);
     }
 
     @SubscribeEvent
@@ -186,6 +191,13 @@ public class EnchantmentEvents {
     public void useItemFinish(LivingEntityUseItemEvent.Finish e) {
         if (!e.isCanceled()) {
             ((Eucharist) EUCHARIST.get()).getBuff(e);
+        }
+    }
+
+    @SubscribeEvent
+    public void babySpawn(BabyEntitySpawnEvent e) {
+        if (e.getCausedByPlayer() instanceof ServerPlayer) {
+            ((PureFate) PURE_FATE.get()).removeCurse(e);
         }
     }
 

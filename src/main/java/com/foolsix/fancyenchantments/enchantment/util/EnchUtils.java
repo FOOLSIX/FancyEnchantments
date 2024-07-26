@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
@@ -14,25 +13,29 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ENCHANTMENTS;
 
 public class EnchUtils {
-    public static final MutableComponent CURSE_PREFIX = Component.translatable("Curse:").withStyle(ChatFormatting.RED);
+    public static final Component CURSE_SUFFIX = Component.translatable("(Curse)").withStyle(ChatFormatting.RED);
     public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
 
     public static final int ELEMENT_COUNT = Element.values().length;
@@ -66,8 +69,7 @@ public class EnchUtils {
             return null;
         }
 
-        @Nullable
-        public static ChatFormatting getChatFormatting(Element element) {
+        public static @NotNull ChatFormatting getChatFormatting(Element element) {
             ChatFormatting chatFormatting = ChatFormatting.RESET;
             switch (element) {
                 case AER -> chatFormatting = ChatFormatting.YELLOW;
@@ -113,11 +115,11 @@ public class EnchUtils {
 
 
     public static boolean isHostileToPlayer(Entity entity) {
-        return entity instanceof Monster && !(entity instanceof NeutralMob neutralMob && !neutralMob.isAngry());
+        return entity instanceof Enemy && !(entity instanceof NeutralMob neutralMob && !neutralMob.isAngry());
     }
 
     public static boolean isHostileToLivingEntity(Entity entity, LivingEntity living) {
-        return entity instanceof Monster && !(entity instanceof NeutralMob neutralMob && !neutralMob.isAngryAt(living));
+        return entity instanceof Enemy && !(entity instanceof NeutralMob neutralMob && !neutralMob.isAngryAt(living));
     }
 
     public static LivingEntity getLookAtLivingEntity(LivingEntity viewer, float partialTicks, double reachDistance) {
@@ -200,6 +202,13 @@ public class EnchUtils {
             }
         }
         return sb.toString();
+    }
+
+    public static boolean removeEnchantment(ItemStack stack, Enchantment enchantment) {
+        Map<Enchantment, Integer> enchantments = stack.getAllEnchantments();
+        boolean isRemoved = enchantments.remove(enchantment) != null;
+        EnchantmentHelper.setEnchantments(enchantments, stack);
+        return isRemoved;
     }
 
     public void modifyEffectLevel(LivingEntity living, MobEffect effect, int amplifier) {

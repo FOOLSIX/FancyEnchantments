@@ -54,7 +54,7 @@ public class EnchantmentJEIPlugin implements IModPlugin {
             }
 
             int maxLevel = enchantment.getMaxLevel();
-            if (CONFIG.enableDescription)
+            if (CONFIG.enableMaxLevel)
                 description.append(I18n.get(getLangKey("max_level"), maxLevel)).append(' ');
             if (CONFIG.enableRarity)
                 description.append(I18n.get(getLangKey("rarity"), enchantment.getRarity().toString()));
@@ -62,16 +62,22 @@ public class EnchantmentJEIPlugin implements IModPlugin {
             if (enchantment instanceof FEBaseEnchantment fe && fe.getChestGenerationProbability() > 0) {
                 description.append(I18n.get(getLangKey("condition")));
                 final int[] condition = fe.getChestGenerationCondition();
+                StringBuilder tmp = new StringBuilder();
                 for (int i = 0; i < EnchUtils.ELEMENT_COUNT; ++i) {
                     if (condition[i] > 0) {
                         EnchUtils.Element element = EnchUtils.Element.values()[i];
                         String name = element.toString().charAt(0) + element.toString().substring(1).toLowerCase();
-                        description.append(EnchUtils.Element.getChatFormatting(element))
+                        tmp.append(EnchUtils.Element.getChatFormatting(element))
                                 .append(name)
                                 .append(": ")
                                 .append(condition[i])
                                 .append(" ");
                     }
+                }
+                if (tmp.isEmpty()) {
+                    description.append("NONE");
+                } else {
+                    description.append(tmp);
                 }
                 description.append("\n").append(I18n.get(getLangKey("probability_from_chest"), getPercent(fe.getChestGenerationProbability())));
             }

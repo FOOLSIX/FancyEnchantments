@@ -18,7 +18,7 @@ public class TwistedEnchantment extends FEBaseEnchantment {
     public Component getFullname(int level) {
         MutableComponent name = ((MutableComponent) super.getFullname(level)).withStyle(ChatFormatting.DARK_PURPLE);
         if (isCurse()) {
-            name = EnchUtils.CURSE_PREFIX.copy().append(name);
+            name = name.append(EnchUtils.CURSE_SUFFIX);
         }
         return name;
     }

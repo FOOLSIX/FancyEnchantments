@@ -22,4 +22,6 @@ public class EffectReg {
             EFFECTS.register(AttackSpeedBoost.NAME, AttackSpeedBoost::new);
     public static final RegistryObject<MobEffect> INVINCIBLE =
             EFFECTS.register(Invincible.NAME, Invincible::new);
+    public static final RegistryObject<MobEffect> PRISON_CAGE =
+            EFFECTS.register(PrisonCage.NAME, PrisonCage::new);
 }
