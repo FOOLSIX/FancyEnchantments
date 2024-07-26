@@ -45,7 +45,7 @@ public class FEBaseEnchantment extends Enchantment {
     }
 
     public boolean isSpecialLoot() {
-        return CONFIG instanceof ModConfig.LootEnchantmentOptions;
+        return CONFIG.level > 0 && CONFIG instanceof ModConfig.LootEnchantmentOptions;
     }
 
     public double getChestGenerationProbability() {

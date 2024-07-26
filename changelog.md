@@ -1,3 +1,45 @@
+# 0.0.11
+## add:
+- Pure Fate (Chest): Helps to give birth to life to get rid of the curse
+- Blood Sacrifice (Weapon): Hit the target hard at the cost of own blood
+- Sharp Stone (Weapon/Shield): Adds damage based on armor value
+- Delayed Execution (Weapon): After attacking, the target enters a state of absorbing damage, and causes execution damage after a period of time
+- Sacred Supreme Sharpness (Weapon): There is endless evil waiting for judgment
+- Greedy Supreme Looting (Weapon): Greed is never satisfied
+
+- 纯洁宿命（胸甲）：帮助孕育生命，以摆脱诅咒的困扰
+- 血祭（武器）：以自身的鲜血为代价重创目标
+- 尖锐硬甲（武器/盾牌）：附加基于护甲值的伤害
+- 秋后问斩（武器）：攻击后使目标进入吸收伤害的状态，一段时间后造成处决伤害
+- 圣洁超级锋利（武器）：还有无尽的邪恶等待着审判
+- 贪婪超级抢夺（武器）：贪欲从未感到餍足
+
+## change:
+- Corrected Eater Of Souls damage growth and added a cap in the configuration
+- Optimized the damage display of The Fallen
+- Modified the effect of Nirvana
+- Modified the Templar Shield BUFF of Eucharist, and you can set the proportion of damage reduction
+- Reduced the initial probability of obtaining mod enchantments from chests
+- Increased the initial maximum level of Gift Of Fire
+- Increased the maximum level of special enchantments obtained from treasure chests
+- Change curse prefix to suffix
+
+- 修正了噬魂者的伤害增长，并在配置中添加上限
+- 优化了了堕落者的伤害显示
+- 修改了涅槃的效果
+- 修改了圣餐的圣盾之佑BUFF，可以设置减免伤害的比例
+- 降低了从宝箱获得模组附魔的初始概率
+- 提高火之恩赐的初始最大等级
+- 提高了从宝箱获得的特殊附魔的最大等级
+- 将诅咒前缀修改为后缀
+
+## fix:
+- Fixed some issues with JEI configuration
+- Fixed a bug where certain monsters were not judged as enemy monsters, resulting in the invalidation of enchantments (thank you to Kong)
+
+- 修复JEI配置的一些问题
+- 修复某些怪物不被判断为敌怪导致附魔失效的bug(感谢 空)
+
 # 0.0.10
 ## add:
 - Lava Burst (Weapon): There is a chance of explosion when attacking an enemy
@@ -30,6 +72,7 @@
 - Fix bugs where advanced sharpness and advanced snatching of certain configurations do not work
 
 - 修复高级锋利和高级抢夺某些配置不起效的bug
+
 
 # 0.0.9
 ## add:

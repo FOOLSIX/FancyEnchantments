@@ -14,6 +14,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -35,11 +36,6 @@ public class UnyieldingSpirit extends HolyEnchantment {
     @Override
     public int getMinCost(int pLevel) {
         return 25;
-    }
-
-    @Override
-    public int getMaxCost(int pLevel) {
-        return 75;
     }
 
     public void preventDeath(LivingDamageEvent e) {
@@ -64,7 +60,7 @@ public class UnyieldingSpirit extends HolyEnchantment {
     }
 
     public void clearTag(LivingDeathEvent e) {
-        if (e.getSource().getEntity() instanceof ServerPlayer player && e.getEntity() instanceof Monster) {
+        if (e.getSource().getEntity() instanceof ServerPlayer player && e.getEntity() instanceof Enemy) {
             if (TimeToLiveHelper.getTtl(player) != -1) {
                 TimeToLiveHelper.setTtl(player, -1);
                 player.setHealth(player.getMaxHealth());

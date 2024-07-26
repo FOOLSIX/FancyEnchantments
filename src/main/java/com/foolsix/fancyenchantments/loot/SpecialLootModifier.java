@@ -51,7 +51,9 @@ public class SpecialLootModifier extends LootModifier {
                     for (final Enchantment enchantment : EnchUtils.getAllSpecialLootEnchantment()) {
                         if (enchantment instanceof FEBaseEnchantment fe && fe.tryGenerateOnce(stats.getStats())) {
                             ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
-                            EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(fe, 1));
+                            //1 ~ maxLevel - 1
+                            int level = Math.max(1, rand.nextInt(fe.getMaxLevel()));
+                            EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(fe, level));
                             loots.add(enchantedBook);
                         }
                     }

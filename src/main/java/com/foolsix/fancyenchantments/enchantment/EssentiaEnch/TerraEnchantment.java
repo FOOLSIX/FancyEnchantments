@@ -20,7 +20,7 @@ public class TerraEnchantment extends FEBaseEnchantment {
     public Component getFullname(int level) {
         MutableComponent name = ((MutableComponent) super.getFullname(level)).withStyle(ChatFormatting.GREEN);
         if (isCurse()) {
-            name = EnchUtils.CURSE_PREFIX.copy().append(name);
+            name = name.append(EnchUtils.CURSE_SUFFIX);
         }
         return name;
     }

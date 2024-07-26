@@ -7,7 +7,7 @@
   "enchantment.fancyenchantments.advanced_sharpness": "高级锋利",
   "enchantment.fancyenchantments.advanced_looting": "高级抢夺",
   "enchantment.fancyenchantments.reflecting": "反弹",
-  "enchantment.fancyenchantments.reflecting.desc": "反弹敌人的投射物",
+  "enchantment.fancyenchantments.reflecting.desc": "举盾时反弹敌人的投射物",
   "enchantment.fancyenchantments.gift_of_fire": "火之恩赐",
   "enchantment.fancyenchantments.gift_of_fire.desc": "对着火的敌人造成更多伤害,但是自身在水中时造成更少伤害",
   "enchantment.fancyenchantments.pyromaniac": "纵火狂",
@@ -86,6 +86,18 @@
   "enchantment.fancyenchantments.drowning.desc": "每次攻击都会消耗氧气值,氧气值为0时攻击则受到伤害",
   "enchantment.fancyenchantments.pervert": "变态",
   "enchantment.fancyenchantments.pervert.desc": "喜欢真空出行",
+  "enchantment.fancyenchantments.pure_fate": "纯洁宿命",
+  "enchantment.fancyenchantments.pure_fate.desc": "帮助孕育生命,以摆脱诅咒的困扰",
+  "enchantment.fancyenchantments.blood_sacrifice": "血祭",
+  "enchantment.fancyenchantments.blood_sacrifice.desc": "以自身的鲜血为代价重创目标",
+  "enchantment.fancyenchantments.sharp_rock": "尖锐硬甲",
+  "enchantment.fancyenchantments.sharp_rock.desc": "附加基于护甲值的伤害",
+  "enchantment.fancyenchantments.delayed_execution": "秋后问斩",
+  "enchantment.fancyenchantments.delayed_execution.desc": "攻击后使目标进入吸收伤害的状态,一段时间后造成处决伤害",
+  "enchantment.fancyenchantments.sacred_supreme_sharpness": "圣洁超级锋利",
+  "enchantment.fancyenchantments.sacred_supreme_sharpness.desc": "§f还有无尽的邪恶等待着审判",
+  "enchantment.fancyenchantments.greed_supreme_looting": "贪婪超级抢夺",
+  "enchantment.fancyenchantments.greed_supreme_looting.desc": "§5贪欲从未感到餍足",
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "effect.fancyenchantments.cumbersome": "笨重",
   "effect.fancyenchantments.templar_shield": "圣盾之佑",
@@ -98,5 +110,7 @@
   "enchantment.fancyenchantments.max_level": "§1最高等级: %s",
   "enchantment.fancyenchantments.rarity": "§2稀有度: %s",
   "enchantment.fancyenchantments.probability_from_chest": "§3从宝箱战利品中取得的概率: %s",
-  "enchantment.fancyenchantments.condition": "§4最低元素属性条件:"
+  "enchantment.fancyenchantments.condition": "§4最低元素属性条件:",
+  "(Curse)": "(诅咒)"
+
 }

@@ -45,7 +45,7 @@ public class EaterOfSouls extends TwistedEnchantment {
     @Override
     public float getDamageBonus(int level, MobType mobType, ItemStack enchantedItem) {
         if (level > 0) {
-            return CONFIG.damageMultiplier * enchantedItem.getOrCreateTag().getInt(KILL_COUNT);
+            return Math.min(CONFIG.damageMultiplier * (float) Math.sqrt(enchantedItem.getOrCreateTag().getInt(KILL_COUNT)) * level, CONFIG.cap);
         }
         return 0;
     }

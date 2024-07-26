@@ -103,6 +103,18 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> PERVERT = reg(Pervert.NAME, Pervert::new);
 
+    public static final RegistryObject<Enchantment> PURE_FATE = reg(PureFate.NAME, PureFate::new);
+
+    public static final RegistryObject<Enchantment> BLOOD_SACRIFICE = reg(BloodSacrifice.NAME, BloodSacrifice::new);
+
+    public static final RegistryObject<Enchantment> SHARP_ROCK = reg(SharpRock.NAME, SharpRock::new);
+
+    public static final RegistryObject<Enchantment> DELAYED_EXECUTION = reg(DelayedExecution.NAME, DelayedExecution::new);
+
+    public static final RegistryObject<Enchantment> SACRED_SUPREME_SHARPNESS = reg(SacredSupremeSharpness.NAME, SacredSupremeSharpness::new);
+
+    public static final RegistryObject<Enchantment> GREEDY_SUPREME_LOOTING = reg(GreedySupremeLooting.NAME, GreedySupremeLooting::new);
+
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }

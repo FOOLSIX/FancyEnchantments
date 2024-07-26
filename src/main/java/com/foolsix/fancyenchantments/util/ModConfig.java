@@ -15,7 +15,7 @@ public class ModConfig implements ConfigData {
             Set level = 0 to disable the enchantment.
             Enchantments with a default maximum level of 1 should not be set to numbers other than 0 and 1
             The valid value of rarity is: "COMMON" "UNCOMMON" "RARE" "VERY_RARE"
-            The elemental conditions in order are Aer, Aqua, Ignis, Terra, Twisted, Holy
+            The elemental conditions in order are Aer, Aqua, Ignis, Terra, Holy, Twisted
             """)
     @ConfigEntry.Gui.CollapsibleObject
     public final boolean enableIncompatibility = true;
@@ -114,7 +114,18 @@ public class ModConfig implements ConfigData {
     public final DrowningOptions drowningOptions = new DrowningOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final PervertOptions pervertOptions = new PervertOptions();
-
+    @ConfigEntry.Gui.CollapsibleObject
+    public final PureFateOptions pureFateOptions = new PureFateOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BloodSacrificeOptions bloodSacrificeOptions = new BloodSacrificeOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final SharpRockOptions sharpRockOptions = new SharpRockOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final DelayedExecutionOptions delayedExecutionOptions = new DelayedExecutionOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final SacredSupremeSharpnessOptions sacredSupremeSharpnessOptions = new SacredSupremeSharpnessOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final GreedySupremeLootingOptions greedySupremeLootingOptions = new GreedySupremeLootingOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -133,7 +144,7 @@ public class ModConfig implements ConfigData {
 
     public static class ChestLootOptions {
         @Comment("The chance of spawning a mod enchanted book")
-        public double chanceOfSpawningBook = 0.5f;
+        public double chanceOfSpawningBook = 0.3;
     }
 
     public static class JEIInfoOptions {
@@ -186,7 +197,7 @@ public class ModConfig implements ConfigData {
     public static class AdvancedSharpnessOptions extends BaseOptions {
         @Comment("Damage += base + multiplier * level")
         public float baseDamage = 1.5f;
-        public float damageMultiplier = 0.8f;
+        public float damageMultiplier = 1f;
 
         AdvancedSharpnessOptions() {
             super(5, Rarity.RARE);
@@ -202,6 +213,8 @@ public class ModConfig implements ConfigData {
     public static class EaterOfSoulsOptions extends BaseOptions {
         @Comment("damage += sqrt(kill count) * level * multiplier")
         public float damageMultiplier = 0.3f;
+        @Comment("damage cap")
+        public float cap = 1000f;
 
         EaterOfSoulsOptions() {
             super(3, Rarity.VERY_RARE);
@@ -216,7 +229,7 @@ public class ModConfig implements ConfigData {
         public float harmfulMultiplier = 0.5f;
 
         GiftOfFireOptions() {
-            super(3, Rarity.UNCOMMON);
+            super(5, Rarity.UNCOMMON);
         }
     }
 
@@ -294,8 +307,8 @@ public class ModConfig implements ConfigData {
     }
 
     public static class TheFallenOptions extends BaseOptions {
-        @Comment("attack damage *= 1 + multiplier * level * numberOfCurse")
-        public float damageMultiplier = 0.4f;
+        @Comment("weapon attack damage *= 1 + multiplier * level * numberOfCurse")
+        public float damageMultiplier = 0.3f;
 
         TheFallenOptions() {
             super(3, Rarity.VERY_RARE);
@@ -525,6 +538,8 @@ public class ModConfig implements ConfigData {
         public int minimumHunger = 6;
         @Comment("The effect duration = multiplier * foodSaturation (second)")
         public int durationMultiplier = 3;
+        @Comment("taken damage *= multiplier")
+        public float damageMultiplier = 0.1f;
 
         EucharistOptions() {
             super(3, Rarity.VERY_RARE);
@@ -573,8 +588,8 @@ public class ModConfig implements ConfigData {
 
         LavaBurstOptions() {
             super(3, Rarity.VERY_RARE, 0.25);
-            elementalCondition[Element.IGNIS.ordinal()] = 8;
-            elementalCondition[Element.TERRA.ordinal()] = 5;
+            elementalCondition[Element.IGNIS.ordinal()] = 5;
+            elementalCondition[Element.TERRA.ordinal()] = 3;
         }
     }
 
@@ -587,14 +602,18 @@ public class ModConfig implements ConfigData {
 
         ArmorForgingOptions() {
             super(3, Rarity.VERY_RARE, 0.1);
-            elementalCondition[Element.IGNIS.ordinal()] = 8;
-            elementalCondition[Element.TERRA.ordinal()] = 8;
+            elementalCondition[Element.IGNIS.ordinal()] = 6;
+            elementalCondition[Element.TERRA.ordinal()] = 6;
         }
     }
 
     public static class NirvanaOptions extends BaseOptions {
         @Comment("Minimum health ratio to trigger the effect")
         public double minimumHealthRatio = 0.5;
+        @Comment("Trigger interval (second)")
+        public int interval = 10;
+        @Comment("instant health duration (tick)")
+        public int duration = 3;
 
         NirvanaOptions() {
             super(3, Rarity.RARE);
@@ -639,6 +658,75 @@ public class ModConfig implements ConfigData {
 
         PervertOptions() {
             super(1, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class PureFateOptions extends LootEnchantmentOptions {
+        @Comment("Probability of removing curse per level")
+        public double probability = 0.1;
+
+        PureFateOptions() {
+            super(3, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.HOLY.ordinal()] = 3;
+        }
+    }
+
+    public static class BloodSacrificeOptions extends LootEnchantmentOptions {
+        @Comment("damage to player per level")
+        public float damage = 2.0f;
+        @Comment("damage *= 1 + (base + LostHealth / MaxHealth) * level")
+        public float base = 0.25f;
+
+        BloodSacrificeOptions() {
+            super(3, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.TWISTED.ordinal()] = 3;
+        }
+    }
+
+    public static class SharpRockOptions extends LootEnchantmentOptions {
+        @Comment("damage += armor * damageMultiplier * level")
+        public double damageMultiplierForShield = 0.4;
+        public double damageMultiplierForOthers = 0.2;
+
+        SharpRockOptions() {
+            super(3, Rarity.VERY_RARE, 0.25);
+            elementalCondition[Element.TERRA.ordinal()] = 5;
+        }
+    }
+
+    public static class DelayedExecutionOptions extends BaseOptions {
+        @Comment("Proportion of damage to store")
+        public float storedDamage = 0.8f;
+        @Comment("damage = storedDamage * (1 + multiplier * level)")
+        public float damageMultiplier = 0.8f;
+        @Comment("second")
+        public int duration = 5;
+
+        DelayedExecutionOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class SacredSupremeSharpnessOptions extends LootEnchantmentOptions {
+        @Comment("damage += base + level * multiplier")
+        public float baseDamage = 5;
+        public float damageMultiplier = 1.5f;
+        public float damageMultiplierToUndead = 3f;
+
+        SacredSupremeSharpnessOptions() {
+            super(5, Rarity.VERY_RARE, 0.25);
+            elementalCondition[Element.HOLY.ordinal()] = 3;
+        }
+    }
+
+    public static class GreedySupremeLootingOptions extends LootEnchantmentOptions {
+        @Comment("loot level += multiplier * level (probability * level double it)")
+        public int lootLevelMultiplier = 3;
+        public double probabilityOfDoubling = 0.05;
+
+        GreedySupremeLootingOptions() {
+            super(3, Rarity.VERY_RARE, 0.25);
+            elementalCondition[Element.TWISTED.ordinal()] = 3;
         }
     }
 }

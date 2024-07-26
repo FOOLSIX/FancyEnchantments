@@ -68,7 +68,6 @@ public class ArmorForging extends FEBaseEnchantment {
             int forgeValue = stack.getOrCreateTag().getInt(TAG_NAME);
             e.addModifier(Attributes.ARMOR, new AttributeModifier(ARMOR_FORGING_UUID, NAME, (double) forgeValue / CONFIG.armorBase, AttributeModifier.Operation.MULTIPLY_BASE));
             e.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ARMOR_FORGING_UUID, NAME, (double) forgeValue / CONFIG.toughnessBase, AttributeModifier.Operation.MULTIPLY_BASE));
-
         }
     }
 }

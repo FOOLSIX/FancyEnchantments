@@ -54,7 +54,7 @@ public class EnchantmentJEIPlugin implements IModPlugin {
             }
 
             int maxLevel = enchantment.getMaxLevel();
-            if (CONFIG.enableDescription)
+            if (CONFIG.enableMaxLevel)
                 description.append(I18n.get(getLangKey("max_level"), maxLevel)).append(' ');
             if (CONFIG.enableRarity)
                 description.append(I18n.get(getLangKey("rarity"), enchantment.getRarity().toString()));
@@ -63,21 +63,28 @@ public class EnchantmentJEIPlugin implements IModPlugin {
             if (enchantment instanceof FEBaseEnchantment fe && fe.getChestGenerationProbability() > 0) {
                 description.append(I18n.get(getLangKey("condition")));
                 final int[] condition = fe.getChestGenerationCondition();
+                StringBuilder tmp = new StringBuilder();
                 for (int i = 0; i < EnchUtils.ELEMENT_COUNT; ++i) {
                     if (condition[i] > 0) {
                         EnchUtils.Element element = EnchUtils.Element.values()[i];
                         String name = element.toString().charAt(0) + element.toString().substring(1).toLowerCase();
-                        description.append(EnchUtils.Element.getChatFormatting(element))
+                        tmp.append(EnchUtils.Element.getChatFormatting(element))
                                 .append(name)
                                 .append(": ")
                                 .append(condition[i])
                                 .append(" ");
                     }
                 }
-                description.append("\n").append(I18n.get(getLangKey("probability_from_chest"), getPercent(fe.getChestGenerationProbability(), 2)));
+                if (tmp.isEmpty()) {
+                    description.append("NONE");
+                } else {
+                    description.append(tmp);
+                }
+                description.append("\n").append(I18n.get(getLangKey("probability_from_chest"), getPercent(fe.getChestGenerationProbability())));
             }
-
-            List<ItemStack> books = IntStream.range(1, maxLevel + 1).mapToObj(i -> {
+            // a crude way to make apotheosis compatible...
+            boolean hasApotheosis = ModList.get().getModContainerById("apotheosis").isPresent();
+            List<ItemStack> books = IntStream.range(1, maxLevel + (hasApotheosis ? 9 : 1)).mapToObj(i -> {
                 ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
                 EnchantedBookItem.addEnchantment(book, new EnchantmentInstance(enchantment, i));
                 return book;
@@ -103,9 +110,9 @@ public class EnchantmentJEIPlugin implements IModPlugin {
         return warning;
     }
 
-    private static String getPercent(double data, int digit) {
+    private static String getPercent(double data) {
         NumberFormat numberFormat = NumberFormat.getPercentInstance();
-        numberFormat.setMinimumFractionDigits(digit);
+        numberFormat.setMinimumFractionDigits(2);
         return numberFormat.format(data);
     }
 
