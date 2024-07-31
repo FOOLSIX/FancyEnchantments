@@ -21,7 +21,7 @@ public class BloodSacrifice extends TwistedEnchantment {
         if (e.getSource().getEntity() instanceof ServerPlayer player) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, player);
             if (level > 0 && player.getAttackStrengthScale(0.5F) > 0.95) {
-                player.hurt(player.damageSources().wither(), CONFIG.damage);
+                player.hurt(player.damageSources().wither(), CONFIG.damage * level);
                 e.setAmount(e.getAmount() * (1 + level * (CONFIG.base + 1 - player.getHealth() / player.getMaxHealth())));
             }
         }
