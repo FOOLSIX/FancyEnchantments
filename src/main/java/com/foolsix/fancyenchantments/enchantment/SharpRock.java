@@ -27,6 +27,11 @@ public class SharpRock extends TerraEnchantment {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return super.canApplyAtEnchantingTable(stack) || stack.getItem() instanceof ShieldItem;
+    }
+
     public void updateDamage(TickEvent.PlayerTickEvent e) {
         if (e.player.tickCount % 20 == 0) {
             ItemStack stack = e.player.getMainHandItem();
@@ -34,11 +39,9 @@ public class SharpRock extends TerraEnchantment {
             if (level > 0) {
                 AttributeInstance armorAttr = e.player.getAttribute(Attributes.ARMOR);
                 double armor = armorAttr == null ? 0 : armorAttr.getValue();
-                double damageBonus = CONFIG.damageMultiplierForOthers;
-                if (stack.getItem() instanceof ShieldItem) damageBonus = CONFIG.damageMultiplierForShield;
                 stack.getOrCreateTag().putDouble(ARMOR_TAG, armor);
-            } else {
-                stack.getOrCreateTag().remove(ARMOR_TAG);
+            } else if (stack.getTag() != null && stack.getTag().contains(ARMOR_TAG)) {
+                stack.getTag().remove(ARMOR_TAG);
             }
         }
     }

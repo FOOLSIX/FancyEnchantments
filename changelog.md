@@ -1,3 +1,15 @@
+# 0.0.12
+
+## fix:
+- Correct an incorrect description in Purifying(thank you to the_real_adobo)
+- Fix bug where blood sacrifice self injury configuration does not work
+- Added missing language entries
+- Fixed bug where adding nbt caused items to not stack (**important**)
+
+- 修复血祭自伤配置不起效的bug
+- 增加了缺失的语言条目
+- 修复了错误添加nbt导致物品无法堆叠的bug(**重要**)
+
 # 0.0.11
 ## add:
 - Pure Fate (Chest): Helps to give birth to life to get rid of the curse
