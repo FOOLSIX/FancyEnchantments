@@ -1,5 +1,26 @@
-# 0.0.12
+# 0.0.13
+## add:
+- Wind Fire Wheel (feet): Run, Jump, and Take Off
+- Spreading Spores (weapon): Continuously striking, accumulating spores, and then erupting
+- Thrilling Thunder (weapon): Chance to paralyze the target and cause loss of life
+- Added special texture for enchanting elements(can be configured to enable or disable. Currently incompatible with Neko's enchanted book)
 
+- 风火轮(靴子):跑,跳,然后起飞
+- 传播孢子(武器):连续打击,积累孢子,然后爆发造成大量伤害和中毒效果
+- 颤栗雷霆(武器):有概率令对目标造成麻痹并流逝生命
+- 为元素附魔添加了特殊的材质(可以配置是否开启.目前和Neko的附魔书不兼容,总是会覆盖或者被覆盖)
+
+## change:
+- Now Feather has changed to legging enchant
+
+- 现在羽落改为护腿附魔
+
+## fix:
+- Fixed a bug where the enableIncompatible configuration did not work
+
+- 修复了是否启用附魔不兼容配置不起效的bug
+
+# 0.0.12
 ## fix:
 - Correct an incorrect description in Purifying(thank you to the_real_adobo)
 - Fix bug where blood sacrifice self injury configuration does not work

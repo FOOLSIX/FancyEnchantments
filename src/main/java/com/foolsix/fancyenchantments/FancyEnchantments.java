@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod(FancyEnchantments.MODID)
 public class FancyEnchantments {
@@ -40,6 +41,9 @@ public class FancyEnchantments {
         MinecraftForge.EVENT_BUS.register(new EffectEvents());
         MinecraftForge.EVENT_BUS.register(new CapabilityEvents());
 
+        if (FMLEnvironment.dist.isClient() && FancyEnchantments.getConfig().enableModBookTexture) {
+            modEventBus.addListener(ClientSetup::clientSetup);
+        }
 
     }
 

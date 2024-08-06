@@ -10,7 +10,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class Melting extends MobEffect {
     public static final String NAME = "melting";
-    public static final String MELTING_UUID = "b27ea205-5488-e5cb-c6a9-b586d85a51d2";
+    private static final String MELTING_UUID = "b27ea205-5488-e5cb-c6a9-b586d85a51d2";
     private static final ModConfig.MelterOptions CONFIG = FancyEnchantments.getConfig().melterOptions;
 
     public Melting() {

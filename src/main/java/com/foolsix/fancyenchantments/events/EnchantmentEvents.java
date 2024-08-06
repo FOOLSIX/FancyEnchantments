@@ -43,11 +43,11 @@ public class EnchantmentEvents {
             ((Bloodthirsty) BLOODTHIRSTY.get()).getHungry(e);
             ((Nirvana) NIRVANA.get()).getRegeneration(e);
             ((SharpRock) SHARP_ROCK.get()).updateDamage(e);
-        }
-
-        if (e.player != null && e.side.isClient() && e.phase == TickEvent.Phase.START) {
+            ((WindFireWheels) WIND_FIRE_WHEELS.get()).avoidFallDamage(e);
+        } else if (e.player != null && e.side.isClient() && e.phase == TickEvent.Phase.START) {
             ((Floating) FLOATING.get()).damageReduce(e);
-
+        } else if (e.player != null && e.side.isClient()) {
+            ((WindFireWheels) WIND_FIRE_WHEELS.get()).SprintAndFly(e);
         }
     }
 
@@ -147,6 +147,7 @@ public class EnchantmentEvents {
     public void LivingDamageEvent(LivingDamageEvent e) {
         if (!e.isCanceled() && !e.getEntity().level.isClientSide) {
             ((PaladinsShield) PALADINS_SHIELD.get()).whenHurtTransDamage(e);
+            ((SpreadingSpores) SPREADING_SPORES.get()).damageSpread(e);
         }
     }
 

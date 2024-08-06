@@ -15,22 +15,12 @@ public class FeatherFall extends AerEnchantment {
     private static final ModConfig.FeatherFallOptions CONFIG = FancyEnchantments.getConfig().featherFallOptions;
 
     public FeatherFall() {
-        super(CONFIG, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
-    }
-
-    @Override
-    public int getMinCost(int pLevel) {
-        return 5 + pLevel * 8;
-    }
-
-    @Override
-    public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 45;
+        super(CONFIG, EnchantmentCategory.ARMOR_LEGS, new EquipmentSlot[]{EquipmentSlot.LEGS});
     }
 
     public void gainEffect(TickEvent.PlayerTickEvent e) {
         if (EnchantmentHelper.getEnchantmentLevel(this, e.player) > 0) {
-            if (!e.player.isOnGround() && e.player.isShiftKeyDown()) {
+            if (!e.player.isOnGround() && e.player.isCrouching()) {
                 e.player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20));
             }
         }
