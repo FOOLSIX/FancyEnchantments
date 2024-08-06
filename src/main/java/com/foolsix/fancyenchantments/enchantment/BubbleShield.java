@@ -20,7 +20,7 @@ public class BubbleShield extends AquaEnchantment {
     public void reduceDamage(LivingHurtEvent e) {
         if (e.getEntity() instanceof Player player) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, player);
-            if (level > 0 && player.getAirSupply() >= player.getMaxAirSupply()) {
+            if (level > 0 && player.getAirSupply() >= player.getMaxAirSupply() * CONFIG.airSupplyRatio) {
                 int reducer = (int) (player.getAirSupply() * CONFIG.costRatio * CONFIG.multiplier * level);
                 player.setAirSupply((int) Math.max(0, player.getAirSupply() * (1 - CONFIG.costRatio)));
                 e.setAmount(Math.max(0f, e.getAmount() - reducer));

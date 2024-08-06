@@ -6,8 +6,6 @@ import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -36,12 +34,8 @@ public class ArmorForging extends FEBaseEnchantment {
     }
 
     @Override
-    public Component getFullname(int level) {
-        Component name = super.getFullname(level);
-        if (name instanceof MutableComponent mutableName) {
-            mutableName.setStyle(Style.EMPTY.withColor(EnchUtils.gradualColor(16755200, 5635925, 120)));
-        }
-        return name;
+    public Component getFullname(int pLevel) {
+        return EnchUtils.getMixedColorFullName(super.getFullname(pLevel), EnchUtils.Element.IGNIS, EnchUtils.Element.TERRA);
     }
 
     public void hurtForging(LivingHurtEvent e) {

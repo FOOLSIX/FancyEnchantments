@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "fancyenchantments:item/aer_enchant",
+      "predicate": {
+        "fancyenchantments:enchanted_book": 1.0
+      }
+    },
+    {
+      "model": "fancyenchantments:item/aqua_enchant",
+      "predicate": {
+        "fancyenchantments:enchanted_book": 1.1
+      }
+    },
+    {
+      "model": "fancyenchantments:item/ignis_enchant",
+      "predicate": {
+        "fancyenchantments:enchanted_book": 1.2
+      }
+    },
+    {
+      "model": "fancyenchantments:item/terra_enchant",
+      "predicate": {
+        "fancyenchantments:enchanted_book": 1.3
+      }
+    },
+    {
+      "model": "fancyenchantments:item/holy_enchant",
+      "predicate": {
+        "fancyenchantments:enchanted_book": 1.4
+      }
+    },
+    {
+      "model": "fancyenchantments:item/twisted_enchant",
+      "predicate": {
+        "fancyenchantments:enchanted_book": 1.5
+      }
+    },
+    {
+      "model": "fancyenchantments:item/fe_base_enchant",
+      "predicate": {
+        "fancyenchantments:enchanted_book": 2.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "minecraft:item/enchanted_book"
+  }
+}

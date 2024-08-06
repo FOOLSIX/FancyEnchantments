@@ -6,6 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
@@ -81,6 +83,26 @@ public class EnchUtils {
             }
             return chatFormatting;
         }
+
+        public static int getColor(Element element) {
+            int color = 0x0;
+            switch (element) {
+                case AER -> color = 16777045;
+                case AQUA -> color = 5636095;
+                case IGNIS -> color = 16755200;
+                case TERRA -> color = 5635925;
+                case HOLY -> color = 16777215;
+                case TWISTED -> color = 11141290;
+            }
+            return color;
+        }
+    }
+
+    public static Component getMixedColorFullName(Component name, Element e1, Element e2) {
+        if (name instanceof MutableComponent mutableName) {
+            mutableName.setStyle(Style.EMPTY.withColor(gradualColor(Element.getColor(e1), Element.getColor(e2), 180)));
+        }
+        return name;
     }
 
     public static final Predicate<Entity> VISIBLE_HOSTILE =

@@ -18,7 +18,9 @@ public class ModConfig implements ConfigData {
             The elemental conditions in order are Aer, Aqua, Ignis, Terra, Holy, Twisted
             """)
     @ConfigEntry.Gui.CollapsibleObject
-    public final boolean enableIncompatibility = true;
+    public boolean enableIncompatibility = true;
+    @ConfigEntry.Gui.CollapsibleObject
+    public boolean enableModBookTexture = true;
     @ConfigEntry.Gui.CollapsibleObject
     public final ElementStatOptions elementStatOptions = new ElementStatOptions();
     @ConfigEntry.Gui.CollapsibleObject
@@ -126,6 +128,12 @@ public class ModConfig implements ConfigData {
     public final SacredSupremeSharpnessOptions sacredSupremeSharpnessOptions = new SacredSupremeSharpnessOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final GreedySupremeLootingOptions greedySupremeLootingOptions = new GreedySupremeLootingOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final WindFireWheelsOptions windFireWheelsOptions = new WindFireWheelsOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final SpreadSporesOptions spreadSporesOptions = new SpreadSporesOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final ThrillingThunderOptions thrillingThunderOptions = new ThrillingThunderOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -727,6 +735,40 @@ public class ModConfig implements ConfigData {
         GreedySupremeLootingOptions() {
             super(3, Rarity.VERY_RARE, 0.25);
             elementalCondition[Element.TWISTED.ordinal()] = 3;
+        }
+    }
+
+    public static class WindFireWheelsOptions extends LootEnchantmentOptions {
+        public double speedMultiplier = 0.06;
+
+        WindFireWheelsOptions() {
+            super(1, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.AER.ordinal()] = 5;
+            elementalCondition[Element.IGNIS.ordinal()] = 5;
+        }
+    }
+
+    public static class SpreadSporesOptions extends LootEnchantmentOptions {
+        public int sporeCap = 10;
+        public double damageMultiplier = 3.0;
+
+        SpreadSporesOptions() {
+            super(3, Rarity.VERY_RARE, 0.2);
+            elementalCondition[Element.AQUA.ordinal()] = 5;
+            elementalCondition[Element.TERRA.ordinal()] = 5;
+        }
+    }
+
+    public static class ThrillingThunderOptions extends LootEnchantmentOptions {
+        public int tickGap = 10;
+        @Comment("damage = effect level * multiplier")
+        public double damageMultiplier = 1.0;
+        public double probabilityApplyEffectPerLevel = 0.1;
+
+        ThrillingThunderOptions() {
+            super(3, Rarity.VERY_RARE, 0.2);
+            elementalCondition[Element.AER.ordinal()] = 5;
+            elementalCondition[Element.AQUA.ordinal()] = 5;
         }
     }
 }

@@ -115,6 +115,13 @@ public class EnchantmentReg {
 
     public static final RegistryObject<Enchantment> GREEDY_SUPREME_LOOTING = reg(GreedySupremeLooting.NAME, GreedySupremeLooting::new);
 
+    public static final RegistryObject<Enchantment> WIND_FIRE_WHEELS = reg(WindFireWheels.NAME, WindFireWheels::new);
+
+    public static final RegistryObject<Enchantment> SPREADING_SPORES = reg(SpreadingSpores.NAME, SpreadingSpores::new);
+
+    public static final RegistryObject<Enchantment> THRILLING_THUNDER = reg(ThrillingThunder.NAME, ThrillingThunder::new);
+
+
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }
