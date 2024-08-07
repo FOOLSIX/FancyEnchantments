@@ -3,7 +3,7 @@
 - Wind Fire Wheel (feet): Run, Jump, and Take Off
 - Spreading Spores (weapon): Continuously striking, accumulating spores, and then erupting
 - Thrilling Thunder (weapon): Chance to paralyze the target and cause loss of life
-- Added special texture for enchanting elements(can be configured to enable or disable. Currently incompatible with Neko's enchanted book)
+- Added special texture for element enchanted book(can be configured to enable or disable. Currently incompatible with Neko's enchanted book)
 
 - 风火轮(靴子):跑,跳,然后起飞
 - 传播孢子(武器):连续打击,积累孢子,然后爆发造成大量伤害和中毒效果
@@ -17,8 +17,10 @@
 
 ## fix:
 - Fixed a bug where the enableIncompatible configuration did not work
+- Fixed a bug of invalid airSupplyRatio configuration for bubble shield
 
 - 修复了是否启用附魔不兼容配置不起效的bug
+- 修复了气泡护盾airSupplyRatio配置无效的问题
 
 # 0.0.12
 ## fix:
