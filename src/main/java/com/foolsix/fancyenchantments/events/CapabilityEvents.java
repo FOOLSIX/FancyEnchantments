@@ -46,7 +46,7 @@ public class CapabilityEvents {
         if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
             e.player.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(ttl -> {
                 if (ttl.getTtl() == 0) {
-                    e.player.hurt(ttl.getDamageSource().bypassArmor(), Float.MAX_VALUE / 16);
+                    e.player.hurt(ttl.getDamageSource().bypassArmor(), 10000000);
                 }
                 ttl.subTtl(1);
             });
