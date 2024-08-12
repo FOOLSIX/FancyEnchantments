@@ -28,7 +28,7 @@ public class ThrillingThunder extends FEBaseEnchantment {
 
     @Override
     public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
-        if (Math.random() < CONFIG.probabilityApplyEffectPerLevel * pLevel) {
+        if (Math.random() < CONFIG.probabilityOfApplyingEffectPerLevel * pLevel) {
             if (pTarget instanceof LivingEntity living) {
                 living.addEffect(new MobEffectInstance(TREMBLING.get(), pLevel * 20, pLevel - 1));
             }

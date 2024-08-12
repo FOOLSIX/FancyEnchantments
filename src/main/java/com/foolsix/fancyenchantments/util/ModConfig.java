@@ -749,6 +749,7 @@ public class ModConfig implements ConfigData {
     }
 
     public static class SpreadSporesOptions extends LootEnchantmentOptions {
+        @Comment("Reaching the cap triggers the damage")
         public int sporeCap = 10;
         public double damageMultiplier = 3.0;
 
@@ -760,10 +761,11 @@ public class ModConfig implements ConfigData {
     }
 
     public static class ThrillingThunderOptions extends LootEnchantmentOptions {
+        @Comment("time gap of causing damage")
         public int tickGap = 10;
         @Comment("damage = effect level * multiplier")
         public double damageMultiplier = 1.0;
-        public double probabilityApplyEffectPerLevel = 0.1;
+        public double probabilityOfApplyingEffectPerLevel = 0.1;
 
         ThrillingThunderOptions() {
             super(3, Rarity.VERY_RARE, 0.2);
