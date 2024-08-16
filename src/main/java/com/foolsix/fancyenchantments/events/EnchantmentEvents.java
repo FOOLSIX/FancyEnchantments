@@ -105,19 +105,25 @@ public class EnchantmentEvents {
         Entity attacker = e.getSource().getEntity();
         LivingEntity victim = e.getEntity();
         if (attacker instanceof LivingEntity living && !living.level().isClientSide()) {
+            //add
             ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
+            //multiply
             ((HeavyBlow) HEAVY_BLOW.get()).criticalHit(e);
             ((WindBlade) WIND_BLADE.get()).damageBoost(e);
-            ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
             ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
             ((FeintAttack) FEINT_ATTACK.get()).attack(e);
             ((BloodSacrifice) BLOOD_SACRIFICE.get()).attack(e);
             ((PaladinsShield) PALADINS_SHIELD.get()).reduceDamage(e);
+            //Do not modify damage
+            ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
         }
 
         if (victim instanceof LivingEntity && !victim.level().isClientSide) {
+            //add
             ((BubbleShield) BUBBLE_SHIELD.get()).reduceDamage(e);
+            //multiply
             ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
+            //Do not modify damage
             ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
             //below cancel the event
             ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
