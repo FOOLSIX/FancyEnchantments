@@ -2,12 +2,12 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchantment;
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,7 +24,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 
-import javax.annotation.Nullable;
 
 public class Reflecting extends AerEnchantment {
     public static final String NAME = "reflecting";
@@ -60,7 +59,7 @@ public class Reflecting extends AerEnchantment {
                 && ((EntityHitResult) hitResult).getEntity() instanceof LivingEntity living
                 && living != projectile.getOwner()) {
             int reflectingLevel = EnchantmentHelper.getEnchantmentLevel(this, living);
-            if (reflectingLevel < 1 || !living.isBlocking() || !canBlock(living, projectile.position()))
+            if (reflectingLevel < 1 || !living.isBlocking() || !EnchUtils.canBlock(living, projectile.position()))
                 return;
             if (projectile instanceof AbstractArrow arrow) {
                 AbstractArrow.Pickup pickup = arrow.pickup;
@@ -87,25 +86,5 @@ public class Reflecting extends AerEnchantment {
             stack.hurtAndBreak(CONFIG.baseDamage, living, (p) -> p.broadcastBreakEvent(living.getUsedItemHand()));
             e.setCanceled(true);
         }
-    }
-
-    private boolean canBlock(LivingEntity holder, @Nullable Vec3 sourcePosition) {
-        // source position should never be null (checked by livingentity) but safety as its marked nullable
-        if (sourcePosition == null) {
-            return false;
-        }
-        float blockAngle = 45;
-        // want the angle between the view vector and the
-        Vec3 viewVector = holder.getViewVector(1.0f);
-        Vec3 entityPosition = holder.position();
-        Vec3 direction = new Vec3(entityPosition.x - sourcePosition.x, 0, entityPosition.z - sourcePosition.z);
-        double length = viewVector.length() * direction.length();
-        // prevent zero vector from messing with us
-        if (length < 1.0E-4D) {
-            return false;
-        }
-        // acos will return between 90 and 270, we want an absolute angle from 0 to 180
-        double angle = Math.abs(180 - Math.acos(direction.dot(viewVector) / length) * Mth.RAD_TO_DEG);
-        return blockAngle >= angle;
     }
 }

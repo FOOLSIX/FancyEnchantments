@@ -134,6 +134,26 @@ public class ModConfig implements ConfigData {
     public final SpreadSporesOptions spreadSporesOptions = new SpreadSporesOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final ThrillingThunderOptions thrillingThunderOptions = new ThrillingThunderOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final RecoilOptions recoilOptions = new RecoilOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final AirAttackOptions airAttackOptions = new AirAttackOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final ErodingOptions erodingOptions = new ErodingOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final SanderOptions sanderOptions = new SanderOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final AdvancedProtectionOptions advancedProtectionOptions = new AdvancedProtectionOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final MountainSupremeProtectionOptions mountainSupremeProtectionOptions = new MountainSupremeProtectionOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final AfterimageOptions afterimageOptions = new AfterimageOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final StandingWallOptions standingWallOptions = new StandingWallOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final ConditionOverloadOptions conditionOverloadOptions = new ConditionOverloadOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final FearlessChallengerOptions fearlessChallengerOptions = new FearlessChallengerOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -436,6 +456,7 @@ public class ModConfig implements ConfigData {
         public int hungerUpperLimit = 20;
         @Comment("Saturation += damageValue * multiplier")
         public float saturationMultiplier = 0.2f;
+        public float saturationCap = 200.0f;
 
         BloodthirstyOptions() {
             super(1, Rarity.VERY_RARE);
@@ -683,7 +704,7 @@ public class ModConfig implements ConfigData {
         @Comment("damage to player per level")
         public float damage = 2.0f;
         @Comment("damage *= 1 + (base + LostHealth / MaxHealth) * level")
-        public float base = 0.25f;
+        public float base = 0.1f;
 
         BloodSacrificeOptions() {
             super(3, Rarity.VERY_RARE, 0.1);
@@ -773,4 +794,101 @@ public class ModConfig implements ConfigData {
             elementalCondition[Element.AQUA.ordinal()] = 5;
         }
     }
+
+    public static class RecoilOptions extends BaseOptions {
+        public double distanceMultiplierPerLevel = 0.5;
+        public double probabilityPerLevel = 0.2;
+
+        RecoilOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class AirAttackOptions extends BaseOptions {
+        @Comment("damage = fallDistance * multiplier * level")
+        public float damageMultiplier = 0.3f;
+
+        AirAttackOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class ErodingOptions extends BaseOptions {
+        public double probabilityPerLevel = 0.15;
+        public int damageMultiplier = 1;
+
+        ErodingOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class SanderOptions extends BaseOptions {
+        public double damageMultiplier = 1.0;
+
+        SanderOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class AdvancedProtectionOptions extends BaseOptions {
+        @Comment("enchantment protection factor per level, can not exceed vanilla limit")
+        public double EPFMultiplier = 2.0;
+
+        AdvancedProtectionOptions() {
+            super(4, Rarity.RARE);
+        }
+    }
+
+    public static class MountainSupremeProtectionOptions extends LootEnchantmentOptions {
+        public double EPFMultiplier = 3.0;
+        @Comment("Fixed damage reduction, per level")
+        public double reducer = 0.5;
+
+        MountainSupremeProtectionOptions() {
+            super(4, Rarity.VERY_RARE, 0.2);
+            elementalCondition[Element.TERRA.ordinal()] = 5;
+        }
+    }
+
+    public static class AfterimageOptions extends BaseOptions {
+        @Comment("probability of dodging = extraSpeed(%) * multiplier")
+        public double probabilityMultiplier = 0.5;
+        public double probabilityCapPerLevel = 0.1;
+        public double probabilityMaxCap = 0.5;
+
+        AfterimageOptions() {
+            super(3, Rarity.VERY_RARE);
+            isTreasure = true;
+        }
+    }
+
+    public static class StandingWallOptions extends LootEnchantmentOptions {
+        StandingWallOptions() {
+            super(1, Rarity.RARE, 0.1);
+            elementalCondition[Element.TERRA.ordinal()] = 8;
+        }
+    }
+
+    public static class ConditionOverloadOptions extends BaseOptions {
+        @Comment("damage *= 1 + multiplier * level * debuffCount")
+        public double damageMultiplier = 0.05;
+
+        ConditionOverloadOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class FearlessChallengerOptions extends BaseOptions {
+        @Comment("trigger when target's HP / user's HP > condition")
+        public double HPCondition = 3;
+        @Comment("damage *= 1 + target's HP / user's HP * multiplier * level")
+        public double multiplier = 1;
+        @Comment("damageBonusCap")
+        public double cap = 10;
+
+        FearlessChallengerOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
 }

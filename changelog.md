@@ -1,3 +1,36 @@
+# 0.0.14
+## add:
+- Recoil (weapon): After attacking, there is a chance to be impacted upwards
+- Air Attack (weapon): When in the air, the attack damage increases according to the distance of falling
+- Eroding (weapon): There is a chance to consume more durability
+- Sander (weapon): The less durability, the higher the damage
+- Advanced Protection (armor): More advanced protection
+- Mountain Supreme Protection (armor): Stand firm like a mountain
+- Afterimage (leggings): Provides dodge rate based on speed attributes
+- Standing Wall (shield): Not afraid of damage from the front and shield-breaking attacks
+- Condition Overload (weapon): Increase damage according to the number of negative effects of the target
+- Fearless Challenger (weapon): When the target's health is much greater than the user's, gain damage bonus
+
+- 反冲(武器):攻击后有概率让自身受到向上的冲击
+- 空袭(武器):在空中时根据下落距离增加攻击伤害
+- 磨损(武器):有概率消耗更多耐久
+- 打磨(武器):耐久越少,伤害越高
+- 高级保护(护甲):更高级的保护
+- 山之高级保护(护甲):如山般屹立不倒
+- 残影(护腿):提供基于速度属性的闪避率
+- 屹立之壁(盾牌):无惧来自正面的伤害以及破盾攻击
+- 异况超量(武器):根据目标负面状态数量增加伤害
+- 无畏挑战者(武器):目标血量远大于使用者时，获得伤害加成
+
+## change:
+- Reduced Blood Sacrifice base damage bonus
+- Added language entry to enchantment description for advanced version enchantments
+- Bloodthirsty config can now set a saturation cap
+
+- 降低了血祭的基础伤害加成
+- 为高级版本附魔添加了附魔描述的语言条目
+- 嗜血现在可以设置饱和度的上限
+
 # 0.0.13
 ## add:
 - Wind Fire Wheel (feet): Run, Jump, and Take Off

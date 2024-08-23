@@ -37,7 +37,8 @@ public class Bloodthirsty extends TwistedEnchantment {
                 //If other mods cause hunger values to exceed the upper limit, I will not handle it
                 if (foodLevel < CONFIG.hungerUpperLimit)
                     foodData.setFoodLevel((int) Math.min(CONFIG.hungerUpperLimit, foodLevel + damageValue * CONFIG.hungerMultiplier));
-                foodData.setSaturation(foodData.getSaturationLevel() + damageValue * CONFIG.saturationMultiplier);
+                if (foodData.getSaturationLevel() < CONFIG.saturationCap)
+                    foodData.setSaturation(Math.min(CONFIG.saturationCap, foodData.getSaturationLevel() + damageValue * CONFIG.saturationMultiplier));
             }
         }
     }
