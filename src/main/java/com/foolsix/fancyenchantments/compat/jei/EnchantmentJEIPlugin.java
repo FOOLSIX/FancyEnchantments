@@ -35,7 +35,7 @@ public class EnchantmentJEIPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration reg) {
         boolean escapePercents = ModList.get().getModContainerById(ModIds.MINECRAFT_ID).orElseThrow().getModInfo().getVersion().getMinorVersion() == 15;
-        ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
+        ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment -> {
             String enchantmentKey = enchantment.getDescriptionId();
             StringBuilder description = new StringBuilder();
             String descriptionKey = enchantmentKey + "." + "desc";
@@ -58,7 +58,8 @@ public class EnchantmentJEIPlugin implements IModPlugin {
                 description.append(I18n.get(getLangKey("max_level"), maxLevel)).append(' ');
             if (CONFIG.enableRarity)
                 description.append(I18n.get(getLangKey("rarity"), enchantment.getRarity().toString()));
-            if (CONFIG.enableMaxLevel || CONFIG.enableRarity) description.append('\n');
+            if (CONFIG.enableMaxLevel || CONFIG.enableRarity)
+                description.append('\n');
             if (enchantment instanceof FEBaseEnchantment fe && fe.getChestGenerationProbability() > 0) {
                 description.append(I18n.get(getLangKey("condition")));
                 final int[] condition = fe.getChestGenerationCondition();
@@ -81,8 +82,9 @@ public class EnchantmentJEIPlugin implements IModPlugin {
                 }
                 description.append("\n").append(I18n.get(getLangKey("probability_from_chest"), getPercent(fe.getChestGenerationProbability())));
             }
-
-            List<ItemStack> books = IntStream.range(1, maxLevel + 1).mapToObj(i -> {
+            // a crude way to make apotheosis compatible...
+            boolean hasApotheosis = ModList.get().getModContainerById("apotheosis").isPresent();
+            List<ItemStack> books = IntStream.range(1, maxLevel + (hasApotheosis ? 9 : 1)).mapToObj(i -> {
                 ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
                 EnchantedBookItem.addEnchantment(book, new EnchantmentInstance(enchantment, i));
                 return book;

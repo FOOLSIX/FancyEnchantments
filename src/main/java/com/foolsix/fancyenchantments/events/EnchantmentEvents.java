@@ -58,11 +58,13 @@ public class EnchantmentEvents {
 
         if (victim instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
+            ((StandingWall) STANDING_WALL.get()).getAttacked(e);
         }
 
         if (source != null && source.getEntity() instanceof LivingEntity) {
             //use entity.push(), should be called at client and server
             ((Charge) CHARGE.get()).charge(e);
+            ((Recoil) RECOIL.get()).push(e);
         }
 
     }
@@ -107,6 +109,7 @@ public class EnchantmentEvents {
         if (attacker instanceof LivingEntity living && !living.level().isClientSide()) {
             //add
             ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
+            ((AirAttack) AIR_ATTACK.get()).attack(e);
             //multiply
             ((HeavyBlow) HEAVY_BLOW.get()).criticalHit(e);
             ((WindBlade) WIND_BLADE.get()).damageBoost(e);
@@ -114,19 +117,23 @@ public class EnchantmentEvents {
             ((FeintAttack) FEINT_ATTACK.get()).attack(e);
             ((BloodSacrifice) BLOOD_SACRIFICE.get()).attack(e);
             ((PaladinsShield) PALADINS_SHIELD.get()).reduceDamage(e);
+            ((ConditionOverload) CONDITION_OVERLOAD.get()).attack(e);
             //Do not modify damage
             ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
         }
 
         if (victim instanceof LivingEntity && !victim.level().isClientSide) {
+            //below cancel the event
+            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
+            if(e.isCanceled()) return;
+
             //add
             ((BubbleShield) BUBBLE_SHIELD.get()).reduceDamage(e);
             //multiply
             ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
             //Do not modify damage
             ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
-            //below cancel the event
-            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
+
         }
     }
 
@@ -154,8 +161,15 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void LivingDamageEvent(LivingDamageEvent e) {
         if (!e.isCanceled() && !e.getEntity().level().isClientSide) {
+            //below cancel the event
+            ((Afterimage) AFTERIMAGE.get()).avoidDamage(e);
+            if (e.isCanceled()) return;
+
+            ((MountainSupremeProtection) MOUNTAIN_SUPREME_PROTECTION.get()).reduceDamage(e);
             ((PaladinsShield) PALADINS_SHIELD.get()).whenHurtTransDamage(e);
             ((SpreadingSpores) SPREADING_SPORES.get()).damageSpread(e);
+            ((FearlessChallenger) FEARLESS_CHALLENGER.get()).damageBonus(e);
+
         }
     }
 
@@ -180,6 +194,7 @@ public class EnchantmentEvents {
         ((StackingWaves) STACKING_WAVES.get()).attribute(e);
         ((ArmorForging) ARMOR_FORGING.get()).modifyArmor(e);
         ((SharpRock) SHARP_ROCK.get()).attachAttributes(e);
+        ((Sander) SANDER.get()).attribute(e);
     }
 
     @SubscribeEvent
