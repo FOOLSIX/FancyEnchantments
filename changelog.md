@@ -1,3 +1,6 @@
+# 1.0.0
+- update with 1.19.2-1.0.0
+
 # 0.0.6 - beta
 - update with 1.19.2-0.0.14
 - fix some issues of jei info

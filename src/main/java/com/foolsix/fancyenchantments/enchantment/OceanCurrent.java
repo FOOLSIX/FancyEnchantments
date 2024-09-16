@@ -29,11 +29,6 @@ public class OceanCurrent extends AquaEnchantment {
         return 15 + pLevel * 5;
     }
 
-    @Override
-    public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 50;
-    }
-
     public void attackSpeedBoost(LivingEvent.LivingTickEvent e) {
         if (e.getEntity() != null) {
             LivingEntity living = e.getEntity();

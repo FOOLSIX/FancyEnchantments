@@ -78,6 +78,11 @@ public class EnchantmentReg {
     public static final RegistryObject<Enchantment> STANDING_WALL = reg(StandingWall.NAME, StandingWall::new);
     public static final RegistryObject<Enchantment> CONDITION_OVERLOAD = reg(ConditionOverload.NAME, ConditionOverload::new);
     public static final RegistryObject<Enchantment> FEARLESS_CHALLENGER = reg(FearlessChallenger.NAME, FearlessChallenger::new);
+    public static final RegistryObject<Enchantment> STREAMLINE = reg(Streamline.NAME, Streamline::new);
+    public static final RegistryObject<Enchantment> HEAVY_ARROW = reg(HeavyArrow.NAME, HeavyArrow::new);
+    public static final RegistryObject<Enchantment> DOWNWIND = reg(Downwind.NAME, Downwind::new);
+    public static final RegistryObject<Enchantment> NIGHTMARE = reg(Nightmare.NAME, Nightmare::new);
+    public static final RegistryObject<Enchantment> DEXTERITY = reg(Dexterity.NAME, Dexterity::new);
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

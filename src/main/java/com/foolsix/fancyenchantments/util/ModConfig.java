@@ -154,6 +154,16 @@ public class ModConfig implements ConfigData {
     public final ConditionOverloadOptions conditionOverloadOptions = new ConditionOverloadOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final FearlessChallengerOptions fearlessChallengerOptions = new FearlessChallengerOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final StreamlineOptions windWingsOptions = new StreamlineOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final HeavyArrowOptions heavyArrowOptions = new HeavyArrowOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final DownwindOptions downwindOptions = new DownwindOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final NightmareOptions nightmareOptions = new NightmareOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final DexterityOptions dexterityOptions = new DexterityOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -307,9 +317,10 @@ public class ModConfig implements ConfigData {
 
     public static class SolidAsARockOptions extends BaseOptions {
         @Comment("armor *= 1 + multiplier * level")
-        public float armorMultiplier = 0.15f;
+        public double armorMultiplier = 0.15;
         @Comment("toughness *= 1 + multiplier * level")
-        public float toughnessMultiplier = 0.1f;
+        public double toughnessMultiplier = 0.1;
+        public double movementSpeedReducer = 0.1;
 
         SolidAsARockOptions() {
             super(3, Rarity.RARE);
@@ -317,20 +328,20 @@ public class ModConfig implements ConfigData {
     }
 
     public static class OverflowOptions extends BaseOptions {
-        @Comment("The probability of generating a puddle of water")
-        public double probability = 0.05;
+        @Comment("The probability of generating a puddle of water (per level)")
+        public double probability = 0.1;
 
         OverflowOptions() {
-            super(1, Rarity.RARE);
+            super(3, Rarity.RARE);
         }
     }
 
     public static class FireDisasterOptions extends BaseOptions {
-        @Comment("The probability of generating a fire")
+        @Comment("The probability of generating a fire (per level)")
         public double probability = 0.05;
 
         FireDisasterOptions() {
-            super(1, Rarity.RARE);
+            super(3, Rarity.RARE);
         }
     }
 
@@ -456,7 +467,7 @@ public class ModConfig implements ConfigData {
         public int hungerUpperLimit = 20;
         @Comment("Saturation += damageValue * multiplier")
         public float saturationMultiplier = 0.2f;
-        public float saturationCap = 200.0f;
+        public float saturationCap = 25.0f;
 
         BloodthirstyOptions() {
             super(1, Rarity.VERY_RARE);
@@ -887,6 +898,48 @@ public class ModConfig implements ConfigData {
         public double cap = 10;
 
         FearlessChallengerOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class StreamlineOptions extends BaseOptions {
+        public double speedMultiplierPerLevel = 0.5;
+
+        StreamlineOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class HeavyArrowOptions extends BaseOptions {
+        public double damageMultiplierPerLevel = 0.15;
+        public int knockbackAddonPerLevel = 1;
+
+        HeavyArrowOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class DownwindOptions extends BaseOptions {
+        public double pushForceMultiplier = 2.0;
+        public double damageMultiplierPerLevel = 0.2;
+
+        DownwindOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class NightmareOptions extends BaseOptions {
+        public int explodeRadiusMultiplier = 2;
+
+        NightmareOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class DexterityOptions extends BaseOptions {
+        public double rangeMultiplierPerLevel = 0.5;
+
+        DexterityOptions() {
             super(3, Rarity.VERY_RARE);
         }
     }

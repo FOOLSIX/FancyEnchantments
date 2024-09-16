@@ -5,17 +5,13 @@ import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchantment;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.UUID;
-
-import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.MOD_NAME_PREFIX;
 
 public class WindBlade extends AerEnchantment {
     public static final String NAME = "wind_blade";
@@ -29,11 +25,6 @@ public class WindBlade extends AerEnchantment {
     @Override
     public int getMinCost(int pLevel) {
         return 10 + pLevel * 5;
-    }
-
-    @Override
-    public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 50;
     }
 
     public void damageBoost(LivingHurtEvent e) {
@@ -50,11 +41,4 @@ public class WindBlade extends AerEnchantment {
             }
         }
     }
-
-    public void damageReduce(ItemAttributeModifierEvent e) {
-        if (e.getItemStack().getEnchantmentLevel(this) > 0 && e.getSlotType() == EquipmentSlot.MAINHAND) {
-            e.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(WIND_BLADE_UUID, MOD_NAME_PREFIX + NAME, -CONFIG.damageReducer, AttributeModifier.Operation.MULTIPLY_BASE));
-        }
-    }
-
 }

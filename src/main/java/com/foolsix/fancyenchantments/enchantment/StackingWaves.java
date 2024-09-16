@@ -38,7 +38,7 @@ public class StackingWaves extends AquaEnchantment {
     public void attribute(ItemAttributeModifierEvent e) {
         int level = e.getItemStack().getEnchantmentLevel(this);
         if (level > 0 && e.getSlotType() == EquipmentSlot.MAINHAND) {
-            e.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(ID, NAME, -CONFIG.attackSpeedReducer * level, AttributeModifier.Operation.MULTIPLY_BASE));
+            e.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(ID, NAME, Math.max(-0.9, -CONFIG.attackSpeedReducer * level), AttributeModifier.Operation.MULTIPLY_BASE));
         }
     }
 }

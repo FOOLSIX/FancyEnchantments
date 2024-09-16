@@ -12,10 +12,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -82,12 +84,14 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void projectileImpactEvent(ProjectileImpactEvent e) {
         if (e.isCanceled() || e.getEntity() == null || e.getEntity().level().isClientSide()) return;
+        ((Reflecting) REFLECTING.get()).projectReflecting(e);
+        if (e.isCanceled()) return;
 
         var hit = e.getRayTraceResult();
         if (hit.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hit).getEntity() instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
         }
-        ((Reflecting) REFLECTING.get()).projectReflecting(e);
+        ((HeavyArrow) HEAVY_ARROW.get()).arrowImpact(e);
     }
 
     @SubscribeEvent
@@ -135,6 +139,7 @@ public class EnchantmentEvents {
             ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
 
         }
+        ((Downwind) DOWNWIND.get()).attackAndPush(e);
     }
 
     @SubscribeEvent
@@ -183,11 +188,17 @@ public class EnchantmentEvents {
     }
 
     @SubscribeEvent
+    public void ArrowJoin(EntityJoinLevelEvent e) {
+        ((Streamline) STREAMLINE.get()).speedBoost(e);
+        ((HeavyArrow) HEAVY_ARROW.get()).enhanceArrow(e);
+    }
+
+
+    @SubscribeEvent
     public void itemAttributeModifierEvent(ItemAttributeModifierEvent e) {
         if (e.isCanceled() || e.getItemStack() == null) return;
 
         ((TheFallen) THE_FALLEN.get()).addDamageBonus(e);
-        ((WindBlade) WIND_BLADE.get()).damageReduce(e);
         ((HeavyBlow) HEAVY_BLOW.get()).attackSpeedReduce(e);
         ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
         ((Melter) MELTER.get()).attribute(e);
@@ -195,6 +206,7 @@ public class EnchantmentEvents {
         ((ArmorForging) ARMOR_FORGING.get()).modifyArmor(e);
         ((SharpRock) SHARP_ROCK.get()).attachAttributes(e);
         ((Sander) SANDER.get()).attribute(e);
+        ((Dexterity) DEXTERITY.get()).addRange(e);
     }
 
     @SubscribeEvent
@@ -224,4 +236,10 @@ public class EnchantmentEvents {
         }
     }
 
+    @SubscribeEvent
+    public void onBed(PlayerSleepInBedEvent e) {
+        if (!e.isCanceled()) {
+            ((Nightmare) NIGHTMARE.get()).makeExplosion(e);
+        }
+    }
 }
