@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.LootBonusEnchantment;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
 
 public class AdvancedLooting extends FEBaseEnchantment {
@@ -24,13 +25,8 @@ public class AdvancedLooting extends FEBaseEnchantment {
     }
 
     @Override
-    public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 50;
-    }
-
-    @Override
     public boolean checkCompatibility(Enchantment pEnch) {
-        return pEnch != Enchantments.MOB_LOOTING && super.checkCompatibility(pEnch);
+        return !(pEnch instanceof LootBonusEnchantment) && pEnch.isCompatibleWith(Enchantments.MOB_LOOTING) && super.checkCompatibility(pEnch);
     }
 
     public void lootingHandle(LootingLevelEvent e, Player player) {

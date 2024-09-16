@@ -1,3 +1,39 @@
+# 1.0.0
+## add:
+- Streamline (bow): Speeds up arrows and ignores gravity
+- Heavy Arrow (bow): Increases arrow damage and knockback and applies slowness
+- Downwind (weapon): Attacks apply an upward force to the target, causing more damage to targets in the air
+- Dexterity (weapon): Increases attack range
+- Nightmare (helmet): When going to sleep, an explosion always occurs
+
+- 流线型(弓):加速箭矢,并无视重力
+- 重箭(弓):增加箭矢伤害和击退并施加缓慢
+- 顺风球(武器):攻击会对目标施加向上的力,对在空中的目标造成更多伤害
+- 灵巧(武器):增加攻击距离
+- 噩梦(头盔):当要睡觉时,总是会发生爆炸
+
+## change:
+- Wind Blade no longer reduces attack damage
+- Solid as a Rock now reduces movement speed slightly 
+- Improved the default max level for Overflow and Fire Disaster
+- Improved the initial triggering probability of Overflow
+- Reduced the default saturation limit for Bloodthirsty to adapt to certain mods
+
+- 风刃不再减少攻击伤害
+- 坚如磐石现在会减少一些移速
+- 提升了满溢和火灾的默认等级上限
+- 提升了满溢的初始触发概率
+- 降低了嗜血的默认饱和度上限以适配某些模组
+
+## fix:
+- Fixed the bug that the AirAttack damage was too low
+- Fixed the attribute debuff of the StackingWaves
+- Added the missing texture
+
+- 修复了空袭的伤害过低的bug
+- 修正了叠浪的属性减益
+- 添加了缺失的材质
+
 # 0.0.14
 ## add:
 - Recoil (weapon): After attacking, there is a chance to be impacted upwards

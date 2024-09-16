@@ -33,7 +33,7 @@ public class FireDisaster extends IgnisEnchantment {
         if (e.getSource().getEntity() instanceof LivingEntity attacker) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, attacker);
             if (level > 0) {
-                if (Math.random() < CONFIG.probability) {
+                if (Math.random() < CONFIG.probability * level) {
                     for (BlockPos pos : getRandomValidPos(victim, world, 4)) {
                         world.setBlockAndUpdate(pos, Blocks.FIRE.defaultBlockState());
                     }

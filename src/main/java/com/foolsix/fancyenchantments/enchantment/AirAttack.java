@@ -21,7 +21,7 @@ public class AirAttack extends AerEnchantment {
         if (e.getSource().getEntity() instanceof LivingEntity living && living.fallDistance > 0) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, living);
             if (level > 0) {
-                e.setAmount(e.getAmount() + living.fallDistance * CONFIG.damageMultiplier);
+                e.setAmount(e.getAmount() + living.fallDistance * CONFIG.damageMultiplier * level);
                 living.resetFallDistance();
             }
         }

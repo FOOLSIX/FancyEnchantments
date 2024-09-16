@@ -30,11 +30,6 @@ public class SolidAsARock extends TerraEnchantment {
     }
 
     @Override
-    public int getMaxCost(int pLevel) {
-        return getMinCost(pLevel) + 40;
-    }
-
-    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.canPerformAction(SHIELD_BLOCK);
     }
@@ -47,6 +42,7 @@ public class SolidAsARock extends TerraEnchantment {
         if (level > 0 && (e.getSlotType() == EquipmentSlot.MAINHAND || e.getSlotType() == EquipmentSlot.OFFHAND)) {
             e.addModifier(Attributes.ARMOR, new AttributeModifier(SOLID_AS_A_ROCK_UUID, NAME, CONFIG.armorMultiplier * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
             e.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(SOLID_AS_A_ROCK_UUID, NAME, CONFIG.toughnessMultiplier * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            e.addModifier(Attributes.MOVEMENT_SPEED,  new AttributeModifier(SOLID_AS_A_ROCK_UUID, NAME, -CONFIG.movementSpeedReducer * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
     }
 }

@@ -32,8 +32,8 @@ public class Overflow extends AquaEnchantment {
             Level world = attacker.level;
             int level = EnchantmentHelper.getEnchantmentLevel(this, attacker);
             if (level > 0) {
-                if (Math.random() < CONFIG.probability) {
-                    BlockPos pos = new BlockPos(victim.getBlockX(), victim.getBlockY(), victim.getBlockZ());
+                if (Math.random() < CONFIG.probability * level) {
+                    BlockPos pos = victim.blockPosition();
                     if (world.isEmptyBlock(pos)) {
                         world.setBlockAndUpdate(pos, Blocks.WATER.defaultBlockState());
                     }
