@@ -136,6 +136,8 @@
   "enchantment.fancyenchantments.nightmare.desc": "当要睡觉时,总是会发生爆炸",
   "enchantment.fancyenchantments.dexterity": "灵巧",
   "enchantment.fancyenchantments.dexterity.desc": "增加攻击距离",
+  "enchantment.fancyenchantments.cracked_crown": "破碎皇冠",
+  "enchantment.fancyenchantments.cracked_crown.desc": "提升造成和受到的伤害",
   "effect.fancyenchantments.crit_rate_boost": "暴击率提升",
   "effect.fancyenchantments.cumbersome": "笨重",
   "effect.fancyenchantments.templar_shield": "圣盾之佑",

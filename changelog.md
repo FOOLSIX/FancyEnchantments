@@ -1,3 +1,19 @@
+# 1.1.0
+## add:
+- Cracked Crown (helmet,curse):Enhance the damage caused and received
+- 破碎皇冠(头盔,诅咒):提升造成和受到的伤害
+
+## change:
+- Fearless Challenger is Special Loot now.
+- 无畏的挑战者附魔现在是特殊战利品附魔. 
+
+## fix:
+- Fixed bug where element stats cannot be calculated correctly when discarding items
+- Fixed the issue where the speed effect of element stats cannot be overlaid
+
+- 修复了丢弃物品时元素属性不能正确计算的bug
+- 修复元素属性的速度效果无法叠加的问题
+
 # 1.0.0
 ## add:
 - Streamline (bow): Speeds up arrows and ignores gravity

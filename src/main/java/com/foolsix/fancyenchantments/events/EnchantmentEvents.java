@@ -120,6 +120,7 @@ public class EnchantmentEvents {
             ((BloodSacrifice) BLOOD_SACRIFICE.get()).attack(e);
             ((PaladinsShield) PALADINS_SHIELD.get()).reduceDamage(e);
             ((ConditionOverload) CONDITION_OVERLOAD.get()).attack(e);
+            ((CrackedCrown) CRACKED_CROWN.get()).doMoreDamage(e);
             //Do not modify damage
             ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
         }
