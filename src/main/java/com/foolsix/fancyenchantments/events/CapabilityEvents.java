@@ -13,6 +13,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
@@ -46,7 +47,6 @@ public class CapabilityEvents {
         if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
             e.player.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(ttl -> {
                 if (ttl.getTtl() == 0) {
-                    //todo : use damage source
                     e.player.die(ttl.getDamageSource());
                     e.player.setHealth(0);
                 }
@@ -63,7 +63,9 @@ public class CapabilityEvents {
         if (e.player.tickCount % 20 != 0) {
             e.player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(elementStats -> {
                 if (elementStats.getPoint(AER) >= CONFIG.aerLevelToGetSpeed) {
-                    e.player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20));
+                    e.player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,
+                            20,
+                            elementStats.getPoint(AER) / CONFIG.aerLevelToGetSpeed));
                 }
                 if (elementStats.getPoint(IGNIS) >= CONFIG.ignisLevelToGetFireResistance) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20));
@@ -100,6 +102,7 @@ public class CapabilityEvents {
                 }
             }
 
+            if (e.getTo().is(Items.AIR)) return;
             for (var entry : e.getTo().getAllEnchantments().entrySet()) {
                 Element element = Element.getElement(entry.getKey());
                 if (element != null) {

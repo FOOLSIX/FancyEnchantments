@@ -83,6 +83,7 @@ public class EnchantmentReg {
     public static final RegistryObject<Enchantment> DOWNWIND = reg(Downwind.NAME, Downwind::new);
     public static final RegistryObject<Enchantment> NIGHTMARE = reg(Nightmare.NAME, Nightmare::new);
     public static final RegistryObject<Enchantment> DEXTERITY = reg(Dexterity.NAME, Dexterity::new);
+    public static final RegistryObject<Enchantment> CRACKED_CROWN = reg(CrackedCrown.NAME, CrackedCrown::new);
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

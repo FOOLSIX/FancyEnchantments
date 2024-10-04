@@ -164,6 +164,8 @@ public class ModConfig implements ConfigData {
     public final NightmareOptions nightmareOptions = new NightmareOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final DexterityOptions dexterityOptions = new DexterityOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final CrackedCrownOptions crackedCrownOptions = new CrackedCrownOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -889,7 +891,7 @@ public class ModConfig implements ConfigData {
         }
     }
 
-    public static class FearlessChallengerOptions extends BaseOptions {
+    public static class FearlessChallengerOptions extends LootEnchantmentOptions {
         @Comment("trigger when target's HP / user's HP > condition")
         public double HPCondition = 3;
         @Comment("damage *= 1 + target's HP / user's HP * multiplier * level")
@@ -898,7 +900,8 @@ public class ModConfig implements ConfigData {
         public double cap = 10;
 
         FearlessChallengerOptions() {
-            super(3, Rarity.VERY_RARE);
+            super(3, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.HOLY.ordinal()] = 8;
         }
     }
 
@@ -944,4 +947,11 @@ public class ModConfig implements ConfigData {
         }
     }
 
+    public static class CrackedCrownOptions extends BaseOptions {
+        public double damageMultiplier = 0.3;
+        public double takenDamageMultiplier = 0.3;
+        CrackedCrownOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
 }
