@@ -107,6 +107,8 @@ repositories {
     maven { url = 'https://maven.terraformersmc.com/releases/' }
     maven { url = "https://cursemaven.com" }
 
+    maven { url = "https://mvnrepository.com/artifact/com.squareup/javapoet"}
+
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
@@ -125,6 +127,8 @@ dependencies {
     // at runtime, use the full JEI jar for Forge
     runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
     runtimeOnly(fg.deobf("curse.maven:spark-361579:4057111"))
+
+    implementation group: 'com.squareup', name: 'javapoet', version: '1.13.0'
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
