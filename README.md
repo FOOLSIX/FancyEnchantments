@@ -19,6 +19,10 @@ Download:
 
 [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-enchantments)
 
+![Modrinth Downloads](https://img.shields.io/modrinth/dt/Ry0mgP2K)
+
+[Modrinth](https://modrinth.com/mod/fancy-enchantments)
+
 ---
 
 This mod aims to provide powerful, fun, and configurable enchantments for adventure.
