@@ -26,7 +26,10 @@ public class ArmorForging extends FEBaseEnchantment {
     public static final String NAME = "armor_forging";
     private static final ModConfig.ArmorForgingOptions CONFIG = FancyEnchantments.getConfig().armorForgingOptions;
     private final String TAG_NAME = MODID + ":forging_value";
-    private final UUID ARMOR_FORGING_UUID = UUID.fromString("006063c0-0b72-5ec1-4688-bc3975081020");
+    private final UUID ARMOR_FORGING_HEAD_UUID = UUID.fromString("006063c0-0b72-5ec1-4688-bc3975081020");
+    private final UUID ARMOR_FORGING_CHEST_UUID = UUID.fromString("29a13209-2a40-4801-bcf2-18d32402b586");
+    private final UUID ARMOR_FORGING_LEGS_UUID = UUID.fromString("ecf543d3-5b74-46e0-ad27-24476a393aa0");
+    private final UUID ARMOR_FORGING_FEET_UUID = UUID.fromString("0a0c3862-dd6c-4c2a-9b9a-b6f3a34cf822");
 
     public ArmorForging() {
         super(CONFIG, EnchantmentCategory.WEARABLE,
@@ -60,10 +63,21 @@ public class ArmorForging extends FEBaseEnchantment {
     public void modifyArmor(ItemAttributeModifierEvent e) {
         ItemStack stack = e.getItemStack();
         int level = stack.getEnchantmentLevel(this);
-        if (level > 0 && e.getSlotType() == getEquipmentSlotForItem(stack)) {
+        EquipmentSlot equipmentSlot = e.getSlotType();
+        if (level > 0 && equipmentSlot == getEquipmentSlotForItem(stack)) {
             int forgeValue = stack.getOrCreateTag().getInt(TAG_NAME);
-            e.addModifier(Attributes.ARMOR, new AttributeModifier(ARMOR_FORGING_UUID, NAME, (double) forgeValue / CONFIG.armorBase, AttributeModifier.Operation.MULTIPLY_BASE));
-            e.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ARMOR_FORGING_UUID, NAME, (double) forgeValue / CONFIG.toughnessBase, AttributeModifier.Operation.MULTIPLY_BASE));
+            e.addModifier(Attributes.ARMOR, new AttributeModifier(getUUIDBySlot(equipmentSlot), NAME, (double) forgeValue / CONFIG.armorBase, AttributeModifier.Operation.MULTIPLY_BASE));
+            e.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(getUUIDBySlot(equipmentSlot), NAME, (double) forgeValue / CONFIG.toughnessBase, AttributeModifier.Operation.MULTIPLY_BASE));
         }
+    }
+
+    private UUID getUUIDBySlot(EquipmentSlot slot) {
+        UUID uid = ARMOR_FORGING_FEET_UUID;
+        switch (slot) {
+            case HEAD -> uid = ARMOR_FORGING_HEAD_UUID;
+            case CHEST -> uid = ARMOR_FORGING_CHEST_UUID;
+            case LEGS -> uid = ARMOR_FORGING_LEGS_UUID;
+        }
+        return uid;
     }
 }
