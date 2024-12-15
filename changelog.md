@@ -1,3 +1,11 @@
+# 1.1.1
+## fix:
+- Fixed the crash caused by the conflict between Unyielding Spirit and SlashBlade Resharped
+- Fixed the problem that the equipment of Armor Forging could not be stacked
+
+- 修复了不屈的精神和拔刀剑重锋冲突崩溃的问题
+- 修复了百炼锻甲术装备间不能叠加的问题
+
 # 1.1.0
 ## add:
 - Cracked Crown (helmet,curse):Enhance the damage caused and received
