@@ -21,6 +21,8 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 
+import java.util.List;
+
 
 public class UnyieldingSpirit extends HolyEnchantment {
     public static final String NAME = "unyielding_spirit";
@@ -70,11 +72,8 @@ public class UnyieldingSpirit extends HolyEnchantment {
                 player.setHealth(player.getMaxHealth());
                 EnchUtils.generateSimpleParticleAroundEntity(player, ParticleTypes.TOTEM_OF_UNDYING, 100, 1.0, 1.0, 1.0, 0.5);
                 player.clearFire();
-                player.getActiveEffects().forEach(effect -> {
-                    if (effect.getEffect().getCategory() == MobEffectCategory.HARMFUL) {
-                        player.removeEffect(effect.getEffect());
-                    }
-                });
+                List<MobEffectInstance> effectInstances = player.getActiveEffects().stream().filter(effect -> effect.getEffect().getCategory() == MobEffectCategory.HARMFUL).toList();
+                effectInstances.forEach(effectInstance -> player.removeEffect(effectInstance.getEffect()));
                 player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 3.0F, 1.0F);
             }
         }
