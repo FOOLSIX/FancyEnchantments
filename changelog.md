@@ -1,3 +1,9 @@
+# 1.2.0
+
+## fix:
+- The effect given by element stats does not start from tier1 but from tier2
+
+- 元素属性给予的效果不是从1级而是从2级开始
 # 1.1.1
 ## fix:
 - Fixed the crash caused by the conflict between Unyielding Spirit and SlashBlade Resharped

@@ -64,7 +64,7 @@ public class CapabilityEvents {
                 if (elementStats.getPoint(AER) >= CONFIG.aerLevelToGetSpeed) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,
                             20,
-                            elementStats.getPoint(AER) / CONFIG.aerLevelToGetSpeed));
+                            elementStats.getPoint(AER) / CONFIG.aerLevelToGetSpeed - 1));
                 }
                 if (elementStats.getPoint(IGNIS) >= CONFIG.ignisLevelToGetFireResistance) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20));
@@ -72,12 +72,12 @@ public class CapabilityEvents {
                 if (elementStats.getPoint(TERRA) >= CONFIG.terraLevelToGetResistance) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,
                             20,
-                            elementStats.getPoint(TERRA) / CONFIG.terraLevelToGetResistance));
+                            elementStats.getPoint(TERRA) / CONFIG.terraLevelToGetResistance - 1));
                 }
                 if (elementStats.getPoint(AQUA) >= CONFIG.aquaLevelToGetRegeneration) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,
                             20,
-                            elementStats.getPoint(AQUA) / CONFIG.aquaLevelToGetRegeneration));
+                            elementStats.getPoint(AQUA) / CONFIG.aquaLevelToGetRegeneration - 1));
                 }
                 if (elementStats.getPoint(TWISTED) - elementStats.getPoint(HOLY) >= CONFIG.twistedLevelToGetDebuff) {
                     if (Math.random() < CONFIG.probabilityToGetDebuff) {
