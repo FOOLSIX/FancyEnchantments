@@ -2,8 +2,10 @@
 
 ## fix:
 - The effect given by element stats does not start from tier1 but from tier2
+- Fixed a bug where jei information may not display correctly after disabling enchantments
 
 - 元素属性给予的效果不是从1级而是从2级开始
+- 修复了jei信息在禁用附魔后可能不能正确显示的bug
 # 1.1.1
 ## fix:
 - Fixed the crash caused by the conflict between Unyielding Spirit and SlashBlade Resharped

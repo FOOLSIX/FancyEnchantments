@@ -12,10 +12,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import javax.lang.model.element.Modifier;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
@@ -41,7 +39,7 @@ public class EnchantmentRegGenerator {
     }
 
     private static void generateRegistration() {
-        TypeSpec.Builder typeSpecBuilder = TypeSpec.classBuilder("EnchantmentReg0")
+        TypeSpec.Builder typeSpecBuilder = TypeSpec.classBuilder("EnchantmentReg")
                 .addModifiers(PUBLIC, FINAL);
 
 
@@ -99,14 +97,14 @@ public class EnchantmentRegGenerator {
 
     }
 
-    private static void generateLang(String name,String fileName){
+    private static void generateLang(String name, String fileName) {
         String filePath = "src/main/resources/assets/fancyenchantments/lang/" + fileName;
         File file = new File(filePath);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         JsonObject rootObject;
-        try (FileReader reader = new FileReader(file)) {
+        try (Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
             rootObject = gson.fromJson(reader, JsonObject.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -121,30 +119,26 @@ public class EnchantmentRegGenerator {
         }
 
         if (!keysSet.contains(checkKey)) {
-
             rootObject.addProperty(checkKey, "");
-
-            try (FileWriter writer = new FileWriter(file)) {
+            try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
                 gson.toJson(rootObject, writer);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
             System.out.println("add " + checkKey + " in " + fileName);
         }
 
         if (!keysSet.contains(descKey)) {
             rootObject.addProperty(descKey, "");
-
-            try (FileWriter writer = new FileWriter(file)) {
+            try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
                 gson.toJson(rootObject, writer);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
             System.out.println("add " + descKey + " in " + fileName);
         }
     }
+
 
     public static void main(String[] args) {
         generateRegistration();
