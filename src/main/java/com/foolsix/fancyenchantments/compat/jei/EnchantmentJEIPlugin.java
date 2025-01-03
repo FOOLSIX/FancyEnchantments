@@ -36,6 +36,9 @@ public class EnchantmentJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration reg) {
         boolean escapePercents = ModList.get().getModContainerById(ModIds.MINECRAFT_ID).orElseThrow().getModInfo().getVersion().getMinorVersion() == 15;
         ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment -> {
+            if (enchantment.getMaxLevel() == 0) {
+                return;
+            }
             String enchantmentKey = enchantment.getDescriptionId();
             StringBuilder description = new StringBuilder();
             String descriptionKey = enchantmentKey + "." + "desc";
