@@ -75,7 +75,7 @@ public class EnchantmentEvents {
             return;
         if (e.getDamageSource().getEntity() instanceof Player player) {
             ((AdvancedLooting) ADVANCED_LOOTING.get()).lootingHandle(e, player);
-            ((GreedySupremeLooting) GREEDY_SUPREME_LOOTING.get()).lootingHandle(e, player);
+            ((GreedSupremeLooting) GREED_SUPREME_LOOTING.get()).lootingHandle(e, player);
         }
     }
 
@@ -133,7 +133,7 @@ public class EnchantmentEvents {
             //add
             ((BubbleShield) BUBBLE_SHIELD.get()).reduceDamage(e);
             //multiply
-            ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
+            ((DuellistsPrerogative) DUELLISTS_PREROGATIVE.get()).hurtSingle(e);
             //Do not modify damage
             ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
         }
