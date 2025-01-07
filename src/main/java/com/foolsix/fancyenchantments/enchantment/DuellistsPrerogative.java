@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.FEINT_ATTACK;
 
-public class DuellistsPrerogative extends FEBaseEnchantment {
+public class DuellistsPrerogative extends FEBaseEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "duellists_prerogative";
     private static final ModConfig.DuellistsPrerogativeOptions CONFIG = FancyEnchantments.getConfig().duellistsPrerogativeOptions;
 
@@ -26,6 +27,16 @@ public class DuellistsPrerogative extends FEBaseEnchantment {
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
         return super.checkCompatibility(pOther) && pOther != FEINT_ATTACK.get();
+    }
+
+    @Override
+    public int getLivingHurtPriority() {
+        return MULTIPLY;
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        hurtSingle(e);
     }
 
     public void hurtSingle(LivingHurtEvent e) {

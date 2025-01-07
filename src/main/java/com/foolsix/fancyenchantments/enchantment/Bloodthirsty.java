@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TwistedEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -13,7 +14,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-public class Bloodthirsty extends TwistedEnchantment {
+public class Bloodthirsty extends TwistedEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "bloodthirsty";
     private static final ModConfig.BloodthirstyOptions CONFIG = FancyEnchantments.getConfig().bloodthirstyOptions;
 
@@ -25,6 +26,11 @@ public class Bloodthirsty extends TwistedEnchantment {
         if (EnchantmentHelper.getEnchantmentLevel(this, e.player) > 0) {
             e.player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 10, 1));
         }
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        gainFoodLevel(e);
     }
 
     public void gainFoodLevel(LivingHurtEvent e) {

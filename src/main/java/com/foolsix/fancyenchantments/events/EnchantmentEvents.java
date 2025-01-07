@@ -197,16 +197,7 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void itemAttributeModifierEvent(ItemAttributeModifierEvent e) {
         if (e.isCanceled() || e.getItemStack() == null) return;
-
-        ((TheFallen) THE_FALLEN.get()).addDamageBonus(e);
-        ((HeavyBlow) HEAVY_BLOW.get()).attackSpeedReduce(e);
-        ((SolidAsARock) SOLID_AS_A_ROCK.get()).addArmor(e);
-        ((Melter) MELTER.get()).attribute(e);
-        ((StackingWaves) STACKING_WAVES.get()).attribute(e);
-        ((ArmorForging) ARMOR_FORGING.get()).modifyArmor(e);
-        ((SharpRock) SHARP_ROCK.get()).attachAttributes(e);
-        ((Sander) SANDER.get()).attribute(e);
-        ((Dexterity) DEXTERITY.get()).addRange(e);
+        itemAttributeModifierEventHandlers.forEach(handler -> handler.handleItemAttributeModifier(e));
     }
 
     @SubscribeEvent
