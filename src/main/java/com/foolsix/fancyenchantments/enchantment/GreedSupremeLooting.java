@@ -13,11 +13,11 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.LootBonusEnchantment;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
 
-public class GreedySupremeLooting extends TwistedEnchantment {
+public class GreedSupremeLooting extends TwistedEnchantment {
     public static final String NAME = "greed_supreme_looting";
     private static final ModConfig.GreedySupremeLootingOptions CONFIG = FancyEnchantments.getConfig().greedySupremeLootingOptions;
 
-    public GreedySupremeLooting() {
+    public GreedSupremeLooting() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 

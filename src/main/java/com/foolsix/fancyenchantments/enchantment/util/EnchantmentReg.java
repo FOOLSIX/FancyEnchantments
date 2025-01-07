@@ -1,95 +1,228 @@
 package com.foolsix.fancyenchantments.enchantment.util;
 
-import com.foolsix.fancyenchantments.enchantment.*;
+import com.foolsix.fancyenchantments.enchantment.AdvancedLooting;
+import com.foolsix.fancyenchantments.enchantment.AdvancedProtection;
+import com.foolsix.fancyenchantments.enchantment.AdvancedSharpness;
+import com.foolsix.fancyenchantments.enchantment.Afterimage;
+import com.foolsix.fancyenchantments.enchantment.AirAttack;
+import com.foolsix.fancyenchantments.enchantment.ArmorForging;
+import com.foolsix.fancyenchantments.enchantment.BlessedWind;
+import com.foolsix.fancyenchantments.enchantment.BloodSacrifice;
+import com.foolsix.fancyenchantments.enchantment.Bloodthirsty;
+import com.foolsix.fancyenchantments.enchantment.BubbleShield;
+import com.foolsix.fancyenchantments.enchantment.Bullying;
+import com.foolsix.fancyenchantments.enchantment.Calmer;
+import com.foolsix.fancyenchantments.enchantment.Charge;
+import com.foolsix.fancyenchantments.enchantment.ConditionOverload;
+import com.foolsix.fancyenchantments.enchantment.Counterattack;
+import com.foolsix.fancyenchantments.enchantment.CrackedCrown;
+import com.foolsix.fancyenchantments.enchantment.Cumbersome;
+import com.foolsix.fancyenchantments.enchantment.CursedGaze;
+import com.foolsix.fancyenchantments.enchantment.DelayedExecution;
+import com.foolsix.fancyenchantments.enchantment.Dexterity;
+import com.foolsix.fancyenchantments.enchantment.Dominion;
+import com.foolsix.fancyenchantments.enchantment.Downwind;
+import com.foolsix.fancyenchantments.enchantment.Drowning;
+import com.foolsix.fancyenchantments.enchantment.DuellistsPrerogative;
+import com.foolsix.fancyenchantments.enchantment.EaterOfSouls;
+import com.foolsix.fancyenchantments.enchantment.Empathy;
+import com.foolsix.fancyenchantments.enchantment.Eroding;
+import com.foolsix.fancyenchantments.enchantment.Eucharist;
+import com.foolsix.fancyenchantments.enchantment.FallingStone;
+import com.foolsix.fancyenchantments.enchantment.FearlessChallenger;
+import com.foolsix.fancyenchantments.enchantment.FeatherFall;
+import com.foolsix.fancyenchantments.enchantment.FeintAttack;
+import com.foolsix.fancyenchantments.enchantment.FireDisaster;
+import com.foolsix.fancyenchantments.enchantment.Floating;
+import com.foolsix.fancyenchantments.enchantment.GiftOfFire;
+import com.foolsix.fancyenchantments.enchantment.GreedSupremeLooting;
+import com.foolsix.fancyenchantments.enchantment.HeavyArrow;
+import com.foolsix.fancyenchantments.enchantment.HeavyBlow;
+import com.foolsix.fancyenchantments.enchantment.Hungry;
+import com.foolsix.fancyenchantments.enchantment.LavaBurst;
+import com.foolsix.fancyenchantments.enchantment.Lightness;
+import com.foolsix.fancyenchantments.enchantment.Melter;
+import com.foolsix.fancyenchantments.enchantment.MountainSupremeProtection;
+import com.foolsix.fancyenchantments.enchantment.Nightmare;
+import com.foolsix.fancyenchantments.enchantment.Nirvana;
+import com.foolsix.fancyenchantments.enchantment.OceanCurrent;
+import com.foolsix.fancyenchantments.enchantment.Overflow;
+import com.foolsix.fancyenchantments.enchantment.PaladinsShield;
+import com.foolsix.fancyenchantments.enchantment.Pervert;
+import com.foolsix.fancyenchantments.enchantment.PureFate;
+import com.foolsix.fancyenchantments.enchantment.Purifying;
+import com.foolsix.fancyenchantments.enchantment.Pyromaniac;
+import com.foolsix.fancyenchantments.enchantment.Recoil;
+import com.foolsix.fancyenchantments.enchantment.Reflecting;
+import com.foolsix.fancyenchantments.enchantment.RollingStone;
+import com.foolsix.fancyenchantments.enchantment.SacredSupremeSharpness;
+import com.foolsix.fancyenchantments.enchantment.Sander;
+import com.foolsix.fancyenchantments.enchantment.SelfImmolation;
+import com.foolsix.fancyenchantments.enchantment.SharpRock;
+import com.foolsix.fancyenchantments.enchantment.SolidAsARock;
+import com.foolsix.fancyenchantments.enchantment.SpreadingSpores;
+import com.foolsix.fancyenchantments.enchantment.StackingWaves;
+import com.foolsix.fancyenchantments.enchantment.StandingWall;
+import com.foolsix.fancyenchantments.enchantment.Streamline;
+import com.foolsix.fancyenchantments.enchantment.TheFallen;
+import com.foolsix.fancyenchantments.enchantment.ThrillingThunder;
+import com.foolsix.fancyenchantments.enchantment.UnyieldingSpirit;
+import com.foolsix.fancyenchantments.enchantment.WindBlade;
+import com.foolsix.fancyenchantments.enchantment.WindFireWheels;
+import java.lang.String;
+import java.util.function.Supplier;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.function.Supplier;
+public final class EnchantmentReg {
+  public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, "fancyenchantments");
 
-import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
+  public static final RegistryObject<Enchantment> ADVANCED_LOOTING = reg("advanced_looting", AdvancedLooting::new);
 
-public class EnchantmentReg {
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS =
-            DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, MODID);
+  public static final RegistryObject<Enchantment> ADVANCED_PROTECTION = reg("advanced_protection", AdvancedProtection::new);
 
-    public static final RegistryObject<Enchantment> LIGHTNESS = reg(Lightness.NAME, Lightness::new);
-    public static final RegistryObject<Enchantment> COUNTERATTACK = reg(Counterattack.NAME, Counterattack::new);
-    public static final RegistryObject<Enchantment> ADVANCED_SHARPNESS = reg(AdvancedSharpness.NAME, AdvancedSharpness::new);
-    public static final RegistryObject<Enchantment> ADVANCED_LOOTING = reg(AdvancedLooting.NAME, AdvancedLooting::new);
-    public static final RegistryObject<Enchantment> HUNGRY = reg(Hungry.NAME, Hungry::new);
-    public static final RegistryObject<Enchantment> REFLECTING = reg(Reflecting.NAME, Reflecting::new);
-    public static final RegistryObject<Enchantment> GIFT_OF_FIRE = reg(GiftOfFire.NAME, GiftOfFire::new);
-    public static final RegistryObject<Enchantment> PYROMANIAC = reg(Pyromaniac.NAME, Pyromaniac::new);
-    public static final RegistryObject<Enchantment> EATER_OF_SOULS = reg(EaterOfSouls.NAME, EaterOfSouls::new);
-    public static final RegistryObject<Enchantment> SOLID_AS_A_ROCK = reg(SolidAsARock.NAME, SolidAsARock::new);
-    public static final RegistryObject<Enchantment> OCEAN_CURRENT = reg(OceanCurrent.NAME, OceanCurrent::new);
-    public static final RegistryObject<Enchantment> OVERFLOW = reg(Overflow.NAME, Overflow::new);
-    public static final RegistryObject<Enchantment> FIRE_DISASTER = reg(FireDisaster.NAME, FireDisaster::new);
-    public static final RegistryObject<Enchantment> THE_FALLEN = reg(TheFallen.NAME, TheFallen::new);
-    public static final RegistryObject<Enchantment> EMPATHY = reg(Empathy.NAME, Empathy::new);
-    public static final RegistryObject<Enchantment> ROLLING_STONE = reg(RollingStone.NAME, RollingStone::new);
-    public static final RegistryObject<Enchantment> BLESSED_WIND = reg(BlessedWind.NAME, BlessedWind::new);
-    public static final RegistryObject<Enchantment> HEAVY_BLOW = reg(HeavyBlow.NAME, HeavyBlow::new);
-    public static final RegistryObject<Enchantment> WIND_BLADE = reg(WindBlade.NAME, WindBlade::new);
-    public static final RegistryObject<Enchantment> FLOATING = reg(Floating.NAME, Floating::new);
-    public static final RegistryObject<Enchantment> CUMBERSOME = reg(Cumbersome.NAME, Cumbersome::new);
-    public static final RegistryObject<Enchantment> BULLYING = reg(Bullying.NAME, Bullying::new);
-    public static final RegistryObject<Enchantment> DOMINION = reg(Dominion.NAME, Dominion::new);
-    public static final RegistryObject<Enchantment> BLOODTHIRSTY = reg(Bloodthirsty.NAME, Bloodthirsty::new);
-    public static final RegistryObject<Enchantment> FALLING_STONE = reg(FallingStone.NAME, FallingStone::new);
-    public static final RegistryObject<Enchantment> FEATHER_FALL = reg(FeatherFall.NAME, FeatherFall::new);
-    public static final RegistryObject<Enchantment> UNYIELDING_SPIRIT = reg(UnyieldingSpirit.NAME, UnyieldingSpirit::new);
-    public static final RegistryObject<Enchantment> CURSED_GAZE = reg(CursedGaze.NAME, CursedGaze::new);
-    public static final RegistryObject<Enchantment> CALMER = reg(Calmer.NAME, Calmer::new);
-    public static final RegistryObject<Enchantment> PURIFYING = reg(Purifying.NAME, Purifying::new);
-    public static final RegistryObject<Enchantment> FEINT_ATTACK = reg(FeintAttack.NAME, FeintAttack::new);
-    public static final RegistryObject<Enchantment> DUELLIST = reg(DuellistsPrerogative.NAME, DuellistsPrerogative::new);
-    public static final RegistryObject<Enchantment> PALADINS_SHIELD = reg(PaladinsShield.NAME, PaladinsShield::new);
-    public static final RegistryObject<Enchantment> EUCHARIST = reg(Eucharist.NAME, Eucharist::new);
-    public static final RegistryObject<Enchantment> MELTER = reg(Melter.NAME, Melter::new);
-    public static final RegistryObject<Enchantment> STACKING_WAVES = reg(StackingWaves.NAME, StackingWaves::new);
-    public static final RegistryObject<Enchantment> CHARGE = reg(Charge.NAME, Charge::new);
-    public static final RegistryObject<Enchantment> LAVA_BURST = reg(LavaBurst.NAME, LavaBurst::new);
-    public static final RegistryObject<Enchantment> ARMOR_FORGING = reg(ArmorForging.NAME, ArmorForging::new);
-    public static final RegistryObject<Enchantment> NIRVANA = reg(Nirvana.NAME, Nirvana::new);
-    public static final RegistryObject<Enchantment> SELF_IMMOLATION = reg(SelfImmolation.NAME, SelfImmolation::new);
-    public static final RegistryObject<Enchantment> BUBBLE_SHIELD = reg(BubbleShield.NAME, BubbleShield::new);
-    public static final RegistryObject<Enchantment> DROWNING = reg(Drowning.NAME, Drowning::new);
-    public static final RegistryObject<Enchantment> PERVERT = reg(Pervert.NAME, Pervert::new);
-    public static final RegistryObject<Enchantment> PURE_FATE = reg(PureFate.NAME, PureFate::new);
-    public static final RegistryObject<Enchantment> BLOOD_SACRIFICE = reg(BloodSacrifice.NAME, BloodSacrifice::new);
-    public static final RegistryObject<Enchantment> SHARP_ROCK = reg(SharpRock.NAME, SharpRock::new);
-    public static final RegistryObject<Enchantment> DELAYED_EXECUTION = reg(DelayedExecution.NAME, DelayedExecution::new);
-    public static final RegistryObject<Enchantment> SACRED_SUPREME_SHARPNESS = reg(SacredSupremeSharpness.NAME, SacredSupremeSharpness::new);
-    public static final RegistryObject<Enchantment> GREEDY_SUPREME_LOOTING = reg(GreedySupremeLooting.NAME, GreedySupremeLooting::new);
-    public static final RegistryObject<Enchantment> WIND_FIRE_WHEELS = reg(WindFireWheels.NAME, WindFireWheels::new);
-    public static final RegistryObject<Enchantment> SPREADING_SPORES = reg(SpreadingSpores.NAME, SpreadingSpores::new);
-    public static final RegistryObject<Enchantment> THRILLING_THUNDER = reg(ThrillingThunder.NAME, ThrillingThunder::new);
-    public static final RegistryObject<Enchantment> RECOIL = reg(Recoil.NAME, Recoil::new);
-    public static final RegistryObject<Enchantment> AIR_ATTACK = reg(AirAttack.NAME, AirAttack::new);
-    public static final RegistryObject<Enchantment> ERODING = reg(Eroding.NAME, Eroding::new);
-    public static final RegistryObject<Enchantment> SANDER = reg(Sander.NAME, Sander::new);
-    public static final RegistryObject<Enchantment> ADVANCED_PROTECTION = reg(AdvancedProtection.NAME, AdvancedProtection::new);
-    public static final RegistryObject<Enchantment> MOUNTAIN_SUPREME_PROTECTION = reg(MountainSupremeProtection.NAME, MountainSupremeProtection::new);
-    public static final RegistryObject<Enchantment> AFTERIMAGE = reg(Afterimage.NAME, Afterimage::new);
-    public static final RegistryObject<Enchantment> STANDING_WALL = reg(StandingWall.NAME, StandingWall::new);
-    public static final RegistryObject<Enchantment> CONDITION_OVERLOAD = reg(ConditionOverload.NAME, ConditionOverload::new);
-    public static final RegistryObject<Enchantment> FEARLESS_CHALLENGER = reg(FearlessChallenger.NAME, FearlessChallenger::new);
-    public static final RegistryObject<Enchantment> STREAMLINE = reg(Streamline.NAME, Streamline::new);
-    public static final RegistryObject<Enchantment> HEAVY_ARROW = reg(HeavyArrow.NAME, HeavyArrow::new);
-    public static final RegistryObject<Enchantment> DOWNWIND = reg(Downwind.NAME, Downwind::new);
-    public static final RegistryObject<Enchantment> NIGHTMARE = reg(Nightmare.NAME, Nightmare::new);
-    public static final RegistryObject<Enchantment> DEXTERITY = reg(Dexterity.NAME, Dexterity::new);
-    public static final RegistryObject<Enchantment> CRACKED_CROWN = reg(CrackedCrown.NAME, CrackedCrown::new);
+  public static final RegistryObject<Enchantment> ADVANCED_SHARPNESS = reg("advanced_sharpness", AdvancedSharpness::new);
 
-    public static void register(IEventBus eventBus) {
-        ENCHANTMENTS.register(eventBus);
-    }
+  public static final RegistryObject<Enchantment> AFTERIMAGE = reg("afterimage", Afterimage::new);
 
-    public static RegistryObject<Enchantment> reg(String name, Supplier<? extends Enchantment> sup) {
-        return ENCHANTMENTS.register(name, sup);
-    }
+  public static final RegistryObject<Enchantment> AIR_ATTACK = reg("air_attack", AirAttack::new);
+
+  public static final RegistryObject<Enchantment> ARMOR_FORGING = reg("armor_forging", ArmorForging::new);
+
+  public static final RegistryObject<Enchantment> BLESSED_WIND = reg("blessed_wind", BlessedWind::new);
+
+  public static final RegistryObject<Enchantment> BLOOD_SACRIFICE = reg("blood_sacrifice", BloodSacrifice::new);
+
+  public static final RegistryObject<Enchantment> BLOODTHIRSTY = reg("bloodthirsty", Bloodthirsty::new);
+
+  public static final RegistryObject<Enchantment> BUBBLE_SHIELD = reg("bubble_shield", BubbleShield::new);
+
+  public static final RegistryObject<Enchantment> BULLYING = reg("bullying", Bullying::new);
+
+  public static final RegistryObject<Enchantment> CALMER = reg("calmer", Calmer::new);
+
+  public static final RegistryObject<Enchantment> CHARGE = reg("charge", Charge::new);
+
+  public static final RegistryObject<Enchantment> CONDITION_OVERLOAD = reg("condition_overload", ConditionOverload::new);
+
+  public static final RegistryObject<Enchantment> COUNTERATTACK = reg("counterattack", Counterattack::new);
+
+  public static final RegistryObject<Enchantment> CRACKED_CROWN = reg("cracked_crown", CrackedCrown::new);
+
+  public static final RegistryObject<Enchantment> CUMBERSOME = reg("cumbersome", Cumbersome::new);
+
+  public static final RegistryObject<Enchantment> CURSED_GAZE = reg("cursed_gaze", CursedGaze::new);
+
+  public static final RegistryObject<Enchantment> DELAYED_EXECUTION = reg("delayed_execution", DelayedExecution::new);
+
+  public static final RegistryObject<Enchantment> DEXTERITY = reg("dexterity", Dexterity::new);
+
+  public static final RegistryObject<Enchantment> DOMINION = reg("dominion", Dominion::new);
+
+  public static final RegistryObject<Enchantment> DOWNWIND = reg("downwind", Downwind::new);
+
+  public static final RegistryObject<Enchantment> DROWNING = reg("drowning", Drowning::new);
+
+  public static final RegistryObject<Enchantment> DUELLISTS_PREROGATIVE = reg("duellists_prerogative", DuellistsPrerogative::new);
+
+  public static final RegistryObject<Enchantment> EATER_OF_SOULS = reg("eater_of_souls", EaterOfSouls::new);
+
+  public static final RegistryObject<Enchantment> EMPATHY = reg("empathy", Empathy::new);
+
+  public static final RegistryObject<Enchantment> ERODING = reg("eroding", Eroding::new);
+
+  public static final RegistryObject<Enchantment> EUCHARIST = reg("eucharist", Eucharist::new);
+
+  public static final RegistryObject<Enchantment> FALLING_STONE = reg("falling_stone", FallingStone::new);
+
+  public static final RegistryObject<Enchantment> FEARLESS_CHALLENGER = reg("fearless_challenger", FearlessChallenger::new);
+
+  public static final RegistryObject<Enchantment> FEATHER_FALL = reg("feather_fall", FeatherFall::new);
+
+  public static final RegistryObject<Enchantment> FEINT_ATTACK = reg("feint_attack", FeintAttack::new);
+
+  public static final RegistryObject<Enchantment> FIRE_DISASTER = reg("fire_disaster", FireDisaster::new);
+
+  public static final RegistryObject<Enchantment> FLOATING = reg("floating", Floating::new);
+
+  public static final RegistryObject<Enchantment> GIFT_OF_FIRE = reg("gift_of_fire", GiftOfFire::new);
+
+  public static final RegistryObject<Enchantment> GREEDY_SUPREME_LOOTING = reg("greedy_supreme_looting", GreedSupremeLooting::new);
+
+  public static final RegistryObject<Enchantment> HEAVY_ARROW = reg("heavy_arrow", HeavyArrow::new);
+
+  public static final RegistryObject<Enchantment> HEAVY_BLOW = reg("heavy_blow", HeavyBlow::new);
+
+  public static final RegistryObject<Enchantment> HUNGRY = reg("hungry", Hungry::new);
+
+  public static final RegistryObject<Enchantment> LAVA_BURST = reg("lava_burst", LavaBurst::new);
+
+  public static final RegistryObject<Enchantment> LIGHTNESS = reg("lightness", Lightness::new);
+
+  public static final RegistryObject<Enchantment> MELTER = reg("melter", Melter::new);
+
+  public static final RegistryObject<Enchantment> MOUNTAIN_SUPREME_PROTECTION = reg("mountain_supreme_protection", MountainSupremeProtection::new);
+
+  public static final RegistryObject<Enchantment> NIGHTMARE = reg("nightmare", Nightmare::new);
+
+  public static final RegistryObject<Enchantment> NIRVANA = reg("nirvana", Nirvana::new);
+
+  public static final RegistryObject<Enchantment> OCEAN_CURRENT = reg("ocean_current", OceanCurrent::new);
+
+  public static final RegistryObject<Enchantment> OVERFLOW = reg("overflow", Overflow::new);
+
+  public static final RegistryObject<Enchantment> PALADINS_SHIELD = reg("paladins_shield", PaladinsShield::new);
+
+  public static final RegistryObject<Enchantment> PERVERT = reg("pervert", Pervert::new);
+
+  public static final RegistryObject<Enchantment> PURE_FATE = reg("pure_fate", PureFate::new);
+
+  public static final RegistryObject<Enchantment> PURIFYING = reg("purifying", Purifying::new);
+
+  public static final RegistryObject<Enchantment> PYROMANIAC = reg("pyromaniac", Pyromaniac::new);
+
+  public static final RegistryObject<Enchantment> RECOIL = reg("recoil", Recoil::new);
+
+  public static final RegistryObject<Enchantment> REFLECTING = reg("reflecting", Reflecting::new);
+
+  public static final RegistryObject<Enchantment> ROLLING_STONE = reg("rolling_stone", RollingStone::new);
+
+  public static final RegistryObject<Enchantment> SACRED_SUPREME_SHARPNESS = reg("sacred_supreme_sharpness", SacredSupremeSharpness::new);
+
+  public static final RegistryObject<Enchantment> SANDER = reg("sander", Sander::new);
+
+  public static final RegistryObject<Enchantment> SELF_IMMOLATION = reg("self_immolation", SelfImmolation::new);
+
+  public static final RegistryObject<Enchantment> SHARP_ROCK = reg("sharp_rock", SharpRock::new);
+
+  public static final RegistryObject<Enchantment> SOLID_AS_A_ROCK = reg("solid_as_a_rock", SolidAsARock::new);
+
+  public static final RegistryObject<Enchantment> SPREADING_SPORES = reg("spreading_spores", SpreadingSpores::new);
+
+  public static final RegistryObject<Enchantment> STACKING_WAVES = reg("stacking_waves", StackingWaves::new);
+
+  public static final RegistryObject<Enchantment> STANDING_WALL = reg("standing_wall", StandingWall::new);
+
+  public static final RegistryObject<Enchantment> STREAMLINE = reg("streamline", Streamline::new);
+
+  public static final RegistryObject<Enchantment> THE_FALLEN = reg("the_fallen", TheFallen::new);
+
+  public static final RegistryObject<Enchantment> THRILLING_THUNDER = reg("thrilling_thunder", ThrillingThunder::new);
+
+  public static final RegistryObject<Enchantment> UNYIELDING_SPIRIT = reg("unyielding_spirit", UnyieldingSpirit::new);
+
+  public static final RegistryObject<Enchantment> WIND_BLADE = reg("wind_blade", WindBlade::new);
+
+  public static final RegistryObject<Enchantment> WIND_FIRE_WHEELS = reg("wind_fire_wheels", WindFireWheels::new);
+
+  public static RegistryObject<Enchantment> reg(String name, Supplier<? extends Enchantment> sup) {
+    return ENCHANTMENTS.register(name, sup);
+  }
+
+  public static void register(IEventBus eventBus) {
+    ENCHANTMENTS.register(eventBus);
+  }
 }

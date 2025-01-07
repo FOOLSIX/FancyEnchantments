@@ -94,7 +94,7 @@ public class EnchantmentEvents {
             return;
         if (e.getDamageSource().getEntity() instanceof Player player) {
             ((AdvancedLooting) ADVANCED_LOOTING.get()).lootingHandle(e, player);
-            ((GreedySupremeLooting) GREEDY_SUPREME_LOOTING.get()).lootingHandle(e, player);
+            ((GreedSupremeLooting) GREEDY_SUPREME_LOOTING.get()).lootingHandle(e, player);
         }
     }
 

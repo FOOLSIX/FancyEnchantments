@@ -22,7 +22,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUELLIST;
+import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUELLISTS_PREROGATIVE;
 
 
 public class FeintAttack extends FEBaseEnchantment implements LivingHurtEventHandler {
@@ -36,7 +36,7 @@ public class FeintAttack extends FEBaseEnchantment implements LivingHurtEventHan
 
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
-        return super.checkCompatibility(pOther) && pOther != Enchantments.SWEEPING_EDGE && pOther != DUELLIST.get();
+        return super.checkCompatibility(pOther) && pOther != Enchantments.SWEEPING_EDGE && pOther != DUELLISTS_PREROGATIVE.get();
     }
 
     @Override
