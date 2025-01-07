@@ -14,7 +14,6 @@ import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class MountainSupremeProtection extends TerraEnchantment {
-    public static final String NAME = "mountain_supreme_protection";
     private static final ModConfig.MountainSupremeProtectionOptions CONFIG = FancyEnchantments.getConfig().mountainSupremeProtectionOptions;
 
     public MountainSupremeProtection() {

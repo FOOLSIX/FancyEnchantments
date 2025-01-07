@@ -18,7 +18,6 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class Purifying extends HolyEnchantment {
     private static final ModConfig.PurifyingOptions CONFIG = FancyEnchantments.getConfig().purifyingOptions;
-    public static final String NAME = "purifying";
 
     public Purifying() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});

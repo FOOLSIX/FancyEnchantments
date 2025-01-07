@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class Overflow extends AquaEnchantment {
-    public static final String NAME = "overflow";
     private static final ModConfig.OverflowOptions CONFIG = FancyEnchantments.getConfig().overflowOptions;
 
     public Overflow() {

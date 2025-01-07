@@ -26,7 +26,6 @@ import net.minecraftforge.event.entity.ProjectileImpactEvent;
 
 
 public class Reflecting extends AerEnchantment {
-    public static final String NAME = "reflecting";
     private static final ModConfig.ReflectingOptions CONFIG = FancyEnchantments.getConfig().reflectingOptions;
 
     public Reflecting() {

@@ -16,7 +16,6 @@ import java.util.UUID;
 
 
 public class TheFallen extends TwistedEnchantment implements ItemAttributeModifierEventHandler {
-    public static final String NAME = "the_fallen";
     private static final ModConfig.TheFallenOptions CONFIG = FancyEnchantments.getConfig().theFallenOptions;
     private static final UUID THE_FALLEN_UUID = UUID.fromString("e216f084-d869-a173-8ff5-dfcbcde99956");
 

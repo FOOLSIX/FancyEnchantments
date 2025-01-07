@@ -26,7 +26,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUEL
 
 public class FeintAttack extends FEBaseEnchantment implements LivingHurtEventHandler {
     private static final ModConfig.FeintAttackOptions CONFIG = FancyEnchantments.getConfig().feintAttackOptions;
-    public static final String NAME = "feint_attack";
 
     public FeintAttack() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});

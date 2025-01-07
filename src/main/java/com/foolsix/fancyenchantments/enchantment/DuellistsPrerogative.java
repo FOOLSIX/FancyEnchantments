@@ -17,7 +17,6 @@ import java.util.List;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.FEINT_ATTACK;
 
 public class DuellistsPrerogative extends FEBaseEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "duellists_prerogative";
     private static final ModConfig.DuellistsPrerogativeOptions CONFIG = FancyEnchantments.getConfig().duellistsPrerogativeOptions;
 
     public DuellistsPrerogative() {

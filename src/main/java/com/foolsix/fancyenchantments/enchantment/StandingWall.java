@@ -19,7 +19,6 @@ import static net.minecraftforge.common.ToolActions.SHIELD_BLOCK;
 ;
 
 public class StandingWall extends TerraEnchantment {
-    public static final String NAME = "standing_wall";
     private static final ModConfig.StandingWallOptions CONFIG = FancyEnchantments.getConfig().standingWallOptions;
 
     public StandingWall() {

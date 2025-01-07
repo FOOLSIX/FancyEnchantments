@@ -12,7 +12,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class AdvancedSharpness extends FEBaseEnchantment {
-    public static final String NAME = "advanced_sharpness";
     private static final ModConfig.AdvancedSharpnessOptions CONFIG = FancyEnchantments.getConfig().advancedSharpnessOptions;
 
     public AdvancedSharpness() {

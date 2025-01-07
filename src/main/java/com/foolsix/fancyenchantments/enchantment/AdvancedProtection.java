@@ -11,7 +11,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 
 public class AdvancedProtection extends FEBaseEnchantment {
-    public static final String NAME = "advanced_protection";
     private static final ModConfig.AdvancedProtectionOptions CONFIG = FancyEnchantments.getConfig().advancedProtectionOptions;
 
     public AdvancedProtection() {

@@ -15,7 +15,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class Pyromaniac extends IgnisEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "pyromaniac";
     private static final ModConfig.PyromaniacOptions CONFIG = FancyEnchantments.getConfig().pyromaniacOptions;
 
     public Pyromaniac() {

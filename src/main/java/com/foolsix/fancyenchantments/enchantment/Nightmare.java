@@ -13,7 +13,6 @@ import net.minecraft.world.level.Explosion;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 
 public class Nightmare extends TwistedEnchantment {
-    public static final String NAME = "nightmare";
     private static final ModConfig.NightmareOptions CONFIG = FancyEnchantments.getConfig().nightmareOptions;
 
     public Nightmare() {

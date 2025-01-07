@@ -11,7 +11,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class BubbleShield extends AquaEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "bubble_shield";
     private static final ModConfig.BubbleShieldOptions CONFIG = FancyEnchantments.getConfig().bubbleShieldOptions;
 
     public BubbleShield() {

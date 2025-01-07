@@ -12,7 +12,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class Eroding extends TerraEnchantment {
-    public static final String NAME = "eroding";
     private static final ModConfig.ErodingOptions CONFIG = FancyEnchantments.getConfig().erodingOptions;
 
     public Eroding() {

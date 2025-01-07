@@ -13,7 +13,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 
 public class SacredSupremeSharpness extends HolyEnchantment {
-    public static final String NAME = "sacred_supreme_sharpness";
     private static final ModConfig.SacredSupremeSharpnessOptions CONFIG = FancyEnchantments.getConfig().sacredSupremeSharpnessOptions;
 
     public SacredSupremeSharpness() {

@@ -12,7 +12,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class ConditionOverload extends FEBaseEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "condition_overload";
     private static final ModConfig.ConditionOverloadOptions CONFIG = FancyEnchantments.getConfig().conditionOverloadOptions;
 
     public ConditionOverload() {

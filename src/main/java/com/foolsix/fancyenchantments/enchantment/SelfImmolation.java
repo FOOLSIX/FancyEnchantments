@@ -9,7 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class SelfImmolation extends IgnisEnchantment {
-    public static final String NAME = "self_immolation";
     private static final ModConfig.SelfImmolationOptions CONFIG = FancyEnchantments.getConfig().selfImmolationOptions;
 
     public SelfImmolation() {

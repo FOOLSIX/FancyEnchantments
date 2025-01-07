@@ -11,7 +11,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class CrackedCrown extends HolyEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "cracked_crown";
     private static final ModConfig.CrackedCrownOptions CONFIG = FancyEnchantments.getConfig().crackedCrownOptions;
 
     public CrackedCrown() {

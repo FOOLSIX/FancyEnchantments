@@ -10,7 +10,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class Downwind extends AerEnchantment {
-    public static final String NAME = "downwind";
     private static final ModConfig.DownwindOptions CONFIG = FancyEnchantments.getConfig().downwindOptions;
 
     public Downwind() {

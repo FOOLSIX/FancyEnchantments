@@ -11,7 +11,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class FearlessChallenger extends HolyEnchantment {
-    public static final String NAME = "fearless_challenger";
     private static final ModConfig.FearlessChallengerOptions CONFIG = FancyEnchantments.getConfig().fearlessChallengerOptions;
 
     public FearlessChallenger() {

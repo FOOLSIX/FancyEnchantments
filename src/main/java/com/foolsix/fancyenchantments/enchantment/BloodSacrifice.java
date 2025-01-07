@@ -12,7 +12,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class BloodSacrifice extends TwistedEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "blood_sacrifice";
     private static final ModConfig.BloodSacrificeOptions CONFIG = FancyEnchantments.getConfig().bloodSacrificeOptions;
 
     public BloodSacrifice() {

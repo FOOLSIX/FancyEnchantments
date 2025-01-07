@@ -16,7 +16,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class SpreadingSpores extends FEBaseEnchantment {
-    public static final String NAME = "spreading_spores";
     private static final ModConfig.SpreadSporesOptions CONFIG = FancyEnchantments.getConfig().spreadSporesOptions;
 
     public SpreadingSpores() {

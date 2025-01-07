@@ -18,7 +18,6 @@ import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.EATER_OF_SOULS;
 
 public class EaterOfSouls extends TwistedEnchantment {
-    public static final String NAME = "eater_of_souls";
     private static final ModConfig.EaterOfSoulsOptions CONFIG = FancyEnchantments.getConfig().eaterOfSoulsOptions;
     private static final String KILL_COUNT = MODID + " eater_of_souls_killcount";
 

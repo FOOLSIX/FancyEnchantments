@@ -12,7 +12,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class Afterimage extends AerEnchantment {
-    public static final String NAME = "afterimage";
     protected static final ModConfig.AfterimageOptions CONFIG = FancyEnchantments.getConfig().afterimageOptions;
 
     public Afterimage() {

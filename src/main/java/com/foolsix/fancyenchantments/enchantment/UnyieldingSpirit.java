@@ -26,7 +26,6 @@ import java.util.List;
 
 
 public class UnyieldingSpirit extends HolyEnchantment {
-    public static final String NAME = "unyielding_spirit";
     private static final ModConfig.UnyieldingSpiritOptions CONFIG = FancyEnchantments.getConfig().unyieldingSpiritOptions;
     private static final DamageSource GIVING_UP = new DamageSource("fancyenchantments.give_up").bypassArmor();
 

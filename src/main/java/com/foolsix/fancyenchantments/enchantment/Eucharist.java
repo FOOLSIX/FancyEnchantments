@@ -14,7 +14,6 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import static com.foolsix.fancyenchantments.effect.EffectReg.TEMPLAR_SHIELD;
 
 public class Eucharist extends HolyEnchantment {
-    public static final String NAME = "eucharist";
     private static final ModConfig.EucharistOptions CONFIG = FancyEnchantments.getConfig().eucharistOptions;
 
     public Eucharist() {

@@ -11,7 +11,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class Drowning extends AquaEnchantment {
-    public static final String NAME = "drowning";
     private static final ModConfig.DrowningOptions CONFIG = FancyEnchantments.getConfig().drowningOptions;
 
     public Drowning() {

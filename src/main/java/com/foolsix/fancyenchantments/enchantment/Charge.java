@@ -14,7 +14,6 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
 public class Charge extends FEBaseEnchantment {
     private static final ModConfig.ChargeOptions CONFIG = FancyEnchantments.getConfig().chargeOptions;
-    public static final String NAME = "charge";
 
     public Charge() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
