@@ -6,6 +6,13 @@
 
 - 元素属性给予的效果不是从1级而是从2级开始
 - 修复了jei信息在禁用附魔后可能不能正确显示的bug
+
+## Note:
+- I have rewritten some of the event code. If there are some differences in values compared to before, it is normal, but unexpected situations may also occur. If there are any problems, please let me know
+
+- 我重写了一部分事件的代码,如果数值和以前相比有一些差异是正常的,但也可能出现意料之外的情况,请向我提issue
+
+
 # 1.1.1
 ## fix:
 - Fixed the crash caused by the conflict between Unyielding Spirit and SlashBlade Resharped

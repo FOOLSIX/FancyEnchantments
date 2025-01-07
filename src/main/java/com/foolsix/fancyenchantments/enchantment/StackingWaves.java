@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AquaEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -16,7 +17,7 @@ import java.util.UUID;
 
 import static com.foolsix.fancyenchantments.effect.EffectReg.ATTACK_SPEED_BOOST;
 
-public class StackingWaves extends AquaEnchantment {
+public class StackingWaves extends AquaEnchantment implements ItemAttributeModifierEventHandler {
     private static final ModConfig.StackingWavesOptions CONFIG = FancyEnchantments.getConfig().stackingWavesOptions;
     private static final UUID ID = UUID.fromString("4c7fc7c6-3b9d-a2e8-1d4a-d6dbc002b55d");
     public static final String NAME = "stacking_waves";
@@ -33,6 +34,11 @@ public class StackingWaves extends AquaEnchantment {
         } else {
             pAttacker.addEffect(new MobEffectInstance(ATTACK_SPEED_BOOST.get(), CONFIG.duration * 20, Math.min(pLevel - 1, instance.getAmplifier() + 1)));
         }
+    }
+
+    @Override
+    public void handleItemAttributeModifier(ItemAttributeModifierEvent e) {
+        attribute(e);
     }
 
     public void attribute(ItemAttributeModifierEvent e) {
