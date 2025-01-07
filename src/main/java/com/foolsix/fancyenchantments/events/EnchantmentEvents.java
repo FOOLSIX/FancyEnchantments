@@ -6,7 +6,6 @@ import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEv
 import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.EntityHitResult;
@@ -126,19 +125,15 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void hurtEvent(LivingHurtEvent e) {
-        if (e.isCanceled() || e.getSource() == null) {
+        if (e.isCanceled() || e.getSource() == null || e.getEntity() == null) {
             return;
         }
 
-        Entity attacker = e.getSource().getEntity();
-        LivingEntity victim = e.getEntity();
-        if (attacker instanceof LivingEntity living && !living.level.isClientSide() && victim != null && !victim.level.isClientSide) {
-            for (var handler : livingHurtEventHandlers) {
-                if (handler.getLivingHurtPriority() > EventHandler.CANCELABLE && e.isCanceled()) {
-                    return;
-                }
-                handler.handleLivingHurtEvent(e);
+        for (var handler : livingHurtEventHandlers) {
+            if (handler.getLivingHurtPriority() > EventHandler.CANCELABLE && e.isCanceled()) {
+                return;
             }
+            handler.handleLivingHurtEvent(e);
         }
 
         ((Downwind) DOWNWIND.get()).attackAndPush(e);
