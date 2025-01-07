@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class PaladinsShield extends HolyEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "paladins_shield";
     private static final ModConfig.PaladinsShieldOptions CONFIG = FancyEnchantments.getConfig().paladinsShieldOptions;
 
     public PaladinsShield() {

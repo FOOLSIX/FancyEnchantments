@@ -12,7 +12,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 
 public class Streamline extends AerEnchantment {
-    public static final String NAME = "streamline";
     private static final ModConfig.StreamlineOptions CONFIG = FancyEnchantments.getConfig().windWingsOptions;
 
     public Streamline() {

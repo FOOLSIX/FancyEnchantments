@@ -19,7 +19,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.List;
 
 public class RollingStone extends TerraEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "rolling_stone";
     private static final ModConfig.RollingStoneOptions CONFIG = FancyEnchantments.getConfig().rollingStoneOptions;
 
     public RollingStone() {

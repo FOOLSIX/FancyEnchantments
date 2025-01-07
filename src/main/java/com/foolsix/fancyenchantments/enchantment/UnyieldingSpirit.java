@@ -25,7 +25,6 @@ import java.util.List;
 
 
 public class UnyieldingSpirit extends HolyEnchantment {
-    public static final String NAME = "unyielding_spirit";
     private static final ModConfig.UnyieldingSpiritOptions CONFIG = FancyEnchantments.getConfig().unyieldingSpiritOptions;
 
     public UnyieldingSpirit() {

@@ -16,7 +16,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class GiftOfFire extends IgnisEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "gift_of_fire";
     private static final ModConfig.GiftOfFireOptions CONFIG = FancyEnchantments.getConfig().giftOfFireOptions;
 
     public GiftOfFire() {

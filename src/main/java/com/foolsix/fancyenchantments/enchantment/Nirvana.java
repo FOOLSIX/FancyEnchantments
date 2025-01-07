@@ -14,7 +14,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.TickEvent;
 
 public class Nirvana extends IgnisEnchantment {
-    public static final String NAME = "nirvana";
     private static final ModConfig.NirvanaOptions CONFIG = FancyEnchantments.getConfig().nirvanaOptions;
 
     public Nirvana() {

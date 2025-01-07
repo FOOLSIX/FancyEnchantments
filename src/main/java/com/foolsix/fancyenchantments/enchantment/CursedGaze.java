@@ -14,7 +14,6 @@ import net.minecraftforge.event.TickEvent;
 
 
 public class CursedGaze extends TwistedEnchantment {
-    public static final String NAME = "cursed_gaze";
     private static final ModConfig.CursedGazeOptions CONFIG = FancyEnchantments.getConfig().cursedGazeOptions;
 
     public CursedGaze() {

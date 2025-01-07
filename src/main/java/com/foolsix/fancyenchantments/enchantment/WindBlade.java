@@ -13,7 +13,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class WindBlade extends AerEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "wind_blade";
     private static final ModConfig.WindBladeOptions CONFIG = FancyEnchantments.getConfig().windBladeOptions;
 
     public WindBlade() {

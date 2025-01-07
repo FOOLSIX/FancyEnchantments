@@ -12,7 +12,6 @@ import net.minecraft.world.item.enchantment.LootBonusEnchantment;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
 
 public class AdvancedLooting extends FEBaseEnchantment {
-    public static final String NAME = "advanced_looting";
     private static final ModConfig.AdvancedLootingOptions CONFIG = FancyEnchantments.getConfig().advancedLootingOptions;
 
     public AdvancedLooting() {

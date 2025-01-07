@@ -15,7 +15,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import org.jetbrains.annotations.NotNull;
 
 public class DelayedExecution extends FEBaseEnchantment {
-    public static final String NAME = "delayed_execution";
     private static final ModConfig.DelayedExecutionOptions CONFIG = FancyEnchantments.getConfig().delayedExecutionOptions;
 
     public DelayedExecution() {

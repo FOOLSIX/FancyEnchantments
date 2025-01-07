@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class Dominion extends FEBaseEnchantment {
-    public static final String NAME = "dominion";
     private static final ModConfig.DominionOptions CONFIG = FancyEnchantments.getConfig().dominionOptions;
 
     public Dominion() {

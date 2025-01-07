@@ -14,7 +14,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 
 public class LavaBurst extends FEBaseEnchantment {
-    public static final String NAME = "lava_burst";
     private static final ModConfig.LavaBurstOptions CONFIG = FancyEnchantments.getConfig().lavaBurstOptions;
 
     public LavaBurst() {

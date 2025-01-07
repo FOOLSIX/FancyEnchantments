@@ -11,7 +11,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class AirAttack extends AerEnchantment implements LivingHurtEventHandler {
-    public static final String NAME = "air_attack";
     private static final ModConfig.AirAttackOptions CONFIG = FancyEnchantments.getConfig().airAttackOptions;
 
     public AirAttack() {

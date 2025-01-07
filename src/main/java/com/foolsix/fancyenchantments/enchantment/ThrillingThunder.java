@@ -14,7 +14,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import static com.foolsix.fancyenchantments.effect.EffectReg.TREMBLING;
 
 public class ThrillingThunder extends FEBaseEnchantment {
-    public static final String NAME = "thrilling_thunder";
     private static final ModConfig.ThrillingThunderOptions CONFIG = FancyEnchantments.getConfig().thrillingThunderOptions;
 
     public ThrillingThunder() {

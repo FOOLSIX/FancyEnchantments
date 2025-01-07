@@ -15,7 +15,6 @@ import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 
 
 public class PureFate extends HolyEnchantment {
-    public static final String NAME = "pure_fate";
     private static final ModConfig.PureFateOptions CONFIG = FancyEnchantments.getConfig().pureFateOptions;
 
     public PureFate() {

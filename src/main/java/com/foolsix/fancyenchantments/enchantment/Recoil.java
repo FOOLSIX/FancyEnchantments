@@ -10,7 +10,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
 public class Recoil extends AerEnchantment {
-    public static final String NAME = "recoil";
     private static final ModConfig.RecoilOptions CONFIG = FancyEnchantments.getConfig().recoilOptions;
 
     public Recoil() {

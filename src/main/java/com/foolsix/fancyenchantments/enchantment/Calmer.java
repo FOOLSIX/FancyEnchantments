@@ -13,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class Calmer extends AquaEnchantment {
-    public static final String NAME = "calmer";
     private static final ModConfig.CalmerOptions CONFIG = FancyEnchantments.getConfig().calmerOptions;
 
     public Calmer() {

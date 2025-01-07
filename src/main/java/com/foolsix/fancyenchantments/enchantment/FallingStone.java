@@ -16,7 +16,6 @@ import net.minecraftforge.event.TickEvent;
 import java.util.List;
 
 public class FallingStone extends TerraEnchantment {
-    public static final String NAME = "falling_stone";
     private static final ModConfig.FallingStoneOptions CONFIG = FancyEnchantments.getConfig().fallingStoneOptions;
 
     public FallingStone() {

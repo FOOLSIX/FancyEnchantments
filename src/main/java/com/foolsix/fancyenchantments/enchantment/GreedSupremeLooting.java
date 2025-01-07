@@ -14,7 +14,6 @@ import net.minecraft.world.item.enchantment.LootBonusEnchantment;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
 
 public class GreedSupremeLooting extends TwistedEnchantment {
-    public static final String NAME = "greed_supreme_looting";
     private static final ModConfig.GreedySupremeLootingOptions CONFIG = FancyEnchantments.getConfig().greedySupremeLootingOptions;
 
     public GreedSupremeLooting() {

@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent;
 
 public class WindFireWheels extends FEBaseEnchantment {
-    public static final String NAME = "wind_fire_wheels";
     private static final ModConfig.WindFireWheelsOptions CONFIG = FancyEnchantments.getConfig().windFireWheelsOptions;
 
     public WindFireWheels() {

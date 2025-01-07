@@ -9,7 +9,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 
 public class Pervert extends FEBaseEnchantment {
-    public static final String NAME = "pervert";
     private static final ModConfig.PervertOptions CONFIG = FancyEnchantments.getConfig().pervertOptions;
 
     public Pervert() {

@@ -406,8 +406,6 @@ public class ModConfig implements ConfigData {
     public static class WindBladeOptions extends BaseOptions {
         @Comment("damage *= 1 + extraSpeedAttributeValue * level * BaseMultiplier")
         public double baseDamageMultiplier = 0.5;
-        @Comment("damage *= 1 - reducer")
-        public double damageReducer = 0.1;
 
         WindBladeOptions() {
             super(3, Rarity.VERY_RARE);

@@ -13,7 +13,6 @@ import net.minecraftforge.event.ItemAttributeModifierEvent;
 import java.util.UUID;
 
 public class Dexterity extends AerEnchantment implements ItemAttributeModifierEventHandler {
-    public static final String NAME = "dexterity";
     private final UUID MODIFIER_UUID = UUID.fromString("540ca84e-feca-ad00-0ee0-0aef44014cec");
     private static final ModConfig.DexterityOptions CONFIG = FancyEnchantments.getConfig().dexterityOptions;
 
