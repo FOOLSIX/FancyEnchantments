@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +22,7 @@ import java.util.UUID;
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 import static net.minecraft.world.entity.LivingEntity.getEquipmentSlotForItem;
 
-public class ArmorForging extends FEBaseEnchantment {
+public class ArmorForging extends FEBaseEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "armor_forging";
     private static final ModConfig.ArmorForgingOptions CONFIG = FancyEnchantments.getConfig().armorForgingOptions;
     private final String TAG_NAME = MODID + ":forging_value";
@@ -40,6 +41,11 @@ public class ArmorForging extends FEBaseEnchantment {
     @Override
     public Component getFullname(int pLevel) {
         return EnchUtils.getMixedColorFullName(super.getFullname(pLevel), EnchUtils.Element.IGNIS, EnchUtils.Element.TERRA);
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        hurtForging(e);
     }
 
     public void hurtForging(LivingHurtEvent e) {

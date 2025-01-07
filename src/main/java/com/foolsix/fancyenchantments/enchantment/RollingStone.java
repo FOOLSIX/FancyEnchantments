@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.server.level.ServerLevel;
@@ -18,7 +19,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
-public class RollingStone extends TerraEnchantment {
+public class RollingStone extends TerraEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "rolling_stone";
     private static final ModConfig.RollingStoneOptions CONFIG = FancyEnchantments.getConfig().rollingStoneOptions;
 
@@ -50,6 +51,16 @@ public class RollingStone extends TerraEnchantment {
                 }
             }
         }
+    }
+
+    @Override
+    public int getLivingHurtPriority() {
+        return MULTIPLY;
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        reduceDamageTakenWhileSprinting(e);
     }
 
     public void reduceDamageTakenWhileSprinting(LivingHurtEvent e) {

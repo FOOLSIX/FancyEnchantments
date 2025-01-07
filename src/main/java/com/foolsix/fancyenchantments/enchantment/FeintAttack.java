@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,7 +24,7 @@ import java.util.List;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUELLISTS_PREROGATIVE;
 
 
-public class FeintAttack extends FEBaseEnchantment {
+public class FeintAttack extends FEBaseEnchantment implements LivingHurtEventHandler {
     private static final ModConfig.FeintAttackOptions CONFIG = FancyEnchantments.getConfig().feintAttackOptions;
     public static final String NAME = "feint_attack";
 
@@ -35,6 +36,16 @@ public class FeintAttack extends FEBaseEnchantment {
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
         return super.checkCompatibility(pOther) && pOther != Enchantments.SWEEPING_EDGE && pOther != DUELLISTS_PREROGATIVE.get();
+    }
+
+    @Override
+    public int getLivingHurtPriority() {
+        return MULTIPLY;
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        attack(e);
     }
 
     public void attack(LivingHurtEvent e) {

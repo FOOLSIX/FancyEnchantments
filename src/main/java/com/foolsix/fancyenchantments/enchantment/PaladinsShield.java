@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.HolyEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -18,7 +19,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.List;
 import java.util.Objects;
 
-public class PaladinsShield extends HolyEnchantment {
+public class PaladinsShield extends HolyEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "paladins_shield";
     private static final ModConfig.PaladinsShieldOptions CONFIG = FancyEnchantments.getConfig().paladinsShieldOptions;
 
@@ -63,6 +64,16 @@ public class PaladinsShield extends HolyEnchantment {
                 e.setAmount(e.getAmount() * (1 - CONFIG.damageTransferRatio));
             }
         }
+    }
+
+    @Override
+    public int getLivingHurtPriority() {
+        return MULTIPLY;
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        reduceDamage(e);
     }
 
     public void reduceDamage(LivingHurtEvent e) {

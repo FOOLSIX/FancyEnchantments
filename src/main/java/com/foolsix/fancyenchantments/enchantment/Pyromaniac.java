@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.IgnisEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +14,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-public class Pyromaniac extends IgnisEnchantment {
+public class Pyromaniac extends IgnisEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "pyromaniac";
     private static final ModConfig.PyromaniacOptions CONFIG = FancyEnchantments.getConfig().pyromaniacOptions;
 
@@ -34,6 +35,16 @@ public class Pyromaniac extends IgnisEnchantment {
     @Override
     protected boolean checkCompatibility(Enchantment pOther) {
         return super.checkCompatibility(pOther) && pOther != Enchantments.BLAST_PROTECTION;
+    }
+
+    @Override
+    public int getLivingHurtPriority() {
+        return CANCELABLE;
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        receiveExplosive(e);
     }
 
     public void receiveExplosive(LivingHurtEvent e) {

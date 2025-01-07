@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AerEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -11,11 +12,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import java.util.UUID;
-
-public class WindBlade extends AerEnchantment {
+public class WindBlade extends AerEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "wind_blade";
-    public static final UUID WIND_BLADE_UUID = UUID.fromString("5daf4e17-1012-411b-bb59-7f50d6d26c66");
     private static final ModConfig.WindBladeOptions CONFIG = FancyEnchantments.getConfig().windBladeOptions;
 
     public WindBlade() {
@@ -25,6 +23,16 @@ public class WindBlade extends AerEnchantment {
     @Override
     public int getMinCost(int pLevel) {
         return 10 + pLevel * 5;
+    }
+
+    @Override
+    public int getLivingHurtPriority() {
+        return MULTIPLY;
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        damageBoost(e);
     }
 
     public void damageBoost(LivingHurtEvent e) {
