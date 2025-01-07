@@ -3,9 +3,11 @@
 ## fix:
 - The effect given by element stats does not start from tier1 but from tier2
 - Fixed a bug where jei information may not display correctly after disabling enchantments
+- Fixed a bug where Condition Overload was determined not by the target but by the attacker
 
 - 元素属性给予的效果不是从1级而是从2级开始
 - 修复了jei信息在禁用附魔后可能不能正确显示的bug
+- 修复了异况超量不是根据目标而是根据攻击者判定的bug
 
 ## Note:
 - I have rewritten some of the event code. If there are some differences in values compared to before, it is normal, but unexpected situations may also occur. If there are any problems, please let me know

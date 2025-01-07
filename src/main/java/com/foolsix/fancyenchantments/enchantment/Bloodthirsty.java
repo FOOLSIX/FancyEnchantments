@@ -29,11 +29,6 @@ public class Bloodthirsty extends TwistedEnchantment implements LivingHurtEventH
     }
 
     @Override
-    public int getLivingHurtPriority() {
-        return MULTIPLY;
-    }
-
-    @Override
     public void handleLivingHurtEvent(LivingHurtEvent e) {
         gainFoodLevel(e);
     }

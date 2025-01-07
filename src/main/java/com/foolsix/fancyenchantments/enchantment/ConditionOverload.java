@@ -20,17 +20,21 @@ public class ConditionOverload extends FEBaseEnchantment implements LivingHurtEv
     }
 
     @Override
+    public int getLivingHurtPriority() {
+        return MULTIPLY;
+    }
+
+    @Override
     public void handleLivingHurtEvent(LivingHurtEvent e) {
         attack(e);
     }
 
     public void attack(LivingHurtEvent e) {
-        if (e.getSource().getEntity() instanceof LivingEntity living) {
-            int level = EnchantmentHelper.getEnchantmentLevel(this, living);
-            if (level > 0) {
-                int debuffCount = (int) living.getActiveEffects().stream().filter(effect -> effect.getEffect().getCategory() == MobEffectCategory.HARMFUL).count();
-                e.setAmount(e.getAmount() * (1 + debuffCount * level * (float) CONFIG.damageMultiplier));
-            }
+        LivingEntity living = e.getEntity();
+        int level = EnchantmentHelper.getEnchantmentLevel(this, living);
+        if (level > 0) {
+            int debuffCount = (int) living.getActiveEffects().stream().filter(effect -> effect.getEffect().getCategory() == MobEffectCategory.HARMFUL).count();
+            e.setAmount(e.getAmount() * (1 + debuffCount * level * (float) CONFIG.damageMultiplier));
         }
     }
 }
