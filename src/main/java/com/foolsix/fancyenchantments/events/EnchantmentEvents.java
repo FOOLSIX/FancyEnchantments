@@ -128,19 +128,15 @@ public class EnchantmentEvents {
 
     @SubscribeEvent
     public void hurtEvent(LivingHurtEvent e) {
-        if (e.isCanceled() || e.getSource() == null) {
+        if (e.isCanceled() || e.getSource() == null || e.getEntity() == null) {
             return;
         }
 
-        Entity attacker = e.getSource().getEntity();
-        LivingEntity victim = e.getEntity();
-        if (attacker instanceof LivingEntity living && !living.level().isClientSide && victim != null && !victim.level().isClientSide) {
-            for (var handler : livingHurtEventHandlers) {
-                if (handler.getLivingHurtPriority() > EventHandler.CANCELABLE && e.isCanceled()) {
-                    return;
-                }
-                handler.handleLivingHurtEvent(e);
+        for (var handler : livingHurtEventHandlers) {
+            if (handler.getLivingHurtPriority() > EventHandler.CANCELABLE && e.isCanceled()) {
+                return;
             }
+            handler.handleLivingHurtEvent(e);
         }
 
         ((Downwind) DOWNWIND.get()).attackAndPush(e);
