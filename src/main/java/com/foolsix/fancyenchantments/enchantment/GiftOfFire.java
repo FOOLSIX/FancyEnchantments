@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.IgnisEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-public class GiftOfFire extends IgnisEnchantment {
+public class GiftOfFire extends IgnisEnchantment implements LivingHurtEventHandler {
     public static final String NAME = "gift_of_fire";
     private static final ModConfig.GiftOfFireOptions CONFIG = FancyEnchantments.getConfig().giftOfFireOptions;
 
@@ -30,6 +31,16 @@ public class GiftOfFire extends IgnisEnchantment {
     @Override
     public int getMaxCost(int pLevel) {
         return getMinCost(pLevel) + 10;
+    }
+
+    @Override
+    public int getLivingHurtPriority() {
+        return ADD;
+    }
+
+    @Override
+    public void handleLivingHurtEvent(LivingHurtEvent e) {
+        doExtraDamage(e);
     }
 
     public void doExtraDamage(LivingHurtEvent e) {

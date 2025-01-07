@@ -1,6 +1,8 @@
 package com.foolsix.fancyenchantments.events;
 
 import com.foolsix.fancyenchantments.enchantment.*;
+import com.foolsix.fancyenchantments.enchantment.handler.EventHandler;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -18,15 +20,30 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.RegistryObject;
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EnchantmentEvents {
+    private static final PriorityQueue<LivingHurtEventHandler> livingHurtEventHandlers = new PriorityQueue<>(Comparator.comparingInt(LivingHurtEventHandler::getLivingHurtPriority));
+
+    @SubscribeEvent
+    public void setUp(ServerStartingEvent e) {
+        ENCHANTMENTS.getEntries().stream().map(RegistryObject::get).forEach(enchantment -> {
+            if (enchantment instanceof LivingHurtEventHandler livingHurtEventHandler) {
+                livingHurtEventHandlers.add(livingHurtEventHandler);
+            }
+        });
+    }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
@@ -110,36 +127,15 @@ public class EnchantmentEvents {
 
         Entity attacker = e.getSource().getEntity();
         LivingEntity victim = e.getEntity();
-        if (attacker instanceof LivingEntity living && !living.level().isClientSide()) {
-            //add
-            ((GiftOfFire) GIFT_OF_FIRE.get()).doExtraDamage(e);
-            ((AirAttack) AIR_ATTACK.get()).attack(e);
-            //multiply
-            ((HeavyBlow) HEAVY_BLOW.get()).criticalHit(e);
-            ((WindBlade) WIND_BLADE.get()).damageBoost(e);
-            ((RollingStone) ROLLING_STONE.get()).reduceDamageTakenWhileSprinting(e);
-            ((FeintAttack) FEINT_ATTACK.get()).attack(e);
-            ((BloodSacrifice) BLOOD_SACRIFICE.get()).attack(e);
-            ((PaladinsShield) PALADINS_SHIELD.get()).reduceDamage(e);
-            ((ConditionOverload) CONDITION_OVERLOAD.get()).attack(e);
-            ((CrackedCrown) CRACKED_CROWN.get()).doMoreDamage(e);
-            //Do not modify damage
-            ((Bloodthirsty) BLOODTHIRSTY.get()).gainFoodLevel(e);
+        if (attacker instanceof LivingEntity living && !living.level().isClientSide && victim != null && !victim.level().isClientSide) {
+            for (var handler : livingHurtEventHandlers) {
+                if (handler.getLivingHurtPriority() > EventHandler.CANCELABLE && e.isCanceled()) {
+                    return;
+                }
+                handler.handleLivingHurtEvent(e);
+            }
         }
 
-        if (victim instanceof LivingEntity && !victim.level().isClientSide) {
-            //below cancel the event
-            ((Pyromaniac) PYROMANIAC.get()).receiveExplosive(e);
-            if(e.isCanceled()) return;
-
-            //add
-            ((BubbleShield) BUBBLE_SHIELD.get()).reduceDamage(e);
-            //multiply
-            ((DuellistsPrerogative) DUELLIST.get()).hurtSingle(e);
-            //Do not modify damage
-            ((ArmorForging) ARMOR_FORGING.get()).hurtForging(e);
-
-        }
         ((Downwind) DOWNWIND.get()).attackAndPush(e);
     }
 
