@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobType;
@@ -17,7 +18,7 @@ import net.minecraftforge.event.TickEvent;
 import java.util.UUID;
 
 
-public class SharpRock extends TerraEnchantment {
+public class SharpRock extends TerraEnchantment implements ItemAttributeModifierEventHandler {
     public static final String NAME = "sharp_rock";
     private static final ModConfig.SharpRockOptions CONFIG = FancyEnchantments.getConfig().sharpRockOptions;
     private final String ARMOR_TAG = NAME + "_armor";
@@ -49,6 +50,12 @@ public class SharpRock extends TerraEnchantment {
     @Override
     public float getDamageBonus(int level, MobType mobType, ItemStack enchantedItem) {
         return (float) (enchantedItem.getOrCreateTag().getDouble(ARMOR_TAG) * level * CONFIG.damageMultiplierForOthers);
+    }
+
+
+    @Override
+    public void handleItemAttributeModifier(ItemAttributeModifierEvent e) {
+        attachAttributes(e);
     }
 
     public void attachAttributes(ItemAttributeModifierEvent e) {

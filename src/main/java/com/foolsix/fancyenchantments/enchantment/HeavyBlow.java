@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
 import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
@@ -21,7 +22,7 @@ import java.util.UUID;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.MOD_NAME_PREFIX;
 
 
-public class HeavyBlow extends TerraEnchantment implements LivingHurtEventHandler {
+public class HeavyBlow extends TerraEnchantment implements LivingHurtEventHandler, ItemAttributeModifierEventHandler {
     public static final String NAME = "heavy_blow";
     public static final UUID HEAVY_BLOW_UUID = UUID.fromString("939ddda2-45df-4946-9ab6-82ffb11ede86");
     private static final ModConfig.HeavyBlowOptions CONFIG = FancyEnchantments.getConfig().heavyBlowOptions;
@@ -61,6 +62,11 @@ public class HeavyBlow extends TerraEnchantment implements LivingHurtEventHandle
                 }
             }
         }
+    }
+
+    @Override
+    public void handleItemAttributeModifier(ItemAttributeModifierEvent e) {
+        attackSpeedReduce(e);
     }
 
     public void attackSpeedReduce(ItemAttributeModifierEvent e) {

@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.events;
 
 import com.foolsix.fancyenchantments.enchantment.*;
 import com.foolsix.fancyenchantments.enchantment.handler.EventHandler;
+import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
 import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -26,7 +27,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
@@ -35,12 +38,16 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EnchantmentEvents {
     private static final PriorityQueue<LivingHurtEventHandler> livingHurtEventHandlers = new PriorityQueue<>(Comparator.comparingInt(LivingHurtEventHandler::getLivingHurtPriority));
+    private static final List<ItemAttributeModifierEventHandler> itemAttributeModifierEventHandlers = new ArrayList<>();
 
     @SubscribeEvent
     public void setUp(ServerStartingEvent e) {
         ENCHANTMENTS.getEntries().stream().map(RegistryObject::get).forEach(enchantment -> {
-            if (enchantment instanceof LivingHurtEventHandler livingHurtEventHandler) {
-                livingHurtEventHandlers.add(livingHurtEventHandler);
+            if (enchantment instanceof LivingHurtEventHandler handler) {
+                livingHurtEventHandlers.add(handler);
+            }
+            if (enchantment instanceof ItemAttributeModifierEventHandler handler) {
+                itemAttributeModifierEventHandlers.add(handler);
             }
         });
     }

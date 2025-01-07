@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TwistedEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -14,13 +15,18 @@ import net.minecraftforge.event.ItemAttributeModifierEvent;
 import java.util.UUID;
 
 
-public class TheFallen extends TwistedEnchantment {
+public class TheFallen extends TwistedEnchantment implements ItemAttributeModifierEventHandler {
     public static final String NAME = "the_fallen";
     private static final ModConfig.TheFallenOptions CONFIG = FancyEnchantments.getConfig().theFallenOptions;
     private static final UUID THE_FALLEN_UUID = UUID.fromString("e216f084-d869-a173-8ff5-dfcbcde99956");
 
     public TheFallen() {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    }
+
+    @Override
+    public void handleItemAttributeModifier(ItemAttributeModifierEvent e) {
+        addDamageBonus(e);
     }
 
     public void addDamageBonus(ItemAttributeModifierEvent e) {

@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TerraEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 import static net.minecraftforge.common.ToolActions.SHIELD_BLOCK;
 
-public class SolidAsARock extends TerraEnchantment {
+public class SolidAsARock extends TerraEnchantment implements ItemAttributeModifierEventHandler {
     public static final String NAME = "solid_as_a_rock";
     public static final UUID SOLID_AS_A_ROCK_UUID = UUID.fromString("95a86f29-19c7-4b4f-8c6b-77747f10019b");
     private static final ModConfig.SolidAsARockOptions CONFIG = FancyEnchantments.getConfig().solidAsARockOptions;
@@ -32,6 +33,11 @@ public class SolidAsARock extends TerraEnchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.canPerformAction(SHIELD_BLOCK);
+    }
+
+    @Override
+    public void handleItemAttributeModifier(ItemAttributeModifierEvent e) {
+        addArmor(e);
     }
 
     public void addArmor(ItemAttributeModifierEvent e) {
