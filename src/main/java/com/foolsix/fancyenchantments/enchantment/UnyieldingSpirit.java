@@ -10,6 +10,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -71,8 +72,8 @@ public class UnyieldingSpirit extends HolyEnchantment {
                 player.setHealth(player.getMaxHealth());
                 EnchUtils.generateSimpleParticleAroundEntity(player, ParticleTypes.TOTEM_OF_UNDYING, 100, 1.0, 1.0, 1.0, 0.5);
                 player.clearFire();
-                List<MobEffectInstance> effectInstances = player.getActiveEffects().stream().filter(effect -> effect.getEffect().getCategory() == MobEffectCategory.HARMFUL).toList();
-                effectInstances.forEach(effectInstance -> player.removeEffect(effectInstance.getEffect()));
+                List<MobEffect> effectInstances = player.getActiveEffects().stream().map(MobEffectInstance::getEffect).filter(effect -> effect.getCategory() == MobEffectCategory.HARMFUL).toList();
+                effectInstances.forEach(player::removeEffect);
                 player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 3.0F, 1.0F);
             }
         }

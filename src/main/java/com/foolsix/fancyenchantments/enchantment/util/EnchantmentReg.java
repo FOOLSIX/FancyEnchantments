@@ -1,84 +1,20 @@
 package com.foolsix.fancyenchantments.enchantment.util;
 
-import com.foolsix.fancyenchantments.enchantment.AdvancedLooting;
-import com.foolsix.fancyenchantments.enchantment.AdvancedProtection;
-import com.foolsix.fancyenchantments.enchantment.AdvancedSharpness;
-import com.foolsix.fancyenchantments.enchantment.Afterimage;
-import com.foolsix.fancyenchantments.enchantment.AirAttack;
-import com.foolsix.fancyenchantments.enchantment.ArmorForging;
-import com.foolsix.fancyenchantments.enchantment.BlessedWind;
-import com.foolsix.fancyenchantments.enchantment.BloodSacrifice;
-import com.foolsix.fancyenchantments.enchantment.Bloodthirsty;
-import com.foolsix.fancyenchantments.enchantment.BubbleShield;
-import com.foolsix.fancyenchantments.enchantment.Bullying;
-import com.foolsix.fancyenchantments.enchantment.Calmer;
-import com.foolsix.fancyenchantments.enchantment.Charge;
-import com.foolsix.fancyenchantments.enchantment.ConditionOverload;
-import com.foolsix.fancyenchantments.enchantment.Counterattack;
-import com.foolsix.fancyenchantments.enchantment.CrackedCrown;
-import com.foolsix.fancyenchantments.enchantment.Cumbersome;
-import com.foolsix.fancyenchantments.enchantment.CursedGaze;
-import com.foolsix.fancyenchantments.enchantment.DelayedExecution;
-import com.foolsix.fancyenchantments.enchantment.Dexterity;
-import com.foolsix.fancyenchantments.enchantment.Dominion;
-import com.foolsix.fancyenchantments.enchantment.Downwind;
-import com.foolsix.fancyenchantments.enchantment.Drowning;
-import com.foolsix.fancyenchantments.enchantment.DuellistsPrerogative;
-import com.foolsix.fancyenchantments.enchantment.EaterOfSouls;
-import com.foolsix.fancyenchantments.enchantment.Empathy;
-import com.foolsix.fancyenchantments.enchantment.Eroding;
-import com.foolsix.fancyenchantments.enchantment.Eucharist;
-import com.foolsix.fancyenchantments.enchantment.FallingStone;
-import com.foolsix.fancyenchantments.enchantment.FearlessChallenger;
-import com.foolsix.fancyenchantments.enchantment.FeatherFall;
-import com.foolsix.fancyenchantments.enchantment.FeintAttack;
-import com.foolsix.fancyenchantments.enchantment.FireDisaster;
-import com.foolsix.fancyenchantments.enchantment.Floating;
-import com.foolsix.fancyenchantments.enchantment.GiftOfFire;
-import com.foolsix.fancyenchantments.enchantment.GreedSupremeLooting;
-import com.foolsix.fancyenchantments.enchantment.HeavyArrow;
-import com.foolsix.fancyenchantments.enchantment.HeavyBlow;
-import com.foolsix.fancyenchantments.enchantment.Hungry;
-import com.foolsix.fancyenchantments.enchantment.LavaBurst;
-import com.foolsix.fancyenchantments.enchantment.Lightness;
-import com.foolsix.fancyenchantments.enchantment.Melter;
-import com.foolsix.fancyenchantments.enchantment.MountainSupremeProtection;
-import com.foolsix.fancyenchantments.enchantment.Nightmare;
-import com.foolsix.fancyenchantments.enchantment.Nirvana;
-import com.foolsix.fancyenchantments.enchantment.OceanCurrent;
-import com.foolsix.fancyenchantments.enchantment.Overflow;
-import com.foolsix.fancyenchantments.enchantment.PaladinsShield;
-import com.foolsix.fancyenchantments.enchantment.Pervert;
-import com.foolsix.fancyenchantments.enchantment.PureFate;
-import com.foolsix.fancyenchantments.enchantment.Purifying;
-import com.foolsix.fancyenchantments.enchantment.Pyromaniac;
-import com.foolsix.fancyenchantments.enchantment.Recoil;
-import com.foolsix.fancyenchantments.enchantment.Reflecting;
-import com.foolsix.fancyenchantments.enchantment.RollingStone;
-import com.foolsix.fancyenchantments.enchantment.SacredSupremeSharpness;
-import com.foolsix.fancyenchantments.enchantment.Sander;
-import com.foolsix.fancyenchantments.enchantment.SelfImmolation;
-import com.foolsix.fancyenchantments.enchantment.SharpRock;
-import com.foolsix.fancyenchantments.enchantment.SolidAsARock;
-import com.foolsix.fancyenchantments.enchantment.SpreadingSpores;
-import com.foolsix.fancyenchantments.enchantment.StackingWaves;
-import com.foolsix.fancyenchantments.enchantment.StandingWall;
-import com.foolsix.fancyenchantments.enchantment.Streamline;
-import com.foolsix.fancyenchantments.enchantment.TheFallen;
-import com.foolsix.fancyenchantments.enchantment.ThrillingThunder;
-import com.foolsix.fancyenchantments.enchantment.UnyieldingSpirit;
-import com.foolsix.fancyenchantments.enchantment.WindBlade;
-import com.foolsix.fancyenchantments.enchantment.WindFireWheels;
-import java.lang.String;
-import java.util.function.Supplier;
+import com.foolsix.fancyenchantments.enchantment.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 public final class EnchantmentReg {
   public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, "fancyenchantments");
+
+  public static final RegistryObject<Enchantment> ADVANCED_FIRE_ASPECT = reg("advanced_fire_aspect", AdvancedFireAspect::new);
+
+  public static final RegistryObject<Enchantment> ADVANCED_FLAME = reg("advanced_flame", AdvancedFlame::new);
 
   public static final RegistryObject<Enchantment> ADVANCED_LOOTING = reg("advanced_looting", AdvancedLooting::new);
 
@@ -150,7 +86,7 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> GIFT_OF_FIRE = reg("gift_of_fire", GiftOfFire::new);
 
-  public static final RegistryObject<Enchantment> GREEDY_SUPREME_LOOTING = reg("greedy_supreme_looting", GreedSupremeLooting::new);
+  public static final RegistryObject<Enchantment> GREED_SUPREME_LOOTING = reg("greed_supreme_looting", GreedSupremeLooting::new);
 
   public static final RegistryObject<Enchantment> HEAVY_ARROW = reg("heavy_arrow", HeavyArrow::new);
 
@@ -180,6 +116,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> PURE_FATE = reg("pure_fate", PureFate::new);
 
+  public static final RegistryObject<Enchantment> PURIFICATION_SLASH = reg("purification_slash", PurificationSlash::new);
+
   public static final RegistryObject<Enchantment> PURIFYING = reg("purifying", Purifying::new);
 
   public static final RegistryObject<Enchantment> PYROMANIAC = reg("pyromaniac", Pyromaniac::new);
@@ -197,6 +135,8 @@ public final class EnchantmentReg {
   public static final RegistryObject<Enchantment> SELF_IMMOLATION = reg("self_immolation", SelfImmolation::new);
 
   public static final RegistryObject<Enchantment> SHARP_ROCK = reg("sharp_rock", SharpRock::new);
+
+  public static final RegistryObject<Enchantment> SIGHS_OF_ASHES = reg("sighs_of_ashes", SighsOfAshes::new);
 
   public static final RegistryObject<Enchantment> SOLID_AS_A_ROCK = reg("solid_as_a_rock", SolidAsARock::new);
 

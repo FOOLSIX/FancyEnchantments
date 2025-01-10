@@ -101,7 +101,7 @@ public class EnchantmentEvents {
             return;
         if (e.getDamageSource().getEntity() instanceof Player player) {
             ((AdvancedLooting) ADVANCED_LOOTING.get()).lootingHandle(e, player);
-            ((GreedSupremeLooting) GREEDY_SUPREME_LOOTING.get()).lootingHandle(e, player);
+            ((GreedSupremeLooting) GREED_SUPREME_LOOTING.get()).lootingHandle(e, player);
         }
     }
 
@@ -116,6 +116,7 @@ public class EnchantmentEvents {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
         }
         ((HeavyArrow) HEAVY_ARROW.get()).arrowImpact(e);
+        ((AdvancedFlame) ADVANCED_FLAME.get()).arrowImpact(e);
     }
 
     @SubscribeEvent
@@ -191,6 +192,7 @@ public class EnchantmentEvents {
     public void ArrowJoin(EntityJoinLevelEvent e) {
         ((Streamline) STREAMLINE.get()).speedBoost(e);
         ((HeavyArrow) HEAVY_ARROW.get()).enhanceArrow(e);
+        ((AdvancedFlame) ADVANCED_FLAME.get()).enhanceArrow(e);
     }
 
 

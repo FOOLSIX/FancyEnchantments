@@ -166,14 +166,29 @@ public class ModConfig implements ConfigData {
     public final DexterityOptions dexterityOptions = new DexterityOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final CrackedCrownOptions crackedCrownOptions = new CrackedCrownOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final PurificationSlashOptions purificationSlashOptions = new PurificationSlashOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final SighsOfAshesOptions sighsOfAshesOptions = new SighsOfAshesOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final AdvancedFireAspectOptions advancedFireAspectOptions = new AdvancedFireAspectOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final AdvancedFlameOptions advancedFlameOptions = new AdvancedFlameOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
-        public int ignisLevelToGetFireResistance = 8;
-        @Comment("Can amplify the effect")
+        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
+        public int maxAerEffectLevel = 6;
+        public int ignisLevelToGetFireResistance = 10;
+        public int ignisLevelToGetStrength = 4;
+        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
+        public int maxIgnisEffectLevel = 6;
         public int aquaLevelToGetRegeneration = 6;
-        @Comment("Can amplify the effect")
+        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
+        public int maxAquaEffectLevel = 6;
         public int terraLevelToGetResistance = 9;
+        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
+        public int maxTerraEffectLevel = 4;
         @Comment("actually twisted level - holy level")
         public int twistedLevelToGetDebuff = 10;
         @Comment("The probability of getting a debuff per second")
@@ -950,6 +965,38 @@ public class ModConfig implements ConfigData {
         public double takenDamageMultiplier = 0.3;
         CrackedCrownOptions() {
             super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class PurificationSlashOptions extends BaseOptions {
+        public double damageMultiplier = 0.01;
+
+        PurificationSlashOptions() {
+            super(1, Rarity.RARE);
+        }
+    }
+
+    public static class SighsOfAshesOptions extends LootEnchantmentOptions {
+        public double damagePerSecond = 0.2;
+
+        SighsOfAshesOptions() {
+            super(1, Rarity.VERY_RARE, 0.1);
+        }
+    }
+
+    public static class AdvancedFireAspectOptions extends BaseOptions {
+        public int increasedSecondPerHit = 8;
+
+        AdvancedFireAspectOptions() {
+            super(2, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class AdvancedFlameOptions extends BaseOptions {
+        public int increasedSecondPerHit = 8;
+
+        AdvancedFlameOptions() {
+            super(1, Rarity.VERY_RARE);
         }
     }
 }
