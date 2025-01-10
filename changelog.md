@@ -1,9 +1,25 @@
 # 1.2.0
+## add:
+- Purification Slash:Significantly reduce damage to players and pets, and remove their negative effects after attacking
+- Sighs of Ashes:Increase damage based on remaining burning time
+- Advanced Fire Aspect:Increase target burning time when hit
+- Advanced Flame:Increase target burning time when hit
+
+
+- 净化斩:大幅减少对玩家和宠物的伤害,攻击后移除其负面效果
+- 余烬之叹息:根据剩余燃烧时间增加伤害
+- 高级火焰附加:击中时增加目标燃烧时间
+- 高级火矢:击中时增加目标燃烧时间
+
+## change:
+- 现在Ignis元素属性还会给予力量效果
+- 现在可以配置元素属性给予效果的最高等级
 
 ## fix:
 - The effect given by element stats does not start from tier1 but from tier2
 - Fixed a bug where jei information may not display correctly after disabling enchantments
 - Fixed a bug where Condition Overload was determined not by the target but by the attacker
+
 
 - 元素属性给予的效果不是从1级而是从2级开始
 - 修复了jei信息在禁用附魔后可能不能正确显示的bug

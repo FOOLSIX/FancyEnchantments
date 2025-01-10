@@ -12,6 +12,10 @@ import java.util.function.Supplier;
 public final class EnchantmentReg {
   public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, "fancyenchantments");
 
+  public static final RegistryObject<Enchantment> ADVANCED_FIRE_ASPECT = reg("advanced_fire_aspect", AdvancedFireAspect::new);
+
+  public static final RegistryObject<Enchantment> ADVANCED_FLAME = reg("advanced_flame", AdvancedFlame::new);
+
   public static final RegistryObject<Enchantment> ADVANCED_LOOTING = reg("advanced_looting", AdvancedLooting::new);
 
   public static final RegistryObject<Enchantment> ADVANCED_PROTECTION = reg("advanced_protection", AdvancedProtection::new);
@@ -112,6 +116,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> PURE_FATE = reg("pure_fate", PureFate::new);
 
+  public static final RegistryObject<Enchantment> PURIFICATION_SLASH = reg("purification_slash", PurificationSlash::new);
+
   public static final RegistryObject<Enchantment> PURIFYING = reg("purifying", Purifying::new);
 
   public static final RegistryObject<Enchantment> PYROMANIAC = reg("pyromaniac", Pyromaniac::new);
@@ -129,6 +135,8 @@ public final class EnchantmentReg {
   public static final RegistryObject<Enchantment> SELF_IMMOLATION = reg("self_immolation", SelfImmolation::new);
 
   public static final RegistryObject<Enchantment> SHARP_ROCK = reg("sharp_rock", SharpRock::new);
+
+  public static final RegistryObject<Enchantment> SIGHS_OF_ASHES = reg("sighs_of_ashes", SighsOfAshes::new);
 
   public static final RegistryObject<Enchantment> SOLID_AS_A_ROCK = reg("solid_as_a_rock", SolidAsARock::new);
 

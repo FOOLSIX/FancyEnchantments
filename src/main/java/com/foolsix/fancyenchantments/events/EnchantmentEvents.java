@@ -113,6 +113,7 @@ public class EnchantmentEvents {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
         }
         ((HeavyArrow) HEAVY_ARROW.get()).arrowImpact(e);
+        ((AdvancedFlame) ADVANCED_FLAME.get()).arrowImpact(e);
     }
 
     @SubscribeEvent
@@ -187,6 +188,7 @@ public class EnchantmentEvents {
     public void ArrowJoin(EntityJoinLevelEvent e) {
         ((Streamline) STREAMLINE.get()).speedBoost(e);
         ((HeavyArrow) HEAVY_ARROW.get()).enhanceArrow(e);
+        ((AdvancedFlame) ADVANCED_FLAME.get()).enhanceArrow(e);
     }
 
     @SubscribeEvent
