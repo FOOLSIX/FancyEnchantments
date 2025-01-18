@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.HolyEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingDeathEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.particles.ParticleTypes;
@@ -16,7 +17,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
-public class Purifying extends HolyEnchantment {
+public class Purifying extends HolyEnchantment implements LivingDeathEventHandler {
     private static final ModConfig.PurifyingOptions CONFIG = FancyEnchantments.getConfig().purifyingOptions;
 
     public Purifying() {
@@ -44,6 +45,10 @@ public class Purifying extends HolyEnchantment {
         return 0;
     }
 
+    @Override
+    public void handleLivingDeathEvent(LivingDeathEvent e) {
+        purify(e);
+    }
 
     public void purify(LivingDeathEvent e) {
         if (e.getSource().getEntity() instanceof ServerPlayer player

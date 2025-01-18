@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.AquaEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingDeathEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -12,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
-public class Overflow extends AquaEnchantment {
+public class Overflow extends AquaEnchantment implements LivingDeathEventHandler {
     private static final ModConfig.OverflowOptions CONFIG = FancyEnchantments.getConfig().overflowOptions;
 
     public Overflow() {
@@ -24,6 +25,10 @@ public class Overflow extends AquaEnchantment {
         return true;
     }
 
+    @Override
+    public void handleLivingDeathEvent(LivingDeathEvent e) {
+        generateWater(e);
+    }
 
     public void generateWater(LivingDeathEvent e) {
         LivingEntity victim = e.getEntity();

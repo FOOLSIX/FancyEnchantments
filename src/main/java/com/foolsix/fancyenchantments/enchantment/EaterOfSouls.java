@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.TwistedEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingDeathEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -17,7 +18,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.EATER_OF_SOULS;
 
-public class EaterOfSouls extends TwistedEnchantment {
+public class EaterOfSouls extends TwistedEnchantment implements LivingDeathEventHandler {
     private static final ModConfig.EaterOfSoulsOptions CONFIG = FancyEnchantments.getConfig().eaterOfSoulsOptions;
     private static final String KILL_COUNT = MODID + " eater_of_souls_killcount";
 
@@ -25,7 +26,12 @@ public class EaterOfSouls extends TwistedEnchantment {
         super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
-    public void killcount(LivingDeathEvent e) {
+    @Override
+    public void handleLivingDeathEvent(LivingDeathEvent e) {
+        killCount(e);
+    }
+
+    public void killCount(LivingDeathEvent e) {
         if (e.getSource().getEntity() instanceof Player player) {
             ItemStack tool = player.getMainHandItem();
             //On main hand to get kill count

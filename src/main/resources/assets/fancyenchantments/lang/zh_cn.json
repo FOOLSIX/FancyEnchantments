@@ -160,5 +160,13 @@
   "enchantment.fancyenchantments.advanced_fire_aspect": "高级火焰附加",
   "enchantment.fancyenchantments.advanced_fire_aspect.desc": "击中时增加目标燃烧时间",
   "enchantment.fancyenchantments.advanced_flame": "高级火矢",
-  "enchantment.fancyenchantments.advanced_flame.desc": "击中时增加目标燃烧时间"
+  "enchantment.fancyenchantments.advanced_flame.desc": "击中时增加目标燃烧时间",
+  "enchantment.fancyenchantments.frozen_heart": "冰封之心",
+  "enchantment.fancyenchantments.frozen_heart.desc": "受击时对攻击者施加缓慢",
+  "enchantment.fancyenchantments.icy_burst": "冰爆",
+  "enchantment.fancyenchantments.icy_burst.desc": "拥有缓慢的目标死亡时释放冰爆,造成伤害和缓慢效果",
+  "enchantment.fancyenchantments.multiple_shot": "万箭",
+  "enchantment.fancyenchantments.multiple_shot.desc": "散射出额外箭矢",
+  "enchantment.fancyenchantments.blood_feed": "饮血",
+  "enchantment.fancyenchantments.blood_feed.desc": "杀敌后武器概率获得提高最大生命值的属性"
 }

@@ -160,5 +160,13 @@
   "enchantment.fancyenchantments.advanced_fire_aspect": "Advanced Fire Aspect",
   "enchantment.fancyenchantments.advanced_fire_aspect.desc": "Increase target burning time when hit",
   "enchantment.fancyenchantments.advanced_flame": "Advanced Flame",
-  "enchantment.fancyenchantments.advanced_flame.desc": "Increase target burning time when hit"
+  "enchantment.fancyenchantments.advanced_flame.desc": "Increase target burning time when hit",
+  "enchantment.fancyenchantments.frozen_heart": "Frozen Heart",
+  "enchantment.fancyenchantments.frozen_heart.desc": "Apply slowness to the attacker when attacked",
+  "enchantment.fancyenchantments.icy_burst": "Icy Burst",
+  "enchantment.fancyenchantments.icy_burst.desc": "Release icy burst upon slow target death, causing damage and slowness effects",
+  "enchantment.fancyenchantments.multiple_shot": "Multiple Shot",
+  "enchantment.fancyenchantments.multiple_shot.desc": "Shoot additional arrows",
+  "enchantment.fancyenchantments.blood_feed": "Blood Feed",
+  "enchantment.fancyenchantments.blood_feed.desc": "Have a probability of increasing maximum health attribute after killing"
 }

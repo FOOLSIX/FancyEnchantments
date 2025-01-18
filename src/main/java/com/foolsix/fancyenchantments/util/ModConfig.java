@@ -174,6 +174,14 @@ public class ModConfig implements ConfigData {
     public final AdvancedFireAspectOptions advancedFireAspectOptions = new AdvancedFireAspectOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final AdvancedFlameOptions advancedFlameOptions = new AdvancedFlameOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final FrozenHeartOptions frozenHeartOptions = new FrozenHeartOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final IcyBurstOptions icyBurstOptions = new IcyBurstOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final MultipleShotOptions multipleShotOptions = new MultipleShotOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BloodFeedOptions bloodFeedOptions = new BloodFeedOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -997,6 +1005,40 @@ public class ModConfig implements ConfigData {
 
         AdvancedFlameOptions() {
             super(1, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class FrozenHeartOptions extends BaseOptions {
+        public int duration = 5;
+        FrozenHeartOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class IcyBurstOptions extends BaseOptions {
+        @Comment("damage = target'sMaxHealth * multiplier * level")
+        public double damageMultiplier = 0.15;
+        public int durationPerLevel = 3;
+        IcyBurstOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class MultipleShotOptions extends BaseOptions {
+        MultipleShotOptions() {
+            super(3, Rarity.VERY_RARE);
+            isTreasure = true;
+        }
+    }
+
+    public static class BloodFeedOptions extends LootEnchantmentOptions {
+        public double probabilityPerLevel = 0.03;
+        public int CapPerLevel = 10;
+
+        BloodFeedOptions() {
+            super(3, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.TWISTED.ordinal()] = 5;
+            elementalCondition[Element.AQUA.ordinal()] = 5;
         }
     }
 }

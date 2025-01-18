@@ -4,14 +4,23 @@
 - Sighs of Ashes:Increase damage based on remaining burning time
 - Advanced Fire Aspect:Increase target burning time when hit
 - Advanced Flame:Increase target burning time when hit
-
+- Frozen Heart:Apply slowness to the attacker when attacked
+- Multiple Shot:Shoot additional arrows
+- Blood Feed:Have a probability of increasing maximum health attribute after killing
 
 - 净化斩:大幅减少对玩家和宠物的伤害,攻击后移除其负面效果
 - 余烬之叹息:根据剩余燃烧时间增加伤害
 - 高级火焰附加:击中时增加目标燃烧时间
 - 高级火矢:击中时增加目标燃烧时间
-
+- 冰封之心:受击时对攻击者施加缓慢
+- 冰爆:拥有缓慢的目标死亡时释放冰爆,造成伤害和缓慢效果
+- 万箭:散射出额外箭矢
+- 饮血:杀敌后武器概率获得提高最大生命值的属性
 ## change:
+- Now the Ignis element stats still gives strength effect
+- You can now configure the maximum level of effect given by element stats
+
+
 - 现在Ignis元素属性还会给予力量效果
 - 现在可以配置元素属性给予效果的最高等级
 

@@ -30,6 +30,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> BLESSED_WIND = reg("blessed_wind", BlessedWind::new);
 
+  public static final RegistryObject<Enchantment> BLOOD_FEED = reg("blood_feed", BloodFeed::new);
+
   public static final RegistryObject<Enchantment> BLOOD_SACRIFICE = reg("blood_sacrifice", BloodSacrifice::new);
 
   public static final RegistryObject<Enchantment> BLOODTHIRSTY = reg("bloodthirsty", Bloodthirsty::new);
@@ -84,6 +86,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> FLOATING = reg("floating", Floating::new);
 
+  public static final RegistryObject<Enchantment> FROZEN_HEART = reg("frozen_heart", FrozenHeart::new);
+
   public static final RegistryObject<Enchantment> GIFT_OF_FIRE = reg("gift_of_fire", GiftOfFire::new);
 
   public static final RegistryObject<Enchantment> GREED_SUPREME_LOOTING = reg("greed_supreme_looting", GreedSupremeLooting::new);
@@ -94,6 +98,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> HUNGRY = reg("hungry", Hungry::new);
 
+  public static final RegistryObject<Enchantment> ICY_BURST = reg("icy_burst", IcyBurst::new);
+
   public static final RegistryObject<Enchantment> LAVA_BURST = reg("lava_burst", LavaBurst::new);
 
   public static final RegistryObject<Enchantment> LIGHTNESS = reg("lightness", Lightness::new);
@@ -101,6 +107,8 @@ public final class EnchantmentReg {
   public static final RegistryObject<Enchantment> MELTER = reg("melter", Melter::new);
 
   public static final RegistryObject<Enchantment> MOUNTAIN_SUPREME_PROTECTION = reg("mountain_supreme_protection", MountainSupremeProtection::new);
+
+  public static final RegistryObject<Enchantment> MULTIPLE_SHOT = reg("multiple_shot", MultipleShot::new);
 
   public static final RegistryObject<Enchantment> NIGHTMARE = reg("nightmare", Nightmare::new);
 
