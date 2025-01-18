@@ -3,10 +3,10 @@ package com.foolsix.fancyenchantments.events;
 import com.foolsix.fancyenchantments.enchantment.*;
 import com.foolsix.fancyenchantments.enchantment.handler.EventHandler;
 import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingDeathEventHandler;
 import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.EntityHitResult;
@@ -38,6 +38,7 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EnchantmentEvents {
     private static final PriorityQueue<LivingHurtEventHandler> livingHurtEventHandlers = new PriorityQueue<>(Comparator.comparingInt(LivingHurtEventHandler::getLivingHurtPriority));
+    private static final List<LivingDeathEventHandler> livingDeathEventHandlers = new ArrayList<>();
     private static final List<ItemAttributeModifierEventHandler> itemAttributeModifierEventHandlers = new ArrayList<>();
 
     @SubscribeEvent
@@ -48,6 +49,9 @@ public class EnchantmentEvents {
             }
             if (enchantment instanceof ItemAttributeModifierEventHandler handler) {
                 itemAttributeModifierEventHandlers.add(handler);
+            }
+            if (enchantment instanceof LivingDeathEventHandler handler) {
+                livingDeathEventHandlers.add(handler);
             }
         });
     }
@@ -146,15 +150,11 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void livingDeath(LivingDeathEvent e) {
         if (!e.isCanceled() && e.getSource() != null && e.getSource().getEntity() != null) {
-            ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).clearTag(e);
-            ((EaterOfSouls) EATER_OF_SOULS.get()).killcount(e);
-            ((Overflow) OVERFLOW.get()).generateWater(e);
-            ((FireDisaster) FIRE_DISASTER.get()).generateFire(e);
-
-            if (e.getEntity() != null)
-                ((Purifying) PURIFYING.get()).purify(e);
+            for (var handler : livingDeathEventHandlers) {
+                handler.handleLivingDeathEvent(e);
+                if (e.isCanceled()) return;
+            }
         }
-
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -193,6 +193,7 @@ public class EnchantmentEvents {
         ((Streamline) STREAMLINE.get()).speedBoost(e);
         ((HeavyArrow) HEAVY_ARROW.get()).enhanceArrow(e);
         ((AdvancedFlame) ADVANCED_FLAME.get()).enhanceArrow(e);
+        ((MultipleShot) MULTIPLE_SHOT.get()).multiShot(e);
     }
 
 

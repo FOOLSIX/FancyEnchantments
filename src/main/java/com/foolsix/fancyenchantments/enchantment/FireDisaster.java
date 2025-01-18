@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.enchantment;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.IgnisEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingDeathEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,7 +15,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.getRandomValidPos;
 
-public class FireDisaster extends IgnisEnchantment {
+public class FireDisaster extends IgnisEnchantment implements LivingDeathEventHandler {
     private static final ModConfig.FireDisasterOptions CONFIG = FancyEnchantments.getConfig().fireDisasterOptions;
 
     public FireDisaster() {
@@ -24,6 +25,11 @@ public class FireDisaster extends IgnisEnchantment {
     @Override
     public boolean isCurse() {
         return true;
+    }
+
+    @Override
+    public void handleLivingDeathEvent(LivingDeathEvent e) {
+        generateFire(e);
     }
 
     public void generateFire(LivingDeathEvent e) {

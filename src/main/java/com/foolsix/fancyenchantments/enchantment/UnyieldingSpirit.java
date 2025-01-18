@@ -4,6 +4,7 @@ import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.capability.TimeToLiveHelper;
 import com.foolsix.fancyenchantments.damage.FEDamageSource;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.HolyEnchantment;
+import com.foolsix.fancyenchantments.enchantment.handler.LivingDeathEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.particles.ParticleTypes;
@@ -25,7 +26,7 @@ import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import java.util.List;
 
 
-public class UnyieldingSpirit extends HolyEnchantment {
+public class UnyieldingSpirit extends HolyEnchantment implements LivingDeathEventHandler {
     private static final ModConfig.UnyieldingSpiritOptions CONFIG = FancyEnchantments.getConfig().unyieldingSpiritOptions;
 
     public UnyieldingSpirit() {
@@ -63,6 +64,11 @@ public class UnyieldingSpirit extends HolyEnchantment {
                 }
             }
         }
+    }
+
+    @Override
+    public void handleLivingDeathEvent(LivingDeathEvent e) {
+        clearTag(e);
     }
 
     public void clearTag(LivingDeathEvent e) {
