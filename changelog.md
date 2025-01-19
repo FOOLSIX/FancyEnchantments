@@ -1,3 +1,9 @@
+# 1.2.1
+## fix:
+- A bug related to item nbt
+
+- 修复了一个有关物品nbt的bug
+
 # 1.2.0
 ## add:
 - Purification Slash:Significantly reduce damage to players and pets, and remove their negative effects after attacking
