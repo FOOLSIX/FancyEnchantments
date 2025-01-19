@@ -49,7 +49,7 @@ public class BloodFeed extends FEBaseEnchantment implements LivingDeathEventHand
     @Override
     public void handleItemAttributeModifier(ItemAttributeModifierEvent e) {
         ItemStack stack = e.getItemStack();
-        if (e.getSlotType() == EquipmentSlot.MAINHAND || e.getSlotType() == EquipmentSlot.OFFHAND && stack.getEnchantmentLevel(this) > 0) {
+        if ((e.getSlotType() == EquipmentSlot.MAINHAND || e.getSlotType() == EquipmentSlot.OFFHAND) && stack.getEnchantmentLevel(this) > 0) {
             e.addModifier(Attributes.MAX_HEALTH, new AttributeModifier(UUID, "blood_feed", stack.getOrCreateTag().getInt(TAG), AttributeModifier.Operation.ADDITION));
         }
     }
