@@ -12,6 +12,8 @@ import java.util.function.Supplier;
 public final class EnchantmentReg {
   public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, "fancyenchantments");
 
+  public static final RegistryObject<Enchantment> ABYSSAL_MAELSTROM = reg("abyssal_maelstrom", AbyssalMaelstrom::new);
+
   public static final RegistryObject<Enchantment> ADVANCED_FIRE_ASPECT = reg("advanced_fire_aspect", AdvancedFireAspect::new);
 
   public static final RegistryObject<Enchantment> ADVANCED_FLAME = reg("advanced_flame", AdvancedFlame::new);
@@ -29,6 +31,8 @@ public final class EnchantmentReg {
   public static final RegistryObject<Enchantment> ARMOR_FORGING = reg("armor_forging", ArmorForging::new);
 
   public static final RegistryObject<Enchantment> BLESSED_WIND = reg("blessed_wind", BlessedWind::new);
+
+  public static final RegistryObject<Enchantment> BLIND_LOYALTY = reg("blind_loyalty", BlindLoyalty::new);
 
   public static final RegistryObject<Enchantment> BLOOD_FEED = reg("blood_feed", BloodFeed::new);
 
@@ -103,6 +107,8 @@ public final class EnchantmentReg {
   public static final RegistryObject<Enchantment> LAVA_BURST = reg("lava_burst", LavaBurst::new);
 
   public static final RegistryObject<Enchantment> LIGHTNESS = reg("lightness", Lightness::new);
+
+  public static final RegistryObject<Enchantment> LITHIC_SIPHON = reg("lithic_siphon", LithicSiphon::new);
 
   public static final RegistryObject<Enchantment> MELTER = reg("melter", Melter::new);
 

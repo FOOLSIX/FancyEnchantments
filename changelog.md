@@ -1,3 +1,22 @@
+# 1.3.0
+## add:
+- Abyssal Maelstrom:The target hit will become a maelstrom involving enemies
+- Lithic Siphon:Mining 'stone' no longer drops blocks, but has a chance to drop minerals
+- Blind Loyalty:Even if forsaken, bound to return
+
+- 噬渊漩涡:命中的目标将会变为卷入敌方的漩涡
+- 地髓虹吸:挖掘'石头'不再掉落方块,而是有概率掉落矿物
+- 愚忠:纵使抛弃,注定归来
+## change:
+- Improved the calculation of forging armor enchantment
+
+- 改进了锻甲术的锻甲计算
+
+## fix:
+- Fixed the issue of incorrect enchantment categories for Multiple Shot
+
+- 修复了万箭类别不正确的问题
+
 # 1.2.1
 ## fix:
 - A bug related to item nbt

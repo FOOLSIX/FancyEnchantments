@@ -182,6 +182,12 @@ public class ModConfig implements ConfigData {
     public final MultipleShotOptions multipleShotOptions = new MultipleShotOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final BloodFeedOptions bloodFeedOptions = new BloodFeedOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final AbyssalMaelstromOptions abyssalMaelstromOptions = new AbyssalMaelstromOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final LithicSiphonOptions lithicSiphonOptions = new LithicSiphonOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BlindLoyaltyOptions blindLoyaltyOptions = new BlindLoyaltyOptions();
 
     public static class ElementStatOptions {
         public int aerLevelToGetSpeed = 5;
@@ -1039,6 +1045,30 @@ public class ModConfig implements ConfigData {
             super(3, Rarity.VERY_RARE, 0.1);
             elementalCondition[Element.TWISTED.ordinal()] = 5;
             elementalCondition[Element.AQUA.ordinal()] = 5;
+        }
+    }
+
+    public static class AbyssalMaelstromOptions extends BaseOptions {
+        public int durationPerLevel = 5;
+
+        AbyssalMaelstromOptions() {
+            super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class LithicSiphonOptions extends BaseOptions {
+        public double probabilityPerLevel = 0.03;
+
+        LithicSiphonOptions() {
+            super(3, Rarity.VERY_RARE);
+            isTreasure = true;
+        }
+
+    }
+
+    public static class BlindLoyaltyOptions extends BaseOptions {
+        BlindLoyaltyOptions() {
+            super(1, Rarity.UNCOMMON);
         }
     }
 }

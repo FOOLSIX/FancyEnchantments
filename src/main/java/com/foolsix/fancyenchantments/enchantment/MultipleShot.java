@@ -19,7 +19,7 @@ public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHa
     private static final ModConfig.MultipleShotOptions CONFIG = FancyEnchantments.getConfig().multipleShotOptions;
 
     public MultipleShot() {
-        super(CONFIG, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+        super(CONFIG, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     public void multiShot(EntityJoinLevelEvent e) {

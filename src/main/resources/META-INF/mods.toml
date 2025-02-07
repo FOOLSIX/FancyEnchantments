@@ -3,7 +3,7 @@ loaderVersion = "[43,)"
 license = "GNU GPLv3"
 [[mods]]
 modId = "fancyenchantments"
-version = "1.2.1"
+version = "1.3.0"
 displayName = "Fancy Enchantments"
 logoFile = "fe.png"
 credits = "FOOLSIX"

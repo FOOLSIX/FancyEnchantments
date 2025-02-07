@@ -120,7 +120,7 @@
   "enchantment.fancyenchantments.spreading_spores": "传播孢子",
   "enchantment.fancyenchantments.spreading_spores.desc": "连续打击,积累孢子,然后爆发造成大量伤害和中毒效果",
   "enchantment.fancyenchantments.thrilling_thunder": "颤栗雷霆",
-  "enchantment.fancyenchantments.thrilling_thunder.desc": "有概率令对目标造成麻痹并流逝生命",
+  "enchantment.fancyenchantments.thrilling_thunder.desc": "有概率对目标造成麻痹并流逝生命",
   "enchantment.fancyenchantments.recoil": "反冲",
   "enchantment.fancyenchantments.recoil.desc": "攻击后有概率让自身受到向上的冲击",
   "enchantment.fancyenchantments.air_attack": "空袭",
@@ -168,5 +168,11 @@
   "enchantment.fancyenchantments.multiple_shot": "万箭",
   "enchantment.fancyenchantments.multiple_shot.desc": "散射出额外箭矢",
   "enchantment.fancyenchantments.blood_feed": "饮血",
-  "enchantment.fancyenchantments.blood_feed.desc": "杀敌后武器概率获得提高最大生命值的属性"
+  "enchantment.fancyenchantments.blood_feed.desc": "杀敌后武器概率获得提高最大生命值的属性",
+  "enchantment.fancyenchantments.abyssal_maelstrom": "噬渊漩涡",
+  "enchantment.fancyenchantments.abyssal_maelstrom.desc": "命中的目标将会变为卷入敌方的漩涡",
+  "enchantment.fancyenchantments.lithic_siphon": "地髓虹吸",
+  "enchantment.fancyenchantments.lithic_siphon.desc": "挖掘\u0027石头\u0027不再掉落方块,而是有概率掉落矿物",
+  "enchantment.fancyenchantments.blind_loyalty": "愚忠",
+  "enchantment.fancyenchantments.blind_loyalty.desc": "纵使抛弃,注定归来"
 }
