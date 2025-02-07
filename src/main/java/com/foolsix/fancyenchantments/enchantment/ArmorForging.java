@@ -6,7 +6,6 @@ import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEv
 import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.util.ModConfig;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,6 +18,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
@@ -52,18 +53,21 @@ public class ArmorForging extends FEBaseEnchantment implements LivingHurtEventHa
 
     public void hurtForging(LivingHurtEvent e) {
         DamageSource source = e.getSource();
-        if (source == null || source.is(DamageTypeTags.BYPASSES_ARMOR) || source.is(DamageTypeTags.BYPASSES_ENCHANTMENTS))
-            return;
+        if (source == null || source.is(DamageTypeTags.BYPASSES_ARMOR) || source.is(DamageTypeTags.BYPASSES_ENCHANTMENTS)) return;
         if (e.getEntity() instanceof Player player) {
+            List<ItemStack> armors = new ArrayList<>();
             for (ItemStack stack : player.getArmorSlots()) {
                 int level = stack.getEnchantmentLevel(this);
-                if (level > 0) {
-                    CompoundTag nbt = stack.getOrCreateTag();
-                    int forgingValue = nbt.getInt(TAG_NAME);
-                    if (forgingValue < level * CONFIG.forgingValue) {
-                        nbt.putInt(TAG_NAME, Math.min(forgingValue + (int) Math.ceil(e.getAmount()), level * CONFIG.forgingValue));
-                        break;
-                    }
+                if (level > 0 && stack.getOrCreateTag().getInt(TAG_NAME) < level * CONFIG.forgingValue) {
+                    armors.add(stack);
+                }
+            }
+            if (!armors.isEmpty()) {
+                int forgeValue = (int) (e.getAmount() / armors.size()) + 1;
+                for (ItemStack armor : armors) {
+                    int originValue = armor.getOrCreateTag().getInt(TAG_NAME);
+                    int level = armor.getEnchantmentLevel(this);
+                    armor.getOrCreateTag().putInt(TAG_NAME, Math.min(originValue + forgeValue, level * CONFIG.forgingValue));
                 }
             }
         }

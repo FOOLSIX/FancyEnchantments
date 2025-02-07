@@ -21,6 +21,7 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -189,7 +190,9 @@ public class EnchantmentEvents {
     }
 
     @SubscribeEvent
-    public void ArrowJoin(EntityJoinLevelEvent e) {
+    public void EntityJoin(EntityJoinLevelEvent e) {
+        if (e.isCanceled() || e.getEntity().level().isClientSide()) return;
+        ((BlindLoyalty) BLIND_LOYALTY.get()).getBack(e);
         ((Streamline) STREAMLINE.get()).speedBoost(e);
         ((HeavyArrow) HEAVY_ARROW.get()).enhanceArrow(e);
         ((AdvancedFlame) ADVANCED_FLAME.get()).enhanceArrow(e);
@@ -213,6 +216,7 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void equipmentChange(LivingEquipmentChangeEvent e) {
         ((Pervert) PERVERT.get()).dropOnWear(e);
+        ((BlindLoyalty) BLIND_LOYALTY.get()).addTag(e);
         ((UnyieldingSpirit) UNYIELDING_SPIRIT.get()).unequipped(e);
     }
 
@@ -235,5 +239,11 @@ public class EnchantmentEvents {
         if (!e.isCanceled()) {
             ((Nightmare) NIGHTMARE.get()).makeExplosion(e);
         }
+    }
+
+    @SubscribeEvent
+    public void blockBreak(BlockEvent.BreakEvent e) {
+        if (e.getPlayer().level().isClientSide) return;
+        ((LithicSiphon) LITHIC_SIPHON.get()).blockBreak(e);
     }
 }

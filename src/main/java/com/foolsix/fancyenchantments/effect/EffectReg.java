@@ -26,4 +26,6 @@ public class EffectReg {
             EFFECTS.register(PrisonCage.NAME, PrisonCage::new);
     public static final RegistryObject<MobEffect> TREMBLING =
             EFFECTS.register(Trembling.NAME, Trembling::new);
+    public static final RegistryObject<MobEffect> MAELSTROM =
+            EFFECTS.register("maelstrom", Maelstrom::new);
 }

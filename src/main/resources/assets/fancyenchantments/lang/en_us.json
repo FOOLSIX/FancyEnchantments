@@ -168,5 +168,11 @@
   "enchantment.fancyenchantments.multiple_shot": "Multiple Shot",
   "enchantment.fancyenchantments.multiple_shot.desc": "Shoot additional arrows",
   "enchantment.fancyenchantments.blood_feed": "Blood Feed",
-  "enchantment.fancyenchantments.blood_feed.desc": "Have a probability of increasing maximum health attribute after killing"
+  "enchantment.fancyenchantments.blood_feed.desc": "Have a probability of increasing maximum health attribute after killing",
+  "enchantment.fancyenchantments.abyssal_maelstrom": "Abyssal Maelstrom",
+  "enchantment.fancyenchantments.abyssal_maelstrom.desc": "The target hit will become a maelstrom involving enemies.",
+  "enchantment.fancyenchantments.lithic_siphon": "Lithic Siphon",
+  "enchantment.fancyenchantments.lithic_siphon.desc": "Mining \u0027stone\u0027 no longer drops blocks, but has a chance to drop minerals",
+  "enchantment.fancyenchantments.blind_loyalty": "Blind Loyalty",
+  "enchantment.fancyenchantments.blind_loyalty.desc": "Even if forsaken, bound to return."
 }
