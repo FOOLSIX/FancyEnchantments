@@ -1,3 +1,21 @@
+# 1.3.1
+
+## change:
+- Spawn probability can now be adjusted based on the rarity of the enchantment
+- Special loot enchantments will now only appear once per chest
+- Adjusted the generation conditions of some enchantments
+- Increased the dodge limit of the afterimage, and will gain extra invincibility time after dodging
+
+- 现在可以根据附魔的稀有度调整生成概率
+- 现在特殊战利品附魔一个箱子只会出现一个
+- 调整了一些附魔的生成条件
+- 提高了残影的闪避上限,闪避后会获得额外无敌时间
+
+## fix:
+- Fixed the spawn rate with Sighs of Ashes(If you update from 1.3.0, you need to remove the configuration file)
+
+- 修复了余烬之叹息的生成概率问题(如果从1.3.0升级,需要移除配置文件)
+
 # 1.3.0
 ## add:
 - Abyssal Maelstrom:The target hit will become a maelstrom involving enemies

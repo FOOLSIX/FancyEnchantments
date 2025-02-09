@@ -28,6 +28,9 @@ import net.minecraftforge.common.loot.LootModifier;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LITHIC_SIPHON;
 
 public class SpecialLootModifier extends LootModifier {
@@ -50,21 +53,25 @@ public class SpecialLootModifier extends LootModifier {
                 if (Math.random() < CONFIG.chanceOfSpawningBook) {
                     ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
                     Enchantment enchantment = EnchUtils.getRandomModEnchantment(rand);
-                    if (enchantment != null) {
+                    if (enchantment != null && Math.random() < getChanceOfRarity(enchantment.getRarity())) {
                         EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(enchantment, rand.nextInt(enchantment.getMaxLevel()) + 1));
                         loots.add(enchantedBook);
                     }
                 }
                 player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(stats -> {
+                    List<FEBaseEnchantment> list = new ArrayList<>();
                     for (final Enchantment enchantment : EnchUtils.getAllSpecialLootEnchantment()) {
                         if (enchantment instanceof FEBaseEnchantment fe && fe.tryGenerateOnce(stats.getStats())) {
-                            ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
-                            //1 ~ maxLevel - 1
-                            int level = Math.max(1, rand.nextInt(fe.getMaxLevel()));
-                            EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(fe, level));
-                            loots.add(enchantedBook);
+                            list.add(fe);
                         }
                     }
+                    if (list.isEmpty()) return;
+                    FEBaseEnchantment fe = list.get(rand.nextInt(list.size()));
+                    ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
+                    //1 ~ maxLevel - 1
+                    int level = Math.max(1, rand.nextInt(fe.getMaxLevel()));
+                    EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(fe, level));
+                    loots.add(enchantedBook);
                 });
             }
         }
@@ -84,6 +91,17 @@ public class SpecialLootModifier extends LootModifier {
             }
         }
         return false;
+    }
+
+    private double getChanceOfRarity(Enchantment.Rarity rarity) {
+        double chance = 1.0;
+        switch (rarity) {
+            case COMMON -> chance *= CONFIG.common;
+            case UNCOMMON -> chance *= CONFIG.uncommon;
+            case RARE -> chance *= CONFIG.rare;
+            case VERY_RARE -> chance *= CONFIG.veryRare;
+        }
+        return chance;
     }
 
     @Override

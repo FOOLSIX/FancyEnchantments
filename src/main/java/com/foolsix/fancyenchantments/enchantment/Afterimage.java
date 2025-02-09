@@ -28,6 +28,7 @@ public class Afterimage extends AerEnchantment {
                 extraSpeed = Math.max(0, moveSpeedAttr.getValue() - moveSpeedAttr.getBaseValue()) / moveSpeedAttr.getBaseValue();
             }
             if (Math.random() < Math.min(extraSpeed * CONFIG.probabilityMultiplier, Math.min(level * CONFIG.probabilityCapPerLevel, CONFIG.probabilityMaxCap))) {
+                living.invulnerableTime += 60;
                 e.setCanceled(true);
             }
         }
