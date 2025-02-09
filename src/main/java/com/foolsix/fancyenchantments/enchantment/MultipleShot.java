@@ -17,6 +17,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHandler {
     private static final ModConfig.MultipleShotOptions CONFIG = FancyEnchantments.getConfig().multipleShotOptions;
+    private final String TAG_NAME = "fe_multiple";
 
     public MultipleShot() {
         super(CONFIG, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
@@ -24,7 +25,7 @@ public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHa
 
     public void multiShot(EntityJoinLevelEvent e) {
         if (e.getEntity() instanceof AbstractArrow arrow &&
-                !arrow.getPersistentData().contains("multiple") &&
+                !arrow.getPersistentData().contains(TAG_NAME) &&
                 arrow.getOwner() instanceof LivingEntity shooter &&
                 shooter.level() instanceof ServerLevel world) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, shooter);
@@ -42,7 +43,7 @@ public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHa
                 float yOffset = (float) ((Math.random() - 0.5) * 10);
                 arrow1.shootFromRotation(shooter, shooter.getXRot() - xOffset, shooter.getYRot() - yOffset, 0.0F, 3, 1);
                 arrow1.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-                arrow1.getPersistentData().putBoolean("multiple", true);
+                arrow1.getPersistentData().putBoolean(TAG_NAME, true);
                 world.addFreshEntity(arrow1);
             }
         }
@@ -50,7 +51,7 @@ public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHa
 
     @Override
     public void handleLivingHurtEvent(LivingHurtEvent e) {
-        if (e.getSource().getDirectEntity() instanceof AbstractArrow arrow && arrow.getPersistentData().contains("multiple")) {
+        if (e.getSource().getDirectEntity() instanceof AbstractArrow arrow && arrow.getPersistentData().contains(TAG_NAME)) {
             e.getEntity().invulnerableTime = 0;
         }
     }

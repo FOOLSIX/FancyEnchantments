@@ -214,6 +214,11 @@ public class ModConfig implements ConfigData {
     public static class ChestLootOptions {
         @Comment("The chance of spawning a mod enchanted book")
         public double chanceOfSpawningBook = 0.3;
+        @Comment("Final spawn probability = base * rarity probability")
+        public double common = 0.9;
+        public double uncommon = 0.75;
+        public double rare = 0.6;
+        public double veryRare = 0.5;
     }
 
     public static class JEIInfoOptions {
@@ -279,15 +284,16 @@ public class ModConfig implements ConfigData {
         }
     }
 
-    public static class EaterOfSoulsOptions extends BaseOptions {
+    public static class EaterOfSoulsOptions extends LootEnchantmentOptions {
         @Comment("damage += sqrt(kill count) * level * multiplier")
         public float damageMultiplier = 0.3f;
         @Comment("damage cap")
         public float cap = 1000f;
 
         EaterOfSoulsOptions() {
-            super(3, Rarity.VERY_RARE);
+            super(3, Rarity.VERY_RARE, 0.05);
             super.isTreasure = true;
+            elementalCondition[Element.TWISTED.ordinal()] = 10;
         }
     }
 
@@ -346,7 +352,7 @@ public class ModConfig implements ConfigData {
         }
     }
 
-    public static class SolidAsARockOptions extends BaseOptions {
+    public static class SolidAsARockOptions extends LootEnchantmentOptions {
         @Comment("armor *= 1 + multiplier * level")
         public double armorMultiplier = 0.15;
         @Comment("toughness *= 1 + multiplier * level")
@@ -354,7 +360,8 @@ public class ModConfig implements ConfigData {
         public double movementSpeedReducer = 0.1;
 
         SolidAsARockOptions() {
-            super(3, Rarity.RARE);
+            super(3, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.TERRA.ordinal()] = 6;
         }
     }
 
@@ -758,7 +765,7 @@ public class ModConfig implements ConfigData {
         public double damageMultiplierForOthers = 0.2;
 
         SharpRockOptions() {
-            super(3, Rarity.VERY_RARE, 0.25);
+            super(3, Rarity.VERY_RARE, 0.05);
             elementalCondition[Element.TERRA.ordinal()] = 5;
         }
     }
@@ -893,8 +900,8 @@ public class ModConfig implements ConfigData {
     public static class AfterimageOptions extends BaseOptions {
         @Comment("probability of dodging = extraSpeed(%) * multiplier")
         public double probabilityMultiplier = 0.5;
-        public double probabilityCapPerLevel = 0.1;
-        public double probabilityMaxCap = 0.5;
+        public double probabilityCapPerLevel = 0.3;
+        public double probabilityMaxCap = 0.8;
 
         AfterimageOptions() {
             super(3, Rarity.VERY_RARE);
@@ -995,6 +1002,7 @@ public class ModConfig implements ConfigData {
 
         SighsOfAshesOptions() {
             super(1, Rarity.VERY_RARE, 0.1);
+            elementalCondition[Element.IGNIS.ordinal()] = 8;
         }
     }
 
