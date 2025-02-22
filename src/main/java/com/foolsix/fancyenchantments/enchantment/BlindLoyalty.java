@@ -37,7 +37,7 @@ public class BlindLoyalty extends FEBaseEnchantment {
         if (e.getEntity() instanceof ItemEntity itemEntity && itemEntity.level instanceof ServerLevel world) {
             ItemStack stack = itemEntity.getItem();
             if (stack.isEmpty()) return;
-            if (stack.getEnchantmentLevel(this) > 0) {
+            if (stack.getEnchantmentLevel(this) > 0 && stack.hasTag() && stack.getOrCreateTag().contains(TAG_NAME)) {
                 Optional<Player> player = Optional.ofNullable(world.getPlayerByUUID(stack.getOrCreateTag().getUUID(TAG_NAME)));
                 player.ifPresent(p -> {
                     if (p.addItem(stack)) {

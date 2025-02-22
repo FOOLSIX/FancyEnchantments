@@ -11,11 +11,13 @@
 - Correct the Streamline configuration name
 - Fix the crash caused by the combination of Multiple Shot and apotheosis
 - Fixed advanced flame attachment to prevent cooked meat from falling off
+- Fix the crash caused by Blind Loyalty
 
 - 添加缺失的lang条目
 - 修正流线型的配置文件名
 - 修复万箭与神化叠加导致崩溃
 - 修复了高级火焰附加不掉落熟肉
+- 修复愚忠导致的崩溃
 
 # 1.3.1
 
