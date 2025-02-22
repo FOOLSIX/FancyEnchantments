@@ -44,6 +44,10 @@ public class FEBaseEnchantment extends Enchantment {
         return this.getMinCost(pLevel) + 50;
     }
 
+    public ModConfig.BaseOptions getCONFIG() {
+        return CONFIG;
+    }
+
     public boolean isSpecialLoot() {
         return CONFIG.level > 0 && CONFIG instanceof ModConfig.LootEnchantmentOptions;
     }

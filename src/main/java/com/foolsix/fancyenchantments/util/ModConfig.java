@@ -155,7 +155,7 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public final FearlessChallengerOptions fearlessChallengerOptions = new FearlessChallengerOptions();
     @ConfigEntry.Gui.CollapsibleObject
-    public final StreamlineOptions windWingsOptions = new StreamlineOptions();
+    public final StreamlineOptions streamlineOptions = new StreamlineOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final HeavyArrowOptions heavyArrowOptions = new HeavyArrowOptions();
     @ConfigEntry.Gui.CollapsibleObject
@@ -190,19 +190,11 @@ public class ModConfig implements ConfigData {
     public final BlindLoyaltyOptions blindLoyaltyOptions = new BlindLoyaltyOptions();
 
     public static class ElementStatOptions {
-        public int aerLevelToGetSpeed = 5;
-        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
-        public int maxAerEffectLevel = 6;
+        @Comment("The following order is aer, aqua, ignis, terra")
+        public String[] buffs = new String[]{"minecraft:speed", "minecraft:regeneration","minecraft:strength","minecraft:resistance"};
+        public int[] conditions = new int[]{5, 6, 4, 9};
+        public int[] maxEffectLevel = new int[]{6, 6, 6 ,4};
         public int ignisLevelToGetFireResistance = 10;
-        public int ignisLevelToGetStrength = 4;
-        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
-        public int maxIgnisEffectLevel = 6;
-        public int aquaLevelToGetRegeneration = 6;
-        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
-        public int maxAquaEffectLevel = 6;
-        public int terraLevelToGetResistance = 9;
-        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
-        public int maxTerraEffectLevel = 4;
         @Comment("actually twisted level - holy level")
         public int twistedLevelToGetDebuff = 10;
         @Comment("The probability of getting a debuff per second")
@@ -236,10 +228,13 @@ public class ModConfig implements ConfigData {
         public boolean isTradeable = true;
         public boolean isAllowedOnBooks = true;
         public boolean isDiscoverable = true;
+        @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
+        public int maxLevelCanBeDiscovered;
 
         BaseOptions(int maxLevel, Rarity rarity) {
             this.level = maxLevel;
             this.rarity = rarity;
+            this.maxLevelCanBeDiscovered = level;
         }
 
     }

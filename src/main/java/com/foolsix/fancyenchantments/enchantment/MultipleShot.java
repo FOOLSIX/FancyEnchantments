@@ -26,6 +26,7 @@ public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHa
     public void multiShot(EntityJoinLevelEvent e) {
         if (e.getEntity() instanceof AbstractArrow arrow &&
                 !arrow.getPersistentData().contains(TAG_NAME) &&
+                !(arrow.pickup == AbstractArrow.Pickup.CREATIVE_ONLY) && //a rough way to make compatible...
                 arrow.getOwner() instanceof LivingEntity shooter &&
                 shooter.level instanceof ServerLevel world) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, shooter);

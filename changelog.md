@@ -1,3 +1,22 @@
+# 1.3.2
+## change:
+- The effect given by element attributes can now be configured
+- Now you can adjust the maximum level of enchantment found in chest loot
+
+- 元素属性给的药水效果现在可以配置
+- 现在可以调整从箱子里找到的附魔的最大等级
+
+## fix:
+- Add missing lang entries
+- Correct the Streamline configuration name
+- Fix the crash caused by the combination of Multiple Shot and apotheosis
+- Fixed advanced flame attachment to prevent cooked meat from falling off
+
+- 添加缺失的lang条目
+- 修正流线型的配置文件名
+- 修复万箭与神化叠加导致崩溃
+- 修复了高级火焰附加不掉落熟肉
+
 # 1.3.1
 
 ## change:
