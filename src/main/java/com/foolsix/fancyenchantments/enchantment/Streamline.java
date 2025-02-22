@@ -12,7 +12,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 
 public class Streamline extends AerEnchantment {
-    private static final ModConfig.StreamlineOptions CONFIG = FancyEnchantments.getConfig().windWingsOptions;
+    private static final ModConfig.StreamlineOptions CONFIG = FancyEnchantments.getConfig().streamlineOptions;
 
     public Streamline() {
         super(CONFIG, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND});

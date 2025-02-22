@@ -18,8 +18,12 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Optional;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.Element.*;
@@ -29,6 +33,16 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchUtils.Element.*
 public class CapabilityEvents {
     private final ModConfig.ElementStatOptions CONFIG = FancyEnchantments.getConfig().elementStatOptions;
     private final MobEffect[] DEBUFF = new MobEffect[]{MobEffects.WEAKNESS, MobEffects.DARKNESS, MobEffects.MOVEMENT_SLOWDOWN};
+    private final Optional<MobEffect>[] BUFF = new Optional[4];
+
+    @SubscribeEvent
+    public void onServerSetup(ServerStartingEvent e) {
+        for (Element element : Element.values()) {
+            if (element.ordinal() < BUFF.length) {
+                BUFF[element.ordinal()] = Optional.ofNullable(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.tryParse(CONFIG.buffs[element.ordinal()])));
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> e) {
@@ -62,28 +76,20 @@ public class CapabilityEvents {
         //Calculate once per second
         if (e.player.tickCount % 20 != 0) {
             e.player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(elementStats -> {
-                if (elementStats.getPoint(AER) >= CONFIG.aerLevelToGetSpeed) {
-                    e.player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,
-                            20,
-                            Math.min(CONFIG.maxAerEffectLevel, elementStats.getPoint(AER) / CONFIG.aerLevelToGetSpeed - 1)));
-                }
-                if (elementStats.getPoint(IGNIS) >= CONFIG.ignisLevelToGetStrength) {
-                    e.player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,
-                            20,
-                            Math.min(CONFIG.maxIgnisEffectLevel, elementStats.getPoint(IGNIS) / CONFIG.ignisLevelToGetStrength - 1)));
+                for (Element element : Element.values()) {
+                    if (element.ordinal() < BUFF.length) {
+                        int index = element.ordinal();
+                        int point = elementStats.getPoint(element);
+                        if (BUFF[index].isPresent() && point >= CONFIG.conditions[index]) {
+                            e.player.addEffect(new MobEffectInstance(
+                                    BUFF[index].get(),
+                                    20,
+                                    Math.min((point / CONFIG.conditions[index]), CONFIG.maxEffectLevel[index]) - 1));
+                        }
+                    }
                 }
                 if (elementStats.getPoint(IGNIS) >= CONFIG.ignisLevelToGetFireResistance) {
                     e.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20));
-                }
-                if (elementStats.getPoint(TERRA) >= CONFIG.terraLevelToGetResistance) {
-                    e.player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,
-                            20,
-                            Math.min(CONFIG.maxTerraEffectLevel, elementStats.getPoint(TERRA) / CONFIG.terraLevelToGetResistance - 1)));
-                }
-                if (elementStats.getPoint(AQUA) >= CONFIG.aquaLevelToGetRegeneration) {
-                    e.player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,
-                            20,
-                            Math.min(CONFIG.maxAquaEffectLevel, elementStats.getPoint(AQUA) / CONFIG.aquaLevelToGetRegeneration - 1)));
                 }
                 if (elementStats.getPoint(TWISTED) - elementStats.getPoint(HOLY) >= CONFIG.twistedLevelToGetDebuff) {
                     if (Math.random() < CONFIG.probabilityToGetDebuff) {

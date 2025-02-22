@@ -53,8 +53,9 @@ public class SpecialLootModifier extends LootModifier {
                 if (Math.random() < CONFIG.chanceOfSpawningBook) {
                     ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
                     Enchantment enchantment = EnchUtils.getRandomModEnchantment(rand);
-                    if (enchantment != null && Math.random() < getChanceOfRarity(enchantment.getRarity())) {
-                        EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(enchantment, rand.nextInt(enchantment.getMaxLevel()) + 1));
+                    if (enchantment instanceof FEBaseEnchantment fe && Math.random() < getChanceOfRarity(enchantment.getRarity())) {
+                        int lv = rand.nextInt(Math.max(fe.getCONFIG().maxLevelCanBeDiscovered, 1)) + 1;
+                        EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(enchantment, lv));
                         loots.add(enchantedBook);
                     }
                 }
@@ -68,8 +69,7 @@ public class SpecialLootModifier extends LootModifier {
                     if (list.isEmpty()) return;
                     FEBaseEnchantment fe = list.get(rand.nextInt(list.size()));
                     ItemStack enchantedBook = Items.ENCHANTED_BOOK.getDefaultInstance();
-                    //1 ~ maxLevel - 1
-                    int level = Math.max(1, rand.nextInt(fe.getMaxLevel()));
+                    int level = rand.nextInt(Math.max(fe.getCONFIG().maxLevelCanBeDiscovered, 1)) + 1;
                     EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(fe, level));
                     loots.add(enchantedBook);
                 });
