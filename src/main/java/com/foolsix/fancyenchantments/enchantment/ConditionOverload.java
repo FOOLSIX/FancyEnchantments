@@ -7,6 +7,7 @@ import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -30,10 +31,12 @@ public class ConditionOverload extends FEBaseEnchantment implements LivingHurtEv
 
     public void attack(LivingHurtEvent e) {
         LivingEntity living = e.getEntity();
-        int level = EnchantmentHelper.getEnchantmentLevel(this, living);
-        if (level > 0) {
-            int debuffCount = (int) living.getActiveEffects().stream().filter(effect -> effect.getEffect().getCategory() == MobEffectCategory.HARMFUL).count();
-            e.setAmount(e.getAmount() * (1 + debuffCount * level * (float) CONFIG.damageMultiplier));
+        if (e.getSource().getEntity() instanceof Player player) {
+            int level = EnchantmentHelper.getEnchantmentLevel(this, player);
+            if (level > 0) {
+                int debuffCount = (int) living.getActiveEffects().stream().filter(effect -> effect.getEffect().getCategory() == MobEffectCategory.HARMFUL).count();
+                e.setAmount(e.getAmount() * (1 + debuffCount * level * (float) CONFIG.damageMultiplier));
+            }
         }
     }
 }

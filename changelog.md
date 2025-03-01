@@ -1,3 +1,9 @@
+# 1.3.3
+## fix:
+- Fixed a bug where Condition Overload was ineffective
+
+- 修复了异况超量无效的问题
+
 # 1.3.2
 ## change:
 - The effect given by element attributes can now be configured
