@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -245,4 +246,10 @@ public class EnchantmentEvents {
         ((LithicSiphon) LITHIC_SIPHON.get()).blockBreak(e);
     }
 
+    @SubscribeEvent
+    public void leftClick(PlayerInteractEvent.LeftClickBlock e) {
+        if (!e.isCanceled()) {
+            ((RocketJump) ROCKET_JUMP.get()).explode(e);
+        }
+    }
 }

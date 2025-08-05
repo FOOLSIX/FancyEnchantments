@@ -188,6 +188,10 @@ public class ModConfig implements ConfigData {
     public final LithicSiphonOptions lithicSiphonOptions = new LithicSiphonOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final BlindLoyaltyOptions blindLoyaltyOptions = new BlindLoyaltyOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final RocketJumpOptions rocketJumpOptions = new RocketJumpOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final DedicationOptions dedicationOptions = new DedicationOptions();
 
     public static class ElementStatOptions {
         @Comment("The following order is aer, aqua, ignis, terra")
@@ -1072,6 +1076,23 @@ public class ModConfig implements ConfigData {
     public static class BlindLoyaltyOptions extends BaseOptions {
         BlindLoyaltyOptions() {
             super(1, Rarity.UNCOMMON);
+        }
+    }
+
+    public static class RocketJumpOptions extends BaseOptions {
+        RocketJumpOptions() {
+            super(3, Rarity.RARE);
+        }
+    }
+
+    public static class DedicationOptions extends BaseOptions {
+        @Comment("armor += level * bonusMultiplier")
+        public double armorBonusMultiplier = 1.0;
+        public double toughnessBonusMultiplier = 0.5;
+        public double probability = 0.001;
+
+        DedicationOptions() {
+            super(3, Rarity.RARE);
         }
     }
 }

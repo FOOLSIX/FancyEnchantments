@@ -176,5 +176,9 @@
   "enchantment.fancyenchantments.lithic_siphon": "地髓虹吸",
   "enchantment.fancyenchantments.lithic_siphon.desc": "挖掘\u0027石头\u0027不再掉落方块,而是有概率掉落矿物",
   "enchantment.fancyenchantments.blind_loyalty": "愚忠",
-  "enchantment.fancyenchantments.blind_loyalty.desc": "纵使抛弃,注定归来"
+  "enchantment.fancyenchantments.blind_loyalty.desc": "纵使抛弃,注定归来",
+  "enchantment.fancyenchantments.rocket_jump": "火箭跳",
+  "enchantment.fancyenchantments.rocket_jump.desc": "低头攻击,然后火箭跳",
+  "enchantment.fancyenchantments.dedication": "奉献",
+  "enchantment.fancyenchantments.dedication.desc": "受伤时有概率消耗该附魔,增强盔甲属性"
 }
