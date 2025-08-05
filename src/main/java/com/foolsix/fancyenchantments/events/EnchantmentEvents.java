@@ -121,6 +121,7 @@ public class EnchantmentEvents {
         }
         ((HeavyArrow) HEAVY_ARROW.get()).arrowImpact(e);
         ((AdvancedFlame) ADVANCED_FLAME.get()).arrowImpact(e);
+        ((Streamline) STREAMLINE.get()).impactInvulnerable(e);
     }
 
     @SubscribeEvent
