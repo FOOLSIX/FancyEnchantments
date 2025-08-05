@@ -1,3 +1,16 @@
+# 1.4.0
+## add:
+- Rocket Jump:Head down and attack, then rocket jump
+- Dedication:Chance to consume the enchantment when hurt to enhance armor attributes
+
+- 火箭跳:低头攻击,然后火箭跳
+- 奉献:受伤时有概率消耗该附魔,增强盔甲属性
+
+## fix:
+- Fixed the issue where arrows with Streamline would not disappear properly after losing speed
+
+- 修复具有流线型的箭矢失去速度后无法正常消失的问题
+
 # 1.3.3
 ## fix:
 - Fixed a bug where Condition Overload was ineffective
