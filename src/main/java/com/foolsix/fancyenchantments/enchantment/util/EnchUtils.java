@@ -26,7 +26,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -72,7 +71,7 @@ public class EnchUtils {
             return null;
         }
 
-        public static @NotNull ChatFormatting getChatFormatting(Element element) {
+        public static @Nonnull ChatFormatting getChatFormatting(Element element) {
             ChatFormatting chatFormatting = ChatFormatting.RESET;
             switch (element) {
                 case AER -> chatFormatting = ChatFormatting.YELLOW;
