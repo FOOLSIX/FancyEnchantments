@@ -136,9 +136,13 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> PYROMANIAC = reg("pyromaniac", Pyromaniac::new);
 
+  public static final RegistryObject<Enchantment> DEDICATION = reg("dedication", Dedication::new);
+
   public static final RegistryObject<Enchantment> RECOIL = reg("recoil", Recoil::new);
 
   public static final RegistryObject<Enchantment> REFLECTING = reg("reflecting", Reflecting::new);
+
+  public static final RegistryObject<Enchantment> ROCKET_JUMP = reg("rocket_jump", RocketJump::new);
 
   public static final RegistryObject<Enchantment> ROLLING_STONE = reg("rolling_stone", RollingStone::new);
 
