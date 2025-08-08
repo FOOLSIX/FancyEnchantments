@@ -50,15 +50,15 @@ public class RocketJump extends IgnisEnchantment {
                 if (hitResult.getType() == HitResult.Type.BLOCK && lookAt.normalize().dot(DOWN_DIRECTION) > 0.8) {
                     Vec3 explosionCenter = player.position().add(0, -0.5, 0);
                     double crouchingBonus = player.isCrouching() ? level : 1;
-                    double onAirBonus = player.onGround() ? 1 : level;
+                    double onAirBonus = player.isOnGround() ? 1 : level;
                     Vec3 force = player.position()
                             .subtract(explosionCenter)
                             .add(lookAt.multiply(1, 0, 1).normalize())
                             .multiply(1, 0.5 + 0.5 * crouchingBonus, 1)
                             .multiply(onAirBonus, onAirBonus, onAirBonus);
                     player.push(force.x(), force.y(), force.z());
-                    if (player.level() instanceof ServerLevel world) {
-                        world.playSound(null, BlockPos.containing(explosionCenter), SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 4.0F, 1.0F + (world.random.nextFloat() - world.random.nextFloat() * 0.2F) * 0.7F);
+                    if (player.level instanceof ServerLevel world) {
+                        world.playSound(null, new BlockPos(explosionCenter), SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 4.0F, 1.0F + (world.random.nextFloat() - world.random.nextFloat() * 0.2F) * 0.7F);
                         world.sendParticles(ParticleTypes.EXPLOSION, explosionCenter.x(), explosionCenter.y(), explosionCenter.z(), 10, 0, 0, 0, 1);
                     }
                 }
