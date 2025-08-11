@@ -35,7 +35,7 @@ public class FallingStone extends TerraEnchantment {
     public void doFallingDamage(TickEvent.PlayerTickEvent e) {
         Player player = e.player;
         int level = EnchantmentHelper.getEnchantmentLevel(this, player);
-        if (!player.onGround() && player.fallDistance > 2) {
+        if (level > 0 && !player.onGround() && player.fallDistance > 2) {
             List<Entity> entities = player.level().getEntities(player, player.getBoundingBox().inflate(0.3 * level, 0.3, 0.3 * level));
             for (Entity entity : entities) {
                 if (entity instanceof LivingEntity monster && EnchUtils.isHostileToLivingEntity(monster, player)) {
