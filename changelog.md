@@ -1,3 +1,9 @@
+# 1.4.1
+## fix:
+- Fix the issue where FallingStone always takes effect
+
+- 修复落石附魔总是生效的问题
+
 # 1.4.0
 ## add:
 - Rocket Jump:Head down and attack, then rocket jump
