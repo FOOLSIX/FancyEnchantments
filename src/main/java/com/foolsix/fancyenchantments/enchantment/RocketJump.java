@@ -33,12 +33,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ROCK
 public class RocketJump extends IgnisEnchantment {
     private static final ModConfig.RocketJumpOptions CONFIG = FancyEnchantments.getConfig().rocketJumpOptions;
     private final Vec3 DOWN_DIRECTION = new Vec3(0, -1, 0);
-    private final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new ExplosionDamageCalculator() {
-        @Override
-        public @NotNull Optional<Float> getBlockExplosionResistance(Explosion pExplosion, BlockGetter pReader, BlockPos pPos, BlockState pState, FluidState pFluid) {
-            return Optional.of(0f);
-        }
-    };
 
     public RocketJump() {
         super(CONFIG, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[] { EquipmentSlot.FEET });
