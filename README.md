@@ -35,5 +35,5 @@ Tinkers Construct: https://github.com/SlimeKnights/TinkersConstruct/
 
 JEI Enchantment Info: https://github.com/Phylogeny/JEIEnchantmentInfo
 
-
+Game Icons: https://game-icons.net/
 
