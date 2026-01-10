@@ -5,11 +5,10 @@ import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
@@ -30,9 +29,12 @@ public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHa
                 arrow.getOwner() instanceof LivingEntity shooter &&
                 shooter.level instanceof ServerLevel world) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, shooter);
-            ArrowItem arrowitem = (ArrowItem) Items.ARROW;
             for (int i = 1; i <= level; ++i) {
-                AbstractArrow arrow1 = arrowitem.createArrow(world, shooter.getUseItem(), shooter);
+                EntityType<?> type = arrow.getType();
+                AbstractArrow arrow1 = (AbstractArrow) type.create(world);
+                if(arrow1 == null) return;
+
+                arrow1.setEnchantmentEffectsFromEntity(shooter, (float) arrow.getDeltaMovement().length());
                 arrow1.setPos(shooter.getX(), shooter.getY() + shooter.getEyeHeight(), shooter.getZ());
                 arrow1.setBaseDamage(arrow.getBaseDamage());
                 arrow1.setKnockback(arrow.getKnockback());
