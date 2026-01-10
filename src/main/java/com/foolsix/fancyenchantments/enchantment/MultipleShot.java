@@ -32,6 +32,9 @@ public class MultipleShot extends FEBaseEnchantment implements LivingHurtEventHa
             for (int i = 1; i <= level; ++i) {
                 EntityType<?> type = arrow.getType();
                 AbstractArrow arrow1 = (AbstractArrow) type.create(world);
+                if(arrow1 == null) return;
+
+                arrow1.setEnchantmentEffectsFromEntity(shooter, (float) arrow.getDeltaMovement().length());
                 arrow1.setPos(shooter.getX(), shooter.getY() + shooter.getEyeHeight(), shooter.getZ());
                 arrow1.setBaseDamage(arrow.getBaseDamage());
                 arrow1.setKnockback(arrow.getKnockback());
