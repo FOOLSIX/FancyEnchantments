@@ -73,8 +73,8 @@ public class CapabilityEvents {
     public void elementPlayerTick(TickEvent.PlayerTickEvent e) {
         if (e.player == null || e.isCanceled() || !e.side.isServer() || e.phase != TickEvent.Phase.START)
             return;
-        //Calculate once per second
-        if (e.player.tickCount % 20 != 0) {
+        //Calculate like Beacon
+        if (e.player.tickCount % 80 != 0) {
             e.player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(elementStats -> {
                 for (Element element : Element.values()) {
                     if (element.ordinal() < BUFF.length) {
@@ -83,13 +83,13 @@ public class CapabilityEvents {
                         if (BUFF[index].isPresent() && point >= CONFIG.conditions[index]) {
                             e.player.addEffect(new MobEffectInstance(
                                     BUFF[index].get(),
-                                    20,
+                                    200,
                                     Math.min((point / CONFIG.conditions[index]), CONFIG.maxEffectLevel[index]) - 1));
                         }
                     }
                 }
                 if (elementStats.getPoint(IGNIS) >= CONFIG.ignisLevelToGetFireResistance) {
-                    e.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20));
+                    e.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200));
                 }
                 if (elementStats.getPoint(TWISTED) - elementStats.getPoint(HOLY) >= CONFIG.twistedLevelToGetDebuff) {
                     if (Math.random() < CONFIG.probabilityToGetDebuff) {
