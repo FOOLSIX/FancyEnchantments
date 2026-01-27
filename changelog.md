@@ -1,3 +1,13 @@
+# 1.4.2
+## changes:
+- Streamline no longer has the feature of ignoring gravity
+- Make MultipleShot compatible with special arrows
+- Elemental BUFF updates less frequently and lasts longer
+
+- 流线型不再有忽视重力的特性
+- 使万箭兼容特殊箭矢
+- 元素BUFF更新更少,持续时间更长
+
 # 1.4.1
 ## fix:
 - Fix the issue where FallingStone always takes effect
