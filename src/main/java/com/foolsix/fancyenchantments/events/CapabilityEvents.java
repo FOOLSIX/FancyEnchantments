@@ -70,9 +70,8 @@ public class CapabilityEvents {
     public void timeToLivePlayerTick(TickEvent.PlayerTickEvent e) {
         if (e.player != null && e.side.isServer() && e.phase == TickEvent.Phase.START) {
             e.player.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(ttl -> {
-                if (ttl.getTtl() == 0) {
-                    e.player.die(ttl.getDamageSource());
-                    e.player.setHealth(0);
+                if (ttl.getTtl() == 0 && !e.player.isDeadOrDying()) {
+                    e.player.hurt(e.player.damageSources().genericKill(), Float.MAX_VALUE);
                 }
                 ttl.subTtl(1);
                 TimeToLivePacket packet = new TimeToLivePacket(ttl.getTtl());

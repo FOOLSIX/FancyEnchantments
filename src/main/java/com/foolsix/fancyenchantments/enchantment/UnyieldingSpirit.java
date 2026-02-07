@@ -58,7 +58,6 @@ public class UnyieldingSpirit extends HolyEnchantment implements LivingDeathEven
                         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, extraTime));
                     player.setHealth(player.getMaxHealth() * CONFIG.healthPercentage);
                     TimeToLiveHelper.setTtl(player, extraTime);
-                    TimeToLiveHelper.setDamageSource(player, e.getSource());
                     player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(CONFIG.baseDamage, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.HEAD));
                     e.setCanceled(true);
                 }

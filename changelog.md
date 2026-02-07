@@ -1,3 +1,9 @@
+# 1.4.3
+## fix:
+- Fixed the server error related to the UnyieldingSpirit
+
+- 修复了不屈的精神的服务端错误
+
 # 1.4.2
 ## changes:
 - Streamline no longer has the feature of ignoring gravity

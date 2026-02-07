@@ -6,6 +6,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class TimeToLivePacket {
@@ -27,12 +28,10 @@ public class TimeToLivePacket {
         NetworkEvent.Context context = contextSupplier.get();
         if(!context.getDirection().getReceptionSide().isClient()) return;
         Minecraft mc = Minecraft.getInstance();
-        Player player = mc.player;
-        if (player != null) {
-            player.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(timeToLiveCapability -> {
-                timeToLiveCapability.setTtl(message.ttl);
-            });
-        }
+        Optional<Player> player = Optional.ofNullable(mc.player);
+        player.ifPresent(p -> p.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(timeToLiveCapability -> {
+            timeToLiveCapability.setTtl(message.ttl);
+        }));
         context.setPacketHandled(true);
     }
 }

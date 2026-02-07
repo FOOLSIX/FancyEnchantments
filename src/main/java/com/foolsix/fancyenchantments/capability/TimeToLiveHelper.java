@@ -1,6 +1,5 @@
 package com.foolsix.fancyenchantments.capability;
 
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,9 +15,5 @@ public class TimeToLiveHelper {
 
     public static void setTtl(Player player, int ttlVal) {
         player.getCapability(PLAYER_TTL).ifPresent(ttl -> ttl.setTtl(ttlVal));
-    }
-
-    public static void setDamageSource(Player player, DamageSource damageSource) {
-        player.getCapability(PLAYER_TTL).ifPresent(ttl -> ttl.setDamageSource(damageSource));
     }
 }

@@ -2,8 +2,11 @@ package com.foolsix.fancyenchantments.network;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
+
+import java.util.Optional;
 
 public class Networking {
     private static final String NETWORK_VERSION = "1.0";
@@ -12,6 +15,6 @@ public class Networking {
 
     public static void initNetwork() {
         int index = 0;
-        CHANNEL.registerMessage(index++, TimeToLivePacket.class, TimeToLivePacket::encode, TimeToLivePacket::decode, TimeToLivePacket::handle);
+        CHANNEL.registerMessage(index++, TimeToLivePacket.class, TimeToLivePacket::encode, TimeToLivePacket::decode, TimeToLivePacket::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
     }
 }
