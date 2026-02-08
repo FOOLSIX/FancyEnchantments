@@ -70,7 +70,7 @@
   "enchantment.fancyenchantments.feather_fall.desc": "在空中潜行获得缓降",
   "enchantment.fancyenchantments.unyielding_spirit": "不屈的精神",
   "enchantment.fancyenchantments.unyielding_spirit.desc": "临死前获得额外的生存时间,杀死敌怪以复活",
-  "enchantment.fancyenchantments.unyielding_spirit.hud":  "强撑精神!",
+  "enchantment.fancyenchantments.unyielding_spirit.hud": "强撑精神!",
   "enchantment.fancyenchantments.cursed_gaze": "诅咒凝视",
   "enchantment.fancyenchantments.cursed_gaze.desc": "给予你所凝视的敌人虚弱和缓慢效果",
   "enchantment.fancyenchantments.calmer": "平静",
@@ -180,5 +180,7 @@
   "enchantment.fancyenchantments.rocket_jump": "火箭跳",
   "enchantment.fancyenchantments.rocket_jump.desc": "低头攻击,然后火箭跳",
   "enchantment.fancyenchantments.dedication": "奉献",
-  "enchantment.fancyenchantments.dedication.desc": "受伤时有概率消耗该附魔,增强盔甲属性"
+  "enchantment.fancyenchantments.dedication.desc": "受伤时有概率消耗该附魔,增强盔甲属性",
+  "enchantment.fancyenchantments.beyond_the_flash": "超越肉体",
+  "enchantment.fancyenchantments.beyond_the_flash.desc": "置于快捷栏,每次攻击都会附带该物品的伤害,消耗大量耐久,只会有一个物品生效"
 }

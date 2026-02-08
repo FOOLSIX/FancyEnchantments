@@ -71,7 +71,7 @@
   "enchantment.fancyenchantments.feather_fall.desc": "Sneaking in the air to gain a Slow Falling effect",
   "enchantment.fancyenchantments.unyielding_spirit": "Unyielding Spirit",
   "enchantment.fancyenchantments.unyielding_spirit.desc": "Get extra survival time before death, kill monsters to resurrect",
-  "enchantment.fancyenchantments.unyielding_spirit.hud":  "Last Stand!",
+  "enchantment.fancyenchantments.unyielding_spirit.hud": "Last Stand!",
   "enchantment.fancyenchantments.cursed_gaze": "Cursed Gaze",
   "enchantment.fancyenchantments.cursed_gaze.desc": "Give the monsters you gaze upon weakness and slowness effects",
   "enchantment.fancyenchantments.calmer": "Calmer",
@@ -181,5 +181,7 @@
   "enchantment.fancyenchantments.rocket_jump": "Rocket Jump",
   "enchantment.fancyenchantments.rocket_jump.desc": "Head down and attack, then rocket jump",
   "enchantment.fancyenchantments.dedication": "Dedication",
-  "enchantment.fancyenchantments.dedication.desc": "Chance to consume the enchantment when hurt to enhance armor attributes"
+  "enchantment.fancyenchantments.dedication.desc": "Chance to consume the enchantment when hurt to enhance armor attributes",
+  "enchantment.fancyenchantments.beyond_the_flash": "Beyond The Flash",
+  "enchantment.fancyenchantments.beyond_the_flash.desc": "When placed in the hot bar, each attack will inflict damage equivalent to the item's damage, consuming a large amount of durability. Only one item will be effective"
 }

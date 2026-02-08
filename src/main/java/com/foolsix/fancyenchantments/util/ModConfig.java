@@ -192,6 +192,8 @@ public class ModConfig implements ConfigData {
     public final RocketJumpOptions rocketJumpOptions = new RocketJumpOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final DedicationOptions dedicationOptions = new DedicationOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final BeyondTheFleshOptions beyondTheFleshOptions = new BeyondTheFleshOptions();
 
     public static class ElementStatOptions {
         @Comment("The following order is aer, aqua, ignis, terra")
@@ -1093,6 +1095,16 @@ public class ModConfig implements ConfigData {
 
         DedicationOptions() {
             super(3, Rarity.RARE);
+        }
+    }
+
+    public static class BeyondTheFleshOptions extends BaseOptions {
+        @Comment("durability consumption = damage / 4 * multiplier")
+        public double durabilityConsumptionMultiplier = 1.0;
+
+        BeyondTheFleshOptions() {
+            super(1, Rarity.VERY_RARE);
+            isTreasure = true;
         }
     }
 }

@@ -30,6 +30,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> ARMOR_FORGING = reg("armor_forging", ArmorForging::new);
 
+  public static final RegistryObject<Enchantment> BEYOND_THE_FLASH = reg("beyond_the_flash", BeyondTheFlash::new);
+
   public static final RegistryObject<Enchantment> BLESSED_WIND = reg("blessed_wind", BlessedWind::new);
 
   public static final RegistryObject<Enchantment> BLIND_LOYALTY = reg("blind_loyalty", BlindLoyalty::new);
@@ -57,6 +59,8 @@ public final class EnchantmentReg {
   public static final RegistryObject<Enchantment> CUMBERSOME = reg("cumbersome", Cumbersome::new);
 
   public static final RegistryObject<Enchantment> CURSED_GAZE = reg("cursed_gaze", CursedGaze::new);
+
+  public static final RegistryObject<Enchantment> DEDICATION = reg("dedication", Dedication::new);
 
   public static final RegistryObject<Enchantment> DELAYED_EXECUTION = reg("delayed_execution", DelayedExecution::new);
 
@@ -135,8 +139,6 @@ public final class EnchantmentReg {
   public static final RegistryObject<Enchantment> PURIFYING = reg("purifying", Purifying::new);
 
   public static final RegistryObject<Enchantment> PYROMANIAC = reg("pyromaniac", Pyromaniac::new);
-
-  public static final RegistryObject<Enchantment> DEDICATION = reg("dedication", Dedication::new);
 
   public static final RegistryObject<Enchantment> RECOIL = reg("recoil", Recoil::new);
 
