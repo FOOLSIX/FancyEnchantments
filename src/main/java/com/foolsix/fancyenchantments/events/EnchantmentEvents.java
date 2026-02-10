@@ -16,7 +16,10 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.event.entity.player.*;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -247,5 +250,10 @@ public class EnchantmentEvents {
         if (!e.isCanceled()) {
             ((RocketJump) ROCKET_JUMP.get()).explode(e);
         }
+    }
+
+    @SubscribeEvent
+    public void onEffectAdd(MobEffectEvent.Added e) {
+        ((AilmentDevourer) AILMENT_DEVOURER.get()).decreaseDebuffDuration(e);
     }
 }

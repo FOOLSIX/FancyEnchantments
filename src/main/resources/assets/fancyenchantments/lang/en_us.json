@@ -183,5 +183,7 @@
   "enchantment.fancyenchantments.dedication": "Dedication",
   "enchantment.fancyenchantments.dedication.desc": "Chance to consume the enchantment when hurt to enhance armor attributes",
   "enchantment.fancyenchantments.beyond_the_flash": "Beyond The Flash",
-  "enchantment.fancyenchantments.beyond_the_flash.desc": "When placed in the hot bar, each attack will inflict damage equivalent to the item's damage, consuming a large amount of durability. Only one item will be effective"
+  "enchantment.fancyenchantments.beyond_the_flash.desc": "When placed in the hot bar, each attack will inflict damage equivalent to the item\u0027s damage, consuming a large amount of durability. Only one item will be effective",
+  "enchantment.fancyenchantments.ailment_devourer": "Ailment Devourer",
+  "enchantment.fancyenchantments.ailment_devourer.desc": "Devours hostile magic, shortening the duration of negative effects"
 }

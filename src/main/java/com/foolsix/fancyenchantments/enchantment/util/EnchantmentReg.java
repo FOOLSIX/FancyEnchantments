@@ -26,6 +26,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> AFTERIMAGE = reg("afterimage", Afterimage::new);
 
+  public static final RegistryObject<Enchantment> AILMENT_DEVOURER = reg("ailment_devourer", AilmentDevourer::new);
+
   public static final RegistryObject<Enchantment> AIR_ATTACK = reg("air_attack", AirAttack::new);
 
   public static final RegistryObject<Enchantment> ARMOR_FORGING = reg("armor_forging", ArmorForging::new);

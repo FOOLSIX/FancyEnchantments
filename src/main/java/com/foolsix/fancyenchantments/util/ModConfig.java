@@ -194,6 +194,8 @@ public class ModConfig implements ConfigData {
     public final DedicationOptions dedicationOptions = new DedicationOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final BeyondTheFleshOptions beyondTheFleshOptions = new BeyondTheFleshOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final AilmentDevourerOptions ailmentDevourerOptions = new AilmentDevourerOptions();
 
     public static class ElementStatOptions {
         @Comment("The following order is aer, aqua, ignis, terra")
@@ -1105,6 +1107,13 @@ public class ModConfig implements ConfigData {
         BeyondTheFleshOptions() {
             super(1, Rarity.VERY_RARE);
             isTreasure = true;
+        }
+    }
+
+    public static class AilmentDevourerOptions extends BaseOptions {
+
+        AilmentDevourerOptions() {
+            super(3, Rarity.RARE);
         }
     }
 }
