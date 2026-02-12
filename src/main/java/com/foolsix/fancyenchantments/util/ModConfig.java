@@ -21,7 +21,9 @@ public class ModConfig implements ConfigData {
     public boolean enableIncompatibility = true;
     @ConfigEntry.Gui.CollapsibleObject
     public boolean enableModBookTexture = true;
+    @Comment("This is specific to whether to use the algorithm of this mod for EPF > 20. It does not override the behavior of other mods.")
     @ConfigEntry.Gui.CollapsibleObject
+    public boolean enableExceedingEPFHandler = true;
     public final ElementStatOptions elementStatOptions = new ElementStatOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final ChestLootOptions chestLootOptions = new ChestLootOptions();

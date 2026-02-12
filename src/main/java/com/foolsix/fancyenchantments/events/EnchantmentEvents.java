@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.events;
 
+import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.*;
 import com.foolsix.fancyenchantments.enchantment.handler.EventHandler;
 import com.foolsix.fancyenchantments.enchantment.handler.ItemAttributeModifierEventHandler;
@@ -9,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -144,6 +146,21 @@ public class EnchantmentEvents {
         }
 
         ((Downwind) DOWNWIND.get()).attackAndPush(e);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void EPFRecalculateEffect(LivingHurtEvent e) {
+        if (!FancyEnchantments.getConfig().enableExceedingEPFHandler) return;
+
+        LivingEntity living = e.getEntity();
+        DamageSource damageSource = e.getSource();
+        int EPF = EnchantmentHelper.getDamageProtection(living.getArmorSlots(), damageSource);
+        if (EPF > 20) {
+            int x = EPF - 20;
+            float k = 0.03f;
+            float multiplier = 1f / (1f + k * x);
+            e.setAmount(e.getAmount() * multiplier);
+        }
     }
 
     @SubscribeEvent
