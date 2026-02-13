@@ -1,3 +1,18 @@
+# 1.5.0
+## add:
+- Beyond The Flesh:When placed in the hot bar, each attack will inflict damage equivalent to the item's damage, consuming a large amount of durability. Only one item will be effective
+- Ailment Devourer:Devours hostile magic, shortening the duration of negative effects
+- Over Healing:Excessive healing will be converted into absorption
+
+- 超越肉体:置于快捷栏,每次攻击都会附带该物品的伤害,消耗大量耐久,只会有一个物品生效
+- 噬魔:缩短负面效果时间
+- 过量治疗:过量的治疗会转化为伤害吸收效果
+
+## changes:
+- The portion of EPF greater than 20 due to the protection enchantment has been enhanced
+
+- 为因保护附魔使得EPF大于20的部分做了增强处理
+
 # 1.4.3
 ## fix:
 - Fixed the server error related to the UnyieldingSpirit
