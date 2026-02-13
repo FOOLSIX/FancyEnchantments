@@ -198,6 +198,8 @@ public class ModConfig implements ConfigData {
     public final BeyondTheFleshOptions beyondTheFleshOptions = new BeyondTheFleshOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final AilmentDevourerOptions ailmentDevourerOptions = new AilmentDevourerOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final OverHealingOptions overHealingOptions = new OverHealingOptions();
 
     public static class ElementStatOptions {
         @Comment("The following order is aer, aqua, ignis, terra")
@@ -1113,9 +1115,16 @@ public class ModConfig implements ConfigData {
     }
 
     public static class AilmentDevourerOptions extends BaseOptions {
-
         AilmentDevourerOptions() {
             super(3, Rarity.RARE);
+        }
+    }
+
+    public static class OverHealingOptions extends BaseOptions {
+        @Comment("per level")
+        public int cap = 10;
+        OverHealingOptions() {
+            super(3, Rarity.VERY_RARE);
         }
     }
 }

@@ -184,5 +184,7 @@
   "enchantment.fancyenchantments.beyond_the_flash": "超越肉体",
   "enchantment.fancyenchantments.beyond_the_flash.desc": "置于快捷栏,每次攻击都会附带该物品的伤害,消耗大量耐久,只会有一个物品生效",
   "enchantment.fancyenchantments.ailment_devourer": "噬魔",
-  "enchantment.fancyenchantments.ailment_devourer.desc": "缩短负面效果时间"
+  "enchantment.fancyenchantments.ailment_devourer.desc": "缩短负面效果时间",
+  "enchantment.fancyenchantments.over_healing": "过量治疗",
+  "enchantment.fancyenchantments.over_healing.desc": "过量的治疗会转化为伤害吸收效果"
 }

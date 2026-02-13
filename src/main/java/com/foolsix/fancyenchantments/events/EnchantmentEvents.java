@@ -273,4 +273,9 @@ public class EnchantmentEvents {
     public void onEffectAdd(MobEffectEvent.Added e) {
         ((AilmentDevourer) AILMENT_DEVOURER.get()).decreaseDebuffDuration(e);
     }
+
+    @SubscribeEvent
+    public void onHeal(LivingHealEvent e) {
+        ((OverHealing) OVER_HEALING.get()).overHeal(e);
+    }
 }

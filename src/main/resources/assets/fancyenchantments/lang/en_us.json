@@ -185,5 +185,7 @@
   "enchantment.fancyenchantments.beyond_the_flash": "Beyond The Flash",
   "enchantment.fancyenchantments.beyond_the_flash.desc": "When placed in the hot bar, each attack will inflict damage equivalent to the item\u0027s damage, consuming a large amount of durability. Only one item will be effective",
   "enchantment.fancyenchantments.ailment_devourer": "Ailment Devourer",
-  "enchantment.fancyenchantments.ailment_devourer.desc": "Devours hostile magic, shortening the duration of negative effects"
+  "enchantment.fancyenchantments.ailment_devourer.desc": "Devours hostile magic, shortening the duration of negative effects",
+  "enchantment.fancyenchantments.over_healing": "Over Healing",
+  "enchantment.fancyenchantments.over_healing.desc": "Excessive healing will be converted into absorption"
 }

@@ -130,6 +130,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> OVERFLOW = reg("overflow", Overflow::new);
 
+  public static final RegistryObject<Enchantment> OVER_HEALING = reg("over_healing", OverHealing::new);
+
   public static final RegistryObject<Enchantment> PALADINS_SHIELD = reg("paladins_shield", PaladinsShield::new);
 
   public static final RegistryObject<Enchantment> PERVERT = reg("pervert", Pervert::new);
