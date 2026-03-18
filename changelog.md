@@ -1,3 +1,16 @@
+# 1.6.0
+## add:
+- Gale:Gain Haste for a short time after breaking blocks
+
+- 疾风:破坏方块后获得短时间急迫效果
+## fix:
+- Element stats effects are calculated at the wrong time
+- Fixed the issue where multiple event triggers occurred when starting the server multiple times
+
+- 修复了元素属性效果错误频次计算的问题
+- 修复了多次启动服务器会多次触发事件的问题
+
+
 # 1.5.0
 ## add:
 - Beyond The Flesh:When placed in the hot bar, each attack will inflict damage equivalent to the item's damage, consuming a large amount of durability. Only one item will be effective
