@@ -186,5 +186,7 @@
   "enchantment.fancyenchantments.ailment_devourer": "噬魔",
   "enchantment.fancyenchantments.ailment_devourer.desc": "缩短负面效果时间",
   "enchantment.fancyenchantments.over_healing": "过量治疗",
-  "enchantment.fancyenchantments.over_healing.desc": "过量的治疗会转化为伤害吸收效果"
+  "enchantment.fancyenchantments.over_healing.desc": "过量的治疗会转化为伤害吸收效果",
+  "enchantment.fancyenchantments.gale": "疾风",
+  "enchantment.fancyenchantments.gale.desc": "破坏方块后获得短时间急迫效果"
 }

@@ -200,6 +200,8 @@ public class ModConfig implements ConfigData {
     public final AilmentDevourerOptions ailmentDevourerOptions = new AilmentDevourerOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final OverHealingOptions overHealingOptions = new OverHealingOptions();
+    @ConfigEntry.Gui.CollapsibleObject
+    public final GaleOptions galeOptions = new GaleOptions();
 
     public static class ElementStatOptions {
         @Comment("The following order is aer, aqua, ignis, terra")
@@ -1125,6 +1127,13 @@ public class ModConfig implements ConfigData {
         public int cap = 10;
         OverHealingOptions() {
             super(3, Rarity.VERY_RARE);
+        }
+    }
+
+    public static class GaleOptions extends BaseOptions {
+        public int durationSeconds = 2;
+        GaleOptions() {
+            super(3, Rarity.RARE);
         }
     }
 }

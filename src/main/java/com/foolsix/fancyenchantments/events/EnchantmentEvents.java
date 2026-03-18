@@ -259,6 +259,7 @@ public class EnchantmentEvents {
     @SubscribeEvent
     public void blockBreak(BlockEvent.BreakEvent e) {
         if (e.getPlayer().level().isClientSide) return;
+        ((Gale) GALE.get()).blockBreak(e);
         ((LithicSiphon) LITHIC_SIPHON.get()).blockBreak(e);
     }
 

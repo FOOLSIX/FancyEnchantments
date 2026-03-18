@@ -187,5 +187,7 @@
   "enchantment.fancyenchantments.ailment_devourer": "Ailment Devourer",
   "enchantment.fancyenchantments.ailment_devourer.desc": "Devours hostile magic, shortening the duration of negative effects",
   "enchantment.fancyenchantments.over_healing": "Over Healing",
-  "enchantment.fancyenchantments.over_healing.desc": "Excessive healing will be converted into absorption"
+  "enchantment.fancyenchantments.over_healing.desc": "Excessive healing will be converted into absorption",
+  "enchantment.fancyenchantments.gale": "Gale",
+  "enchantment.fancyenchantments.gale.desc": "Gain Haste for a short time after breaking blocks"
 }

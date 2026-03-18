@@ -98,6 +98,8 @@ public final class EnchantmentReg {
 
   public static final RegistryObject<Enchantment> FROZEN_HEART = reg("frozen_heart", FrozenHeart::new);
 
+  public static final RegistryObject<Enchantment> GALE = reg("gale", Gale::new);
+
   public static final RegistryObject<Enchantment> GIFT_OF_FIRE = reg("gift_of_fire", GiftOfFire::new);
 
   public static final RegistryObject<Enchantment> GREED_SUPREME_LOOTING = reg("greed_supreme_looting", GreedSupremeLooting::new);
