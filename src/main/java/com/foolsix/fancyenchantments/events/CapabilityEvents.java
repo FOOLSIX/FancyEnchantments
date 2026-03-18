@@ -85,7 +85,7 @@ public class CapabilityEvents {
         if (e.player == null || e.isCanceled() || !e.side.isServer() || e.phase != TickEvent.Phase.START)
             return;
         //Calculate like Beacon
-        if (e.player.tickCount % 80 != 0) {
+        if (e.player.tickCount % 80 == 0) {
             e.player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(elementStats -> {
                 for (Element element : Element.values()) {
                     if (element.ordinal() < BUFF.length) {
