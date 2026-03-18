@@ -32,19 +32,22 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.PriorityQueue;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EnchantmentEvents {
-    private static final PriorityQueue<LivingHurtEventHandler> livingHurtEventHandlers = new PriorityQueue<>(Comparator.comparingInt(LivingHurtEventHandler::getLivingHurtPriority));
+    private static final List<LivingHurtEventHandler> livingHurtEventHandlers = new ArrayList<>();
     private static final List<LivingDeathEventHandler> livingDeathEventHandlers = new ArrayList<>();
     private static final List<ItemAttributeModifierEventHandler> itemAttributeModifierEventHandlers = new ArrayList<>();
 
     @SubscribeEvent
     public void setUp(ServerStartingEvent e) {
+        if (!livingHurtEventHandlers.isEmpty()) {
+            return;
+        }
+
         ENCHANTMENTS.getEntries().stream().map(RegistryObject::get).forEach(enchantment -> {
             if (enchantment instanceof LivingHurtEventHandler handler) {
                 livingHurtEventHandlers.add(handler);
@@ -56,6 +59,7 @@ public class EnchantmentEvents {
                 livingDeathEventHandlers.add(handler);
             }
         });
+        livingHurtEventHandlers.sort(Comparator.comparingInt(LivingHurtEventHandler::getLivingHurtPriority));
     }
 
     @SubscribeEvent
