@@ -196,5 +196,7 @@
   "screen.fancyenchantments.elemental_enchanting_table.none": "None available",
   "screen.fancyenchantments.elemental_enchanting_table.unavailable": "Unavailable",
   "screen.fancyenchantments.elemental_enchanting_table.bookshelves": "Bookshelves: %s",
+  "screen.fancyenchantments.elemental_enchanting_table.total_level": "Enchanting Level: %s",
+  "screen.fancyenchantments.elemental_enchanting_table.upgrade_bonus": "Upgrade Bonus: +%s Power",
   "screen.fancyenchantments.elemental_enchanting_table.cost": "%s Lapis, %s Levels, Power %s"
 }

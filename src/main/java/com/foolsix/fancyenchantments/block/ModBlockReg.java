@@ -1,6 +1,7 @@
 package com.foolsix.fancyenchantments.block;
 
-import com.foolsix.fancyenchantments.menu.ElementalEnchantmentMenu;
+import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentMenu;
+import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableBlock;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -10,7 +11,6 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -30,7 +30,7 @@ public final class ModBlockReg {
     public static final RegistryObject<MenuType<ElementalEnchantmentMenu>> ELEMENTAL_ENCHANTMENT_MENU =
             MENUS.register("elemental_enchantment_menu",
                     () -> net.minecraftforge.common.extensions.IForgeMenuType.create(
-                            (IContainerFactory<ElementalEnchantmentMenu>) (windowId, inventory, data) ->
+                            (windowId, inventory, data) ->
                                     new ElementalEnchantmentMenu(windowId, inventory, data.readBlockPos())));
 
     private ModBlockReg() {

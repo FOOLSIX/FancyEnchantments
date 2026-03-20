@@ -1,9 +1,7 @@
-package com.foolsix.fancyenchantments.block;
+package com.foolsix.fancyenchantments.block.table;
 
-import com.foolsix.fancyenchantments.menu.ElementalEnchantmentMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -17,8 +15,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class ElementalEnchantmentTableBlock extends Block {
     private static final Component TITLE = Component.translatable("block.fancyenchantments.elemental_enchanting_table");
 
@@ -28,10 +28,12 @@ public class ElementalEnchantmentTableBlock extends Block {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-            NetworkHooks.openScreen(serverPlayer, getMenuProvider(level, pos), pos);
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
         }
-        return InteractionResult.sidedSuccess(level.isClientSide);
+
+        player.openMenu(this.getMenuProvider(level, pos));
+        return InteractionResult.CONSUME;
     }
 
     @Override

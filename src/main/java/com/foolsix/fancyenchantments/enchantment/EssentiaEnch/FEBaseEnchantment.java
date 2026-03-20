@@ -65,14 +65,8 @@ public class FEBaseEnchantment extends Enchantment {
 
     public boolean tryGenerateOnce(int[] elementalStat) {
         if (CONFIG.level <= 0) return false;
-        int[] condition = getChestGenerationCondition();
-        if (Math.random() > getChestGenerationProbability() || elementalStat.length != condition.length) return false;
-        for (int i = 0; i < condition.length; ++i) {
-            if (condition[i] > elementalStat[i]) {
-                return false;
-            }
-        }
-        return true;
+        return Math.random() <= getChestGenerationProbability()
+                && EnchUtils.matchesElementCondition(elementalStat, getChestGenerationCondition());
     }
 
 }

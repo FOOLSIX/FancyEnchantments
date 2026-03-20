@@ -1,7 +1,7 @@
 package com.foolsix.fancyenchantments;
 
 import com.foolsix.fancyenchantments.block.ModBlockReg;
-import com.foolsix.fancyenchantments.client.screen.ElementalEnchantmentScreen;
+import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentScreen;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.client.gui.screens.MenuScreens;

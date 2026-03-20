@@ -196,5 +196,7 @@
   "screen.fancyenchantments.elemental_enchanting_table.none": "当前无可用特殊附魔",
   "screen.fancyenchantments.elemental_enchanting_table.unavailable": "当前不可用",
   "screen.fancyenchantments.elemental_enchanting_table.bookshelves": "书架数: %s",
+  "screen.fancyenchantments.elemental_enchanting_table.total_level": "附魔等级: %s",
+  "screen.fancyenchantments.elemental_enchanting_table.upgrade_bonus": "升阶加成: +%s 能效",
   "screen.fancyenchantments.elemental_enchanting_table.cost": "%s 青金石, %s 级经验, 附魔强度 %s"
 }

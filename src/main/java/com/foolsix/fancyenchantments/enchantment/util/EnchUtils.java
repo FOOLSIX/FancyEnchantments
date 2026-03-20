@@ -213,6 +213,41 @@ public class EnchUtils {
         return SPECIAL_LOOT_ENCHANTMENT;
     }
 
+    public static int[] getElementStatsFromEquipment(@Nullable LivingEntity living) {
+        int[] stats = new int[ELEMENT_COUNT];
+        if (living == null) {
+            return stats;
+        }
+
+        addItemElementStats(stats, living.getMainHandItem());
+        addItemElementStats(stats, living.getOffhandItem());
+        for (ItemStack armorStack : living.getArmorSlots()) {
+            addItemElementStats(stats, armorStack);
+        }
+        return stats;
+    }
+
+    public static boolean matchesElementCondition(int[] elementStats, int[] condition) {
+        if (elementStats.length != condition.length) {
+            return false;
+        }
+        for (int i = 0; i < condition.length; ++i) {
+            if (condition[i] > elementStats[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static void addItemElementStats(int[] stats, ItemStack stack) {
+        for (var entry : stack.getAllEnchantments().entrySet()) {
+            Element element = Element.getElement(entry.getKey());
+            if (element != null) {
+                stats[element.ordinal()] += entry.getValue();
+            }
+        }
+    }
+
     public static String getLangName(String name) {
         StringBuilder sb = new StringBuilder(name);
         for (int i = 0; i < sb.length(); ++i) {

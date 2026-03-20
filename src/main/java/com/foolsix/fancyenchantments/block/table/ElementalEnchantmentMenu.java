@@ -1,0 +1,477 @@
+package com.foolsix.fancyenchantments.block.table;
+
+import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
+import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.EnchantedBookItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.*;
+
+@ParametersAreNonnullByDefault
+public class ElementalEnchantmentMenu extends AbstractContainerMenu {
+    static final int OFFER_COUNT = 3;
+    static final int ENCHANT_SLOT_COUNT = 3;
+    static final int INPUT_SLOT = 0;
+    static final int LAPIS_SLOT = 1;
+    static final int UPGRADE_SLOT = 2;
+    static final int OFFER_COST_DATA_START = 0;
+    static final int OFFER_ENCHANTMENT_DATA_START = OFFER_COST_DATA_START + OFFER_COUNT;
+    static final int OFFER_LEVEL_DATA_START = OFFER_ENCHANTMENT_DATA_START + OFFER_COUNT;
+    static final int BOOKSHELF_DATA = OFFER_LEVEL_DATA_START + OFFER_COUNT;
+    static final int UPGRADE_BONUS_DATA = BOOKSHELF_DATA + 1;
+    static final int MENU_DATA_COUNT = UPGRADE_BONUS_DATA + 1;
+    static final int PLAYER_INV_START = 3;
+    static final int PLAYER_HOTBAR_START = 30;
+    private static final int INPUT_SLOT_X = 15;
+    private static final int INPUT_SLOT_Y = 47;
+    static final int LAPIS_SLOT_X = 35;
+    static final int LAPIS_SLOT_Y = 47;
+    static final int UPGRADE_SLOT_X = 35;
+    static final int UPGRADE_SLOT_Y = 27;
+    static final int SLOT_SPACING = 18;
+    static final TagKey<Item> UPGRADE_MATERIALS = ItemTags.create(new ResourceLocation("fancyenchantments", "upgrade_materials"));
+    private static List<Enchantment> enchantmentCandidates;
+
+    private final Container enchantSlots = new SimpleContainer(ENCHANT_SLOT_COUNT) {
+        @Override
+        public void setChanged() {
+            super.setChanged();
+            ElementalEnchantmentMenu.this.slotsChanged(this);
+        }
+    };
+    private final ContainerData data = new SimpleContainerData(MENU_DATA_COUNT);
+    private final ContainerLevelAccess access;
+    private final Inventory playerInventory;
+    private final RandomSource random = RandomSource.create();
+
+    public ElementalEnchantmentMenu(int windowId, Inventory inventory, BlockPos pos) {
+        this(windowId, inventory, ContainerLevelAccess.create(inventory.player.level(), pos));
+    }
+
+    public ElementalEnchantmentMenu(int windowId, Inventory inventory, ContainerLevelAccess access) {
+        super(ModBlockReg.ELEMENTAL_ENCHANTMENT_MENU.get(), windowId);
+        final int playerInventoryX = 8;
+        final int playerInventoryY = 84;
+        final int hotbarY = 142;
+        this.access = access;
+        this.playerInventory = inventory;
+
+        this.addSlot(new Slot(this.enchantSlots, INPUT_SLOT, INPUT_SLOT_X, INPUT_SLOT_Y) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(Items.BOOK) || stack.isEnchantable();
+            }
+
+            @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+        });
+        this.addSlot(new Slot(this.enchantSlots, LAPIS_SLOT, LAPIS_SLOT_X, LAPIS_SLOT_Y) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(Items.LAPIS_LAZULI);
+            }
+        });
+        this.addSlot(new Slot(this.enchantSlots, UPGRADE_SLOT, UPGRADE_SLOT_X, UPGRADE_SLOT_Y) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(UPGRADE_MATERIALS);
+            }
+        });
+
+        for (int row = 0; row < 3; ++row) {
+            for (int column = 0; column < 9; ++column) {
+                this.addSlot(new Slot(inventory, column + row * 9 + 9, playerInventoryX + column * SLOT_SPACING, playerInventoryY + row * SLOT_SPACING));
+            }
+        }
+
+        for (int column = 0; column < 9; ++column) {
+            this.addSlot(new Slot(inventory, column, playerInventoryX + column * SLOT_SPACING, hotbarY));
+        }
+
+        this.addDataSlots(this.data);
+        this.refreshOffers();
+    }
+
+    @Override
+    public void slotsChanged(Container container) {
+        super.slotsChanged(container);
+        if (container != this.enchantSlots || this.playerInventory.player.level().isClientSide) {
+            return;
+        }
+        this.refreshOffers();
+    }
+
+    private void refreshOffers() {
+        if (this.playerInventory.player.level().isClientSide) {
+            return;
+        }
+
+        ItemStack stack = this.enchantSlots.getItem(INPUT_SLOT);
+        ItemStack upgradeStack = this.enchantSlots.getItem(UPGRADE_SLOT);
+        this.access.execute((level, pos) -> {
+            int bookshelves = countBookshelves(level, pos);
+            int upgradeBonus = this.getUpgradeBonus(upgradeStack);
+            this.data.set(BOOKSHELF_DATA, bookshelves);
+            this.data.set(UPGRADE_BONUS_DATA, upgradeBonus);
+
+            if (stack.isEmpty() || (!stack.is(Items.BOOK) && !stack.isEnchantable())) {
+                this.clearOffers(false);
+                return;
+            }
+
+            this.random.setSeed(this.playerInventory.player.getEnchantmentSeed());
+            int[] elementStats = EnchUtils.getElementStatsFromEquipment(this.playerInventory.player);
+            Set<Enchantment> rolledSpecialLoot = this.getAvailableSpecialLoot(elementStats);
+            List<EnchantmentInstance> fallbackOffers = this.getEligibleOffers(stack, 0, rolledSpecialLoot, true);
+
+            for (int slot = 0; slot < OFFER_COUNT; ++slot) {
+                int cost = this.calculateCost(slot, bookshelves, stack, upgradeBonus);
+                EnchantmentInstance offer = this.pickOffer(stack, cost, rolledSpecialLoot, fallbackOffers);
+                if (offer == null) {
+                    this.data.set(OFFER_COST_DATA_START + slot, 0);
+                    this.data.set(OFFER_ENCHANTMENT_DATA_START + slot, -1);
+                    this.data.set(OFFER_LEVEL_DATA_START + slot, 0);
+                } else {
+                    this.data.set(OFFER_COST_DATA_START + slot, cost);
+                    this.data.set(OFFER_ENCHANTMENT_DATA_START + slot, getEnchantmentCandidates().indexOf(offer.enchantment));
+                    this.data.set(OFFER_LEVEL_DATA_START + slot, offer.level);
+                }
+            }
+        });
+        this.broadcastChanges();
+    }
+
+    @Override
+    public boolean clickMenuButton(Player player, int buttonId) {
+        if (buttonId < 0 || buttonId >= OFFER_COUNT) {
+            return false;
+        }
+
+        ItemStack itemStack = this.enchantSlots.getItem(INPUT_SLOT);
+        ItemStack lapisStack = this.enchantSlots.getItem(LAPIS_SLOT);
+        ItemStack upgradeStack = this.enchantSlots.getItem(UPGRADE_SLOT);
+        int lapisCost = getLapisCost(buttonId);
+        int levelCost = getExperienceCost(buttonId);
+        EnchantmentInstance offer = this.getOffer(buttonId);
+
+        if (offer == null || itemStack.isEmpty()) {
+            return false;
+        }
+        if (!this.canAffordOffer(buttonId)) {
+            return false;
+        }
+
+        this.access.execute((level, pos) -> {
+            ItemStack resultStack = itemStack;
+            if (itemStack.is(Items.BOOK)) {
+                resultStack = new ItemStack(Items.ENCHANTED_BOOK);
+                if (itemStack.hasCustomHoverName()) {
+                    resultStack.setHoverName(itemStack.getHoverName());
+                }
+                EnchantedBookItem.addEnchantment(resultStack, offer);
+                this.enchantSlots.setItem(INPUT_SLOT, resultStack);
+            } else {
+                Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(itemStack);
+                enchantments.put(offer.enchantment, offer.level);
+                EnchantmentHelper.setEnchantments(enchantments, itemStack);
+            }
+
+            if (!player.getAbilities().instabuild) {
+                lapisStack.shrink(lapisCost);
+                if (upgradeStack.is(UPGRADE_MATERIALS)) {
+                    upgradeStack.shrink(upgradeStack.getCount());
+                }
+                player.giveExperienceLevels(-levelCost);
+            }
+
+            player.onEnchantmentPerformed(resultStack, levelCost);
+            level.playSound(null, pos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 0.9F);
+            this.enchantSlots.setChanged();
+            this.slotsChanged(this.enchantSlots);
+        });
+        return true;
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return stillValid(this.access, player, ModBlockReg.ELEMENTAL_ENCHANTING_TABLE.get());
+    }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        this.access.execute((level, pos) -> this.clearContainer(player, this.enchantSlots));
+    }
+
+    @Override
+    public @NotNull ItemStack quickMoveStack(Player player, int index) {
+        Slot slot = this.slots.get(index);
+        if (!slot.hasItem()) {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack slotStack = slot.getItem();
+        ItemStack copy = slotStack.copy();
+        if (index < PLAYER_INV_START) {
+            if (!this.moveItemStackTo(slotStack, PLAYER_INV_START, this.slots.size(), true)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (slotStack.is(Items.LAPIS_LAZULI)) {
+            if (!this.moveItemStackTo(slotStack, LAPIS_SLOT, UPGRADE_SLOT, true)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (slotStack.is(UPGRADE_MATERIALS)) {
+            if (!this.moveItemStackTo(slotStack, UPGRADE_SLOT, PLAYER_INV_START, true)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (this.slots.get(INPUT_SLOT).mayPlace(slotStack)) {
+            if (!this.moveItemStackTo(slotStack, INPUT_SLOT, LAPIS_SLOT, true)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (index < PLAYER_HOTBAR_START) {
+            if (!this.moveItemStackTo(slotStack, PLAYER_HOTBAR_START, this.slots.size(), false)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (!this.moveItemStackTo(slotStack, PLAYER_INV_START, PLAYER_HOTBAR_START, false)) {
+            return ItemStack.EMPTY;
+        }
+
+        if (slotStack.isEmpty()) {
+            slot.set(ItemStack.EMPTY);
+        } else {
+            slot.setChanged();
+        }
+
+        return copy;
+    }
+
+    public int getCost(int slot) {
+        return this.data.get(OFFER_COST_DATA_START + slot);
+    }
+
+    public int getBookshelfCount() {
+        return this.data.get(BOOKSHELF_DATA);
+    }
+
+    public int getUpgradeBonus() {
+        return this.data.get(UPGRADE_BONUS_DATA);
+    }
+
+    public int getTotalEnchantingLevel() {
+        return this.getBookshelfCount() + this.getUpgradeBonus();
+    }
+
+    public int getLapisCost(int slot) {
+        return slot + 1;
+    }
+
+    public int getExperienceCost(int slot) {
+        return slot + 1;
+    }
+
+    public boolean canAffordOffer(int slot) {
+        if (slot < 0 || slot >= OFFER_COUNT) {
+            return false;
+        }
+        EnchantmentInstance offer = this.getOffer(slot);
+        if (offer == null) {
+            return false;
+        }
+        Player player = this.playerInventory.player;
+        if (player.getAbilities().instabuild) {
+            return true;
+        }
+        ItemStack lapisStack = this.enchantSlots.getItem(LAPIS_SLOT);
+        return lapisStack.getCount() >= this.getLapisCost(slot)
+                && player.experienceLevel >= this.getExperienceCost(slot)
+                && player.experienceLevel >= this.getCost(slot);
+    }
+
+    @Nullable
+    public EnchantmentInstance getOffer(int slot) {
+        int enchantmentIndex = this.data.get(OFFER_ENCHANTMENT_DATA_START + slot);
+        int level = this.data.get(OFFER_LEVEL_DATA_START + slot);
+        List<Enchantment> enchantments = getEnchantmentCandidates();
+        if (enchantmentIndex < 0 || enchantmentIndex >= enchantments.size() || level <= 0) {
+            return null;
+        }
+        return new EnchantmentInstance(enchantments.get(enchantmentIndex), level);
+    }
+
+    private void clearOffers(boolean clearBookshelves) {
+        for (int slot = 0; slot < OFFER_COUNT; ++slot) {
+            this.data.set(OFFER_COST_DATA_START + slot, 0);
+            this.data.set(OFFER_ENCHANTMENT_DATA_START + slot, -1);
+            this.data.set(OFFER_LEVEL_DATA_START + slot, 0);
+        }
+        if (clearBookshelves) {
+            this.data.set(BOOKSHELF_DATA, 0);
+        }
+        this.broadcastChanges();
+    }
+
+    private int calculateCost(int slot, int bookshelves, ItemStack stack, int upgradeBonus) {
+        int enchantability = Math.max(1, stack.getEnchantmentValue());
+        int base = this.random.nextInt(8) + 1 + bookshelves + enchantability / 4 + upgradeBonus;
+        return switch (slot) {
+            case 0 -> Mth.clamp(base / 3 + upgradeBonus / 3, 1, 20 + upgradeBonus);
+            case 1 -> Mth.clamp((base * 2) / 3 + 1 + upgradeBonus / 2, 4, 28 + upgradeBonus);
+            default -> Mth.clamp(base + 3, 8, 30 + upgradeBonus);
+        };
+    }
+
+    private int getUpgradeBonus(ItemStack upgradeStack) {
+        if (!upgradeStack.is(UPGRADE_MATERIALS)) {
+            return 0;
+        }
+        return Math.min(30, upgradeStack.getCount() * 2);
+    }
+
+    @Nullable
+    private EnchantmentInstance pickOffer(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, List<EnchantmentInstance> fallbackOffers) {
+        List<EnchantmentInstance> candidates = this.getEligibleOffers(stack, cost, rolledSpecialLoot, false);
+        if (candidates.isEmpty()) {
+            candidates = fallbackOffers;
+        }
+        if (candidates.isEmpty()) {
+            return null;
+        }
+
+        int totalWeight = 0;
+        for (EnchantmentInstance candidate : candidates) {
+            totalWeight += getWeight(candidate.enchantment);
+        }
+        return this.pickWeightedOffer(candidates, totalWeight);
+    }
+
+    private List<EnchantmentInstance> getEligibleOffers(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, boolean ignoreCost) {
+        List<EnchantmentInstance> candidates = new ArrayList<>();
+        Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.getEnchantments(stack);
+
+        for (Enchantment enchantment : getEnchantmentCandidates()) {
+            if (enchantment.isTreasureOnly()) {
+                continue;
+            }
+            if (enchantment instanceof FEBaseEnchantment fe && fe.isSpecialLoot() && !rolledSpecialLoot.contains(enchantment)) {
+                continue;
+            }
+            if (stack.is(Items.BOOK)) {
+                if (!enchantment.isAllowedOnBooks()) {
+                    continue;
+                }
+            } else if (!enchantment.canEnchant(stack)) {
+                continue;
+            }
+            if (!EnchantmentHelper.isEnchantmentCompatible(existingEnchantments.keySet(), enchantment)) {
+                continue;
+            }
+
+            for (int level = enchantment.getMaxLevel(); level >= 1; --level) {
+                if (ignoreCost || cost >= enchantment.getMinCost(level) && cost <= enchantment.getMaxCost(level)) {
+                    candidates.add(new EnchantmentInstance(enchantment, level));
+                    break;
+                }
+            }
+        }
+        return candidates;
+    }
+
+    private EnchantmentInstance pickWeightedOffer(List<EnchantmentInstance> candidates, int totalWeight) {
+        int chosen = this.random.nextInt(totalWeight);
+        for (EnchantmentInstance candidate : candidates) {
+            chosen -= getWeight(candidate.enchantment);
+            if (chosen < 0) {
+                return candidate;
+            }
+        }
+        return candidates.get(candidates.size() - 1);
+    }
+
+    private Set<Enchantment> getAvailableSpecialLoot(int[] elementStats) {
+        Set<Enchantment> available = new HashSet<>();
+        for (Enchantment enchantment : getEnchantmentCandidates()) {
+            if (!(enchantment instanceof FEBaseEnchantment fe) || !fe.isSpecialLoot()) {
+                continue;
+            }
+            if (this.random.nextDouble() < fe.getChestGenerationProbability() || !EnchUtils.matchesElementCondition(elementStats, fe.getChestGenerationCondition())) {
+                continue;
+            }
+            available.add(enchantment);
+        }
+        return available;
+    }
+
+    private int countBookshelves(Level level, BlockPos pos) {
+        int bookshelves = 0;
+        for (int x = -1; x <= 1; ++x) {
+            for (int z = -1; z <= 1; ++z) {
+                if (x == 0 && z == 0) {
+                    continue;
+                }
+                if (!level.isEmptyBlock(pos.offset(x, 0, z)) || !level.isEmptyBlock(pos.offset(x, 1, z))) {
+                    continue;
+                }
+                bookshelves += this.countBookshelf(level, pos.offset(x * 2, 0, z * 2));
+                bookshelves += this.countBookshelf(level, pos.offset(x * 2, 1, z * 2));
+                if (x != 0 && z != 0) {
+                    bookshelves += this.countBookshelf(level, pos.offset(x * 2, 0, z));
+                    bookshelves += this.countBookshelf(level, pos.offset(x * 2, 1, z));
+                    bookshelves += this.countBookshelf(level, pos.offset(x, 0, z * 2));
+                    bookshelves += this.countBookshelf(level, pos.offset(x, 1, z * 2));
+                }
+            }
+        }
+        return bookshelves;
+    }
+
+    private int countBookshelf(Level level, BlockPos pos) {
+        return level.getBlockState(pos).is(Blocks.BOOKSHELF) ? 1 : 0;
+    }
+
+    private int getWeight(Enchantment enchantment) {
+        return switch (enchantment.getRarity()) {
+            case COMMON -> 10;
+            case UNCOMMON -> 7;
+            case RARE -> 4;
+            case VERY_RARE -> 2;
+        };
+    }
+
+    private static List<Enchantment> getEnchantmentCandidates() {
+        if (enchantmentCandidates == null) {
+            enchantmentCandidates = EnchantmentReg.ENCHANTMENTS.getEntries().stream()
+                    .map(RegistryObject::get)
+                    .filter(e -> e instanceof FEBaseEnchantment && e.getMaxLevel() > 0)
+                    .toList();
+        }
+        return enchantmentCandidates;
+    }
+}

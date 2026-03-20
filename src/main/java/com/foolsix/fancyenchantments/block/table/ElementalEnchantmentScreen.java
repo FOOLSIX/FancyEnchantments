@@ -1,38 +1,43 @@
-package com.foolsix.fancyenchantments.client.screen;
+package com.foolsix.fancyenchantments.block.table;
 
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
-import com.foolsix.fancyenchantments.menu.ElementalEnchantmentMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.ChatFormatting;
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@FieldsAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class ElementalEnchantmentScreen extends AbstractContainerScreen<ElementalEnchantmentMenu> {
     private static final ResourceLocation ENCHANTING_TABLE_TEXTURE =
             new ResourceLocation("minecraft", "textures/gui/container/enchanting_table.png");
-    private static final int VANILLA_WIDTH = 176;
-    private static final int PANEL_WIDTH = 132;
-    private static final int SIDE_PANEL_X = VANILLA_WIDTH + 8;
-    private static final int SIDE_PANEL_WIDTH = 118;
-    private static final int SPECIAL_LIST_TOP = 94;
-    private static final int SPECIAL_LIST_TEXT_TOP = SPECIAL_LIST_TOP + 12;
-    private static final int SPECIAL_LIST_LINE_HEIGHT = 9;
-    private static final int SPECIAL_LIST_VISIBLE_LINES = 6;
-    private static final int SPECIAL_LIST_HEIGHT = SPECIAL_LIST_VISIBLE_LINES * SPECIAL_LIST_LINE_HEIGHT;
-    private static final int OFFER_LEFT = 59;
-    private static final int OFFER_TOP = 14;
-    private static final int OFFER_WIDTH = 109;
-    private static final int OFFER_HEIGHT = 19;
+    static final int VANILLA_WIDTH = 176;
+    static final int PANEL_WIDTH = 132;
+    static final int SIDE_PANEL_X = VANILLA_WIDTH + 8;
+    static final int SIDE_PANEL_WIDTH = 118;
+    static final int SPECIAL_LIST_TOP = 94;
+    static final int SPECIAL_LIST_TEXT_TOP = SPECIAL_LIST_TOP + 12;
+    static final int SPECIAL_LIST_LINE_HEIGHT = 9;
+    static final int SPECIAL_LIST_VISIBLE_LINES = 6;
+    static final int SPECIAL_LIST_HEIGHT = SPECIAL_LIST_VISIBLE_LINES * SPECIAL_LIST_LINE_HEIGHT;
+    static final int OFFER_LEFT = 59;
+    static final int OFFER_TOP = 14;
+    static final int OFFER_WIDTH = 109;
+    static final int OFFER_HEIGHT = 19;
+    static final int UPGRADE_SLOT_LEFT = ElementalEnchantmentMenu.UPGRADE_SLOT_X - 1;
+    static final int UPGRADE_SLOT_TOP = ElementalEnchantmentMenu.UPGRADE_SLOT_Y;
     private int specialEnchantScrollOffset;
 
     public ElementalEnchantmentScreen(ElementalEnchantmentMenu menu, Inventory inventory, Component title) {
@@ -44,6 +49,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+        final int sidePanelTop = 8;
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int left = this.leftPos;
         int top = this.topPos;
@@ -52,6 +58,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         guiGraphics.blit(ENCHANTING_TABLE_TEXTURE, left, top, 0, 0, VANILLA_WIDTH, this.imageHeight);
         guiGraphics.fill(left + VANILLA_WIDTH, top, left + this.imageWidth, top + this.imageHeight, sidePanelBackgroundColor);
         guiGraphics.fill(left + VANILLA_WIDTH + 4, top + 4, left + this.imageWidth - 4, top + this.imageHeight - 4, sidePanelInnerBackgroundColor);
+        this.renderUpgradeSlotBackground(guiGraphics, left + UPGRADE_SLOT_LEFT, top + UPGRADE_SLOT_TOP);
 
         // Set button colors to mimic the vanilla enchanting table offer panel
         int enabledOfferColor = 0xFF8F6D45; // opaque medium brown
@@ -81,7 +88,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             int optionWidth = optionRight - optionLeft;
 
             // Check if this enchantment offer exists
-            boolean enabled = this.menu.getOffer(i) != null;
+            boolean enabled = this.menu.canAffordOffer(i);
             int color = enabled ? enabledOfferColor : disabledOfferColor;
             int outerBorderColor = enabled ? enabledOuterBorderColor : disabledOuterBorderColor;
             int innerHighlightColor = enabled ? enabledInnerHighlightColor : disabledInnerHighlightColor;
@@ -137,7 +144,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             }
         }
 
-        this.renderSidePanel(guiGraphics, left + SIDE_PANEL_X, top + 8);
+        this.renderSidePanel(guiGraphics, left + SIDE_PANEL_X, top + sidePanelTop);
     }
 
     @Override
@@ -148,7 +155,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
@@ -160,7 +167,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         int left = this.leftPos + OFFER_LEFT;
         int top = this.topPos + OFFER_TOP;
         for (int i = 0; i < 3; ++i) {
-            if (this.menu.getOffer(i) == null) {
+            if (!this.menu.canAffordOffer(i)) {
                 continue;
             }
             double relativeX = mouseX - left;
@@ -186,6 +193,9 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     }
 
     private void renderSidePanel(GuiGraphics guiGraphics, int panelLeft, int panelTop) {
+        final int elementStatsTop = 14;
+        final int elementStatsLineHeight = 10;
+        final int totalLevelTop = 78;
         int panelTitleColor = 0xE0E0E0; // light gray
         int panelTextColor = 0xFFFFFF; // white
         int panelSecondaryTextColor = 0xC8C8C8; // soft gray
@@ -198,15 +208,15 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         int[] elementStats = this.getDisplayedElementStats();
         if (this.minecraft != null && this.minecraft.player != null) {
             for (EnchUtils.Element element : EnchUtils.Element.values()) {
-                Component line = Component.literal(element.name().substring(0, 1) + element.name().substring(1).toLowerCase() + ": " + elementStats[element.ordinal()])
+                Component line = Component.literal(element.name().charAt(0) + element.name().substring(1).toLowerCase() + ": " + elementStats[element.ordinal()])
                         .withStyle(EnchUtils.Element.getChatFormatting(element));
-                guiGraphics.drawString(this.font, line, panelLeft, panelTop + 14 + element.ordinal() * 10, panelTextColor, false);
+                guiGraphics.drawString(this.font, line, panelLeft, panelTop + elementStatsTop + element.ordinal() * elementStatsLineHeight, panelTextColor, false);
             }
         }
 
         guiGraphics.drawString(this.font,
-                Component.translatable("screen.fancyenchantments.elemental_enchanting_table.bookshelves", this.menu.getBookshelfCount()),
-                panelLeft, panelTop + 78, panelSecondaryTextColor, false);
+                Component.translatable("screen.fancyenchantments.elemental_enchanting_table.total_level", this.menu.getTotalEnchantingLevel()),
+                panelLeft, panelTop + totalLevelTop, panelSecondaryTextColor, false);
 
         int listTop = panelTop + SPECIAL_LIST_TOP;
         guiGraphics.drawString(this.font,
@@ -243,15 +253,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         List<Component> components = new ArrayList<>();
         for (var enchantment : EnchUtils.getAllSpecialLootEnchantment()) {
             if (enchantment instanceof FEBaseEnchantment fe) {
-                int[] conditions = fe.getChestGenerationCondition();
-                boolean matched = true;
-                for (int i = 0; i < conditions.length; ++i) {
-                    if (elementStats[i] < conditions[i]) {
-                        matched = false;
-                        break;
-                    }
-                }
-                if (matched) {
+                if (EnchUtils.matchesElementCondition(elementStats, fe.getChestGenerationCondition())) {
                     components.add(enchantment.getFullname(Math.min(fe.getMaxLevel(), Math.max(1, fe.getCONFIG().maxLevelCanBeDiscovered))));
                 }
             }
@@ -260,26 +262,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     }
 
     private int[] getDisplayedElementStats() {
-        int[] stats = new int[EnchUtils.ELEMENT_COUNT];
-        if (this.minecraft == null || this.minecraft.player == null) {
-            return stats;
-        }
-
-        this.addItemElementStats(stats, this.minecraft.player.getMainHandItem());
-        this.addItemElementStats(stats, this.minecraft.player.getOffhandItem());
-        for (ItemStack armorStack : this.minecraft.player.getArmorSlots()) {
-            this.addItemElementStats(stats, armorStack);
-        }
-        return stats;
-    }
-
-    private void addItemElementStats(int[] stats, ItemStack stack) {
-        for (var entry : stack.getAllEnchantments().entrySet()) {
-            EnchUtils.Element element = EnchUtils.Element.getElement(entry.getKey());
-            if (element != null) {
-                stats[element.ordinal()] += entry.getValue();
-            }
-        }
+        return EnchUtils.getElementStatsFromEquipment(this.minecraft == null ? null : this.minecraft.player);
     }
 
     private FormattedCharSequence getTrimmedSequence(Component text, int maxWidth) {
@@ -288,8 +271,9 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     }
 
     private boolean isMouseOverSpecialList(double mouseX, double mouseY) {
+        final int sidePanelTop = 8;
         int left = this.leftPos + SIDE_PANEL_X;
-        int top = this.topPos + 8 + SPECIAL_LIST_TEXT_TOP;
+        int top = this.topPos + sidePanelTop + SPECIAL_LIST_TEXT_TOP;
         return mouseX >= left && mouseX < left + SIDE_PANEL_WIDTH
                 && mouseY >= top && mouseY < top + SPECIAL_LIST_HEIGHT;
     }
@@ -311,5 +295,12 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             guiGraphics.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
             return;
         }
+    }
+
+    private void renderUpgradeSlotBackground(GuiGraphics guiGraphics, int left, int top) {
+        int fill = 0xFF8B8B8B;
+        guiGraphics.fill(left, top, left + ElementalEnchantmentMenu.SLOT_SPACING, top + ElementalEnchantmentMenu.SLOT_SPACING, 0xFFFFFFFF);//white
+        guiGraphics.fill(left, top, left + ElementalEnchantmentMenu.SLOT_SPACING - 1, top + ElementalEnchantmentMenu.SLOT_SPACING - 1, 0xFF373737);//grey
+        guiGraphics.fill(left + 1, top + 1, left + ElementalEnchantmentMenu.SLOT_SPACING - 1, top + ElementalEnchantmentMenu.SLOT_SPACING - 1, fill);
     }
 }
