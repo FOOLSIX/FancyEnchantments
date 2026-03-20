@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments;
 
+import com.foolsix.fancyenchantments.block.ModBlockReg;
 import com.foolsix.fancyenchantments.command.ElementStatCommand;
 import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
@@ -37,6 +38,7 @@ public class FancyEnchantments {
         EnchantmentReg.register(modEventBus);
         EffectReg.EFFECTS.register(modEventBus);
         LootModifierReg.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
+        ModBlockReg.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
         MinecraftForge.EVENT_BUS.register(new EffectEvents());
@@ -44,7 +46,7 @@ public class FancyEnchantments {
 
         Networking.initNetwork();
 
-        if (FMLEnvironment.dist.isClient() && FancyEnchantments.getConfig().enableModBookTexture) {
+        if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(ClientSetup::clientSetup);
         }
 

@@ -189,5 +189,12 @@
   "enchantment.fancyenchantments.over_healing": "Over Healing",
   "enchantment.fancyenchantments.over_healing.desc": "Excessive healing will be converted into absorption",
   "enchantment.fancyenchantments.gale": "Gale",
-  "enchantment.fancyenchantments.gale.desc": "Gain Haste for a short time after breaking blocks"
+  "enchantment.fancyenchantments.gale.desc": "Gain Haste for a short time after breaking blocks",
+  "block.fancyenchantments.elemental_enchanting_table": "Elemental Enchanting Table",
+  "screen.fancyenchantments.elemental_enchanting_table.element_stats": "Element Stats",
+  "screen.fancyenchantments.elemental_enchanting_table.special_loot": "Possible Special Enchants",
+  "screen.fancyenchantments.elemental_enchanting_table.none": "None available",
+  "screen.fancyenchantments.elemental_enchanting_table.unavailable": "Unavailable",
+  "screen.fancyenchantments.elemental_enchanting_table.bookshelves": "Bookshelves: %s",
+  "screen.fancyenchantments.elemental_enchanting_table.cost": "%s Lapis, %s Levels, Power %s"
 }

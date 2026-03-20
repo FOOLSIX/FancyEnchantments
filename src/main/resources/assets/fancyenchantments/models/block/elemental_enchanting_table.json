@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/enchanting_table",
+  "textures": {
+    "bottom": "fancyenchantments:block/elemental_enchanting_table_bottom",
+    "top": "fancyenchantments:block/elemental_enchanting_table_top",
+    "side": "fancyenchantments:block/elemental_enchanting_table_side",
+    "particle": "fancyenchantments:block/elemental_enchanting_table_top"
+  }
+}
