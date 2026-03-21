@@ -69,4 +69,8 @@ public class FEBaseEnchantment extends Enchantment {
                 && EnchUtils.matchesElementCondition(elementalStat, getChestGenerationCondition());
     }
 
+    public boolean isInElementalTable() {
+        return CONFIG.level > 0 && CONFIG.isInElementalEnchantingTable;
+    }
+
 }

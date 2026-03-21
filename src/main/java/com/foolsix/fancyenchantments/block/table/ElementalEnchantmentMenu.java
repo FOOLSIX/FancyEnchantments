@@ -150,7 +150,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             this.random.setSeed(this.playerInventory.player.getEnchantmentSeed());
             int[] elementStats = EnchUtils.getElementStatsFromEquipment(this.playerInventory.player);
             Set<Enchantment> rolledSpecialLoot = this.getAvailableSpecialLoot(elementStats);
-            List<EnchantmentInstance> fallbackOffers = this.getEligibleOffers(stack, 0, rolledSpecialLoot, true);
+            List<EnchantmentInstance> fallbackOffers = this.getEligibleOffers(stack, 0, rolledSpecialLoot, false, true);
 
             for (int slot = 0; slot < OFFER_COUNT; ++slot) {
                 int cost = this.calculateCost(slot, bookshelves, stack, upgradeBonus);
@@ -357,7 +357,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
 
     @Nullable
     private EnchantmentInstance pickOffer(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, List<EnchantmentInstance> fallbackOffers) {
-        List<EnchantmentInstance> candidates = this.getEligibleOffers(stack, cost, rolledSpecialLoot, false);
+        List<EnchantmentInstance> candidates = this.getEligibleOffers(stack, cost, rolledSpecialLoot, true, false);
         if (candidates.isEmpty()) {
             candidates = fallbackOffers;
         }
@@ -372,15 +372,11 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         return this.pickWeightedOffer(candidates, totalWeight);
     }
 
-    private List<EnchantmentInstance> getEligibleOffers(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, boolean ignoreCost) {
+    private List<EnchantmentInstance> getEligibleOffers(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, boolean includeSpecialLoot,boolean ignoreCost) {
         List<EnchantmentInstance> candidates = new ArrayList<>();
-        Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.getEnchantments(stack);
 
         for (Enchantment enchantment : getEnchantmentCandidates()) {
-            if (enchantment.isTreasureOnly()) {
-                continue;
-            }
-            if (enchantment instanceof FEBaseEnchantment fe && fe.isSpecialLoot() && !rolledSpecialLoot.contains(enchantment)) {
+            if (includeSpecialLoot && enchantment instanceof FEBaseEnchantment fe && fe.isSpecialLoot() && !rolledSpecialLoot.contains(enchantment)) {
                 continue;
             }
             if (stack.is(Items.BOOK)) {
@@ -388,9 +384,6 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                     continue;
                 }
             } else if (!enchantment.canEnchant(stack)) {
-                continue;
-            }
-            if (!EnchantmentHelper.isEnchantmentCompatible(existingEnchantments.keySet(), enchantment)) {
                 continue;
             }
 
@@ -458,10 +451,10 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
 
     private int getWeight(Enchantment enchantment) {
         return switch (enchantment.getRarity()) {
-            case COMMON -> 10;
-            case UNCOMMON -> 7;
+            case COMMON -> 20;
+            case UNCOMMON -> 10;
             case RARE -> 4;
-            case VERY_RARE -> 2;
+            case VERY_RARE -> 1;
         };
     }
 
@@ -469,7 +462,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         if (enchantmentCandidates == null) {
             enchantmentCandidates = EnchantmentReg.ENCHANTMENTS.getEntries().stream()
                     .map(RegistryObject::get)
-                    .filter(e -> e instanceof FEBaseEnchantment && e.getMaxLevel() > 0)
+                    .filter(e -> e instanceof FEBaseEnchantment fe && fe.isInElementalTable())
                     .toList();
         }
         return enchantmentCandidates;

@@ -244,6 +244,7 @@ public class ModConfig implements ConfigData {
         public boolean isDiscoverable = true;
         @ConfigEntry.BoundedDiscrete(min = 1, max = 255)
         public int maxLevelCanBeDiscovered;
+        public boolean isInElementalEnchantingTable = true;
 
         BaseOptions(int maxLevel, Rarity rarity) {
             this.level = maxLevel;
