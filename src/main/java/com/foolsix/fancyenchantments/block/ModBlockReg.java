@@ -2,11 +2,13 @@ package com.foolsix.fancyenchantments.block;
 
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentMenu;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableBlock;
+import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableBlockEntity;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,12 +23,16 @@ public final class ModBlockReg {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
 
     public static final RegistryObject<Block> ELEMENTAL_ENCHANTING_TABLE =
             BLOCKS.register("elemental_enchanting_table", ElementalEnchantmentTableBlock::new);
     public static final RegistryObject<Item> ELEMENTAL_ENCHANTING_TABLE_ITEM =
             ITEMS.register("elemental_enchanting_table",
                     () -> new BlockItem(ELEMENTAL_ENCHANTING_TABLE.get(), new Item.Properties()));
+    public static final RegistryObject<BlockEntityType<ElementalEnchantmentTableBlockEntity>> ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register("elemental_enchantment_table",
+                    () -> BlockEntityType.Builder.of(ElementalEnchantmentTableBlockEntity::new, ELEMENTAL_ENCHANTING_TABLE.get()).build(null));
     public static final RegistryObject<MenuType<ElementalEnchantmentMenu>> ELEMENTAL_ENCHANTMENT_MENU =
             MENUS.register("elemental_enchantment_menu",
                     () -> net.minecraftforge.common.extensions.IForgeMenuType.create(
@@ -40,6 +46,7 @@ public final class ModBlockReg {
         BLOCKS.register(eventBus);
         ITEMS.register(eventBus);
         MENUS.register(eventBus);
+        BLOCK_ENTITY_TYPES.register(eventBus);
     }
 
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)

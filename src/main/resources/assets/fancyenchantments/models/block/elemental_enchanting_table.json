@@ -1,9 +1,26 @@
 {
-  "parent": "minecraft:block/enchanting_table",
+  "texture_size": [64, 64],
   "textures": {
     "bottom": "fancyenchantments:block/elemental_enchanting_table_bottom",
     "top": "fancyenchantments:block/elemental_enchanting_table_top",
-    "side": "fancyenchantments:block/elemental_enchanting_table_side",
+    "north": "fancyenchantments:block/elemental_enchanting_table_north",
+    "south": "fancyenchantments:block/elemental_enchanting_table_south",
+    "west": "fancyenchantments:block/elemental_enchanting_table_west",
+    "east": "fancyenchantments:block/elemental_enchanting_table_east",
     "particle": "fancyenchantments:block/elemental_enchanting_table_top"
-  }
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 12, 16],
+      "faces": {
+        "down": { "texture": "#bottom", "cullface": "down" },
+        "up": { "texture": "#top" },
+        "north": { "texture": "#north", "cullface": "north" },
+        "south": { "texture": "#south", "cullface": "south" },
+        "west": { "texture": "#west", "cullface": "west" },
+        "east": { "texture": "#east", "cullface": "east" }
+      }
+    }
+  ]
 }

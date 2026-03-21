@@ -2,9 +2,11 @@ package com.foolsix.fancyenchantments;
 
 import com.foolsix.fancyenchantments.block.ModBlockReg;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentScreen;
+import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableRenderer;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
@@ -23,6 +25,7 @@ public class ClientSetup {
     public static void clientSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MenuScreens.register(ModBlockReg.ELEMENTAL_ENCHANTMENT_MENU.get(), ElementalEnchantmentScreen::new);
+            BlockEntityRenderers.register(ModBlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(), ElementalEnchantmentTableRenderer::new);
             if (FancyEnchantments.getConfig().enableModBookTexture) {
                 ItemProperties.register(Items.ENCHANTED_BOOK, new ResourceLocation(MODID + ":enchanted_book"), (stack, world, entity, i) -> {
                     Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
