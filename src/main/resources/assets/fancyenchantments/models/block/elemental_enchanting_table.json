@@ -1,26 +1,23 @@
 {
-  "texture_size": [64, 64],
-  "textures": {
-    "bottom": "fancyenchantments:block/elemental_enchanting_table_bottom",
-    "top": "fancyenchantments:block/elemental_enchanting_table_top",
-    "north": "fancyenchantments:block/elemental_enchanting_table_north",
-    "south": "fancyenchantments:block/elemental_enchanting_table_south",
-    "west": "fancyenchantments:block/elemental_enchanting_table_west",
-    "east": "fancyenchantments:block/elemental_enchanting_table_east",
-    "particle": "fancyenchantments:block/elemental_enchanting_table_top"
-  },
-  "elements": [
-    {
-      "from": [0, 0, 0],
-      "to": [16, 12, 16],
-      "faces": {
-        "down": { "texture": "#bottom", "cullface": "down" },
-        "up": { "texture": "#top" },
-        "north": { "texture": "#north", "cullface": "north" },
-        "south": { "texture": "#south", "cullface": "south" },
-        "west": { "texture": "#west", "cullface": "west" },
-        "east": { "texture": "#east", "cullface": "east" }
-      }
-    }
-  ]
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "fancyenchantments:block/elemental_enchanting_table",
+		"particle": "fancyenchantments:block/elemental_enchanting_table"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 12, 16],
+			"faces": {
+				"north": {"uv": [4, 0, 8, 3], "texture": "#0"},
+				"east": {"uv": [4, 3, 8, 6], "texture": "#0"},
+				"south": {"uv": [4, 6, 8, 9], "texture": "#0"},
+				"west": {"uv": [0, 8, 4, 11], "texture": "#0"},
+				"up": {"uv": [4, 4, 0, 0], "texture": "#0"},
+				"down": {"uv": [4, 4, 0, 8], "texture": "#0"}
+			}
+		}
+	]
 }
