@@ -27,7 +27,9 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     static final int PANEL_WIDTH = 132;
     static final int SIDE_PANEL_X = VANILLA_WIDTH + 8;
     static final int SIDE_PANEL_WIDTH = 118;
-    static final int SPECIAL_LIST_TOP = 94;
+    static final int TOGGLE_BUTTON_SIZE = 10;
+    static final int TOGGLE_BUTTON_MARGIN = 2;
+    static final int SPECIAL_LIST_TOP = 76;
     static final int SPECIAL_LIST_TEXT_TOP = SPECIAL_LIST_TOP + 12;
     static final int SPECIAL_LIST_LINE_HEIGHT = 9;
     static final int SPECIAL_LIST_VISIBLE_LINES = 6;
@@ -38,13 +40,24 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     static final int OFFER_HEIGHT = 19;
     static final int UPGRADE_SLOT_LEFT = ElementalEnchantmentMenu.UPGRADE_SLOT_X - 1;
     static final int UPGRADE_SLOT_TOP = ElementalEnchantmentMenu.UPGRADE_SLOT_Y;
+    static final int APPLY_BUTTON_WIDTH = ElementalEnchantmentMenu.SLOT_SPACING;
+    static final int APPLY_BUTTON_HEIGHT = 12;
+    static final int APPLY_BUTTON_LEFT = UPGRADE_SLOT_LEFT;
+    static final int APPLY_BUTTON_TOP = UPGRADE_SLOT_TOP - APPLY_BUTTON_HEIGHT - 2;
     private int specialEnchantScrollOffset;
+    private boolean sidePanelCollapsed;
 
     public ElementalEnchantmentScreen(ElementalEnchantmentMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
-        this.imageWidth = VANILLA_WIDTH + PANEL_WIDTH;
         this.imageHeight = 166;
         this.inventoryLabelY = this.imageHeight - 94;
+        this.updateLayout();
+    }
+
+    @Override
+    protected void init() {
+        this.updateLayout();
+        super.init();
     }
 
     @Override
@@ -56,9 +69,13 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         int sidePanelBackgroundColor = 0xCC121212; // semi-transparent dark charcoal
         int sidePanelInnerBackgroundColor = 0xAA1E1E1E; // semi-transparent dark gray
         guiGraphics.blit(ENCHANTING_TABLE_TEXTURE, left, top, 0, 0, VANILLA_WIDTH, this.imageHeight);
-        guiGraphics.fill(left + VANILLA_WIDTH, top, left + this.imageWidth, top + this.imageHeight, sidePanelBackgroundColor);
-        guiGraphics.fill(left + VANILLA_WIDTH + 4, top + 4, left + this.imageWidth - 4, top + this.imageHeight - 4, sidePanelInnerBackgroundColor);
+        if (!this.sidePanelCollapsed) {
+            guiGraphics.fill(left + VANILLA_WIDTH, top, left + this.imageWidth, top + this.imageHeight, sidePanelBackgroundColor);
+            guiGraphics.fill(left + VANILLA_WIDTH + 4, top + 4, left + this.imageWidth - 4, top + this.imageHeight - 4, sidePanelInnerBackgroundColor);
+        }
         this.renderUpgradeSlotBackground(guiGraphics, left + UPGRADE_SLOT_LEFT, top + UPGRADE_SLOT_TOP);
+        this.renderApplyUpgradeButton(guiGraphics, mouseX, mouseY, left + APPLY_BUTTON_LEFT, top + APPLY_BUTTON_TOP);
+        this.renderSidePanelToggleButton(guiGraphics, mouseX, mouseY, left + this.getToggleButtonLeft(), top + this.getToggleButtonTop());
 
         // Set button colors to mimic the vanilla enchanting table offer panel
         int enabledOfferColor = 0xFF8F6D45; // opaque medium brown
@@ -144,7 +161,9 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             }
         }
 
-        this.renderSidePanel(guiGraphics, left + SIDE_PANEL_X, top + sidePanelTop);
+        if (!this.sidePanelCollapsed) {
+            this.renderSidePanel(guiGraphics, left + SIDE_PANEL_X, top + sidePanelTop);
+        }
     }
 
     @Override
@@ -164,6 +183,19 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (isHovering(this.getToggleButtonLeft(), this.getToggleButtonTop(), TOGGLE_BUTTON_SIZE, TOGGLE_BUTTON_SIZE, mouseX, mouseY)) {
+            this.sidePanelCollapsed = !this.sidePanelCollapsed;
+            this.updateLayout();
+            this.init();
+            return true;
+        }
+        if (isHovering(APPLY_BUTTON_LEFT, APPLY_BUTTON_TOP, APPLY_BUTTON_WIDTH, APPLY_BUTTON_HEIGHT, mouseX, mouseY)) {
+            if (this.menu.canStoreUpgrade() && this.minecraft != null && this.minecraft.gameMode != null) {
+                this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, ElementalEnchantmentMenu.APPLY_UPGRADE_BUTTON_ID);
+                return true;
+            }
+            return super.mouseClicked(mouseX, mouseY, button);
+        }
         int left = this.leftPos + OFFER_LEFT;
         int top = this.topPos + OFFER_TOP;
         for (int i = 0; i < 3; ++i) {
@@ -184,7 +216,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollDelta) {
-        if (this.isMouseOverSpecialList(mouseX, mouseY)) {
+        if (!this.sidePanelCollapsed && this.isMouseOverSpecialList(mouseX, mouseY)) {
             int maxOffset = Math.max(0, this.getPossibleSpecialEnchantments(this.getDisplayedElementStats()).size() - SPECIAL_LIST_VISIBLE_LINES);
             this.specialEnchantScrollOffset = Math.max(0, Math.min(maxOffset, this.specialEnchantScrollOffset - (int) Math.signum(scrollDelta)));
             return true;
@@ -195,15 +227,26 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     private void renderSidePanel(GuiGraphics guiGraphics, int panelLeft, int panelTop) {
         final int elementStatsTop = 14;
         final int elementStatsLineHeight = 10;
-        final int totalLevelTop = 78;
         int panelTitleColor = 0xE0E0E0; // light gray
         int panelTextColor = 0xFFFFFF; // white
         int panelSecondaryTextColor = 0xC8C8C8; // soft gray
         int panelEmptyTextColor = 0x8A8A8A; // muted gray
         int panelPageTextColor = 0xAAAAAA; // medium light gray
+        Component elementStatsTitle = Component.translatable("screen.fancyenchantments.elemental_enchanting_table.element_stats");
+        guiGraphics.drawString(this.font, elementStatsTitle, panelLeft, panelTop, panelTitleColor, false);
+
+        int rightColumnLeft = panelLeft + Math.min(this.font.width(elementStatsTitle) + 8, 58);
+        int rightColumnWidth = panelLeft + SIDE_PANEL_WIDTH - rightColumnLeft;
+        Component totalLevelText = Component.translatable(
+                "screen.fancyenchantments.elemental_enchanting_table.total_level", this.menu.getTotalEnchantingLevel());
+        Component upgradeBonusText = Component.translatable(
+                "screen.fancyenchantments.elemental_enchanting_table.upgrade_bonus", this.menu.getUpgradeBonus());
         guiGraphics.drawString(this.font,
-                Component.translatable("screen.fancyenchantments.elemental_enchanting_table.element_stats"),
-                panelLeft, panelTop, panelTitleColor, false);
+                this.getTrimmedSequence(totalLevelText, rightColumnWidth),
+                rightColumnLeft, panelTop, panelSecondaryTextColor, false);
+        guiGraphics.drawString(this.font,
+                this.getTrimmedSequence(upgradeBonusText, rightColumnWidth),
+                rightColumnLeft, panelTop + 10, panelSecondaryTextColor, false);
 
         int[] elementStats = this.getDisplayedElementStats();
         if (this.minecraft != null && this.minecraft.player != null) {
@@ -213,10 +256,6 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
                 guiGraphics.drawString(this.font, line, panelLeft, panelTop + elementStatsTop + element.ordinal() * elementStatsLineHeight, panelTextColor, false);
             }
         }
-
-        guiGraphics.drawString(this.font,
-                Component.translatable("screen.fancyenchantments.elemental_enchanting_table.total_level", this.menu.getTotalEnchantingLevel()),
-                panelLeft, panelTop + totalLevelTop, panelSecondaryTextColor, false);
 
         int listTop = panelTop + SPECIAL_LIST_TOP;
         guiGraphics.drawString(this.font,
@@ -295,6 +334,54 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             guiGraphics.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
             return;
         }
+
+        if (isHovering(APPLY_BUTTON_LEFT, APPLY_BUTTON_TOP, APPLY_BUTTON_WIDTH, APPLY_BUTTON_HEIGHT, mouseX, mouseY)) {
+            List<Component> tooltip = new ArrayList<>();
+            tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.store_upgrade"));
+            tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.store_upgrade.desc",
+                    this.menu.getPendingUpgradeBonus(), this.menu.getUpgradeBonus()).withStyle(ChatFormatting.GRAY));
+            guiGraphics.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
+            return;
+        }
+
+        if (isHovering(this.getToggleButtonLeft(), this.getToggleButtonTop(), TOGGLE_BUTTON_SIZE, TOGGLE_BUTTON_SIZE, mouseX, mouseY)) {
+            guiGraphics.renderComponentTooltip(this.font,
+                    List.of(Component.translatable(this.sidePanelCollapsed
+                            ? "screen.fancyenchantments.elemental_enchanting_table.expand_panel"
+                            : "screen.fancyenchantments.elemental_enchanting_table.collapse_panel")),
+                    mouseX, mouseY);
+        }
+    }
+
+    private void updateLayout() {
+        this.imageWidth = this.sidePanelCollapsed ? VANILLA_WIDTH : VANILLA_WIDTH + PANEL_WIDTH;
+    }
+
+    private int getToggleButtonLeft() {
+        return this.imageWidth - TOGGLE_BUTTON_SIZE - TOGGLE_BUTTON_MARGIN;
+    }
+
+    private int getToggleButtonTop() {
+        return TOGGLE_BUTTON_MARGIN;
+    }
+
+    private void renderSidePanelToggleButton(GuiGraphics guiGraphics, int mouseX, int mouseY, int left, int top) {
+        boolean hovered = isHovering(this.getToggleButtonLeft(), this.getToggleButtonTop(), TOGGLE_BUTTON_SIZE, TOGGLE_BUTTON_SIZE, mouseX, mouseY);
+        int fill = hovered ? 0xFFB08A57 : 0xFF8F6D45;
+        int border = hovered ? 0xFF3C2918 : 0xFF2B1D12;
+        int highlight = hovered ? 0xFFF0DCA7 : 0xFFD8BF88;
+        int shadow = hovered ? 0xFF7A5A36 : 0xFF5F4427;
+        guiGraphics.fill(left, top, left + TOGGLE_BUTTON_SIZE, top + TOGGLE_BUTTON_SIZE, fill);
+        guiGraphics.fill(left, top, left + TOGGLE_BUTTON_SIZE, top + 1, border);
+        guiGraphics.fill(left, top + TOGGLE_BUTTON_SIZE - 1, left + TOGGLE_BUTTON_SIZE, top + TOGGLE_BUTTON_SIZE, border);
+        guiGraphics.fill(left, top, left + 1, top + TOGGLE_BUTTON_SIZE, border);
+        guiGraphics.fill(left + TOGGLE_BUTTON_SIZE - 1, top, left + TOGGLE_BUTTON_SIZE, top + TOGGLE_BUTTON_SIZE, border);
+        guiGraphics.fill(left + 1, top + 1, left + TOGGLE_BUTTON_SIZE - 1, top + 2, highlight);
+        guiGraphics.fill(left + 1, top + 1, left + 2, top + TOGGLE_BUTTON_SIZE - 1, highlight);
+        guiGraphics.fill(left + 1, top + TOGGLE_BUTTON_SIZE - 2, left + TOGGLE_BUTTON_SIZE - 1, top + TOGGLE_BUTTON_SIZE - 1, shadow);
+        guiGraphics.fill(left + TOGGLE_BUTTON_SIZE - 2, top + 1, left + TOGGLE_BUTTON_SIZE - 1, top + TOGGLE_BUTTON_SIZE - 1, shadow);
+        String text = this.sidePanelCollapsed ? "<" : ">";
+        guiGraphics.drawString(this.font, text, left + 3, top + 1, 0xFFFFFF, false);
     }
 
     private void renderUpgradeSlotBackground(GuiGraphics guiGraphics, int left, int top) {
@@ -302,5 +389,25 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         guiGraphics.fill(left, top, left + ElementalEnchantmentMenu.SLOT_SPACING, top + ElementalEnchantmentMenu.SLOT_SPACING, 0xFFFFFFFF);//white
         guiGraphics.fill(left, top, left + ElementalEnchantmentMenu.SLOT_SPACING - 1, top + ElementalEnchantmentMenu.SLOT_SPACING - 1, 0xFF373737);//grey
         guiGraphics.fill(left + 1, top + 1, left + ElementalEnchantmentMenu.SLOT_SPACING - 1, top + ElementalEnchantmentMenu.SLOT_SPACING - 1, fill);
+    }
+
+    private void renderApplyUpgradeButton(GuiGraphics guiGraphics, int mouseX, int mouseY, int left, int top) {
+        boolean enabled = this.menu.canStoreUpgrade();
+        boolean hovered = isHovering(APPLY_BUTTON_LEFT, APPLY_BUTTON_TOP, APPLY_BUTTON_WIDTH, APPLY_BUTTON_HEIGHT, mouseX, mouseY);
+        int fill = enabled ? (hovered ? 0xFFB08A57 : 0xFF8F6D45) : 0xFF4A4A4A;
+        int border = enabled ? (hovered ? 0xFF3C2918 : 0xFF2B1D12) : 0xFF2F2F2F;
+        int highlight = enabled ? (hovered ? 0xFFF0DCA7 : 0xFFD8BF88) : 0xFF7A7A7A;
+        int shadow = enabled ? (hovered ? 0xFF7A5A36 : 0xFF5F4427) : 0xFF3A3A3A;
+        guiGraphics.fill(left, top, left + APPLY_BUTTON_WIDTH, top + APPLY_BUTTON_HEIGHT, fill);
+        guiGraphics.fill(left, top, left + APPLY_BUTTON_WIDTH, top + 1, border);
+        guiGraphics.fill(left, top + APPLY_BUTTON_HEIGHT - 1, left + APPLY_BUTTON_WIDTH, top + APPLY_BUTTON_HEIGHT, border);
+        guiGraphics.fill(left, top, left + 1, top + APPLY_BUTTON_HEIGHT, border);
+        guiGraphics.fill(left + APPLY_BUTTON_WIDTH - 1, top, left + APPLY_BUTTON_WIDTH, top + APPLY_BUTTON_HEIGHT, border);
+        guiGraphics.fill(left + 1, top + 1, left + APPLY_BUTTON_WIDTH - 1, top + 2, highlight);
+        guiGraphics.fill(left + 1, top + 1, left + 2, top + APPLY_BUTTON_HEIGHT - 1, highlight);
+        guiGraphics.fill(left + 1, top + APPLY_BUTTON_HEIGHT - 2, left + APPLY_BUTTON_WIDTH - 1, top + APPLY_BUTTON_HEIGHT - 1, shadow);
+        guiGraphics.fill(left + APPLY_BUTTON_WIDTH - 2, top + 1, left + APPLY_BUTTON_WIDTH - 1, top + APPLY_BUTTON_HEIGHT - 1, shadow);
+        Component text = Component.translatable("screen.fancyenchantments.elemental_enchanting_table.store_upgrade.short");
+        guiGraphics.drawString(this.font, text, left + (APPLY_BUTTON_WIDTH - this.font.width(text)) / 2, top + 2, enabled ? 0xFFFFFF : 0xC0C0C0, false);
     }
 }

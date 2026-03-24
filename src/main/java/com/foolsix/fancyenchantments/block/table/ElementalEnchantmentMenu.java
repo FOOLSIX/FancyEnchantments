@@ -36,6 +36,9 @@ import java.util.*;
 @ParametersAreNonnullByDefault
 public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     static final int OFFER_COUNT = 3;
+    private static final int BOOKSHELF_LEVEL_PER_BLOCK = 2;
+    private static final int MAX_BOOKSHELF_LEVEL = 30;
+    public static final int APPLY_UPGRADE_BUTTON_ID = OFFER_COUNT;
     static final int ENCHANT_SLOT_COUNT = 3;
     static final int INPUT_SLOT = 0;
     static final int LAPIS_SLOT = 1;
@@ -135,10 +138,11 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         }
 
         ItemStack stack = this.enchantSlots.getItem(INPUT_SLOT);
-        ItemStack upgradeStack = this.enchantSlots.getItem(UPGRADE_SLOT);
         this.access.execute((level, pos) -> {
-            int bookshelves = countBookshelves(level, pos);
-            int upgradeBonus = this.getUpgradeBonus(upgradeStack);
+            int bookshelves = this.getBookshelfPower(level, pos);
+            int upgradeBonus = this.getTableBlockEntity(level, pos)
+                    .map(ElementalEnchantmentTableBlockEntity::getStoredUpgradeBonus)
+                    .orElse(0);
             this.data.set(BOOKSHELF_DATA, bookshelves);
             this.data.set(UPGRADE_BONUS_DATA, upgradeBonus);
 
@@ -171,6 +175,9 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
 
     @Override
     public boolean clickMenuButton(Player player, int buttonId) {
+        if (buttonId == APPLY_UPGRADE_BUTTON_ID) {
+            return this.applyStoredUpgrade();
+        }
         if (buttonId < 0 || buttonId >= OFFER_COUNT) {
             return false;
         }
@@ -204,11 +211,10 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                 EnchantmentHelper.setEnchantments(enchantments, itemStack);
             }
 
+            this.getTableBlockEntity(level, pos).ifPresent(ElementalEnchantmentTableBlockEntity::clearStoredUpgradeBonus);
+
             if (!player.getAbilities().instabuild) {
                 lapisStack.shrink(lapisCost);
-                if (upgradeStack.is(UPGRADE_MATERIALS)) {
-                    upgradeStack.shrink(upgradeStack.getCount());
-                }
                 player.giveExperienceLevels(-levelCost);
             }
 
@@ -285,8 +291,17 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         return this.data.get(UPGRADE_BONUS_DATA);
     }
 
+    public int getPendingUpgradeBonus() {
+        return this.getUpgradeBonus(this.enchantSlots.getItem(UPGRADE_SLOT));
+    }
+
     public int getTotalEnchantingLevel() {
         return this.getBookshelfCount() + this.getUpgradeBonus();
+    }
+
+    public boolean canStoreUpgrade() {
+        return this.getPendingUpgradeBonus() > 0
+                && this.getUpgradeBonus() < ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS;
     }
 
     public int getLapisCost(int slot) {
@@ -352,7 +367,56 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         if (!upgradeStack.is(UPGRADE_MATERIALS)) {
             return 0;
         }
-        return Math.min(30, upgradeStack.getCount() * 2);
+        return Math.min(ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS, upgradeStack.getCount() * 2);
+    }
+
+    private boolean applyStoredUpgrade() {
+        if (this.playerInventory.player.level().isClientSide) {
+            return false;
+        }
+
+        ItemStack upgradeStack = this.enchantSlots.getItem(UPGRADE_SLOT);
+        if (!upgradeStack.is(UPGRADE_MATERIALS)) {
+            return false;
+        }
+
+        return this.access.evaluate((level, pos) -> {
+            Optional<ElementalEnchantmentTableBlockEntity> optionalTable = this.getTableBlockEntity(level, pos);
+            if (optionalTable.isEmpty()) {
+                return false;
+            }
+
+            ElementalEnchantmentTableBlockEntity table = optionalTable.get();
+            int storedBonus = table.getStoredUpgradeBonus();
+            int remainingCapacity = ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS - storedBonus;
+            if (remainingCapacity <= 0) {
+                return false;
+            }
+
+            int appliedBonus = Math.min(remainingCapacity, this.getUpgradeBonus(upgradeStack));
+            if (appliedBonus <= 0) {
+                return false;
+            }
+
+            int itemsToConsume = Math.min(upgradeStack.getCount(), Mth.ceil(appliedBonus / 2.0F));
+            if (itemsToConsume <= 0) {
+                return false;
+            }
+
+            table.setStoredUpgradeBonus(storedBonus + itemsToConsume * 2);
+            upgradeStack.shrink(itemsToConsume);
+            this.enchantSlots.setChanged();
+            this.refreshOffers();
+            level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 0.8F, 1.1F);
+            return true;
+        }, false);
+    }
+
+    private Optional<ElementalEnchantmentTableBlockEntity> getTableBlockEntity(Level level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof ElementalEnchantmentTableBlockEntity table) {
+            return Optional.of(table);
+        }
+        return Optional.empty();
     }
 
     @Nullable
@@ -443,6 +507,10 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             }
         }
         return bookshelves;
+    }
+
+    private int getBookshelfPower(Level level, BlockPos pos) {
+        return Math.min(MAX_BOOKSHELF_LEVEL, this.countBookshelves(level, pos) * BOOKSHELF_LEVEL_PER_BLOCK);
     }
 
     private int countBookshelf(Level level, BlockPos pos) {

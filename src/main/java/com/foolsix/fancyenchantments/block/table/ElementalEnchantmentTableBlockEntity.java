@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 
 public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements Nameable {
     private static final RandomSource RANDOM = RandomSource.create();
+    public static final int MAX_STORED_UPGRADE_BONUS = 30;
 
     public int time;
     public float flip;
@@ -27,6 +28,7 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
     public float rot;
     public float oRot;
     public float tRot;
+    private int storedUpgradeBonus;
     @Nullable
     private Component name;
 
@@ -40,6 +42,7 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
         if (this.hasCustomName()) {
             tag.putString("CustomName", Component.Serializer.toJson(this.name));
         }
+        tag.putInt("StoredUpgradeBonus", this.storedUpgradeBonus);
     }
 
     @Override
@@ -48,6 +51,7 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
         if (tag.contains("CustomName", 8)) {
             this.name = Component.Serializer.fromJson(tag.getString("CustomName"));
         }
+        this.storedUpgradeBonus = Mth.clamp(tag.getInt("StoredUpgradeBonus"), 0, MAX_STORED_UPGRADE_BONUS);
     }
 
     public static void bookAnimationTick(Level level, BlockPos pos, BlockState state, ElementalEnchantmentTableBlockEntity blockEntity) {
@@ -114,6 +118,26 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
     public void setCustomName(Component name) {
         this.name = name;
         this.setChanged();
+    }
+
+    public int getStoredUpgradeBonus() {
+        return this.storedUpgradeBonus;
+    }
+
+    public void setStoredUpgradeBonus(int storedUpgradeBonus) {
+        int clamped = Mth.clamp(storedUpgradeBonus, 0, MAX_STORED_UPGRADE_BONUS);
+        if (this.storedUpgradeBonus == clamped) {
+            return;
+        }
+        this.storedUpgradeBonus = clamped;
+        this.setChanged();
+        if (this.level != null) {
+            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
+        }
+    }
+
+    public void clearStoredUpgradeBonus() {
+        this.setStoredUpgradeBonus(0);
     }
 
     @Nullable
