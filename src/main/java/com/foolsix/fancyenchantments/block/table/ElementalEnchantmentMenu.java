@@ -39,25 +39,28 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     private static final int BOOKSHELF_LEVEL_PER_BLOCK = 2;
     private static final int MAX_BOOKSHELF_LEVEL = 30;
     public static final int APPLY_UPGRADE_BUTTON_ID = OFFER_COUNT;
-    static final int ENCHANT_SLOT_COUNT = 3;
+    static final int ENCHANT_SLOT_COUNT = 4;
     static final int INPUT_SLOT = 0;
     static final int LAPIS_SLOT = 1;
-    static final int UPGRADE_SLOT = 2;
+    static final int EXTRA_SLOT = 2;
+    static final int UPGRADE_SLOT = 3;
     static final int OFFER_COST_DATA_START = 0;
     static final int OFFER_ENCHANTMENT_DATA_START = OFFER_COST_DATA_START + OFFER_COUNT;
     static final int OFFER_LEVEL_DATA_START = OFFER_ENCHANTMENT_DATA_START + OFFER_COUNT;
     static final int BOOKSHELF_DATA = OFFER_LEVEL_DATA_START + OFFER_COUNT;
     static final int UPGRADE_BONUS_DATA = BOOKSHELF_DATA + 1;
     static final int MENU_DATA_COUNT = UPGRADE_BONUS_DATA + 1;
-    static final int PLAYER_INV_START = 3;
-    static final int PLAYER_HOTBAR_START = 30;
+    static final int PLAYER_INV_START = 4;
+    static final int PLAYER_HOTBAR_START = 31;
+    static final int SLOT_SPACING = 18;
     private static final int INPUT_SLOT_X = 15;
     private static final int INPUT_SLOT_Y = 47;
     static final int LAPIS_SLOT_X = 35;
     static final int LAPIS_SLOT_Y = 47;
     static final int UPGRADE_SLOT_X = 35;
     static final int UPGRADE_SLOT_Y = 27;
-    static final int SLOT_SPACING = 18;
+    static final int EXTRA_SLOT_X = UPGRADE_SLOT_X - SLOT_SPACING - 2;
+    static final int EXTRA_SLOT_Y = UPGRADE_SLOT_Y;
     static final TagKey<Item> UPGRADE_MATERIALS = ItemTags.create(new ResourceLocation("fancyenchantments", "upgrade_materials"));
     private static List<Enchantment> enchantmentCandidates;
 
@@ -102,7 +105,8 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                 return stack.is(Items.LAPIS_LAZULI);
             }
         });
-        this.addSlot(new Slot(this.enchantSlots, UPGRADE_SLOT, UPGRADE_SLOT_X, UPGRADE_SLOT_Y) {
+        this.addSlot(new Slot(this.enchantSlots, EXTRA_SLOT, EXTRA_SLOT_X, EXTRA_SLOT_Y + 1));
+        this.addSlot(new Slot(this.enchantSlots, UPGRADE_SLOT, UPGRADE_SLOT_X, UPGRADE_SLOT_Y + 1) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(UPGRADE_MATERIALS);

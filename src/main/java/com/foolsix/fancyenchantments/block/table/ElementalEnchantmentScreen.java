@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,11 +39,13 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     static final int OFFER_TOP = 14;
     static final int OFFER_WIDTH = 109;
     static final int OFFER_HEIGHT = 19;
+    static final int EXTRA_SLOT_LEFT = ElementalEnchantmentMenu.EXTRA_SLOT_X - 1;
+    static final int EXTRA_SLOT_TOP = ElementalEnchantmentMenu.EXTRA_SLOT_Y;
     static final int UPGRADE_SLOT_LEFT = ElementalEnchantmentMenu.UPGRADE_SLOT_X - 1;
     static final int UPGRADE_SLOT_TOP = ElementalEnchantmentMenu.UPGRADE_SLOT_Y;
-    static final int APPLY_BUTTON_WIDTH = ElementalEnchantmentMenu.SLOT_SPACING;
-    static final int APPLY_BUTTON_HEIGHT = 12;
-    static final int APPLY_BUTTON_LEFT = UPGRADE_SLOT_LEFT;
+    static final int APPLY_BUTTON_WIDTH = UPGRADE_SLOT_LEFT + ElementalEnchantmentMenu.SLOT_SPACING - EXTRA_SLOT_LEFT;
+    static final int APPLY_BUTTON_HEIGHT = 8;
+    static final int APPLY_BUTTON_LEFT = EXTRA_SLOT_LEFT;
     static final int APPLY_BUTTON_TOP = UPGRADE_SLOT_TOP - APPLY_BUTTON_HEIGHT - 2;
     private int specialEnchantScrollOffset;
     private boolean sidePanelCollapsed;
@@ -73,6 +76,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             guiGraphics.fill(left + VANILLA_WIDTH, top, left + this.imageWidth, top + this.imageHeight, sidePanelBackgroundColor);
             guiGraphics.fill(left + VANILLA_WIDTH + 4, top + 4, left + this.imageWidth - 4, top + this.imageHeight - 4, sidePanelInnerBackgroundColor);
         }
+        this.renderUpgradeSlotBackground(guiGraphics, left + EXTRA_SLOT_LEFT, top + EXTRA_SLOT_TOP);
         this.renderUpgradeSlotBackground(guiGraphics, left + UPGRADE_SLOT_LEFT, top + UPGRADE_SLOT_TOP);
         this.renderApplyUpgradeButton(guiGraphics, mouseX, mouseY, left + APPLY_BUTTON_LEFT, top + APPLY_BUTTON_TOP);
         this.renderSidePanelToggleButton(guiGraphics, mouseX, mouseY, left + this.getToggleButtonLeft(), top + this.getToggleButtonTop());
@@ -335,11 +339,13 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             return;
         }
 
-        if (isHovering(APPLY_BUTTON_LEFT, APPLY_BUTTON_TOP, APPLY_BUTTON_WIDTH, APPLY_BUTTON_HEIGHT, mouseX, mouseY)) {
+        ItemStack upgradeStack = this.menu.slots.get(ElementalEnchantmentMenu.UPGRADE_SLOT).getItem();
+        if (upgradeStack.isEmpty()
+                && isHovering(UPGRADE_SLOT_LEFT, UPGRADE_SLOT_TOP,
+                ElementalEnchantmentMenu.SLOT_SPACING, ElementalEnchantmentMenu.SLOT_SPACING, mouseX, mouseY)) {
             List<Component> tooltip = new ArrayList<>();
-            tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.store_upgrade"));
-            tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.store_upgrade.desc",
-                    this.menu.getPendingUpgradeBonus(), this.menu.getUpgradeBonus()).withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.upgrade_slot"));
+            tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.upgrade_slot.desc"));
             guiGraphics.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
             return;
         }
@@ -389,6 +395,8 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         guiGraphics.fill(left, top, left + ElementalEnchantmentMenu.SLOT_SPACING, top + ElementalEnchantmentMenu.SLOT_SPACING, 0xFFFFFFFF);//white
         guiGraphics.fill(left, top, left + ElementalEnchantmentMenu.SLOT_SPACING - 1, top + ElementalEnchantmentMenu.SLOT_SPACING - 1, 0xFF373737);//grey
         guiGraphics.fill(left + 1, top + 1, left + ElementalEnchantmentMenu.SLOT_SPACING - 1, top + ElementalEnchantmentMenu.SLOT_SPACING - 1, fill);
+        guiGraphics.fill(left + ElementalEnchantmentMenu.SLOT_SPACING - 1, top, left + ElementalEnchantmentMenu.SLOT_SPACING, top + 1, fill);
+        guiGraphics.fill(left, top + ElementalEnchantmentMenu.SLOT_SPACING - 1, left + 1, top + ElementalEnchantmentMenu.SLOT_SPACING, fill);
     }
 
     private void renderApplyUpgradeButton(GuiGraphics guiGraphics, int mouseX, int mouseY, int left, int top) {
@@ -407,7 +415,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         guiGraphics.fill(left + 1, top + 1, left + 2, top + APPLY_BUTTON_HEIGHT - 1, highlight);
         guiGraphics.fill(left + 1, top + APPLY_BUTTON_HEIGHT - 2, left + APPLY_BUTTON_WIDTH - 1, top + APPLY_BUTTON_HEIGHT - 1, shadow);
         guiGraphics.fill(left + APPLY_BUTTON_WIDTH - 2, top + 1, left + APPLY_BUTTON_WIDTH - 1, top + APPLY_BUTTON_HEIGHT - 1, shadow);
-        Component text = Component.translatable("screen.fancyenchantments.elemental_enchanting_table.store_upgrade.short");
-        guiGraphics.drawString(this.font, text, left + (APPLY_BUTTON_WIDTH - this.font.width(text)) / 2, top + 2, enabled ? 0xFFFFFF : 0xC0C0C0, false);
+        Component text = Component.literal("+");
+        guiGraphics.drawString(this.font, text, left + (APPLY_BUTTON_WIDTH - this.font.width(text)) / 2, top + 1, enabled ? 0xFFFFFF : 0xC0C0C0, false);
     }
 }
