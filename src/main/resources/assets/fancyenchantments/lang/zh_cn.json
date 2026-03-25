@@ -190,7 +190,12 @@
   "enchantment.fancyenchantments.gale": "疾风",
   "enchantment.fancyenchantments.gale.desc": "破坏方块后获得短时间急迫效果"
   ,
+  "item.fancyenchantments.aer_catalyst": "风之催化剂",
+  "item.fancyenchantments.aqua_catalyst": "水之催化剂",
   "item.fancyenchantments.ignis_catalyst": "火焰催化剂",
+  "item.fancyenchantments.terra_catalyst": "大地催化剂",
+  "item.fancyenchantments.holy_catalyst": "神圣催化剂",
+  "item.fancyenchantments.twisted_catalyst": "扭曲催化剂",
   "block.fancyenchantments.elemental_enchanting_table": "元素附魔台",
   "screen.fancyenchantments.elemental_enchanting_table.element_stats": "元素属性",
   "screen.fancyenchantments.elemental_enchanting_table.special_loot": "可能获得的特殊附魔",

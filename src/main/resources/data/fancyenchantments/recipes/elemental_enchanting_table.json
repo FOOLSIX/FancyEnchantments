@@ -1,19 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "LBL",
-    "DED",
+    "APC",
+    "BED",
     "OOO"
   ],
   "key": {
-    "L": {
-      "item": "minecraft:lapis_lazuli"
+    "A": {
+      "item": "fancyenchantments:aer_catalyst"
     },
     "B": {
-      "item": "minecraft:book"
+      "item": "fancyenchantments:aqua_catalyst"
+    },
+    "C": {
+      "item": "fancyenchantments:ignis_catalyst"
     },
     "D": {
-      "item": "minecraft:diamond"
+      "item": "fancyenchantments:terra_catalyst"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
     },
     "E": {
       "item": "minecraft:enchanting_table"

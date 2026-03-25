@@ -1,0 +1,7 @@
+{
+  "type": "single",
+  "item": "fancyenchantments:terra_catalyst",
+  "catalysis": {
+    "terra": 4
+  }
+}

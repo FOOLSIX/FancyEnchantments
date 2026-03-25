@@ -1,0 +1,7 @@
+{
+  "type": "single",
+  "item": "fancyenchantments:holy_catalyst",
+  "catalysis": {
+    "holy": 4
+  }
+}
