@@ -64,7 +64,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     static final int UPGRADE_SLOT_Y = 27;
     static final int CATALYST_SLOT_X = UPGRADE_SLOT_X - SLOT_SPACING - 2;
     static final int CATALYST_SLOT_Y = UPGRADE_SLOT_Y;
-    static final TagKey<Item> UPGRADE_MATERIALS = ItemTags.create(new ResourceLocation("fancyenchantments", "upgrade_materials"));
+    public static final TagKey<Item> UPGRADE_MATERIALS = ItemTags.create(new ResourceLocation("fancyenchantments", "upgrade_materials"));
     private static List<Enchantment> enchantmentCandidates;
 
     private final Container enchantSlots = new SimpleContainer(ENCHANT_SLOT_COUNT) {

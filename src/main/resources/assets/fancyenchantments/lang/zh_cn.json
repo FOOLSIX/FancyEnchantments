@@ -215,5 +215,8 @@
   "screen.fancyenchantments.elemental_enchanting_table.upgrade_slot.desc": "消耗升阶材料标签物品以提升附魔强度。附魔后重置。",
   "screen.fancyenchantments.elemental_enchanting_table.bookshelves": "书架数: %s",
   "screen.fancyenchantments.elemental_enchanting_table.total_level": "等级: %s+%s",
-  "screen.fancyenchantments.elemental_enchanting_table.cost": "%s 青金石, %s 级经验, 附魔强度 %s"
+  "screen.fancyenchantments.elemental_enchanting_table.cost": "%s 青金石, %s 级经验, 附魔强度 %s",
+  "jei.fancyenchantments.elemental_enchanting.usage.catalyst": "催化物",
+  "jei.fancyenchantments.elemental_enchanting.usage.upgrade": "升阶材料",
+  "jei.fancyenchantments.elemental_enchanting.upgrades": "附魔强度 +%s"
 }

@@ -215,5 +215,8 @@
   "screen.fancyenchantments.elemental_enchanting_table.upgrade_slot.desc": "Consume items tagged as upgrade materials to increase enchanting power.Resets after one enchant.",
   "screen.fancyenchantments.elemental_enchanting_table.bookshelves": "Bookshelves: %s",
   "screen.fancyenchantments.elemental_enchanting_table.total_level": "Lv: %s+%s",
-  "screen.fancyenchantments.elemental_enchanting_table.cost": "%s Lapis, %s Levels, Power %s"
+  "screen.fancyenchantments.elemental_enchanting_table.cost": "%s Lapis, %s Levels, Power %s",
+  "jei.fancyenchantments.elemental_enchanting.usage.catalyst": "Catalyst",
+  "jei.fancyenchantments.elemental_enchanting.usage.upgrade": "Upgrade Material",
+  "jei.fancyenchantments.elemental_enchanting.upgrades": "+%s enchanting power"
 }
