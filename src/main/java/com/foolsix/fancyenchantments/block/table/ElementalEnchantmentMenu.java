@@ -1,7 +1,7 @@
 package com.foolsix.fancyenchantments.block.table;
 
 import com.foolsix.fancyenchantments.block.ModBlockReg;
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.*;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
 import net.minecraft.core.BlockPos;
@@ -26,8 +26,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
+import resource.catalyst.Catalyst;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -42,14 +44,15 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     static final int ENCHANT_SLOT_COUNT = 4;
     static final int INPUT_SLOT = 0;
     static final int LAPIS_SLOT = 1;
-    static final int EXTRA_SLOT = 2;
+    static final int CATALYST_SLOT = 2;
     static final int UPGRADE_SLOT = 3;
     static final int OFFER_COST_DATA_START = 0;
     static final int OFFER_ENCHANTMENT_DATA_START = OFFER_COST_DATA_START + OFFER_COUNT;
     static final int OFFER_LEVEL_DATA_START = OFFER_ENCHANTMENT_DATA_START + OFFER_COUNT;
     static final int BOOKSHELF_DATA = OFFER_LEVEL_DATA_START + OFFER_COUNT;
     static final int UPGRADE_BONUS_DATA = BOOKSHELF_DATA + 1;
-    static final int MENU_DATA_COUNT = UPGRADE_BONUS_DATA + 1;
+    static final int CATALYST_DATA_START = UPGRADE_BONUS_DATA + 1;
+    static final int MENU_DATA_COUNT = CATALYST_DATA_START + Catalyst.values().length;
     static final int PLAYER_INV_START = 4;
     static final int PLAYER_HOTBAR_START = 31;
     static final int SLOT_SPACING = 18;
@@ -59,8 +62,8 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     static final int LAPIS_SLOT_Y = 47;
     static final int UPGRADE_SLOT_X = 35;
     static final int UPGRADE_SLOT_Y = 27;
-    static final int EXTRA_SLOT_X = UPGRADE_SLOT_X - SLOT_SPACING - 2;
-    static final int EXTRA_SLOT_Y = UPGRADE_SLOT_Y;
+    static final int CATALYST_SLOT_X = UPGRADE_SLOT_X - SLOT_SPACING - 2;
+    static final int CATALYST_SLOT_Y = UPGRADE_SLOT_Y;
     static final TagKey<Item> UPGRADE_MATERIALS = ItemTags.create(new ResourceLocation("fancyenchantments", "upgrade_materials"));
     private static List<Enchantment> enchantmentCandidates;
 
@@ -105,7 +108,24 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                 return stack.is(Items.LAPIS_LAZULI);
             }
         });
-        this.addSlot(new Slot(this.enchantSlots, EXTRA_SLOT, EXTRA_SLOT_X, EXTRA_SLOT_Y + 1));
+        this.addSlot(new Slot(this.enchantSlots, CATALYST_SLOT, CATALYST_SLOT_X, CATALYST_SLOT_Y + 1) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                if (ElementalEnchantmentMenu.this.hasAnyCatalystData()) {
+                    return false;
+                }
+                ResourceLocation resourceLocation = ForgeRegistries.ITEMS.getKey(stack.getItem());
+                if (resourceLocation == null) {
+                    return false;
+                }
+                return Catalyst.catalystDataMap.containsKey(resourceLocation.toString());
+            }
+
+            @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+        });
         this.addSlot(new Slot(this.enchantSlots, UPGRADE_SLOT, UPGRADE_SLOT_X, UPGRADE_SLOT_Y + 1) {
             @Override
             public boolean mayPlace(ItemStack stack) {
@@ -147,8 +167,14 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             int upgradeBonus = this.getTableBlockEntity(level, pos)
                     .map(ElementalEnchantmentTableBlockEntity::getStoredUpgradeBonus)
                     .orElse(0);
+            Map<Integer, Integer> storedCatalystData = this.getTableBlockEntity(level, pos)
+                    .map(ElementalEnchantmentTableBlockEntity::getStoredCatalystData)
+                    .orElse(Map.of());
             this.data.set(BOOKSHELF_DATA, bookshelves);
             this.data.set(UPGRADE_BONUS_DATA, upgradeBonus);
+            for (Catalyst catalyst : Catalyst.values()) {
+                this.data.set(CATALYST_DATA_START + catalyst.ordinal(), storedCatalystData.getOrDefault(catalyst.ordinal(), 0));
+            }
 
             if (stack.isEmpty() || (!stack.is(Items.BOOK) && !stack.isEnchantable())) {
                 this.clearOffers(false);
@@ -188,7 +214,6 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
 
         ItemStack itemStack = this.enchantSlots.getItem(INPUT_SLOT);
         ItemStack lapisStack = this.enchantSlots.getItem(LAPIS_SLOT);
-        ItemStack upgradeStack = this.enchantSlots.getItem(UPGRADE_SLOT);
         int lapisCost = getLapisCost(buttonId);
         int levelCost = getExperienceCost(buttonId);
         EnchantmentInstance offer = this.getOffer(buttonId);
@@ -215,7 +240,10 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                 EnchantmentHelper.setEnchantments(enchantments, itemStack);
             }
 
-            this.getTableBlockEntity(level, pos).ifPresent(ElementalEnchantmentTableBlockEntity::clearStoredUpgradeBonus);
+            this.getTableBlockEntity(level, pos).ifPresent(table -> {
+                table.clearStoredUpgradeBonus();
+                table.clearStoredCatalystData();
+            });
 
             if (!player.getAbilities().instabuild) {
                 lapisStack.shrink(lapisCost);
@@ -256,6 +284,10 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             }
         } else if (slotStack.is(Items.LAPIS_LAZULI)) {
             if (!this.moveItemStackTo(slotStack, LAPIS_SLOT, UPGRADE_SLOT, true)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (this.slots.get(CATALYST_SLOT).mayPlace(slotStack)) {
+            if (!this.moveItemStackTo(slotStack, CATALYST_SLOT, UPGRADE_SLOT, true)) {
                 return ItemStack.EMPTY;
             }
         } else if (slotStack.is(UPGRADE_MATERIALS)) {
@@ -299,13 +331,17 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         return this.getUpgradeBonus(this.enchantSlots.getItem(UPGRADE_SLOT));
     }
 
-    public int getTotalEnchantingLevel() {
-        return this.getBookshelfCount() + this.getUpgradeBonus();
+    public int getCatalystBonus(int catalystOrdinal) {
+        if (catalystOrdinal < 0 || catalystOrdinal >= Catalyst.values().length) {
+            return 0;
+        }
+        return this.data.get(CATALYST_DATA_START + catalystOrdinal);
     }
 
-    public boolean canStoreUpgrade() {
-        return this.getPendingUpgradeBonus() > 0
-                && this.getUpgradeBonus() < ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS;
+    public boolean canStore() {
+        return (this.getPendingUpgradeBonus() > 0
+                && this.getUpgradeBonus() < ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS)
+                || this.canStoreCatalyst();
     }
 
     public int getLapisCost(int slot) {
@@ -380,9 +416,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         }
 
         ItemStack upgradeStack = this.enchantSlots.getItem(UPGRADE_SLOT);
-        if (!upgradeStack.is(UPGRADE_MATERIALS)) {
-            return false;
-        }
+        ItemStack catalystStack = this.enchantSlots.getItem(CATALYST_SLOT);
 
         return this.access.evaluate((level, pos) -> {
             Optional<ElementalEnchantmentTableBlockEntity> optionalTable = this.getTableBlockEntity(level, pos);
@@ -391,24 +425,48 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             }
 
             ElementalEnchantmentTableBlockEntity table = optionalTable.get();
-            int storedBonus = table.getStoredUpgradeBonus();
-            int remainingCapacity = ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS - storedBonus;
-            if (remainingCapacity <= 0) {
+            boolean applied = false;
+
+            if (upgradeStack.is(UPGRADE_MATERIALS)) {
+                int storedBonus = table.getStoredUpgradeBonus();
+                int remainingCapacity = ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS - storedBonus;
+                if (remainingCapacity > 0) {
+                    int appliedBonus = Math.min(remainingCapacity, this.getUpgradeBonus(upgradeStack));
+                    if (appliedBonus > 0) {
+                        int itemsToConsume = Math.min(upgradeStack.getCount(), Mth.ceil(appliedBonus / 2.0F));
+                        if (itemsToConsume > 0) {
+                            table.setStoredUpgradeBonus(storedBonus + itemsToConsume * 2);
+                            upgradeStack.shrink(itemsToConsume);
+                            applied = true;
+                        }
+                    }
+                }
+            }
+
+            if (!this.hasStoredCatalystData() && this.slots.get(CATALYST_SLOT).mayPlace(catalystStack) && !catalystStack.isEmpty()) {
+                ResourceLocation resourceLocation = ForgeRegistries.ITEMS.getKey(catalystStack.getItem());
+                if (resourceLocation != null) {
+                    Map<Catalyst, Integer> catalystMap = Catalyst.catalystDataMap.get(resourceLocation.toString());
+                    if (catalystMap != null && !catalystMap.isEmpty()) {
+                        Map<Integer, Integer> storedCatalystData = new HashMap<>();
+                        for (Map.Entry<Catalyst, Integer> entry : catalystMap.entrySet()) {
+                            if (entry.getKey() != null && entry.getValue() != null) {
+                                storedCatalystData.put(entry.getKey().ordinal(), entry.getValue());
+                            }
+                        }
+                        if (!storedCatalystData.isEmpty()) {
+                            table.setStoredCatalystData(storedCatalystData);
+                            catalystStack.shrink(1);
+                            applied = true;
+                        }
+                    }
+                }
+            }
+
+            if (!applied) {
                 return false;
             }
 
-            int appliedBonus = Math.min(remainingCapacity, this.getUpgradeBonus(upgradeStack));
-            if (appliedBonus <= 0) {
-                return false;
-            }
-
-            int itemsToConsume = Math.min(upgradeStack.getCount(), Mth.ceil(appliedBonus / 2.0F));
-            if (itemsToConsume <= 0) {
-                return false;
-            }
-
-            table.setStoredUpgradeBonus(storedBonus + itemsToConsume * 2);
-            upgradeStack.shrink(itemsToConsume);
             this.enchantSlots.setChanged();
             this.refreshOffers();
             level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 0.8F, 1.1F);
@@ -522,12 +580,13 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     }
 
     private int getWeight(Enchantment enchantment) {
-        return switch (enchantment.getRarity()) {
+        int weight = switch (enchantment.getRarity()) {
             case COMMON -> 20;
             case UNCOMMON -> 10;
             case RARE -> 4;
             case VERY_RARE -> 1;
         };
+        return weight + this.getCatalystBonusWeight(enchantment);
     }
 
     private static List<Enchantment> getEnchantmentCandidates() {
@@ -538,5 +597,82 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                     .toList();
         }
         return enchantmentCandidates;
+    }
+
+    private boolean canStoreCatalyst() {
+        if (this.hasAnyCatalystData()) {
+            return false;
+        }
+        ItemStack catalystStack = this.enchantSlots.getItem(CATALYST_SLOT);
+        if (catalystStack.isEmpty()) {
+            return false;
+        }
+        ResourceLocation resourceLocation = ForgeRegistries.ITEMS.getKey(catalystStack.getItem());
+        if (resourceLocation == null) {
+            return false;
+        }
+        Map<Catalyst, Integer> catalystMap = Catalyst.catalystDataMap.get(resourceLocation.toString());
+        if (catalystMap == null || catalystMap.isEmpty()) {
+            return false;
+        }
+        for (Map.Entry<Catalyst, Integer> entry : catalystMap.entrySet()) {
+            if (entry.getKey() != null && entry.getValue() != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasAnyCatalystData() {
+        return this.hasSyncedCatalystData() || this.hasStoredCatalystData();
+    }
+
+    private boolean hasSyncedCatalystData() {
+        for (Catalyst catalyst : Catalyst.values()) {
+            if (this.data.get(CATALYST_DATA_START + catalyst.ordinal()) > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasStoredCatalystData() {
+        return this.access.evaluate((level, pos) -> this.getTableBlockEntity(level, pos)
+                .map(ElementalEnchantmentTableBlockEntity::getStoredCatalystData)
+                .map(storedCatalystData -> !storedCatalystData.isEmpty())
+                .orElse(false), false);
+    }
+
+    private boolean canCatalystApply(int catalystOrdinal, Enchantment enchantment) {
+        if (catalystOrdinal < 0 || catalystOrdinal >= Catalyst.values().length) {
+            return false;
+        }
+        boolean result = false;
+        switch (Catalyst.values()[catalystOrdinal]) {
+            case AER -> result = enchantment instanceof AerEnchantment;
+            case AQUA -> result = enchantment instanceof AquaEnchantment;
+            case IGNIS -> result = enchantment instanceof IgnisEnchantment;
+            case TERRA -> result = enchantment instanceof TerraEnchantment;
+            case HOLY -> result = enchantment instanceof HolyEnchantment;
+            case TWISTED -> result = enchantment instanceof TwistedEnchantment;
+            case TREASURE -> result = enchantment instanceof FEBaseEnchantment fe && !fe.isSpecialLoot() && fe.isTreasureOnly();
+            case SPECIAL -> result = enchantment instanceof FEBaseEnchantment fe && fe.isSpecialLoot();
+        }
+        return result;
+    }
+
+    private int getCatalystBonusWeight(Enchantment enchantment) {
+        return this.access.evaluate((level, pos) -> this.getTableBlockEntity(level, pos)
+                .map(ElementalEnchantmentTableBlockEntity::getStoredCatalystData)
+                .map(storedCatalystData -> {
+                    int bonus = 0;
+                    for (Map.Entry<Integer, Integer> entry : storedCatalystData.entrySet()) {
+                        if (entry.getValue() != null && this.canCatalystApply(entry.getKey(), enchantment)) {
+                            bonus += entry.getValue();
+                        }
+                    }
+                    return bonus;
+                })
+                .orElse(0), 0);
     }
 }

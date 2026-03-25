@@ -14,10 +14,14 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import resource.catalyst.Catalyst;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -28,25 +32,33 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     static final int PANEL_WIDTH = 132;
     static final int SIDE_PANEL_X = VANILLA_WIDTH + 8;
     static final int SIDE_PANEL_WIDTH = 118;
+    static final int RIGHT_COLUMN_LEFT = 58;
+    static final int RIGHT_COLUMN_WIDTH = SIDE_PANEL_WIDTH - RIGHT_COLUMN_LEFT;
+    static final int BIAS_LIST_TOP = 22;
+    static final int BIAS_LIST_TEXT_TOP = BIAS_LIST_TOP + 12;
+    static final int BIAS_LIST_LINE_HEIGHT = 9;
+    static final int BIAS_LIST_VISIBLE_LINES = 3;
+    static final int BIAS_LIST_HEIGHT = BIAS_LIST_VISIBLE_LINES * BIAS_LIST_LINE_HEIGHT;
     static final int TOGGLE_BUTTON_SIZE = 10;
     static final int TOGGLE_BUTTON_MARGIN = 2;
-    static final int SPECIAL_LIST_TOP = 76;
+    static final int SPECIAL_LIST_TOP = 86;
     static final int SPECIAL_LIST_TEXT_TOP = SPECIAL_LIST_TOP + 12;
     static final int SPECIAL_LIST_LINE_HEIGHT = 9;
-    static final int SPECIAL_LIST_VISIBLE_LINES = 6;
+    static final int SPECIAL_LIST_VISIBLE_LINES = 5;
     static final int SPECIAL_LIST_HEIGHT = SPECIAL_LIST_VISIBLE_LINES * SPECIAL_LIST_LINE_HEIGHT;
     static final int OFFER_LEFT = 59;
     static final int OFFER_TOP = 14;
     static final int OFFER_WIDTH = 109;
     static final int OFFER_HEIGHT = 19;
-    static final int EXTRA_SLOT_LEFT = ElementalEnchantmentMenu.EXTRA_SLOT_X - 1;
-    static final int EXTRA_SLOT_TOP = ElementalEnchantmentMenu.EXTRA_SLOT_Y;
+    static final int CATALYST_SLOT_LEFT = ElementalEnchantmentMenu.CATALYST_SLOT_X - 1;
+    static final int CATALYST_SLOT_TOP = ElementalEnchantmentMenu.CATALYST_SLOT_Y;
     static final int UPGRADE_SLOT_LEFT = ElementalEnchantmentMenu.UPGRADE_SLOT_X - 1;
     static final int UPGRADE_SLOT_TOP = ElementalEnchantmentMenu.UPGRADE_SLOT_Y;
-    static final int APPLY_BUTTON_WIDTH = UPGRADE_SLOT_LEFT + ElementalEnchantmentMenu.SLOT_SPACING - EXTRA_SLOT_LEFT;
+    static final int APPLY_BUTTON_WIDTH = UPGRADE_SLOT_LEFT + ElementalEnchantmentMenu.SLOT_SPACING - CATALYST_SLOT_LEFT;
     static final int APPLY_BUTTON_HEIGHT = 8;
-    static final int APPLY_BUTTON_LEFT = EXTRA_SLOT_LEFT;
+    static final int APPLY_BUTTON_LEFT = CATALYST_SLOT_LEFT;
     static final int APPLY_BUTTON_TOP = UPGRADE_SLOT_TOP - APPLY_BUTTON_HEIGHT - 2;
+    private int biasScrollOffset;
     private int specialEnchantScrollOffset;
     private boolean sidePanelCollapsed;
 
@@ -76,7 +88,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             guiGraphics.fill(left + VANILLA_WIDTH, top, left + this.imageWidth, top + this.imageHeight, sidePanelBackgroundColor);
             guiGraphics.fill(left + VANILLA_WIDTH + 4, top + 4, left + this.imageWidth - 4, top + this.imageHeight - 4, sidePanelInnerBackgroundColor);
         }
-        this.renderUpgradeSlotBackground(guiGraphics, left + EXTRA_SLOT_LEFT, top + EXTRA_SLOT_TOP);
+        this.renderUpgradeSlotBackground(guiGraphics, left + CATALYST_SLOT_LEFT, top + CATALYST_SLOT_TOP);
         this.renderUpgradeSlotBackground(guiGraphics, left + UPGRADE_SLOT_LEFT, top + UPGRADE_SLOT_TOP);
         this.renderApplyUpgradeButton(guiGraphics, mouseX, mouseY, left + APPLY_BUTTON_LEFT, top + APPLY_BUTTON_TOP);
         this.renderSidePanelToggleButton(guiGraphics, mouseX, mouseY, left + this.getToggleButtonLeft(), top + this.getToggleButtonTop());
@@ -181,7 +193,9 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
+        if (!this.isHoveringCatalystSlot(mouseX, mouseY)) {
+            this.renderTooltip(guiGraphics, mouseX, mouseY);
+        }
         this.renderOfferTooltips(guiGraphics, mouseX, mouseY);
     }
 
@@ -194,7 +208,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
             return true;
         }
         if (isHovering(APPLY_BUTTON_LEFT, APPLY_BUTTON_TOP, APPLY_BUTTON_WIDTH, APPLY_BUTTON_HEIGHT, mouseX, mouseY)) {
-            if (this.menu.canStoreUpgrade() && this.minecraft != null && this.minecraft.gameMode != null) {
+            if (this.menu.canStore() && this.minecraft != null && this.minecraft.gameMode != null) {
                 this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, ElementalEnchantmentMenu.APPLY_UPGRADE_BUTTON_ID);
                 return true;
             }
@@ -220,6 +234,11 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollDelta) {
+        if (!this.sidePanelCollapsed && this.isMouseOverBiasList(mouseX, mouseY)) {
+            int maxOffset = Math.max(0, this.getActiveCatalystSummaryLines().size() - BIAS_LIST_VISIBLE_LINES);
+            this.biasScrollOffset = Math.max(0, Math.min(maxOffset, this.biasScrollOffset - (int) Math.signum(scrollDelta)));
+            return true;
+        }
         if (!this.sidePanelCollapsed && this.isMouseOverSpecialList(mouseX, mouseY)) {
             int maxOffset = Math.max(0, this.getPossibleSpecialEnchantments(this.getDisplayedElementStats()).size() - SPECIAL_LIST_VISIBLE_LINES);
             this.specialEnchantScrollOffset = Math.max(0, Math.min(maxOffset, this.specialEnchantScrollOffset - (int) Math.signum(scrollDelta)));
@@ -239,18 +258,40 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         Component elementStatsTitle = Component.translatable("screen.fancyenchantments.elemental_enchanting_table.element_stats");
         guiGraphics.drawString(this.font, elementStatsTitle, panelLeft, panelTop, panelTitleColor, false);
 
-        int rightColumnLeft = panelLeft + Math.min(this.font.width(elementStatsTitle) + 8, 58);
-        int rightColumnWidth = panelLeft + SIDE_PANEL_WIDTH - rightColumnLeft;
+        int rightColumnLeft = panelLeft + RIGHT_COLUMN_LEFT;
         Component totalLevelText = Component.translatable(
-                "screen.fancyenchantments.elemental_enchanting_table.total_level", this.menu.getTotalEnchantingLevel());
-        Component upgradeBonusText = Component.translatable(
-                "screen.fancyenchantments.elemental_enchanting_table.upgrade_bonus", this.menu.getUpgradeBonus());
+                "screen.fancyenchantments.elemental_enchanting_table.total_level",
+                this.menu.getBookshelfCount(), this.menu.getUpgradeBonus());
         guiGraphics.drawString(this.font,
-                this.getTrimmedSequence(totalLevelText, rightColumnWidth),
+                this.getTrimmedSequence(totalLevelText, RIGHT_COLUMN_WIDTH),
                 rightColumnLeft, panelTop, panelSecondaryTextColor, false);
         guiGraphics.drawString(this.font,
-                this.getTrimmedSequence(upgradeBonusText, rightColumnWidth),
-                rightColumnLeft, panelTop + 10, panelSecondaryTextColor, false);
+                Component.translatable("screen.fancyenchantments.elemental_enchanting_table.catalyst_slot.bias"),
+                rightColumnLeft, panelTop + BIAS_LIST_TOP, panelTitleColor, false);
+
+        List<Component> biasLines = this.getActiveCatalystSummaryLines();
+        int maxBiasOffset = Math.max(0, biasLines.size() - BIAS_LIST_VISIBLE_LINES);
+        if (this.biasScrollOffset > maxBiasOffset) {
+            this.biasScrollOffset = maxBiasOffset;
+        }
+        if (biasLines.isEmpty()) {
+            guiGraphics.drawString(this.font,
+                    Component.translatable("screen.fancyenchantments.elemental_enchanting_table.none"),
+                    rightColumnLeft, panelTop + BIAS_LIST_TEXT_TOP, panelEmptyTextColor, false);
+        } else {
+            int biasStartIndex = this.biasScrollOffset;
+            int biasEndIndex = Math.min(biasLines.size(), biasStartIndex + BIAS_LIST_VISIBLE_LINES);
+            for (int i = biasStartIndex; i < biasEndIndex; ++i) {
+                int lineIndex = i - biasStartIndex;
+                guiGraphics.drawString(this.font, this.getTrimmedSequence(biasLines.get(i), RIGHT_COLUMN_WIDTH),
+                        rightColumnLeft, panelTop + BIAS_LIST_TEXT_TOP + lineIndex * BIAS_LIST_LINE_HEIGHT, panelSecondaryTextColor, false);
+            }
+            if (biasLines.size() > BIAS_LIST_VISIBLE_LINES) {
+                guiGraphics.drawString(this.font,
+                        Component.literal((biasStartIndex + 1) + "-" + biasEndIndex + "/" + biasLines.size()),
+                        rightColumnLeft, panelTop + BIAS_LIST_TEXT_TOP + BIAS_LIST_VISIBLE_LINES * BIAS_LIST_LINE_HEIGHT, panelPageTextColor, false);
+            }
+        }
 
         int[] elementStats = this.getDisplayedElementStats();
         if (this.minecraft != null && this.minecraft.player != null) {
@@ -313,12 +354,25 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
         return lines.isEmpty() ? FormattedCharSequence.EMPTY : lines.get(0);
     }
 
+    private boolean isMouseOverBiasList(double mouseX, double mouseY) {
+        final int sidePanelTop = 8;
+        int left = this.leftPos + SIDE_PANEL_X + RIGHT_COLUMN_LEFT;
+        int top = this.topPos + sidePanelTop + BIAS_LIST_TEXT_TOP;
+        return mouseX >= left && mouseX < left + RIGHT_COLUMN_WIDTH
+                && mouseY >= top && mouseY < top + BIAS_LIST_HEIGHT;
+    }
+
     private boolean isMouseOverSpecialList(double mouseX, double mouseY) {
         final int sidePanelTop = 8;
         int left = this.leftPos + SIDE_PANEL_X;
         int top = this.topPos + sidePanelTop + SPECIAL_LIST_TEXT_TOP;
         return mouseX >= left && mouseX < left + SIDE_PANEL_WIDTH
                 && mouseY >= top && mouseY < top + SPECIAL_LIST_HEIGHT;
+    }
+
+    private boolean isHoveringCatalystSlot(double mouseX, double mouseY) {
+        return isHovering(CATALYST_SLOT_LEFT, CATALYST_SLOT_TOP,
+                ElementalEnchantmentMenu.SLOT_SPACING, ElementalEnchantmentMenu.SLOT_SPACING, mouseX, mouseY);
     }
 
     private void renderOfferTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY) {
@@ -334,6 +388,20 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
                 tooltip.add(offer.enchantment.getFullname(offer.level));
                 tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.cost",
                         this.menu.getLapisCost(i), this.menu.getExperienceCost(i), this.menu.getCost(i)).withStyle(ChatFormatting.GRAY));
+            }
+            guiGraphics.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
+            return;
+        }
+
+        if (this.isHoveringCatalystSlot(mouseX, mouseY)) {
+            ItemStack catalystStack = this.menu.slots.get(ElementalEnchantmentMenu.CATALYST_SLOT).getItem();
+            List<Component> tooltip = new ArrayList<>();
+            if (catalystStack.isEmpty()) {
+                tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.catalyst_slot"));
+                tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.catalyst_slot.desc"));
+            } else {
+                tooltip.add(catalystStack.getHoverName());
+                this.appendCatalystTooltipLines(tooltip, catalystStack);
             }
             guiGraphics.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
             return;
@@ -357,6 +425,57 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
                             : "screen.fancyenchantments.elemental_enchanting_table.collapse_panel")),
                     mouseX, mouseY);
         }
+    }
+
+    private void appendCatalystTooltipLines(List<Component> tooltip, ItemStack catalystStack) {
+        ResourceLocation resourceLocation = ForgeRegistries.ITEMS.getKey(catalystStack.getItem());
+        if (resourceLocation == null) {
+            return;
+        }
+        Map<Catalyst, Integer> catalystData = Catalyst.catalystDataMap.get(resourceLocation.toString());
+        if (catalystData == null || catalystData.isEmpty()) {
+            tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.catalyst_slot.no_data")
+                    .withStyle(ChatFormatting.DARK_GRAY));
+            return;
+        }
+
+        tooltip.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.catalyst_slot.bias")
+                .withStyle(ChatFormatting.GRAY));
+        catalystData.entrySet().stream()
+                .filter(entry -> entry.getKey() != null && entry.getValue() != null)
+                .sorted(Comparator.comparingInt(entry -> entry.getKey().ordinal()))
+                .forEach(entry -> tooltip.add(Component.translatable(
+                        "screen.fancyenchantments.elemental_enchanting_table.catalyst_slot.entry",
+                        Component.translatable(this.getCatalystTranslationKey(entry.getKey())),
+                        entry.getValue()
+                ).withStyle(ChatFormatting.GRAY)));
+    }
+
+    private String getCatalystTranslationKey(Catalyst catalyst) {
+        return switch (catalyst) {
+            case AER -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.aer";
+            case AQUA -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.aqua";
+            case IGNIS -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.ignis";
+            case TERRA -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.terra";
+            case HOLY -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.holy";
+            case TWISTED -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.twisted";
+            case TREASURE -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.treasure";
+            case SPECIAL -> "screen.fancyenchantments.elemental_enchanting_table.catalyst.special";
+        };
+    }
+
+    private List<Component> getActiveCatalystSummaryLines() {
+        List<Component> lines = new ArrayList<>();
+        for (Catalyst catalyst : Catalyst.values()) {
+            int bonus = this.menu.getCatalystBonus(catalyst.ordinal());
+            if (bonus <= 0) {
+                continue;
+            }
+            lines.add(Component.translatable("screen.fancyenchantments.elemental_enchanting_table.catalyst_slot.entry",
+                    Component.translatable(this.getCatalystTranslationKey(catalyst)),
+                    bonus).withStyle(ChatFormatting.GRAY));
+        }
+        return lines;
     }
 
     private void updateLayout() {
@@ -400,7 +519,7 @@ public class ElementalEnchantmentScreen extends AbstractContainerScreen<Elementa
     }
 
     private void renderApplyUpgradeButton(GuiGraphics guiGraphics, int mouseX, int mouseY, int left, int top) {
-        boolean enabled = this.menu.canStoreUpgrade();
+        boolean enabled = this.menu.canStore();
         boolean hovered = isHovering(APPLY_BUTTON_LEFT, APPLY_BUTTON_TOP, APPLY_BUTTON_WIDTH, APPLY_BUTTON_HEIGHT, mouseX, mouseY);
         int fill = enabled ? (hovered ? 0xFFB08A57 : 0xFF8F6D45) : 0xFF4A4A4A;
         int border = enabled ? (hovered ? 0xFF3C2918 : 0xFF2B1D12) : 0xFF2F2F2F;
