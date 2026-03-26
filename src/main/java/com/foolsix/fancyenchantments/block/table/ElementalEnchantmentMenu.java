@@ -490,12 +490,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         if (candidates.isEmpty()) {
             return null;
         }
-
-        int totalWeight = 0;
-        for (EnchantmentInstance candidate : candidates) {
-            totalWeight += getWeight(candidate.enchantment);
-        }
-        return this.pickWeightedOffer(candidates, totalWeight);
+        return this.pickWeightedOffer(candidates);
     }
 
     private List<EnchantmentInstance> getEligibleOffers(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, boolean includeSpecialLoot,boolean ignoreCost) {
@@ -523,7 +518,12 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         return candidates;
     }
 
-    private EnchantmentInstance pickWeightedOffer(List<EnchantmentInstance> candidates, int totalWeight) {
+    private EnchantmentInstance pickWeightedOffer(List<EnchantmentInstance> candidates) {
+        int totalWeight = 0;
+        for (EnchantmentInstance candidate : candidates) {
+            totalWeight += getWeight(candidate.enchantment);
+        }
+
         int chosen = this.random.nextInt(totalWeight);
         for (EnchantmentInstance candidate : candidates) {
             chosen -= getWeight(candidate.enchantment);
@@ -540,7 +540,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             if (!(enchantment instanceof FEBaseEnchantment fe) || !fe.isSpecialLoot()) {
                 continue;
             }
-            if (this.random.nextDouble() < fe.getChestGenerationProbability() || !EnchUtils.matchesElementCondition(elementStats, fe.getChestGenerationCondition())) {
+            if (this.random.nextDouble() > fe.getChestGenerationProbability() || !EnchUtils.matchesElementCondition(elementStats, fe.getChestGenerationCondition())) {
                 continue;
             }
             available.add(enchantment);
@@ -586,6 +586,11 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             case RARE -> 4;
             case VERY_RARE -> 1;
         };
+
+        if (enchantment instanceof FEBaseEnchantment fe && fe.isTreasureOnly() && ! fe.isSpecialLoot()) {
+            weight = 0;
+        }
+
         return weight + this.getCatalystBonusWeight(enchantment);
     }
 
@@ -644,35 +649,39 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     }
 
     private boolean canCatalystApply(int catalystOrdinal, Enchantment enchantment) {
-        if (catalystOrdinal < 0 || catalystOrdinal >= Catalyst.values().length) {
+        if (catalystOrdinal < 0 || catalystOrdinal >= Catalyst.values().length || !(enchantment instanceof  FEBaseEnchantment fe)) {
             return false;
         }
         boolean result = false;
         switch (Catalyst.values()[catalystOrdinal]) {
-            case AER -> result = enchantment instanceof AerEnchantment;
-            case AQUA -> result = enchantment instanceof AquaEnchantment;
-            case IGNIS -> result = enchantment instanceof IgnisEnchantment;
-            case TERRA -> result = enchantment instanceof TerraEnchantment;
-            case HOLY -> result = enchantment instanceof HolyEnchantment;
-            case TWISTED -> result = enchantment instanceof TwistedEnchantment;
-            case TREASURE -> result = enchantment instanceof FEBaseEnchantment fe && !fe.isSpecialLoot() && fe.isTreasureOnly();
-            case SPECIAL -> result = enchantment instanceof FEBaseEnchantment fe && fe.isSpecialLoot();
+            case AER -> result = fe instanceof AerEnchantment;
+            case AQUA -> result = fe instanceof AquaEnchantment;
+            case IGNIS -> result = fe instanceof IgnisEnchantment;
+            case TERRA -> result = fe instanceof TerraEnchantment;
+            case HOLY -> result = fe instanceof HolyEnchantment;
+            case TWISTED -> result = fe instanceof TwistedEnchantment;
+            case TREASURE -> result = !fe.isSpecialLoot() && fe.isTreasureOnly();
+            case SPECIAL -> result = fe.isSpecialLoot();
         }
         return result;
     }
 
     private int getCatalystBonusWeight(Enchantment enchantment) {
-        return this.access.evaluate((level, pos) -> this.getTableBlockEntity(level, pos)
-                .map(ElementalEnchantmentTableBlockEntity::getStoredCatalystData)
-                .map(storedCatalystData -> {
-                    int bonus = 0;
-                    for (Map.Entry<Integer, Integer> entry : storedCatalystData.entrySet()) {
-                        if (entry.getValue() != null && this.canCatalystApply(entry.getKey(), enchantment)) {
-                            bonus += entry.getValue();
-                        }
-                    }
-                    return bonus;
-                })
-                .orElse(0), 0);
+        return this.access.evaluate((level, pos) -> {
+            Optional<ElementalEnchantmentTableBlockEntity> optionalTable = this.getTableBlockEntity(level, pos);
+            if (optionalTable.isEmpty()) {
+                return 0;
+            }
+
+            Map<Integer, Integer> storedCatalystData = optionalTable.get().getStoredCatalystData();
+            int bonus = 0;
+            for (Map.Entry<Integer, Integer> entry : storedCatalystData.entrySet()) {
+                Integer weight = entry.getValue();
+                if (weight != null && this.canCatalystApply(entry.getKey(), enchantment)) {
+                    bonus += weight;
+                }
+            }
+            return bonus;
+        }, 0);
     }
 }

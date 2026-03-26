@@ -2,13 +2,8 @@
   "type": "single",
   "item": "minecraft:nether_star",
   "catalysis": {
-    "aer": 1,
-    "aqua": 1,
-    "ignis": 1,
-    "terra": 1,
-    "holy": 1,
-    "twisted": 1,
-    "treasure": 1,
-    "special": 1
+    "treasure": 3,
+    "special": 3
   }
 }
+

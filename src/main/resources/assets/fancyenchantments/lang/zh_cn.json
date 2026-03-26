@@ -199,7 +199,7 @@
   "block.fancyenchantments.elemental_enchanting_table": "元素附魔台",
   "screen.fancyenchantments.elemental_enchanting_table.element_stats": "元素属性",
   "screen.fancyenchantments.elemental_enchanting_table.special_loot": "可能获得的特殊附魔",
-  "screen.fancyenchantments.elemental_enchanting_table.none": "当前无可用特殊附魔",
+  "screen.fancyenchantments.elemental_enchanting_table.none": "无",
   "screen.fancyenchantments.elemental_enchanting_table.unavailable": "当前不可用",
   "screen.fancyenchantments.elemental_enchanting_table.collapse_panel": "收起右侧信息栏",
   "screen.fancyenchantments.elemental_enchanting_table.expand_panel": "展开右侧信息栏",

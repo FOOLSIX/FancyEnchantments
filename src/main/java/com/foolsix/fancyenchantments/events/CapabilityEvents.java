@@ -8,9 +8,6 @@ import com.foolsix.fancyenchantments.enchantment.util.EnchUtils.Element;
 import com.foolsix.fancyenchantments.network.Networking;
 import com.foolsix.fancyenchantments.network.TimeToLivePacket;
 import com.foolsix.fancyenchantments.util.ModConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
@@ -19,10 +16,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
@@ -139,30 +132,6 @@ public class CapabilityEvents {
         if (e.getEntity() instanceof ServerPlayer player) {
             player.getCapability(ElementStatsCapabilityProvider.PLAYER_ELEMENT_STATS).ifPresent(ElementStatsCapability::resetPoint);
         }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public void displayTTL(RenderGuiOverlayEvent.Post e) {
-        if (e.getOverlay() != VanillaGuiOverlay.CROSSHAIR.type()) return;
-        Minecraft mc = Minecraft.getInstance();
-        Player player = mc.player;
-        if (player == null) return;
-        GuiGraphics gui = e.getGuiGraphics();
-        player.getCapability(TimeToLiveCapabilityProvider.PLAYER_TTL).ifPresent(timeToLiveCapability -> {
-            int ttl = timeToLiveCapability.getTtl();
-            if (ttl <= 0) return;
-            String text = String.format("%s:%.2f", I18n.get("enchantment.fancyenchantments.unyielding_spirit.hud"), (float)ttl / 20);
-            int centerX = mc.getWindow().getGuiScaledWidth() / 2;
-            int centerY = mc.getWindow().getGuiScaledHeight() / 2;
-            gui.drawString(
-                    mc.font,
-                    text,
-                    centerX - mc.font.width(text) / 2,
-                    centerY + 20,
-                    0xFF0000
-            );
-        });
     }
 
 }
