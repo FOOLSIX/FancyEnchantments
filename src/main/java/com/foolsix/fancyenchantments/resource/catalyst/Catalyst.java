@@ -1,4 +1,4 @@
-package resource.catalyst;
+package com.foolsix.fancyenchantments.resource.catalyst;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;

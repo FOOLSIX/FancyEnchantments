@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.block.table;
 
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
+import com.foolsix.fancyenchantments.resource.catalyst.Catalyst;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.FieldsAreNonnullByDefault;
@@ -16,7 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import resource.catalyst.Catalyst;
 
 import java.util.ArrayList;
 import java.util.Comparator;

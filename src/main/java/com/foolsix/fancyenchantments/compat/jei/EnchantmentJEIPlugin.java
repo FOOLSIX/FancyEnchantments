@@ -5,6 +5,7 @@ import com.foolsix.fancyenchantments.block.ModBlockReg;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentMenu;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
+import com.foolsix.fancyenchantments.resource.catalyst.Catalyst;
 import com.foolsix.fancyenchantments.util.ModConfig;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -25,7 +26,6 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import resource.catalyst.Catalyst;
 
 import java.text.NumberFormat;
 import java.util.*;

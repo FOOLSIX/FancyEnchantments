@@ -1,4 +1,4 @@
-package com.foolsix.fancyenchantments.loot;
+package com.foolsix.fancyenchantments.resource.loot;
 
 import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.capability.ElementStatsCapabilityProvider;

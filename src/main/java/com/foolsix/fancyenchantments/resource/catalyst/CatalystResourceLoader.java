@@ -1,4 +1,4 @@
-package resource.catalyst;
+package com.foolsix.fancyenchantments.resource.catalyst;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import static resource.catalyst.Catalyst.catalystDataMap;
+import static com.foolsix.fancyenchantments.resource.catalyst.Catalyst.catalystDataMap;
 
 public class CatalystResourceLoader extends SimpleJsonResourceReloadListener {
     private static final Gson GSON = new GsonBuilder().create();

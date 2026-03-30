@@ -1,4 +1,4 @@
-package com.foolsix.fancyenchantments.loot;
+package com.foolsix.fancyenchantments.resource.loot;
 
 import com.mojang.serialization.Codec;
 import net.minecraftforge.common.loot.IGlobalLootModifier;

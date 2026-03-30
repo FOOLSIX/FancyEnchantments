@@ -1,9 +1,9 @@
 package com.foolsix.fancyenchantments.events;
 
+import com.foolsix.fancyenchantments.resource.catalyst.CatalystResourceLoader;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import resource.catalyst.CatalystResourceLoader;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 

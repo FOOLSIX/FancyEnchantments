@@ -4,6 +4,7 @@ import com.foolsix.fancyenchantments.block.ModBlockReg;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.*;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
+import com.foolsix.fancyenchantments.resource.catalyst.Catalyst;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -29,7 +30,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
-import resource.catalyst.Catalyst;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -66,6 +66,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     static final int CATALYST_SLOT_Y = UPGRADE_SLOT_Y;
     public static final TagKey<Item> UPGRADE_MATERIALS = ItemTags.create(new ResourceLocation("fancyenchantments", "upgrade_materials"));
     private static List<Enchantment> enchantmentCandidates;
+    private static Map<Enchantment, Integer> enchantmentCandidateIndices;
 
     private final Container enchantSlots = new SimpleContainer(ENCHANT_SLOT_COUNT) {
         @Override
@@ -164,12 +165,14 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         ItemStack stack = this.enchantSlots.getItem(INPUT_SLOT);
         this.access.execute((level, pos) -> {
             int bookshelves = this.getBookshelfPower(level, pos);
-            int upgradeBonus = this.getTableBlockEntity(level, pos)
+            Optional<ElementalEnchantmentTableBlockEntity> table = this.getTableBlockEntity(level, pos);
+            int upgradeBonus = table
                     .map(ElementalEnchantmentTableBlockEntity::getStoredUpgradeBonus)
                     .orElse(0);
-            Map<Integer, Integer> storedCatalystData = this.getTableBlockEntity(level, pos)
+            Map<Integer, Integer> storedCatalystData = table
                     .map(ElementalEnchantmentTableBlockEntity::getStoredCatalystData)
                     .orElse(Map.of());
+            Map<Enchantment, Integer> catalystBonusWeights = this.buildCatalystBonusWeights(storedCatalystData);
             this.data.set(BOOKSHELF_DATA, bookshelves);
             this.data.set(UPGRADE_BONUS_DATA, upgradeBonus);
             for (Catalyst catalyst : Catalyst.values()) {
@@ -188,14 +191,14 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
 
             for (int slot = 0; slot < OFFER_COUNT; ++slot) {
                 int cost = this.calculateCost(slot, bookshelves, stack, upgradeBonus);
-                EnchantmentInstance offer = this.pickOffer(stack, cost, rolledSpecialLoot, fallbackOffers);
+                EnchantmentInstance offer = this.pickOffer(stack, cost, rolledSpecialLoot, fallbackOffers, catalystBonusWeights);
                 if (offer == null) {
                     this.data.set(OFFER_COST_DATA_START + slot, 0);
                     this.data.set(OFFER_ENCHANTMENT_DATA_START + slot, -1);
                     this.data.set(OFFER_LEVEL_DATA_START + slot, 0);
                 } else {
                     this.data.set(OFFER_COST_DATA_START + slot, cost);
-                    this.data.set(OFFER_ENCHANTMENT_DATA_START + slot, getEnchantmentCandidates().indexOf(offer.enchantment));
+                    this.data.set(OFFER_ENCHANTMENT_DATA_START + slot, getEnchantmentCandidateIndices().getOrDefault(offer.enchantment, -1));
                     this.data.set(OFFER_LEVEL_DATA_START + slot, offer.level);
                 }
             }
@@ -482,7 +485,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
     }
 
     @Nullable
-    private EnchantmentInstance pickOffer(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, List<EnchantmentInstance> fallbackOffers) {
+    private EnchantmentInstance pickOffer(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, List<EnchantmentInstance> fallbackOffers, Map<Enchantment, Integer> catalystBonusWeights) {
         List<EnchantmentInstance> candidates = this.getEligibleOffers(stack, cost, rolledSpecialLoot, true, false);
         if (candidates.isEmpty()) {
             candidates = fallbackOffers;
@@ -490,7 +493,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         if (candidates.isEmpty()) {
             return null;
         }
-        return this.pickWeightedOffer(candidates);
+        return this.pickWeightedOffer(candidates, catalystBonusWeights);
     }
 
     private List<EnchantmentInstance> getEligibleOffers(ItemStack stack, int cost, Set<Enchantment> rolledSpecialLoot, boolean includeSpecialLoot,boolean ignoreCost) {
@@ -518,15 +521,27 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         return candidates;
     }
 
-    private EnchantmentInstance pickWeightedOffer(List<EnchantmentInstance> candidates) {
+    private EnchantmentInstance pickWeightedOffer(List<EnchantmentInstance> candidates, Map<Enchantment, Integer> catalystBonusWeights) {
         int totalWeight = 0;
         for (EnchantmentInstance candidate : candidates) {
-            totalWeight += getWeight(candidate.enchantment);
+            int weight = getWeight(candidate.enchantment, catalystBonusWeights);
+            if (weight <= 0) {
+                continue;
+            }
+            totalWeight += weight;
+        }
+
+        if (totalWeight <= 0) {
+            return candidates.get(candidates.size() - 1);
         }
 
         int chosen = this.random.nextInt(totalWeight);
         for (EnchantmentInstance candidate : candidates) {
-            chosen -= getWeight(candidate.enchantment);
+            int weight = getWeight(candidate.enchantment, catalystBonusWeights);
+            if (weight <= 0) {
+                continue;
+            }
+            chosen -= weight;
             if (chosen < 0) {
                 return candidate;
             }
@@ -579,7 +594,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         return level.getBlockState(pos).is(Blocks.BOOKSHELF) ? 1 : 0;
     }
 
-    private int getWeight(Enchantment enchantment) {
+    private int getWeight(Enchantment enchantment, Map<Enchantment, Integer> catalystBonusWeights) {
         int weight = switch (enchantment.getRarity()) {
             case COMMON -> 20;
             case UNCOMMON -> 10;
@@ -591,7 +606,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
             weight = 0;
         }
 
-        return weight + this.getCatalystBonusWeight(enchantment);
+        return weight + catalystBonusWeights.getOrDefault(enchantment, 0);
     }
 
     private static List<Enchantment> getEnchantmentCandidates() {
@@ -602,6 +617,18 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                     .toList();
         }
         return enchantmentCandidates;
+    }
+
+    private static Map<Enchantment, Integer> getEnchantmentCandidateIndices() {
+        if (enchantmentCandidateIndices == null) {
+            Map<Enchantment, Integer> indices = new HashMap<>();
+            List<Enchantment> candidates = getEnchantmentCandidates();
+            for (int index = 0; index < candidates.size(); ++index) {
+                indices.put(candidates.get(index), index);
+            }
+            enchantmentCandidateIndices = indices;
+        }
+        return enchantmentCandidateIndices;
     }
 
     private boolean canStoreCatalyst() {
@@ -666,14 +693,13 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         return result;
     }
 
-    private int getCatalystBonusWeight(Enchantment enchantment) {
-        return this.access.evaluate((level, pos) -> {
-            Optional<ElementalEnchantmentTableBlockEntity> optionalTable = this.getTableBlockEntity(level, pos);
-            if (optionalTable.isEmpty()) {
-                return 0;
-            }
+    private Map<Enchantment, Integer> buildCatalystBonusWeights(Map<Integer, Integer> storedCatalystData) {
+        if (storedCatalystData.isEmpty()) {
+            return Map.of();
+        }
 
-            Map<Integer, Integer> storedCatalystData = optionalTable.get().getStoredCatalystData();
+        Map<Enchantment, Integer> bonusWeights = new HashMap<>();
+        for (Enchantment enchantment : getEnchantmentCandidates()) {
             int bonus = 0;
             for (Map.Entry<Integer, Integer> entry : storedCatalystData.entrySet()) {
                 Integer weight = entry.getValue();
@@ -681,7 +707,10 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
                     bonus += weight;
                 }
             }
-            return bonus;
-        }, 0);
+            if (bonus > 0) {
+                bonusWeights.put(enchantment, bonus);
+            }
+        }
+        return bonusWeights;
     }
 }
