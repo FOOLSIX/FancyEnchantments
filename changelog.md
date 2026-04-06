@@ -1,3 +1,29 @@
+# 1.7.0
+## add:
+- Elemental Enchanting Table:A new enchanting station with custom enchantment offers, bookshelf scaling, and an element overview panel
+- Catalysts:Catalyst items can bias the Elemental Enchanting Table toward specific elements and special enchantments
+- JEI support for the Elemental Enchanting Table, including catalyst and upgrade material usage descriptions
+
+- 元素附魔台:新增一个拥有自定义附魔候选,书架加成与元素信息面板的附魔工作台
+- 催化剂:催化剂物品可以让元素附魔台更偏向特定元素与特殊附魔
+- 为元素附魔台添加JEI支持,可查看催化剂与升级材料的用途说明
+
+## change:
+- Improved the enchantment selection algorithm and GUI of the Elemental Enchanting Table
+- Added an upgrade material slot, and upgrading enchantments now consumes corresponding materials
+- Reworked related textures, recipes, and data resources for the Elemental Enchanting Table and catalysts
+
+- 优化了元素附魔台的附魔选取算法与界面表现
+- 增加升级材料槽位,提升附魔时现在会消耗对应材料
+- 重做了元素附魔台与催化剂相关的贴图,配方和数据资源
+
+## fix:
+- Fixed several issues in the Elemental Enchanting Table flow and interaction details
+- Adjusted and corrected related catalyst and table behavior
+
+- 修复了元素附魔台流程与交互细节中的多个问题
+- 调整并修正了相关催化剂与附魔台行为
+
 # 1.6.0
 ## add:
 - Gale:Gain Haste for a short time after breaking blocks
