@@ -38,7 +38,7 @@ public class ElementalEnchantmentTableBlock extends BaseEntityBlock {
     protected static final VoxelShape SHAPE = box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
     public ElementalEnchantmentTableBlock() {
-        super(BlockBehaviour.Properties.copy(Blocks.ENCHANTING_TABLE).strength(5.0F));
+        super(BlockBehaviour.Properties.copy(Blocks.ENCHANTING_TABLE));
     }
 
     @Override
