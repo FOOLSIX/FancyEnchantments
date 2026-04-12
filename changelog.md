@@ -1,7 +1,7 @@
 # 1.7.1
 
 ## fix:
-
+- Fixed the issue where the Elemental Enchanting Table could not be properly mined and dropped
 
 - 修复元素附魔台无法正常挖掘掉落的问题
 
