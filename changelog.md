@@ -1,3 +1,10 @@
+# 1.7.1
+
+## fix:
+
+
+- 修复元素附魔台无法正常挖掘掉落的问题
+
 # 1.7.0
 ## add:
 - Elemental Enchanting Table:A new enchanting station with custom enchantment offers, bookshelf scaling, and an element overview panel

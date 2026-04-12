@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.datagen;
 
+import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.block.ModBlockReg;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -15,7 +16,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     public ModBlockTagProvider(PackOutput output,
                                CompletableFuture<HolderLookup.Provider> lookupProvider,
                                ExistingFileHelper helper) {
-        super(output, lookupProvider, "fancyenchantments", helper);
+        super(output, lookupProvider, FancyEnchantments.MODID, helper);
     }
 
     @Override
