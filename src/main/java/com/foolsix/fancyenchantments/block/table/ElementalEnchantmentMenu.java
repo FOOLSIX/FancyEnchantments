@@ -1,10 +1,12 @@
 package com.foolsix.fancyenchantments.block.table;
 
+import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.block.ModBlockReg;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.*;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
 import com.foolsix.fancyenchantments.resource.catalyst.Catalyst;
+import com.foolsix.fancyenchantments.util.ModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -37,9 +39,11 @@ import java.util.*;
 
 @ParametersAreNonnullByDefault
 public class ElementalEnchantmentMenu extends AbstractContainerMenu {
-    static final int OFFER_COUNT = 3;
+    private static final ModConfig.EnchantingTableOptions CONFIG = FancyEnchantments.getConfig().enchantingTableOptions;
+    private static final int OFFER_COUNT = 3;
     private static final int BOOKSHELF_LEVEL_PER_BLOCK = 2;
-    private static final int MAX_BOOKSHELF_LEVEL = 30;
+    private static final int MAX_BOOKSHELF_LEVEL = CONFIG.maxBookshelfLevel;
+    public static final int MAX_STORED_UPGRADE_BONUS = CONFIG.maxUpgradeBonus;
     public static final int APPLY_UPGRADE_BUTTON_ID = OFFER_COUNT;
     static final int ENCHANT_SLOT_COUNT = 4;
     static final int INPUT_SLOT = 0;
@@ -343,7 +347,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
 
     public boolean canStore() {
         return (this.getPendingUpgradeBonus() > 0
-                && this.getUpgradeBonus() < ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS)
+                && this.getUpgradeBonus() < MAX_STORED_UPGRADE_BONUS)
                 || this.canStoreCatalyst();
     }
 
@@ -410,7 +414,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
         if (!upgradeStack.is(UPGRADE_MATERIALS)) {
             return 0;
         }
-        return Math.min(ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS, upgradeStack.getCount() * 2);
+        return Math.min(MAX_STORED_UPGRADE_BONUS, upgradeStack.getCount() * 2);
     }
 
     private boolean applyStoredUpgrade() {
@@ -432,7 +436,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu {
 
             if (upgradeStack.is(UPGRADE_MATERIALS)) {
                 int storedBonus = table.getStoredUpgradeBonus();
-                int remainingCapacity = ElementalEnchantmentTableBlockEntity.MAX_STORED_UPGRADE_BONUS - storedBonus;
+                int remainingCapacity = MAX_STORED_UPGRADE_BONUS - storedBonus;
                 if (remainingCapacity > 0) {
                     int appliedBonus = Math.min(remainingCapacity, this.getUpgradeBonus(upgradeStack));
                     if (appliedBonus > 0) {

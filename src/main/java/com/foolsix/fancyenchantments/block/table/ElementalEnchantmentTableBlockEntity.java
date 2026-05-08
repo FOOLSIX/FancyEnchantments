@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements Nameable {
     private static final RandomSource RANDOM = RandomSource.create();
-    public static final int MAX_STORED_UPGRADE_BONUS = 30;
 
     public int time;
     public float flip;
@@ -65,7 +64,7 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
         if (tag.contains("CustomName", 8)) {
             this.name = Component.Serializer.fromJson(tag.getString("CustomName"));
         }
-        this.storedUpgradeBonus = Mth.clamp(tag.getInt("StoredUpgradeBonus"), 0, MAX_STORED_UPGRADE_BONUS);
+        this.storedUpgradeBonus = Mth.clamp(tag.getInt("StoredUpgradeBonus"), 0, ElementalEnchantmentMenu.MAX_STORED_UPGRADE_BONUS);
         this.storedCatalystData = new HashMap<>();
         int[] catalystKeys = tag.getIntArray("StoredCatalystKeys");
         int[] catalystValues = tag.getIntArray("StoredCatalystValues");
@@ -146,7 +145,7 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
     }
 
     public void setStoredUpgradeBonus(int storedUpgradeBonus) {
-        int clamped = Mth.clamp(storedUpgradeBonus, 0, MAX_STORED_UPGRADE_BONUS);
+        int clamped = Mth.clamp(storedUpgradeBonus, 0, ElementalEnchantmentMenu.MAX_STORED_UPGRADE_BONUS);
         if (this.storedUpgradeBonus == clamped) {
             return;
         }

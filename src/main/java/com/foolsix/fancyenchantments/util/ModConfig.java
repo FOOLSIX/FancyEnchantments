@@ -26,6 +26,8 @@ public class ModConfig implements ConfigData {
     public boolean enableExceedingEPFHandler = true;
     public final ElementStatOptions elementStatOptions = new ElementStatOptions();
     @ConfigEntry.Gui.CollapsibleObject
+    public final EnchantingTableOptions enchantingTableOptions = new  EnchantingTableOptions();
+    @ConfigEntry.Gui.CollapsibleObject
     public final ChestLootOptions chestLootOptions = new ChestLootOptions();
     @ConfigEntry.Gui.CollapsibleObject
     public final JEIInfoOptions jeiInfoOptions = new JEIInfoOptions();
@@ -252,6 +254,11 @@ public class ModConfig implements ConfigData {
             this.maxLevelCanBeDiscovered = level;
         }
 
+    }
+
+    public static class EnchantingTableOptions {
+        public int maxBookshelfLevel = 30;
+        public int maxUpgradeBonus = 30;
     }
 
     public static class LootEnchantmentOptions extends BaseOptions {
