@@ -53,7 +53,8 @@ public class Reflecting extends AerEnchantment {
         if (entity.level().isClientSide) return;
         Projectile projectile = e.getProjectile();
         HitResult hitResult = e.getRayTraceResult();
-        if (hitResult.getType() == HitResult.Type.ENTITY
+        if (hitResult != null
+                && hitResult.getType() == HitResult.Type.ENTITY
                 && ((EntityHitResult) hitResult).getEntity() instanceof LivingEntity living
                 && living != projectile.getOwner()) {
             int reflectingLevel = EnchantmentHelper.getEnchantmentLevel(this, living);

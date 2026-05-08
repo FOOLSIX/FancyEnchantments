@@ -121,7 +121,7 @@ public class EnchantmentEvents {
         if (e.isCanceled()) return;
 
         var hit = e.getRayTraceResult();
-        if (hit.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hit).getEntity() instanceof Player player) {
+        if (hit != null && hit.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hit).getEntity() instanceof Player player) {
             ((Counterattack) COUNTERATTACK.get()).getBuff(player);
         }
         ((HeavyArrow) HEAVY_ARROW.get()).arrowImpact(e);
