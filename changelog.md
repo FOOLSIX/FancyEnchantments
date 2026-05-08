@@ -1,3 +1,15 @@
+# 1.7.2
+## add:
+- Added several configuration options for the enchanting table
+
+- 为附魔台增加一些配置项
+
+## fix:
+- Fixed a null pointer exception when HitResult is null
+
+- 修复HitResult为null时的空指针错误
+
+
 # 1.7.1
 
 ## fix:
