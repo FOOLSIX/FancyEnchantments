@@ -1,0 +1,9 @@
+{
+  "type": "single",
+  "item": "minecraft:nether_star",
+  "catalysis": {
+    "treasure": 3,
+    "special": 3
+  }
+}
+

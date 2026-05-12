@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "APC",
+    "BED",
+    "OOO"
+  ],
+  "key": {
+    "A": {
+      "item": "fancyenchantments:aer_catalyst"
+    },
+    "B": {
+      "item": "fancyenchantments:aqua_catalyst"
+    },
+    "C": {
+      "item": "fancyenchantments:ignis_catalyst"
+    },
+    "D": {
+      "item": "fancyenchantments:terra_catalyst"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
+    },
+    "E": {
+      "item": "minecraft:enchanting_table"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "id": "fancyenchantments:elemental_enchanting_table"
+  }
+}

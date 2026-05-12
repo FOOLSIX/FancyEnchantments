@@ -1,0 +1,7 @@
+{
+  "type": "single",
+  "item": "fancyenchantments:aer_catalyst",
+  "catalysis": {
+    "aer": 4
+  }
+}
