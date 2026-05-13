@@ -3,20 +3,27 @@ package com.foolsix.fancyenchantments.datagen;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.effect.AddFireTimeEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
-
+import net.minecraft.advancements.critereon.DamageSourcePredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentTarget;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.LevelBasedValue;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.item.enchantment.effects.AddValue;
+import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
+import static com.foolsix.fancyenchantments.effect.EffectReg.MAELSTROM;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 
 public final class EnchantmentGenerator {
@@ -27,6 +34,36 @@ public final class EnchantmentGenerator {
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         HolderGetter<Item> items = context.lookup(Registries.ITEM);
         HolderGetter<Enchantment> enchantments = context.lookup(Registries.ENCHANTMENT);
+        HolderGetter<MobEffect> mobEffects = context.lookup(Registries.MOB_EFFECT);
+
+        context.register(
+                ABYSSAL_MAELSTROM,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.BOW_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(60, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(mobEffects.getOrThrow(MAELSTROM.getKey())),
+                                        LevelBasedValue.perLevel(5.0F),
+                                        LevelBasedValue.perLevel(5.0F),
+                                        LevelBasedValue.constant(0.0F),
+                                        LevelBasedValue.constant(0.0F)
+                                )
+                        )
+                        .build(ABYSSAL_MAELSTROM.location())
+        );
 
         context.register(
                 ADVANCED_FIRE_ASPECT,
@@ -50,6 +87,118 @@ public final class EnchantmentGenerator {
                         )
                         .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.FIRE_ASPECT)))
                         .build(ADVANCED_FIRE_ASPECT.location())
+        );
+
+        context.register(
+                ADVANCED_FLAME,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.BOW_ENCHANTABLE),
+                                        1,
+                                        1,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(60, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.FLAME)))
+                        .build(ADVANCED_FLAME.location())
+        );
+
+        context.register(
+                ADVANCED_LOOTING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(15, 9),
+                                        Enchantment.dynamicCost(65, 9),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.EQUIPMENT_DROPS,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new AddValue(LevelBasedValue.perLevel(0.02F)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.ATTACKER,
+                                        EntityPredicate.Builder.entity().of(EntityType.PLAYER)
+                                )
+                        )
+                        .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.LOOTING)))
+                        .build(ADVANCED_LOOTING.location())
+        );
+
+        context.register(
+                ADVANCED_PROTECTION,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.ARMOR_ENCHANTABLE),
+                                        2,
+                                        4,
+                                        Enchantment.dynamicCost(10, 8),
+                                        Enchantment.dynamicCost(60, 8),
+                                        4,
+                                        EquipmentSlotGroup.ARMOR
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE_PROTECTION,
+                                new AddValue(LevelBasedValue.perLevel(2.0F)),
+                                nonBypassInvulnerabilityRequirement()
+                        )
+                        .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.ARMOR_EXCLUSIVE))
+                        .build(ADVANCED_PROTECTION.location())
+        );
+
+        context.register(
+                ADVANCED_SHARPNESS,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE),
+                                        2,
+                                        5,
+                                        Enchantment.dynamicCost(1, 11),
+                                        Enchantment.dynamicCost(21, 11),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new AddValue(LevelBasedValue.perLevel(2.5F, 1.0F))
+                        )
+                        .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
+                        .build(ADVANCED_SHARPNESS.location())
+        );
+
+        context.register(
+                AFTERIMAGE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.LEG_ARMOR_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(25, 20),
+                                        Enchantment.dynamicCost(75, 20),
+                                        8,
+                                        EquipmentSlotGroup.LEGS
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(AFTERIMAGE.location())
+        );
+    }
+
+    private static net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder nonBypassInvulnerabilityRequirement() {
+        return DamageSourceCondition.hasDamageSource(
+                DamageSourcePredicate.Builder.damageType()
+                        .tag(net.minecraft.advancements.critereon.TagPredicate.isNot(DamageTypeTags.BYPASSES_INVULNERABILITY))
         );
     }
 }

@@ -1,0 +1,22 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "color": "gold",
+    "translate": "enchantment.fancyenchantments.advanced_flame"
+  },
+  "exclusive_set": "minecraft:flame",
+  "max_cost": {
+    "base": 60,
+    "per_level_above_first": 20
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 20,
+    "per_level_above_first": 20
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/bow",
+  "weight": 1
+}

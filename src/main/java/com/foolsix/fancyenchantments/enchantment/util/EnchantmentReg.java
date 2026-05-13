@@ -10,16 +10,22 @@ import java.util.List;
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 
 public final class EnchantmentReg {
+    public static final ResourceKey<Enchantment> ABYSSAL_MAELSTROM = key("abyssal_maelstrom");
     public static final ResourceKey<Enchantment> ADVANCED_FIRE_ASPECT = key("advanced_fire_aspect");
+    public static final ResourceKey<Enchantment> ADVANCED_FLAME = key("advanced_flame");
+    public static final ResourceKey<Enchantment> ADVANCED_LOOTING = key("advanced_looting");
+    public static final ResourceKey<Enchantment> ADVANCED_PROTECTION = key("advanced_protection");
+    public static final ResourceKey<Enchantment> ADVANCED_SHARPNESS = key("advanced_sharpness");
+    public static final ResourceKey<Enchantment> AFTERIMAGE = key("afterimage");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
-            key("abyssal_maelstrom"),
+            ABYSSAL_MAELSTROM,
             ADVANCED_FIRE_ASPECT,
-            key("advanced_flame"),
-            key("advanced_looting"),
-            key("advanced_protection"),
-            key("advanced_sharpness"),
-            key("afterimage"),
+            ADVANCED_FLAME,
+            ADVANCED_LOOTING,
+            ADVANCED_PROTECTION,
+            ADVANCED_SHARPNESS,
+            AFTERIMAGE,
             key("ailment_devourer"),
             key("air_attack"),
             key("armor_forging"),

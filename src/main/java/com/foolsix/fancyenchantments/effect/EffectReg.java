@@ -28,8 +28,8 @@ public final class EffectReg {
             registerHarmful("prison_cage", 0x342A55);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> TREMBLING =
             registerHarmful("trembling", 0xB7B7B7);
-    public static final DeferredHolder<MobEffect, SimpleMobEffect> MAELSTROM =
-            registerHarmful("maelstrom", 0x2F5CFF);
+    public static final DeferredHolder<MobEffect, Maelstrom> MAELSTROM =
+            EFFECTS.register("maelstrom", Maelstrom::new);
 
     private EffectReg() {
     }

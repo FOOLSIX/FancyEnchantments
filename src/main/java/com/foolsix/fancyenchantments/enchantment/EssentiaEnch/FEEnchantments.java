@@ -3,7 +3,6 @@ package com.foolsix.fancyenchantments.enchantment.EssentiaEnch;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.enchantment.Enchantment;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.Map;
