@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments;
 
 import com.foolsix.fancyenchantments.block.ModBlockReg;
 import com.foolsix.fancyenchantments.effect.EffectReg;
+import com.foolsix.fancyenchantments.enchantment.effect.EnchantmentEffectReg;
 import com.foolsix.fancyenchantments.item.ModItemReg;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
@@ -19,6 +20,7 @@ public class FancyEnchantments {
         ModItemReg.register(modEventBus);
         ModBlockReg.register(modEventBus);
         EffectReg.register(modEventBus);
+        EnchantmentEffectReg.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public record FEBaseEnchantment(
         ResourceKey<Enchantment> key,
-        @Nullable ElementalEssentia element,
+        @Nullable Element element,
         int maxLevel,
         boolean treasureOnly,
         boolean tradeable,

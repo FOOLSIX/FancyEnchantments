@@ -1,6 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.util;
 
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.ElementalEssentia;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEEnchantments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -38,33 +38,35 @@ import java.util.function.Predicate;
 public final class EnchUtils {
     public static final Component CURSE_SUFFIX = Component.translatable("(Curse)").withStyle(ChatFormatting.RED);
     public static final String MOD_NAME_PREFIX = "Fancy Enchantment:";
-    public static final int ELEMENT_COUNT = ElementalEssentia.values().length;
+    public static final int ELEMENT_COUNT = Element.values().length;
     public static final int[] EMPTY_CONDITION = new int[ELEMENT_COUNT];
 
     public static final Predicate<Entity> VISIBLE_HOSTILE =
             entity -> !entity.isSpectator() && isHostileToPlayer(entity);
 
-    private EnchUtils() {
-    }
-
     public static Optional<ResourceKey<Enchantment>> key(Holder<Enchantment> enchantment) {
         return enchantment.unwrapKey();
+    }
+
+    public static @Nullable Element elementOf(Holder<Enchantment> key) {
+        for (Element element : Element.values()) {
+            if (key.is(element.tag())) {
+                return element;
+            }
+        }
+        return null;
+    }
+
+
+    public static MutableComponent applyElementStyle(Element element, MutableComponent component) {
+        return component.withStyle(element.chatFormatting());
     }
 
     public static boolean matchesKey(Holder<Enchantment> enchantment, ResourceKey<Enchantment> key) {
         return enchantment.unwrapKey().filter(key::equals).isPresent();
     }
 
-    public static @Nullable ElementalEssentia getElement(Holder<Enchantment> enchantment) {
-        return FEEnchantments.elementOf(enchantment);
-    }
-
-    public static Component getElementStyledName(Component name, ElementalEssentia element) {
-        MutableComponent copy = name.copy();
-        return copy.withStyle(element.chatFormatting());
-    }
-
-    public static Component getMixedColorFullName(Component name, ElementalEssentia first, ElementalEssentia second, long gameTime) {
+    public static Component getMixedColorFullName(Component name, Element first, Element second, long gameTime) {
         MutableComponent copy = name.copy();
         copy.setStyle(Style.EMPTY.withColor(gradualColor(first.color(), second.color(), 180, gameTime)));
         return copy;
@@ -194,12 +196,13 @@ public final class EnchUtils {
 
     private static void addEnchantmentsElementStats(int[] stats, ItemEnchantments enchantments) {
         for (var entry : enchantments.entrySet()) {
-            ElementalEssentia element = FEEnchantments.elementOf(entry.getKey());
+            Element element = elementOf(entry.getKey());
             if (element != null) {
                 stats[element.ordinal()] += entry.getIntValue();
             }
         }
     }
+
 
     private static int lerp(int start, int end, double amount) {
         return (int) (start + (end - start) * amount);
