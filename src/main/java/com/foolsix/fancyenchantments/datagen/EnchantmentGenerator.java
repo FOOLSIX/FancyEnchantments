@@ -4,21 +4,26 @@ import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.effect.AddFireTimeEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
+import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
+import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
@@ -192,6 +197,124 @@ public final class EnchantmentGenerator {
                         )
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
                         .build(AFTERIMAGE.location())
+        );
+
+        context.register(
+                AILMENT_DEVOURER,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(AILMENT_DEVOURER.location())
+        );
+
+        context.register(
+                AIR_ATTACK,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(AIR_ATTACK.location())
+        );
+
+        context.register(
+                ARMOR_FORGING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.ARMOR_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(25, 20),
+                                        Enchantment.dynamicCost(75, 20),
+                                        8,
+                                        EquipmentSlotGroup.ARMOR
+                                )
+                        )
+                        .build(ARMOR_FORGING.location())
+        );
+
+        context.register(
+                BEYOND_THE_FLASH,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        1,
+                                        Enchantment.constantCost(30),
+                                        Enchantment.constantCost(80),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .build(BEYOND_THE_FLASH.location())
+        );
+
+        context.register(
+                BLESSED_WIND,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                                        5,
+                                        3,
+                                        Enchantment.dynamicCost(13, 8),
+                                        Enchantment.dynamicCost(58, 8),
+                                        4,
+                                        EquipmentSlotGroup.FEET
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "blessed_wind/walk_speed"),
+                                        Attributes.MOVEMENT_SPEED,
+                                        LevelBasedValue.perLevel(0.01F),
+                                        AttributeModifier.Operation.ADD_VALUE
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.LOCATION_CHANGED,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "blessed_wind/sprint_speed"),
+                                        Attributes.MOVEMENT_SPEED,
+                                        LevelBasedValue.perLevel(0.03F),
+                                        AttributeModifier.Operation.ADD_VALUE
+                                ),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setSprinting(true)).build()
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.LOCATION_CHANGED,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "blessed_wind/step_height"),
+                                        Attributes.STEP_HEIGHT,
+                                        LevelBasedValue.perLevel(1.0F),
+                                        AttributeModifier.Operation.ADD_VALUE
+                                ),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setSprinting(true)).build()
+                                )
+                        )
+                        .build(BLESSED_WIND.location())
         );
     }
 

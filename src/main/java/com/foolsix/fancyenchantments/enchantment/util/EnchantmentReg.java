@@ -17,6 +17,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> ADVANCED_PROTECTION = key("advanced_protection");
     public static final ResourceKey<Enchantment> ADVANCED_SHARPNESS = key("advanced_sharpness");
     public static final ResourceKey<Enchantment> AFTERIMAGE = key("afterimage");
+    public static final ResourceKey<Enchantment> AILMENT_DEVOURER = key("ailment_devourer");
+    public static final ResourceKey<Enchantment> AIR_ATTACK = key("air_attack");
+    public static final ResourceKey<Enchantment> ARMOR_FORGING = key("armor_forging");
+    public static final ResourceKey<Enchantment> BEYOND_THE_FLASH = key("beyond_the_flash");
+    public static final ResourceKey<Enchantment> BLESSED_WIND = key("blessed_wind");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -26,11 +31,11 @@ public final class EnchantmentReg {
             ADVANCED_PROTECTION,
             ADVANCED_SHARPNESS,
             AFTERIMAGE,
-            key("ailment_devourer"),
-            key("air_attack"),
-            key("armor_forging"),
-            key("beyond_the_flash"),
-            key("blessed_wind"),
+            AILMENT_DEVOURER,
+            AIR_ATTACK,
+            ARMOR_FORGING,
+            BEYOND_THE_FLASH,
+            BLESSED_WIND,
             key("blind_loyalty"),
             key("blood_feed"),
             key("blood_sacrifice"),

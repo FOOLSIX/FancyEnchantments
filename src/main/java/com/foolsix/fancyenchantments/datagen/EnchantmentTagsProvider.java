@@ -8,16 +8,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
-import static com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element.AER;
-import static com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element.AQUA;
-import static com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element.IGNIS;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ABYSSAL_MAELSTROM;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ADVANCED_FLAME;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ADVANCED_FIRE_ASPECT;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ADVANCED_LOOTING;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ADVANCED_PROTECTION;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ADVANCED_SHARPNESS;
-import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.AFTERIMAGE;
+import static com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element.*;
+import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
 
 public final class EnchantmentTagsProvider extends net.minecraft.data.tags.EnchantmentTagsProvider {
     public EnchantmentTagsProvider(
@@ -43,16 +35,24 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ADVANCED_FLAME)
                 .add(ADVANCED_LOOTING)
                 .add(ADVANCED_PROTECTION)
-                .add(ADVANCED_SHARPNESS);
+                .add(ADVANCED_SHARPNESS)
+                .add(AILMENT_DEVOURER)
+                .add(AIR_ATTACK)
+                .add(BLESSED_WIND);
         this.tag(EnchantmentTags.TREASURE)
-                .add(AFTERIMAGE);
+                .add(AFTERIMAGE)
+                .add(ARMOR_FORGING)
+                .add(BEYOND_THE_FLASH);
         this.tag(EnchantmentTags.NON_TREASURE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
                 .add(ADVANCED_FLAME)
                 .add(ADVANCED_LOOTING)
                 .add(ADVANCED_PROTECTION)
-                .add(ADVANCED_SHARPNESS);
+                .add(ADVANCED_SHARPNESS)
+                .add(AILMENT_DEVOURER)
+                .add(AIR_ATTACK)
+                .add(BLESSED_WIND);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -60,7 +60,11 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ADVANCED_LOOTING)
                 .add(ADVANCED_PROTECTION)
                 .add(ADVANCED_SHARPNESS)
-                .add(AFTERIMAGE);
+                .add(AFTERIMAGE)
+                .add(AILMENT_DEVOURER)
+                .add(AIR_ATTACK)
+                .add(BEYOND_THE_FLASH)
+                .add(BLESSED_WIND);
         this.tag(EnchantmentTags.BOW_EXCLUSIVE)
                 .add(ADVANCED_FLAME);
         this.tag(EnchantmentTags.ARMOR_EXCLUSIVE)
@@ -68,9 +72,13 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
         this.tag(EnchantmentTags.DAMAGE_EXCLUSIVE)
                 .add(ADVANCED_SHARPNESS);
         this.tag(AER.tag())
-                .add(AFTERIMAGE);
+                .add(AFTERIMAGE)
+                .add(AIR_ATTACK)
+                .add(BLESSED_WIND);
         this.tag(AQUA.tag())
                 .add(ABYSSAL_MAELSTROM);
+        this.tag(HOLY.tag())
+                .add(AILMENT_DEVOURER);
         this.tag(IGNIS.tag())
                 .add(ADVANCED_FIRE_ASPECT)
                 .add(ADVANCED_FLAME);

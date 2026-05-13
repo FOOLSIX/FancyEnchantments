@@ -1,12 +1,13 @@
 package com.foolsix.fancyenchantments.enchantment.util;
 
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEEnchantments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -46,6 +48,12 @@ public final class EnchUtils {
 
     public static Optional<ResourceKey<Enchantment>> key(Holder<Enchantment> enchantment) {
         return enchantment.unwrapKey();
+    }
+
+    public static int getEnchantmentLevel(ResourceKey<Enchantment> enchantment, LivingEntity livingEntity) {
+        HolderLookup.RegistryLookup<Enchantment> enchantments = livingEntity.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        var enchant = enchantments.getOrThrow(enchantment);
+        return EnchantmentHelper.getEnchantmentLevel(enchant, livingEntity);
     }
 
     public static @Nullable Element elementOf(Holder<Enchantment> key) {

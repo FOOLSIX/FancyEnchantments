@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-13T15:21:15.108748	Registries
+// 1.21.1	2026-05-13T19:06:34.4511533	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 fa45c93f57b3748b2829fbc6da050a549f00d521 data/fancyenchantments/enchantment/advanced_flame.json
@@ -6,3 +6,8 @@ f8a0085506b22ca28f3e1834c34a337bc9704c63 data/fancyenchantments/enchantment/adva
 a4323beeb8ae8869cce47e89912ccc1a8c3cd684 data/fancyenchantments/enchantment/advanced_protection.json
 bf9de7892304de00f1df6942f963965b4faacf95 data/fancyenchantments/enchantment/advanced_sharpness.json
 035aad2b828e24cce671cc4e9cf8ad3962bdfbc2 data/fancyenchantments/enchantment/afterimage.json
+ea5f33db482be95852fcc9aa16d883b6c63a8c7a data/fancyenchantments/enchantment/ailment_devourer.json
+9cdcf32f0cf3bcf655e9e175913c52874f915c90 data/fancyenchantments/enchantment/air_attack.json
+9d5bec55ba0f2e3f4640f6ecbe181ad2d09c8e58 data/fancyenchantments/enchantment/armor_forging.json
+d6359f2cc87fa538e89db0aa00dea62bb021ef81 data/fancyenchantments/enchantment/beyond_the_flash.json
+8fe4b91a007a05d2afb01b585d2d1a925993f386 data/fancyenchantments/enchantment/blessed_wind.json

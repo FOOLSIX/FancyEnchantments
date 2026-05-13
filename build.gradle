@@ -31,7 +31,9 @@ neoForge {
 
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers.add('src/main/resources/META-INF/accesstransformer.cfg')
-
+    accessTransformers {
+        file 'src/main/resources/META-INF/accesstransformer.cfg'
+    }
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
     runs {
@@ -155,4 +157,8 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+tasks.named("createMinecraftArtifacts") {
+    dependsOn("generateModMetadata")
 }
