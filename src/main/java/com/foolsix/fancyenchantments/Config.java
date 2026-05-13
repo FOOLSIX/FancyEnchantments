@@ -8,6 +8,9 @@ public final class Config {
     public static final ModConfigSpec.BooleanValue ENABLE_INCOMPATIBILITY =
             BUILDER.comment("Whether Fancy Enchantments elemental opposites are incompatible.")
                     .define("enableIncompatibility", true);
+    public static final ModConfigSpec.BooleanValue ENABLE_MOD_BOOK_TEXTURE =
+            BUILDER.comment("Whether enchanted books use Fancy Enchantments custom element textures on the client.")
+                    .define("enableModBookTexture", true);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
