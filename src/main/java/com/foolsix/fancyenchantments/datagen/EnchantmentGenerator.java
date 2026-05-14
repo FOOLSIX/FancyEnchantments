@@ -104,7 +104,7 @@ public final class EnchantmentGenerator {
                                         Enchantment.dynamicCost(20, 20),
                                         Enchantment.dynamicCost(60, 20),
                                         8,
-                                        EquipmentSlotGroup.MAINHAND
+                                        EquipmentSlotGroup.HAND
                                 )
                         )
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
@@ -315,6 +315,89 @@ public final class EnchantmentGenerator {
                                 )
                         )
                         .build(BLESSED_WIND.location())
+        );
+
+        context.register(
+                BLIND_LOYALTY,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.VANISHING_ENCHANTABLE),
+                                        10,
+                                        1,
+                                        Enchantment.constantCost(1),
+                                        Enchantment.constantCost(35),
+                                        8,
+                                        EquipmentSlotGroup.ANY
+                                )
+                        )
+                        .build(BLIND_LOYALTY.location())
+        );
+
+        context.register(
+                BLOOD_FEED,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .build(BLOOD_FEED.location())
+        );
+
+        context.register(
+                BLOOD_SACRIFICE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .build(BLOOD_SACRIFICE.location())
+        );
+
+        context.register(
+                BLOODTHIRSTY,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        1,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .build(BLOODTHIRSTY.location())
+        );
+
+        context.register(
+                BUBBLE_SHIELD,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        5,
+                                        3,
+                                        Enchantment.dynamicCost(13, 8),
+                                        Enchantment.dynamicCost(58, 8),
+                                        4,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .build(BUBBLE_SHIELD.location())
         );
     }
 

@@ -20,9 +20,6 @@ public final class AfterimageHandler {
     private static final double PROBABILITY_MAX_CAP = 0.8D;
     private static final int INVULNERABILITY_TICKS = 60;
 
-    private AfterimageHandler() {
-    }
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         LivingEntity living = event.getEntity();
@@ -51,11 +48,7 @@ public final class AfterimageHandler {
                 continue;
             }
 
-            for (var entry : EnchUtils.enchantmentsOn(stack).entrySet()) {
-                if (EnchUtils.matchesKey(entry.getKey(), AFTERIMAGE)) {
-                    maxLevel = Math.max(maxLevel, entry.getIntValue());
-                }
-            }
+            maxLevel = Math.max(maxLevel, EnchUtils.getEnchantmentLevel(AFTERIMAGE, stack, living.registryAccess()));
         }
         return maxLevel;
     }

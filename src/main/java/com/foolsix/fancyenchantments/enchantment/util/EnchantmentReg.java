@@ -22,6 +22,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> ARMOR_FORGING = key("armor_forging");
     public static final ResourceKey<Enchantment> BEYOND_THE_FLASH = key("beyond_the_flash");
     public static final ResourceKey<Enchantment> BLESSED_WIND = key("blessed_wind");
+    public static final ResourceKey<Enchantment> BLIND_LOYALTY = key("blind_loyalty");
+    public static final ResourceKey<Enchantment> BLOOD_FEED = key("blood_feed");
+    public static final ResourceKey<Enchantment> BLOOD_SACRIFICE = key("blood_sacrifice");
+    public static final ResourceKey<Enchantment> BLOODTHIRSTY = key("bloodthirsty");
+    public static final ResourceKey<Enchantment> BUBBLE_SHIELD = key("bubble_shield");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -36,11 +41,11 @@ public final class EnchantmentReg {
             ARMOR_FORGING,
             BEYOND_THE_FLASH,
             BLESSED_WIND,
-            key("blind_loyalty"),
-            key("blood_feed"),
-            key("blood_sacrifice"),
-            key("bloodthirsty"),
-            key("bubble_shield"),
+            BLIND_LOYALTY,
+            BLOOD_FEED,
+            BLOOD_SACRIFICE,
+            BLOODTHIRSTY,
+            BUBBLE_SHIELD,
             key("bullying"),
             key("calmer"),
             key("charge"),

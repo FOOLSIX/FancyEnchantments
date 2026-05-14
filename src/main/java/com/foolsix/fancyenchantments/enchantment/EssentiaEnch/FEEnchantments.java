@@ -36,6 +36,26 @@ public final class FEEnchantments {
     }
 
     private static FEBaseEnchantment definition(ResourceKey<Enchantment> key) {
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLIND_LOYALTY)) {
+            return new FEBaseEnchantment(key, null, 1, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOOD_FEED)) {
+            int[] condition = new int[Element.values().length];
+            condition[Element.TWISTED.ordinal()] = 5;
+            condition[Element.AQUA.ordinal()] = 5;
+            return new FEBaseEnchantment(key, null, 3, true, false, true, false, true, 0.1D, condition);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOOD_SACRIFICE)) {
+            int[] condition = new int[Element.values().length];
+            condition[Element.TWISTED.ordinal()] = 3;
+            return new FEBaseEnchantment(key, Element.TWISTED, 3, true, false, true, false, true, 0.1D, condition);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOODTHIRSTY)) {
+            return new FEBaseEnchantment(key, Element.TWISTED, 1, true, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BUBBLE_SHIELD)) {
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
         return new FEBaseEnchantment(key, null, DEFAULT_MAX_LEVEL, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
     }
 }

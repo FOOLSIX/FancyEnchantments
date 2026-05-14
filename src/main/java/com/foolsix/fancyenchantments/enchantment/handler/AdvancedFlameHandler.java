@@ -3,7 +3,7 @@ package com.foolsix.fancyenchantments.enchantment.handler;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -20,9 +20,6 @@ public final class AdvancedFlameHandler {
     private static final int PROJECTILE_FIRE_SECONDS = 30;
     private static final int HIT_FIRE_TICKS = 8 * 20;
 
-    private AdvancedFlameHandler() {
-    }
-
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
         if (event.getLevel().isClientSide()) {
@@ -32,7 +29,7 @@ public final class AdvancedFlameHandler {
             return;
         }
 
-        int level = Math.max(getLevel(shooter.getMainHandItem()), getLevel(shooter.getOffhandItem()));
+        int level = EnchUtils.getEnchantmentLevel(ADVANCED_FLAME, shooter);
         if (level <= 0) {
             return;
         }
@@ -56,12 +53,4 @@ public final class AdvancedFlameHandler {
         }
     }
 
-    private static int getLevel(ItemStack stack) {
-        for (var entry : EnchUtils.enchantmentsOn(stack).entrySet()) {
-            if (EnchUtils.matchesKey(entry.getKey(), ADVANCED_FLAME)) {
-                return entry.getIntValue();
-            }
-        }
-        return 0;
-    }
 }

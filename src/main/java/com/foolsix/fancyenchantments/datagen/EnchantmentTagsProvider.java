@@ -38,11 +38,16 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ADVANCED_SHARPNESS)
                 .add(AILMENT_DEVOURER)
                 .add(AIR_ATTACK)
-                .add(BLESSED_WIND);
+                .add(BLESSED_WIND)
+                .add(BLIND_LOYALTY)
+                .add(BUBBLE_SHIELD);
         this.tag(EnchantmentTags.TREASURE)
                 .add(AFTERIMAGE)
                 .add(ARMOR_FORGING)
-                .add(BEYOND_THE_FLASH);
+                .add(BEYOND_THE_FLASH)
+                .add(BLOOD_FEED)
+                .add(BLOOD_SACRIFICE)
+                .add(BLOODTHIRSTY);
         this.tag(EnchantmentTags.NON_TREASURE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -52,7 +57,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ADVANCED_SHARPNESS)
                 .add(AILMENT_DEVOURER)
                 .add(AIR_ATTACK)
-                .add(BLESSED_WIND);
+                .add(BLESSED_WIND)
+                .add(BLIND_LOYALTY)
+                .add(BUBBLE_SHIELD);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -64,7 +71,10 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(AILMENT_DEVOURER)
                 .add(AIR_ATTACK)
                 .add(BEYOND_THE_FLASH)
-                .add(BLESSED_WIND);
+                .add(BLESSED_WIND)
+                .add(BLIND_LOYALTY)
+                .add(BLOODTHIRSTY)
+                .add(BUBBLE_SHIELD);
         this.tag(EnchantmentTags.BOW_EXCLUSIVE)
                 .add(ADVANCED_FLAME);
         this.tag(EnchantmentTags.ARMOR_EXCLUSIVE)
@@ -76,11 +86,15 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(AIR_ATTACK)
                 .add(BLESSED_WIND);
         this.tag(AQUA.tag())
-                .add(ABYSSAL_MAELSTROM);
+                .add(ABYSSAL_MAELSTROM)
+                .add(BUBBLE_SHIELD);
         this.tag(HOLY.tag())
                 .add(AILMENT_DEVOURER);
         this.tag(IGNIS.tag())
                 .add(ADVANCED_FIRE_ASPECT)
                 .add(ADVANCED_FLAME);
+        this.tag(TWISTED.tag())
+                .add(BLOOD_SACRIFICE)
+                .add(BLOODTHIRSTY);
     }
 }

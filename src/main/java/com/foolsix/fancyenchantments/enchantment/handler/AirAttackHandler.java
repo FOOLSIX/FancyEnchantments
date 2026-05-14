@@ -13,9 +13,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.AIR_
 public final class AirAttackHandler {
     private static final float DAMAGE_MULTIPLIER = 0.3F;
 
-    private AirAttackHandler() {
-    }
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getEntity() instanceof LivingEntity attacker) || attacker.fallDistance <= 0.0F) {

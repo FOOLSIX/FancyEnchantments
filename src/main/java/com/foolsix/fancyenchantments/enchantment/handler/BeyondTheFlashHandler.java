@@ -19,9 +19,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BEYO
 public final class BeyondTheFlashHandler {
     private static final double DURABILITY_CONSUMPTION_MULTIPLIER = 1.0D;
 
-    private BeyondTheFlashHandler() {
-    }
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getEntity() instanceof Player player) || !(player.level() instanceof ServerLevel serverLevel)) {

@@ -13,9 +13,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.AILM
 
 @EventBusSubscriber(modid = MODID)
 public final class AilmentDevourerHandler {
-    private AilmentDevourerHandler() {
-    }
-
     @SubscribeEvent
     public static void onMobEffectAdded(MobEffectEvent.Added event) {
         MobEffectInstance instance = event.getEffectInstance();

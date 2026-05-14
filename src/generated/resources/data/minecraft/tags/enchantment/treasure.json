@@ -2,6 +2,9 @@
   "values": [
     "fancyenchantments:afterimage",
     "fancyenchantments:armor_forging",
-    "fancyenchantments:beyond_the_flash"
+    "fancyenchantments:beyond_the_flash",
+    "fancyenchantments:blood_feed",
+    "fancyenchantments:blood_sacrifice",
+    "fancyenchantments:bloodthirsty"
   ]
 }
