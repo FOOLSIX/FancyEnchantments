@@ -2,6 +2,8 @@ package com.foolsix.fancyenchantments.datagen;
 
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.effect.AddFireTimeEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.BullyingEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.CalmerEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
@@ -27,6 +29,7 @@ import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.neoforged.neoforge.common.Tags;
 
 import static com.foolsix.fancyenchantments.effect.EffectReg.MAELSTROM;
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.*;
@@ -398,6 +401,100 @@ public final class EnchantmentGenerator {
                         )
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
                         .build(BUBBLE_SHIELD.location())
+        );
+
+        context.register(
+                BULLYING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new BullyingEffect()
+                        )
+                        .build(BULLYING.location())
+        );
+
+        context.register(
+                CALMER,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        2,
+                                        5,
+                                        Enchantment.dynamicCost(10, 5),
+                                        Enchantment.dynamicCost(60, 5),
+                                        4,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.VICTIM,
+                                EnchantmentTarget.VICTIM,
+                                new CalmerEffect(LevelBasedValue.constant(5.0F), LevelBasedValue.constant(3.0F))
+                        )
+                        .build(CALMER.location())
+        );
+
+        context.register(
+                CHARGE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .build(CHARGE.location())
+        );
+
+        context.register(
+                CONDITION_OVERLOAD,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .build(CONDITION_OVERLOAD.location())
+        );
+
+        context.register(
+                COUNTERATTACK,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(Tags.Items.TOOLS_SHIELD),
+                                        5,
+                                        3,
+                                        Enchantment.dynamicCost(10, 5),
+                                        Enchantment.dynamicCost(20, 5),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .build(COUNTERATTACK.location())
         );
     }
 

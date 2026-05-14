@@ -12,8 +12,8 @@ import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 public final class EffectReg {
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, MODID);
 
-    public static final DeferredHolder<MobEffect, SimpleMobEffect> CRIT_RATE_BOOST =
-            registerBeneficial("crit_rate_boost", 0xFF0000);
+    public static final DeferredHolder<MobEffect, CritRateBoost> CRIT_RATE_BOOST =
+            EFFECTS.register(CritRateBoost.NAME, CritRateBoost::new);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> CUMBERSOME =
             registerHarmful("cumbersome", 0x808080);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> TEMPLAR_SHIELD =
@@ -22,8 +22,8 @@ public final class EffectReg {
             registerHarmful("melting", 0xFF7A00);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> ATTACK_SPEED_BOOST =
             registerBeneficial("attack_speed_boost", 0x55FFFF);
-    public static final DeferredHolder<MobEffect, SimpleMobEffect> INVINCIBLE =
-            registerBeneficial("invincible", 0xE69C21);
+    public static final DeferredHolder<MobEffect, Invincible> INVINCIBLE =
+            EFFECTS.register(Invincible.NAME, Invincible::new);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> PRISON_CAGE =
             registerHarmful("prison_cage", 0x342A55);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> TREMBLING =

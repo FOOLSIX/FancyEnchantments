@@ -15,6 +15,10 @@ public final class EnchantmentEffectReg {
 
     public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<AddFireTimeEffect>> ADD_FIRE_TIME =
             ENTITY_EFFECT_TYPES.register("add_fire_time", () -> AddFireTimeEffect.CODEC);
+    public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<BullyingEffect>> BULLYING =
+            ENTITY_EFFECT_TYPES.register("bullying", () -> BullyingEffect.CODEC);
+    public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<CalmerEffect>> CALMER =
+            ENTITY_EFFECT_TYPES.register("calmer", () -> CalmerEffect.CODEC);
 
     private EnchantmentEffectReg() {
     }

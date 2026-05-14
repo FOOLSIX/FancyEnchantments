@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-14T15:43:39.3007266	Registries
+// 1.21.1	2026-05-14T17:31:31.6047339	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -16,3 +16,8 @@ d5ca30acce99aefa0e8c32909be1f9404762d5a2 data/fancyenchantments/enchantment/blin
 e939abdb4a7e924dfeded710e7cc4cb81172a870 data/fancyenchantments/enchantment/blood_feed.json
 453833ea42bc39f42bfb488c8031b768ff455a5a data/fancyenchantments/enchantment/blood_sacrifice.json
 63d5899330bd047f9ffe8eae7b56e249e8d612a5 data/fancyenchantments/enchantment/bubble_shield.json
+f4967e0fe751778d41eac1c2295464d488eec082 data/fancyenchantments/enchantment/bullying.json
+f167872d57e5f03f5b57ec5a3db984a2e1b86637 data/fancyenchantments/enchantment/calmer.json
+0fbcc5d83e89879e3527579f9279eb380f46a492 data/fancyenchantments/enchantment/charge.json
+932527f5d6ebf541887c42c2a4e8982e7c03dfb9 data/fancyenchantments/enchantment/condition_overload.json
+5a0eeb3e1e2dcdda3962416608f3be7aaec77944 data/fancyenchantments/enchantment/counterattack.json

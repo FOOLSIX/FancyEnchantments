@@ -27,6 +27,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> BLOOD_SACRIFICE = key("blood_sacrifice");
     public static final ResourceKey<Enchantment> BLOODTHIRSTY = key("bloodthirsty");
     public static final ResourceKey<Enchantment> BUBBLE_SHIELD = key("bubble_shield");
+    public static final ResourceKey<Enchantment> BULLYING = key("bullying");
+    public static final ResourceKey<Enchantment> CALMER = key("calmer");
+    public static final ResourceKey<Enchantment> CHARGE = key("charge");
+    public static final ResourceKey<Enchantment> CONDITION_OVERLOAD = key("condition_overload");
+    public static final ResourceKey<Enchantment> COUNTERATTACK = key("counterattack");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -46,11 +51,11 @@ public final class EnchantmentReg {
             BLOOD_SACRIFICE,
             BLOODTHIRSTY,
             BUBBLE_SHIELD,
-            key("bullying"),
-            key("calmer"),
-            key("charge"),
-            key("condition_overload"),
-            key("counterattack"),
+            BULLYING,
+            CALMER,
+            CHARGE,
+            CONDITION_OVERLOAD,
+            COUNTERATTACK,
             key("cracked_crown"),
             key("cumbersome"),
             key("cursed_gaze"),
