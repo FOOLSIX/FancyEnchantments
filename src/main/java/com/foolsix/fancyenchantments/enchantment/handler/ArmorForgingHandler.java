@@ -6,9 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,9 +28,6 @@ public final class ArmorForgingHandler {
     private static final int ARMOR_BASE = 5000;
     private static final int TOUGHNESS_BASE = 10000;
 
-    private ArmorForgingHandler() {
-    }
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         if (event.getSource().is(DamageTypeTags.BYPASSES_ARMOR) || event.getSource().is(DamageTypeTags.BYPASSES_ENCHANTMENTS)) {
@@ -40,7 +39,7 @@ public final class ArmorForgingHandler {
 
         java.util.List<ItemStack> forgeableArmor = new java.util.ArrayList<>();
         for (ItemStack stack : player.getArmorSlots()) {
-            int level = getLevel(stack);
+            int level = EnchUtils.getEnchantmentLevel(ARMOR_FORGING, stack, player.registryAccess());
             if (level > 0 && getForgingValue(stack) < level * FORGING_VALUE_CAP_PER_LEVEL) {
                 forgeableArmor.add(stack);
             }
@@ -52,7 +51,7 @@ public final class ArmorForgingHandler {
 
         int forgingPerArmor = (int) (event.getAmount() / forgeableArmor.size()) + 1;
         for (ItemStack armor : forgeableArmor) {
-            int level = getLevel(armor);
+            int level = EnchUtils.getEnchantmentLevel(ARMOR_FORGING, armor, player.registryAccess());
             int maxValue = level * FORGING_VALUE_CAP_PER_LEVEL;
             int newValue = Math.min(getForgingValue(armor) + forgingPerArmor, maxValue);
             setForgingValue(armor, newValue);
@@ -62,15 +61,12 @@ public final class ArmorForgingHandler {
     @SubscribeEvent
     public static void onItemAttributeModifier(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
-        int level = getLevel(stack);
+        int level = EnchUtils.getEnchantmentLevel(ARMOR_FORGING, stack, null);
         if (level <= 0) {
             return;
         }
 
-        EquipmentSlot slot = stack.getEquipmentSlot();
-        if (slot == null || !slot.isArmor()) {
-            return;
-        }
+        EquipmentSlot slot = EnchUtils.getEquipmentSlot(stack);
 
         int forgingValue = getForgingValue(stack);
         if (forgingValue <= 0) {
@@ -89,15 +85,6 @@ public final class ArmorForgingHandler {
                 new AttributeModifier(modifierId, (double) forgingValue / TOUGHNESS_BASE, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 slotGroup
         );
-    }
-
-    private static int getLevel(ItemStack stack) {
-        for (var entry : EnchUtils.enchantmentsOn(stack).entrySet()) {
-            if (EnchUtils.matchesKey(entry.getKey(), ARMOR_FORGING)) {
-                return entry.getIntValue();
-            }
-        }
-        return 0;
     }
 
     private static int getForgingValue(ItemStack stack) {

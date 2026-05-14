@@ -18,10 +18,12 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -54,6 +56,34 @@ public final class EnchUtils {
         HolderLookup.RegistryLookup<Enchantment> enchantments = livingEntity.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
         var enchant = enchantments.getOrThrow(enchantment);
         return EnchantmentHelper.getEnchantmentLevel(enchant, livingEntity);
+    }
+
+    public static int getEnchantmentLevel(ResourceKey<Enchantment> enchantment, ItemStack stack, @Nullable HolderLookup.Provider registries) {
+        if (registries != null) {
+            HolderLookup.RegistryLookup<Enchantment> enchantments = registries.lookupOrThrow(Registries.ENCHANTMENT);
+            return stack.getEnchantmentLevel(enchantments.getOrThrow(enchantment));
+        }
+
+        for (var entry : enchantmentsOn(stack).entrySet()) {
+            if (matchesKey(entry.getKey(), enchantment)) {
+                return entry.getIntValue();
+            }
+        }
+        return 0;
+    }
+
+    public static @Nullable EquipmentSlot getEquipmentSlot(ItemStack stack) {
+        EquipmentSlot slot = stack.getEquipmentSlot();
+        if (slot == null) {
+            Equipable equipable = Equipable.get(stack);
+
+            if (equipable != null) {
+                slot = equipable.getEquipmentSlot();
+            } else {
+                return null;
+            }
+        }
+        return slot;
     }
 
     public static @Nullable Element elementOf(Holder<Enchantment> key) {
