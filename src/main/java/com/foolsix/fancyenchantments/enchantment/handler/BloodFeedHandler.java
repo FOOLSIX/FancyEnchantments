@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
@@ -19,8 +20,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOO
 @EventBusSubscriber(modid = MODID)
 public final class BloodFeedHandler {
     private static final String STACK_TAG = MODID + ":blood_feed";
-    private static final double PROBABILITY_PER_LEVEL = 0.03D;
-    private static final int CAP_PER_LEVEL = 10;
     private static final ResourceLocation MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(MODID, "blood_feed/max_health");
 
     @SubscribeEvent
@@ -31,11 +30,11 @@ public final class BloodFeedHandler {
 
         ItemStack weapon = player.getMainHandItem();
         int level = EnchUtils.getEnchantmentLevel(BLOOD_FEED, weapon, player.registryAccess());
-        if (level <= 0 || player.getRandom().nextDouble() >= PROBABILITY_PER_LEVEL * level) {
+        if (level <= 0 || player.getRandom().nextDouble() >= Config.BLOOD_FEED_PROBABILITY_PER_LEVEL.get() * level) {
             return;
         }
 
-        int next = Math.min(CAP_PER_LEVEL * level, getStoredValue(weapon) + 1);
+        int next = Math.min(Config.BLOOD_FEED_CAP_PER_LEVEL.get() * level, getStoredValue(weapon) + 1);
         CustomData.update(DataComponents.CUSTOM_DATA, weapon, tag -> tag.putInt(STACK_TAG, next));
     }
 

@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,8 +14,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.COND
 
 @EventBusSubscriber(modid = MODID)
 public final class ConditionOverloadHandler {
-    private static final float DAMAGE_MULTIPLIER = 0.05F;
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         LivingEntity target = event.getEntity();
@@ -30,6 +29,6 @@ public final class ConditionOverloadHandler {
         int debuffCount = (int) target.getActiveEffects().stream()
                 .filter(effect -> effect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL)
                 .count();
-        event.setAmount(event.getAmount() * (1.0F + debuffCount * level * DAMAGE_MULTIPLIER));
+        event.setAmount(event.getAmount() * (1.0F + debuffCount * level * Config.CONDITION_OVERLOAD_DAMAGE_MULTIPLIER.get().floatValue()));
     }
 }

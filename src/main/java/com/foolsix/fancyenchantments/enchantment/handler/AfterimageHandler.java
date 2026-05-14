@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -15,9 +16,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.AFTE
 @EventBusSubscriber(modid = MODID)
 public final class AfterimageHandler {
     private static final double DEFAULT_EXTRA_SPEED = 0.2D;
-    private static final double PROBABILITY_MULTIPLIER = 0.5D;
-    private static final double PROBABILITY_CAP_PER_LEVEL = 0.3D;
-    private static final double PROBABILITY_MAX_CAP = 0.8D;
     private static final int INVULNERABILITY_TICKS = 60;
 
     @SubscribeEvent
@@ -29,8 +27,8 @@ public final class AfterimageHandler {
         }
 
         double chance = Math.min(
-                getExtraSpeed(living) * PROBABILITY_MULTIPLIER,
-                Math.min(level * PROBABILITY_CAP_PER_LEVEL, PROBABILITY_MAX_CAP)
+                getExtraSpeed(living) * Config.AFTERIMAGE_PROBABILITY_MULTIPLIER.get(),
+                Math.min(level * Config.AFTERIMAGE_PROBABILITY_CAP_PER_LEVEL.get(), Config.AFTERIMAGE_PROBABILITY_MAX_CAP.get())
         );
         if (living.getRandom().nextDouble() >= chance) {
             return;

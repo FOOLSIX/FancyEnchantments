@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -15,11 +16,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOO
 
 @EventBusSubscriber(modid = MODID)
 public final class BloodthirstyHandler {
-    private static final float HUNGER_MULTIPLIER = 0.5F;
-    private static final int HUNGER_UPPER_LIMIT = 20;
-    private static final float SATURATION_MULTIPLIER = 0.2F;
-    private static final float SATURATION_CAP = 25.0F;
-
     @SubscribeEvent
     public static void onPlayerTickPre(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
@@ -48,11 +44,13 @@ public final class BloodthirstyHandler {
 
         FoodData foodData = player.getFoodData();
         float damageValue = event.getAmount();
-        if (foodData.getFoodLevel() < HUNGER_UPPER_LIMIT) {
-            foodData.setFoodLevel((int) Math.min(HUNGER_UPPER_LIMIT, foodData.getFoodLevel() + damageValue * HUNGER_MULTIPLIER));
+        int hungerUpperLimit = Config.BLOODTHIRSTY_HUNGER_UPPER_LIMIT.get();
+        if (foodData.getFoodLevel() < hungerUpperLimit) {
+            foodData.setFoodLevel((int) Math.min(hungerUpperLimit, foodData.getFoodLevel() + damageValue * Config.BLOODTHIRSTY_HUNGER_MULTIPLIER.get().floatValue()));
         }
-        if (foodData.getSaturationLevel() < SATURATION_CAP) {
-            foodData.setSaturation(Math.min(SATURATION_CAP, foodData.getSaturationLevel() + damageValue * SATURATION_MULTIPLIER));
+        float saturationCap = Config.BLOODTHIRSTY_SATURATION_CAP.get().floatValue();
+        if (foodData.getSaturationLevel() < saturationCap) {
+            foodData.setSaturation(Math.min(saturationCap, foodData.getSaturationLevel() + damageValue * Config.BLOODTHIRSTY_SATURATION_MULTIPLIER.get().floatValue()));
         }
     }
 }

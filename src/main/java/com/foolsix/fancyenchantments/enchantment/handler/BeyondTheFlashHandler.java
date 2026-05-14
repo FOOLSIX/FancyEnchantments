@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
@@ -17,8 +18,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BEYO
 
 @EventBusSubscriber(modid = MODID)
 public final class BeyondTheFlashHandler {
-    private static final double DURABILITY_CONSUMPTION_MULTIPLIER = 1.0D;
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getEntity() instanceof Player player) || !(player.level() instanceof ServerLevel serverLevel)) {
@@ -31,7 +30,7 @@ public final class BeyondTheFlashHandler {
         }
 
         double bonusDamage = getTooltipDamage(weapon, player);
-        int consumption = (int) Math.max(bonusDamage / 4.0D * DURABILITY_CONSUMPTION_MULTIPLIER, 2.0D);
+        int consumption = (int) Math.max(bonusDamage / 4.0D * Config.BEYOND_THE_FLASH_DURABILITY_CONSUMPTION_MULTIPLIER.get(), 2.0D);
         if (weapon.getMaxDamage() <= weapon.getDamageValue() + consumption) {
             return;
         }

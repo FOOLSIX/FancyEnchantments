@@ -1,9 +1,9 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -17,8 +17,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ADVA
 @EventBusSubscriber(modid = MODID)
 public final class AdvancedFlameHandler {
     private static final String LEVEL_TAG = MODID + ":advanced_flame_level";
-    private static final int PROJECTILE_FIRE_SECONDS = 30;
-    private static final int HIT_FIRE_TICKS = 8 * 20;
 
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
@@ -34,7 +32,7 @@ public final class AdvancedFlameHandler {
             return;
         }
 
-        arrow.igniteForSeconds(PROJECTILE_FIRE_SECONDS);
+        arrow.igniteForSeconds(Config.ADVANCED_FLAME_PROJECTILE_FIRE_SECONDS.get());
         arrow.getPersistentData().putInt(LEVEL_TAG, level);
     }
 
@@ -49,7 +47,8 @@ public final class AdvancedFlameHandler {
 
         HitResult hit = event.getRayTraceResult();
         if (hit instanceof EntityHitResult entityHit && entityHit.getEntity() instanceof LivingEntity living) {
-            living.setRemainingFireTicks(Math.max(0, living.getRemainingFireTicks()) + HIT_FIRE_TICKS);
+            int hitFireTicks = Config.ADVANCED_FLAME_HIT_FIRE_SECONDS.get() * 20;
+            living.setRemainingFireTicks(Math.max(0, living.getRemainingFireTicks()) + hitFireTicks);
         }
     }
 

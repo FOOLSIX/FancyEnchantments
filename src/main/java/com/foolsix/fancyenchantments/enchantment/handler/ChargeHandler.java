@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -16,9 +17,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.CHAR
 
 @EventBusSubscriber(modid = MODID)
 public final class ChargeHandler {
-    private static final float CHARGE_DISTANCE_MULTIPLIER = 2.0F;
-    private static final int INVINCIBLE_DURATION_PER_LEVEL = 5;
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getEntity() instanceof LivingEntity living)) {
@@ -31,12 +29,13 @@ public final class ChargeHandler {
         }
 
         Vec3 lookAt = living.getLookAngle();
-        living.push(lookAt.x * CHARGE_DISTANCE_MULTIPLIER, lookAt.y * CHARGE_DISTANCE_MULTIPLIER, lookAt.z * CHARGE_DISTANCE_MULTIPLIER);
+        double chargeDistanceMultiplier = Config.CHARGE_DISTANCE_MULTIPLIER.get();
+        living.push(lookAt.x * chargeDistanceMultiplier, lookAt.y * chargeDistanceMultiplier, lookAt.z * chargeDistanceMultiplier);
         if (living instanceof ServerPlayer player) {
             player.connection.send(
                     new ClientboundSetEntityMotionPacket(player)
             );
         }
-        living.addEffect(new MobEffectInstance(EffectReg.INVINCIBLE, 5 + INVINCIBLE_DURATION_PER_LEVEL * level));
+        living.addEffect(new MobEffectInstance(EffectReg.INVINCIBLE, 5 + Config.CHARGE_INVINCIBLE_DURATION_PER_LEVEL.get() * level));
     }
 }

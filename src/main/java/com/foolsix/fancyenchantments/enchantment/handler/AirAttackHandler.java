@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -11,8 +12,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.AIR_
 
 @EventBusSubscriber(modid = MODID)
 public final class AirAttackHandler {
-    private static final float DAMAGE_MULTIPLIER = 0.3F;
-
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getEntity() instanceof LivingEntity attacker) || attacker.fallDistance <= 0.0F) {
@@ -24,7 +23,7 @@ public final class AirAttackHandler {
             return;
         }
 
-        event.setAmount(event.getAmount() + attacker.fallDistance * DAMAGE_MULTIPLIER * level);
+        event.setAmount(event.getAmount() + attacker.fallDistance * (float) Config.AIR_ATTACK_DAMAGE_MULTIPLIER.get().doubleValue() * level);
         attacker.resetFallDistance();
     }
 }

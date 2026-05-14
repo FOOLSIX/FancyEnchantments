@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
@@ -24,9 +25,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ARMO
 @EventBusSubscriber(modid = MODID)
 public final class ArmorForgingHandler {
     private static final String FORGING_VALUE_TAG = MODID + ":forging_value";
-    private static final int FORGING_VALUE_CAP_PER_LEVEL = 1000;
-    private static final int ARMOR_BASE = 5000;
-    private static final int TOUGHNESS_BASE = 10000;
 
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
@@ -38,9 +36,10 @@ public final class ArmorForgingHandler {
         }
 
         java.util.List<ItemStack> forgeableArmor = new java.util.ArrayList<>();
+        int forgingValueCapPerLevel = Config.ARMOR_FORGING_VALUE_CAP_PER_LEVEL.get();
         for (ItemStack stack : player.getArmorSlots()) {
             int level = EnchUtils.getEnchantmentLevel(ARMOR_FORGING, stack, player.registryAccess());
-            if (level > 0 && getForgingValue(stack) < level * FORGING_VALUE_CAP_PER_LEVEL) {
+            if (level > 0 && getForgingValue(stack) < level * forgingValueCapPerLevel) {
                 forgeableArmor.add(stack);
             }
         }
@@ -52,7 +51,7 @@ public final class ArmorForgingHandler {
         int forgingPerArmor = (int) (event.getAmount() / forgeableArmor.size()) + 1;
         for (ItemStack armor : forgeableArmor) {
             int level = EnchUtils.getEnchantmentLevel(ARMOR_FORGING, armor, player.registryAccess());
-            int maxValue = level * FORGING_VALUE_CAP_PER_LEVEL;
+            int maxValue = level * forgingValueCapPerLevel;
             int newValue = Math.min(getForgingValue(armor) + forgingPerArmor, maxValue);
             setForgingValue(armor, newValue);
         }
@@ -75,14 +74,16 @@ public final class ArmorForgingHandler {
 
         ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(MODID, "armor_forging/" + slot.getSerializedName());
         EquipmentSlotGroup slotGroup = EquipmentSlotGroup.bySlot(slot);
+        int armorBase = Config.ARMOR_FORGING_ARMOR_BASE.get();
+        int toughnessBase = Config.ARMOR_FORGING_TOUGHNESS_BASE.get();
         event.addModifier(
                 Attributes.ARMOR,
-                new AttributeModifier(modifierId, (double) forgingValue / ARMOR_BASE, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+                new AttributeModifier(modifierId, (double) forgingValue / armorBase, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 slotGroup
         );
         event.addModifier(
                 Attributes.ARMOR_TOUGHNESS,
-                new AttributeModifier(modifierId, (double) forgingValue / TOUGHNESS_BASE, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+                new AttributeModifier(modifierId, (double) forgingValue / toughnessBase, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 slotGroup
         );
     }

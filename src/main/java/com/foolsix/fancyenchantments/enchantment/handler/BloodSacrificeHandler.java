@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.handler;
 
+import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.EventPriority;
@@ -12,9 +13,6 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOO
 
 @EventBusSubscriber(modid = MODID)
 public final class BloodSacrificeHandler {
-    private static final float SELF_DAMAGE_PER_LEVEL = 2.0F;
-    private static final float BASE = 0.1F;
-
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getEntity() instanceof ServerPlayer player)) {
@@ -26,8 +24,8 @@ public final class BloodSacrificeHandler {
             return;
         }
 
-        player.hurt(player.damageSources().wither(), SELF_DAMAGE_PER_LEVEL * level);
+        player.hurt(player.damageSources().wither(), (float) (Config.BLOOD_SACRIFICE_SELF_DAMAGE_PER_LEVEL.get() * level));
         float lostHealthRatio = 1.0F - player.getHealth() / player.getMaxHealth();
-        event.setAmount(event.getAmount() * (1.0F + level * (BASE + lostHealthRatio)));
+        event.setAmount(event.getAmount() * (1.0F + level * ((float) Config.BLOOD_SACRIFICE_BASE.get().doubleValue() + lostHealthRatio)));
     }
 }
