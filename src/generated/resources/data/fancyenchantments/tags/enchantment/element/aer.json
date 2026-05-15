@@ -2,6 +2,8 @@
   "values": [
     "fancyenchantments:afterimage",
     "fancyenchantments:air_attack",
-    "fancyenchantments:blessed_wind"
+    "fancyenchantments:blessed_wind",
+    "fancyenchantments:dexterity",
+    "fancyenchantments:downwind"
   ]
 }

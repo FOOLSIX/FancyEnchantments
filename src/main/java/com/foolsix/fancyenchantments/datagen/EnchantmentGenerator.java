@@ -6,6 +6,7 @@ import com.foolsix.fancyenchantments.enchantment.effect.ApplyMobEffectIfAbsentEf
 import com.foolsix.fancyenchantments.enchantment.effect.BullyingEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.CalmerEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.ApplyMobEffectWithChanceEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.DrowningEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
@@ -601,6 +602,104 @@ public final class EnchantmentGenerator {
                                 )
                         )
                         .build(DELAYED_EXECUTION.location())
+        );
+
+        context.register(
+                DEXTERITY,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "dexterity/entity_interaction_range"),
+                                        Attributes.ENTITY_INTERACTION_RANGE,
+                                        LevelBasedValue.perLevel(0.5F),
+                                        AttributeModifier.Operation.ADD_VALUE
+                                )
+                        )
+                        .build(DEXTERITY.location())
+        );
+
+        context.register(
+                DOMINION,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        1,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .build(DOMINION.location())
+        );
+
+        context.register(
+                DOWNWIND,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(DOWNWIND.location())
+        );
+
+        context.register(
+                DROWNING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.ATTACKER,
+                                new DrowningEffect(-40, 1.0F)
+                        )
+                        .build(DROWNING.location())
+        );
+
+        context.register(
+                DUELLISTS_PREROGATIVE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .build(DUELLISTS_PREROGATIVE.location())
         );
     }
 

@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-15T10:33:52.1743431	Registries
+// 1.21.1	2026-05-15T11:31:07.9626015	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -26,3 +26,8 @@ f167872d57e5f03f5b57ec5a3db984a2e1b86637 data/fancyenchantments/enchantment/calm
 2573a17c3567e1c9c92aaf555ce45ca161d8ca0d data/fancyenchantments/enchantment/cursed_gaze.json
 15b41e0e1ed4d55003745d3f907928866bd6ea42 data/fancyenchantments/enchantment/dedication.json
 85947a3346bad6f91be36fea682687ea1ed8ca73 data/fancyenchantments/enchantment/delayed_execution.json
+3584a0d5624b923cdf05eeb4ba9ab126fcaac0a3 data/fancyenchantments/enchantment/dexterity.json
+93ab135c6ea84e4ef90daa1b647194be058fdd16 data/fancyenchantments/enchantment/dominion.json
+f704f87bb73ce5e8f4df4f6f6db6107066901976 data/fancyenchantments/enchantment/downwind.json
+00605d09bf012282998aa6900fc3b61de4857ca4 data/fancyenchantments/enchantment/drowning.json
+0509615deee6f607b969bcd80ffe88dc8ff6719c data/fancyenchantments/enchantment/duellists_prerogative.json

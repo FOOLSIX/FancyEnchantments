@@ -11,8 +11,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
@@ -22,6 +24,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
@@ -102,6 +105,15 @@ public final class EnchUtils {
 
     public static boolean matchesKey(Holder<Enchantment> enchantment, ResourceKey<Enchantment> key) {
         return enchantment.unwrapKey().filter(key::equals).isPresent();
+    }
+
+    public static void pushLiving(LivingEntity living, double x, double y, double z) {
+        living.push(x, y, z);
+        if (living instanceof ServerPlayer player) {
+            player.connection.send(
+                    new ClientboundSetEntityMotionPacket(player)
+            );
+        }
     }
 
     public static Component getMixedColorFullName(Component name, Element first, Element second, long gameTime) {

@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "color": "yellow",
+    "translate": "enchantment.fancyenchantments.dexterity"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.5,
+          "per_level_above_first": 0.5
+        },
+        "attribute": "minecraft:player.entity_interaction_range",
+        "id": "fancyenchantments:dexterity/entity_interaction_range",
+        "operation": "add_value"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 70,
+    "per_level_above_first": 20
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 20,
+    "per_level_above_first": 20
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/weapon",
+  "weight": 1
+}

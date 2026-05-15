@@ -46,7 +46,11 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(COUNTERATTACK)
                 .add(CURSED_GAZE)
                 .add(DEDICATION)
-                .add(DELAYED_EXECUTION);
+                .add(DELAYED_EXECUTION)
+                .add(DEXTERITY)
+                .add(DOWNWIND)
+                .add(DROWNING)
+                .add(DUELLISTS_PREROGATIVE);
         this.tag(EnchantmentTags.TREASURE)
                 .add(AFTERIMAGE)
                 .add(ARMOR_FORGING)
@@ -57,7 +61,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(BULLYING)
                 .add(CHARGE)
                 .add(CRACKED_CROWN)
-                .add(CUMBERSOME);
+                .add(CUMBERSOME)
+                .add(DOMINION);
         this.tag(EnchantmentTags.NON_TREASURE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -75,7 +80,11 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(COUNTERATTACK)
                 .add(CURSED_GAZE)
                 .add(DEDICATION)
-                .add(DELAYED_EXECUTION);
+                .add(DELAYED_EXECUTION)
+                .add(DEXTERITY)
+                .add(DOWNWIND)
+                .add(DROWNING)
+                .add(DUELLISTS_PREROGATIVE);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -100,10 +109,15 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(CUMBERSOME)
                 .add(CURSED_GAZE)
                 .add(DEDICATION)
-                .add(DELAYED_EXECUTION);
+                .add(DELAYED_EXECUTION)
+                .add(DEXTERITY)
+                .add(DOWNWIND)
+                .add(DROWNING)
+                .add(DUELLISTS_PREROGATIVE);
         this.tag(EnchantmentTags.CURSE)
                 .add(CRACKED_CROWN)
-                .add(CUMBERSOME);
+                .add(CUMBERSOME)
+                .add(DROWNING);
         this.tag(EnchantmentTags.BOW_EXCLUSIVE)
                 .add(ADVANCED_FLAME);
         this.tag(EnchantmentTags.ARMOR_EXCLUSIVE)
@@ -113,11 +127,14 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
         this.tag(AER.tag())
                 .add(AFTERIMAGE)
                 .add(AIR_ATTACK)
-                .add(BLESSED_WIND);
+                .add(BLESSED_WIND)
+                .add(DEXTERITY)
+                .add(DOWNWIND);
         this.tag(AQUA.tag())
                 .add(ABYSSAL_MAELSTROM)
                 .add(BUBBLE_SHIELD)
-                .add(CALMER);
+                .add(CALMER)
+                .add(DROWNING);
         this.tag(HOLY.tag())
                 .add(AILMENT_DEVOURER)
                 .add(CRACKED_CROWN)

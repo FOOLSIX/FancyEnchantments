@@ -56,6 +56,21 @@ public final class FEEnchantments {
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BUBBLE_SHIELD)) {
             return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
         }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DEXTERITY)) {
+            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DOMINION)) {
+            return new FEBaseEnchantment(key, null, 1, true, false, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DOWNWIND)) {
+            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DROWNING)) {
+            return new FEBaseEnchantment(key, Element.AQUA, 1, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUELLISTS_PREROGATIVE)) {
+            return new FEBaseEnchantment(key, null, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
         return new FEBaseEnchantment(key, null, DEFAULT_MAX_LEVEL, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
     }
 }

@@ -37,6 +37,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> CURSED_GAZE = key("cursed_gaze");
     public static final ResourceKey<Enchantment> DEDICATION = key("dedication");
     public static final ResourceKey<Enchantment> DELAYED_EXECUTION = key("delayed_execution");
+    public static final ResourceKey<Enchantment> DEXTERITY = key("dexterity");
+    public static final ResourceKey<Enchantment> DOMINION = key("dominion");
+    public static final ResourceKey<Enchantment> DOWNWIND = key("downwind");
+    public static final ResourceKey<Enchantment> DROWNING = key("drowning");
+    public static final ResourceKey<Enchantment> DUELLISTS_PREROGATIVE = key("duellists_prerogative");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -66,11 +71,11 @@ public final class EnchantmentReg {
             CURSED_GAZE,
             DEDICATION,
             DELAYED_EXECUTION,
-            key("dexterity"),
-            key("dominion"),
-            key("downwind"),
-            key("drowning"),
-            key("duellists_prerogative"),
+            DEXTERITY,
+            DOMINION,
+            DOWNWIND,
+            DROWNING,
+            DUELLISTS_PREROGATIVE,
             key("eater_of_souls"),
             key("empathy"),
             key("eroding"),
