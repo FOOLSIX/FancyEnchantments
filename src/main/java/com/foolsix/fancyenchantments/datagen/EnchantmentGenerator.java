@@ -1,9 +1,11 @@
 package com.foolsix.fancyenchantments.datagen;
-
+import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.effect.AddFireTimeEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.ApplyMobEffectIfAbsentEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.BullyingEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.CalmerEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.ApplyMobEffectWithChanceEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
@@ -495,6 +497,110 @@ public final class EnchantmentGenerator {
                                 )
                         )
                         .build(COUNTERATTACK.location())
+        );
+
+        context.register(
+                CRACKED_CROWN,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.HEAD
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(CRACKED_CROWN.location())
+        );
+
+        context.register(
+                CUMBERSOME,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.ATTACKER,
+                                new ApplyMobEffectWithChanceEffect(
+                                        mobEffects.getOrThrow(EffectReg.CUMBERSOME.getKey()),
+                                        0.05F,
+                                        LevelBasedValue.constant(3.0F)
+                                )
+                        )
+                        .build(CUMBERSOME.location())
+        );
+
+        context.register(
+                CURSED_GAZE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 5),
+                                        Enchantment.dynamicCost(70, 5),
+                                        8,
+                                        EquipmentSlotGroup.HEAD
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .build(CURSED_GAZE.location())
+        );
+
+        context.register(
+                DEDICATION,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.ARMOR_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.ARMOR
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(DEDICATION.location())
+        );
+
+        context.register(
+                DELAYED_EXECUTION,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE),
+                                        items.getOrThrow(ItemTags.AXES),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new ApplyMobEffectIfAbsentEffect(
+                                        mobEffects.getOrThrow(EffectReg.PRISON_CAGE.getKey()),
+                                        LevelBasedValue.constant(5.0F)
+                                )
+                        )
+                        .build(DELAYED_EXECUTION.location())
         );
     }
 

@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "color": "white",
+    "translate": "enchantment.fancyenchantments.dedication"
+  },
+  "max_cost": {
+    "base": 60,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "armor"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 2
+}

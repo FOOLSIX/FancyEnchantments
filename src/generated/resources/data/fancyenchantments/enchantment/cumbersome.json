@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "color": "green",
+    "translate": "enchantment.fancyenchantments.cumbersome"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "attacker",
+        "effect": {
+          "type": "fancyenchantments:apply_mob_effect_with_chance",
+          "duration": 3.0,
+          "mob_effect": "fancyenchantments:cumbersome",
+          "probability": 0.05
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 60,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/weapon",
+  "weight": 2
+}

@@ -14,8 +14,8 @@ public final class EffectReg {
 
     public static final DeferredHolder<MobEffect, CritRateBoost> CRIT_RATE_BOOST =
             EFFECTS.register(CritRateBoost.NAME, CritRateBoost::new);
-    public static final DeferredHolder<MobEffect, SimpleMobEffect> CUMBERSOME =
-            registerHarmful("cumbersome", 0x808080);
+    public static final DeferredHolder<MobEffect, CumbersomeMobEffect> CUMBERSOME =
+            EFFECTS.register(CumbersomeMobEffect.NAME, CumbersomeMobEffect::new);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> TEMPLAR_SHIELD =
             registerBeneficial("templar_shield", 0xFFF2AA);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> MELTING =
@@ -24,8 +24,8 @@ public final class EffectReg {
             registerBeneficial("attack_speed_boost", 0x55FFFF);
     public static final DeferredHolder<MobEffect, Invincible> INVINCIBLE =
             EFFECTS.register(Invincible.NAME, Invincible::new);
-    public static final DeferredHolder<MobEffect, SimpleMobEffect> PRISON_CAGE =
-            registerHarmful("prison_cage", 0x342A55);
+    public static final DeferredHolder<MobEffect, PrisonCageEffect> PRISON_CAGE =
+            EFFECTS.register(PrisonCageEffect.NAME, PrisonCageEffect::new);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> TREMBLING =
             registerHarmful("trembling", 0xB7B7B7);
     public static final DeferredHolder<MobEffect, Maelstrom> MAELSTROM =

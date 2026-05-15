@@ -32,6 +32,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> CHARGE = key("charge");
     public static final ResourceKey<Enchantment> CONDITION_OVERLOAD = key("condition_overload");
     public static final ResourceKey<Enchantment> COUNTERATTACK = key("counterattack");
+    public static final ResourceKey<Enchantment> CRACKED_CROWN = key("cracked_crown");
+    public static final ResourceKey<Enchantment> CUMBERSOME = key("cumbersome");
+    public static final ResourceKey<Enchantment> CURSED_GAZE = key("cursed_gaze");
+    public static final ResourceKey<Enchantment> DEDICATION = key("dedication");
+    public static final ResourceKey<Enchantment> DELAYED_EXECUTION = key("delayed_execution");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -56,11 +61,11 @@ public final class EnchantmentReg {
             CHARGE,
             CONDITION_OVERLOAD,
             COUNTERATTACK,
-            key("cracked_crown"),
-            key("cumbersome"),
-            key("cursed_gaze"),
-            key("dedication"),
-            key("delayed_execution"),
+            CRACKED_CROWN,
+            CUMBERSOME,
+            CURSED_GAZE,
+            DEDICATION,
+            DELAYED_EXECUTION,
             key("dexterity"),
             key("dominion"),
             key("downwind"),

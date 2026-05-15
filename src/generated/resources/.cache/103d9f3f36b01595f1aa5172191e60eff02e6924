@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-14T17:31:31.6047339	Registries
+// 1.21.1	2026-05-15T10:33:52.1743431	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -21,3 +21,8 @@ f167872d57e5f03f5b57ec5a3db984a2e1b86637 data/fancyenchantments/enchantment/calm
 0fbcc5d83e89879e3527579f9279eb380f46a492 data/fancyenchantments/enchantment/charge.json
 932527f5d6ebf541887c42c2a4e8982e7c03dfb9 data/fancyenchantments/enchantment/condition_overload.json
 5a0eeb3e1e2dcdda3962416608f3be7aaec77944 data/fancyenchantments/enchantment/counterattack.json
+81bcad46fa578a836b16541f6a706755cf9c8dd9 data/fancyenchantments/enchantment/cracked_crown.json
+9dc40ca83ed06c703f82a98b21a854ef515ac452 data/fancyenchantments/enchantment/cumbersome.json
+2573a17c3567e1c9c92aaf555ce45ca161d8ca0d data/fancyenchantments/enchantment/cursed_gaze.json
+15b41e0e1ed4d55003745d3f907928866bd6ea42 data/fancyenchantments/enchantment/dedication.json
+85947a3346bad6f91be36fea682687ea1ed8ca73 data/fancyenchantments/enchantment/delayed_execution.json

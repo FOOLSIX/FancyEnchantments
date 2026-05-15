@@ -19,6 +19,10 @@ public final class EnchantmentEffectReg {
             ENTITY_EFFECT_TYPES.register("bullying", () -> BullyingEffect.CODEC);
     public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<CalmerEffect>> CALMER =
             ENTITY_EFFECT_TYPES.register("calmer", () -> CalmerEffect.CODEC);
+    public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<ApplyMobEffectWithChanceEffect>> APPLY_MOB_EFFECT_WITH_CHANCE =
+            ENTITY_EFFECT_TYPES.register("apply_mob_effect_with_chance", () -> ApplyMobEffectWithChanceEffect.CODEC);
+    public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<ApplyMobEffectIfAbsentEffect>> APPLY_MOB_EFFECT_IF_ABSENT =
+            ENTITY_EFFECT_TYPES.register("apply_mob_effect_if_absent", () -> ApplyMobEffectIfAbsentEffect.CODEC);
 
     private EnchantmentEffectReg() {
     }

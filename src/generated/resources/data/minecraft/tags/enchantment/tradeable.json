@@ -18,6 +18,11 @@
     "fancyenchantments:calmer",
     "fancyenchantments:charge",
     "fancyenchantments:condition_overload",
-    "fancyenchantments:counterattack"
+    "fancyenchantments:counterattack",
+    "fancyenchantments:cracked_crown",
+    "fancyenchantments:cumbersome",
+    "fancyenchantments:cursed_gaze",
+    "fancyenchantments:dedication",
+    "fancyenchantments:delayed_execution"
   ]
 }
