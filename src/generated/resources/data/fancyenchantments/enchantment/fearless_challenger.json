@@ -1,9 +1,9 @@
 {
   "anvil_cost": 8,
   "description": {
-    "translate": "enchantment.fancyenchantments.duellists_prerogative"
+    "color": "white",
+    "translate": "enchantment.fancyenchantments.fearless_challenger"
   },
-  "exclusive_set": "fancyenchantments:feint_attack",
   "max_cost": {
     "base": 70,
     "per_level_above_first": 20

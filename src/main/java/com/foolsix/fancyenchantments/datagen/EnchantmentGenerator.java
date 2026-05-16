@@ -700,6 +700,7 @@ public final class EnchantmentGenerator {
                                         EquipmentSlotGroup.MAINHAND
                                 )
                         )
+                        .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(FEINT_ATTACK)))
                         .build(DUELLISTS_PREROGATIVE.location())
         );
 
@@ -791,6 +792,125 @@ public final class EnchantmentGenerator {
                         )
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
                         .build(FALLING_STONE.location())
+        );
+
+        context.register(
+                FEARLESS_CHALLENGER,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(FEARLESS_CHALLENGER.location())
+        );
+
+        context.register(
+                FEATHER_FALL,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.LEG_ARMOR_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.LEGS
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.LOCATION_CHANGED,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(net.minecraft.world.effect.MobEffects.SLOW_FALLING),
+                                        LevelBasedValue.constant(1.0F),
+                                        LevelBasedValue.constant(1.0F),
+                                        LevelBasedValue.constant(0.0F),
+                                        LevelBasedValue.constant(0.0F)
+                                ),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.entity().flags(
+                                                EntityFlagsPredicate.Builder.flags()
+                                                        .setOnGround(false)
+                                                        .setCrouching(true)
+                                        ).build()
+                                )
+                        )
+                        .build(FEATHER_FALL.location())
+        );
+
+        context.register(
+                FEINT_ATTACK,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.SWEEPING_EDGE), enchantments.getOrThrow(DUELLISTS_PREROGATIVE)))
+                        .build(FEINT_ATTACK.location())
+        );
+
+        context.register(
+                FIRE_DISASTER,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .build(FIRE_DISASTER.location())
+        );
+
+        context.register(
+                FLOATING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.LOCATION_CHANGED,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "floating/attack_damage"),
+                                        Attributes.ATTACK_DAMAGE,
+                                        LevelBasedValue.constant(-0.1F),
+                                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                ),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.entity().flags(
+                                                EntityFlagsPredicate.Builder.flags()
+                                                        .setOnGround(true)
+                                        ).build()
+                                )
+                        )
+                        .build(FLOATING.location())
         );
     }
 

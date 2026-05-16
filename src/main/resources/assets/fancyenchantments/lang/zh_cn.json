@@ -53,7 +53,7 @@
   "enchantment.fancyenchantments.wind_blade": "风刃",
   "enchantment.fancyenchantments.wind_blade.desc": "根据玩家速度属性增加百分比伤害",
   "enchantment.fancyenchantments.floating": "漂浮不定",
-  "enchantment.fancyenchantments.floating.desc": "静止不动时减少伤害",
+  "enchantment.fancyenchantments.floating.desc": "在地面上时减少伤害",
   "enchantment.fancyenchantments.cumbersome": "笨重",
   "enchantment.fancyenchantments.cumbersome.desc": "攻击后有概率使使用者减缓攻速一段时间",
   "enchantment.fancyenchantments.bullying": "凌弱",

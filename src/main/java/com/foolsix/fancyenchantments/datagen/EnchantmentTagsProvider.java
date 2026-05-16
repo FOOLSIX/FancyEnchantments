@@ -53,7 +53,10 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(DUELLISTS_PREROGATIVE)
                 .add(ERODING)
                 .add(EUCHARIST)
-                .add(FALLING_STONE);
+                .add(FALLING_STONE)
+                .add(FEARLESS_CHALLENGER)
+                .add(FEATHER_FALL)
+                .add(FLOATING);
         this.tag(EnchantmentTags.TREASURE)
                 .add(AFTERIMAGE)
                 .add(ARMOR_FORGING)
@@ -67,7 +70,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(CUMBERSOME)
                 .add(DOMINION)
                 .add(EATER_OF_SOULS)
-                .add(EMPATHY);
+                .add(EMPATHY)
+                .add(FEINT_ATTACK);
         this.tag(EnchantmentTags.NON_TREASURE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -92,7 +96,11 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(DUELLISTS_PREROGATIVE)
                 .add(ERODING)
                 .add(EUCHARIST)
-                .add(FALLING_STONE);
+                .add(FALLING_STONE)
+                .add(FEARLESS_CHALLENGER)
+                .add(FEATHER_FALL)
+                .add(FLOATING)
+                .add(FIRE_DISASTER);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -125,13 +133,18 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(EMPATHY)
                 .add(ERODING)
                 .add(EUCHARIST)
-                .add(FALLING_STONE);
+                .add(FALLING_STONE)
+                .add(FEATHER_FALL)
+                .add(FLOATING)
+                .add(FIRE_DISASTER);
         this.tag(EnchantmentTags.CURSE)
                 .add(CRACKED_CROWN)
                 .add(CUMBERSOME)
                 .add(DROWNING)
                 .add(EMPATHY)
-                .add(ERODING);
+                .add(ERODING)
+                .add(FIRE_DISASTER)
+                .add(FLOATING);
         this.tag(EnchantmentTags.BOW_EXCLUSIVE)
                 .add(ADVANCED_FLAME);
         this.tag(EnchantmentTags.ARMOR_EXCLUSIVE)
@@ -143,7 +156,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(AIR_ATTACK)
                 .add(BLESSED_WIND)
                 .add(DEXTERITY)
-                .add(DOWNWIND);
+                .add(DOWNWIND)
+                .add(FEATHER_FALL)
+                .add(FLOATING);
         this.tag(AQUA.tag())
                 .add(ABYSSAL_MAELSTROM)
                 .add(BUBBLE_SHIELD)
@@ -153,10 +168,12 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(AILMENT_DEVOURER)
                 .add(CRACKED_CROWN)
                 .add(DEDICATION)
-                .add(EUCHARIST);
+                .add(EUCHARIST)
+                .add(FEARLESS_CHALLENGER);
         this.tag(IGNIS.tag())
                 .add(ADVANCED_FIRE_ASPECT)
-                .add(ADVANCED_FLAME);
+                .add(ADVANCED_FLAME)
+                .add(FIRE_DISASTER);
         this.tag(TERRA.tag())
                 .add(CUMBERSOME)
                 .add(ERODING)

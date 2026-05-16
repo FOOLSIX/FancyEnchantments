@@ -136,7 +136,7 @@ public final class EnchUtils {
     }
 
     public static void generateSimpleParticleAroundEntity(Entity entity, SimpleParticleType type) {
-        generateSimpleParticleAroundEntity(entity, type, 30, 0.2D, 0.7D, 0.2D, 0);
+        generateSimpleParticleAroundEntity(entity, type, 20, 0.2D, 0.7D, 0.2D, 0);
     }
 
     public static void generateSimpleParticleAroundEntity(Entity entity, SimpleParticleType type, int count, double xOffset, double yOffset, double zOffset, double speed) {

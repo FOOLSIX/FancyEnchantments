@@ -54,7 +54,7 @@
   "enchantment.fancyenchantments.wind_blade": "Wind Blade",
   "enchantment.fancyenchantments.wind_blade.desc": "Increases damage by percentage based on movement speed attribute",
   "enchantment.fancyenchantments.floating": "Floating",
-  "enchantment.fancyenchantments.floating.desc": "Reduce damage when the player is stationary",
+  "enchantment.fancyenchantments.floating.desc": "Reduce damage when the player is on the ground",
   "enchantment.fancyenchantments.cumbersome": "Cumbersome",
   "enchantment.fancyenchantments.cumbersome.desc": "After the attack, there is a probability that the player will attack slowly for a period of time",
   "enchantment.fancyenchantments.bullying": "Bullying",

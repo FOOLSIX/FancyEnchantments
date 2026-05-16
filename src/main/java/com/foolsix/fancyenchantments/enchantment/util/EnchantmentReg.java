@@ -47,6 +47,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> ERODING = key("eroding");
     public static final ResourceKey<Enchantment> EUCHARIST = key("eucharist");
     public static final ResourceKey<Enchantment> FALLING_STONE = key("falling_stone");
+    public static final ResourceKey<Enchantment> FEARLESS_CHALLENGER = key("fearless_challenger");
+    public static final ResourceKey<Enchantment> FEATHER_FALL = key("feather_fall");
+    public static final ResourceKey<Enchantment> FEINT_ATTACK = key("feint_attack");
+    public static final ResourceKey<Enchantment> FIRE_DISASTER = key("fire_disaster");
+    public static final ResourceKey<Enchantment> FLOATING = key("floating");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -86,11 +91,11 @@ public final class EnchantmentReg {
             ERODING,
             EUCHARIST,
             FALLING_STONE,
-            key("fearless_challenger"),
-            key("feather_fall"),
-            key("feint_attack"),
-            key("fire_disaster"),
-            key("floating"),
+            FEARLESS_CHALLENGER,
+            FEATHER_FALL,
+            FEINT_ATTACK,
+            FIRE_DISASTER,
+            FLOATING,
             key("frozen_heart"),
             key("gale"),
             key("gift_of_fire"),

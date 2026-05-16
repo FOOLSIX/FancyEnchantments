@@ -78,6 +78,15 @@ public final class Config {
 
     public static final ModConfigSpec.DoubleValue FALLING_STONE_DAMAGE_MULTIPLIER;
 
+    public static final ModConfigSpec.DoubleValue FEARLESS_CHALLENGER_HP_CONDITION;
+    public static final ModConfigSpec.DoubleValue FEARLESS_CHALLENGER_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue FEARLESS_CHALLENGER_CAP;
+
+    public static final ModConfigSpec.DoubleValue FEINT_ATTACK_DAMAGE_REDUCER;
+    public static final ModConfigSpec.DoubleValue FEINT_ATTACK_DAMAGE_MULTIPLIER;
+
+    public static final ModConfigSpec.DoubleValue FIRE_DISASTER_PROBABILITY;
+
     static final ModConfigSpec SPEC;
 
     static {
@@ -298,6 +307,33 @@ public final class Config {
         FALLING_STONE_DAMAGE_MULTIPLIER =
                 BUILDER.comment("Damage = (1 + level * multiplier) * fallingDistance.")
                         .defineInRange("Damage Multiplier", 0.5D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Fearless Challenger");
+        FEARLESS_CHALLENGER_HP_CONDITION =
+                BUILDER.comment("Trigger when target's HP / user's HP > condition.")
+                        .defineInRange("HP Condition", 3.0D, 0.0D, Double.MAX_VALUE);
+        FEARLESS_CHALLENGER_MULTIPLIER =
+                BUILDER.comment("Damage *= min(cap, target's HP / user's HP * multiplier * level).")
+                        .defineInRange("Multiplier", 1.0D, 0.0D, Double.MAX_VALUE);
+        FEARLESS_CHALLENGER_CAP =
+                BUILDER.comment("Damage bonus cap.")
+                        .defineInRange("Cap", 10.0D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Feint Attack");
+        FEINT_ATTACK_DAMAGE_REDUCER =
+                BUILDER.comment("Damage to the target *= 1 - reducer.")
+                        .defineInRange("Damage Reducer", 0.7D, 0.0D, 1.0D);
+        FEINT_ATTACK_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage to others *= 1 + multiplier * level.")
+                        .defineInRange("Damage Multiplier", 0.2D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Fire Disaster");
+        FIRE_DISASTER_PROBABILITY =
+                BUILDER.comment("The probability of generating a fire (per level).")
+                        .defineInRange("Probability", 0.05D, 0.0D, 1.0D);
         BUILDER.pop();
 
         SPEC = BUILDER.build();
