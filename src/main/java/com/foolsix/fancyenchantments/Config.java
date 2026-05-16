@@ -67,6 +67,17 @@ public final class Config {
 
     public static final ModConfigSpec.DoubleValue DUELLISTS_PREROGATIVE_DAMAGE_MULTIPLIER;
 
+    public static final ModConfigSpec.DoubleValue EATER_OF_SOULS_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue EATER_OF_SOULS_CAP;
+
+    public static final ModConfigSpec.DoubleValue EMPATHY_SHOOT_POWER_MULTIPLIER;
+
+    public static final ModConfigSpec.IntValue EUCHARIST_MINIMUM_HUNGER;
+    public static final ModConfigSpec.IntValue EUCHARIST_DURATION_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue EUCHARIST_DAMAGE_MULTIPLIER;
+
+    public static final ModConfigSpec.DoubleValue FALLING_STONE_DAMAGE_MULTIPLIER;
+
     static final ModConfigSpec SPEC;
 
     static {
@@ -254,6 +265,39 @@ public final class Config {
         DUELLISTS_PREROGATIVE_DAMAGE_MULTIPLIER =
                 BUILDER.comment("Damage *= 1 + multiplier * level.")
                         .defineInRange("Damage Multiplier", 0.2D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Eater of Souls");
+        EATER_OF_SOULS_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage += sqrt(kill count) * level * multiplier.")
+                        .defineInRange("Damage Multiplier", 0.3D, 0.0D, Double.MAX_VALUE);
+        EATER_OF_SOULS_CAP =
+                BUILDER.comment("Damage cap.")
+                        .defineInRange("Cap", 1000.0D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Empathy");
+        EMPATHY_SHOOT_POWER_MULTIPLIER =
+                BUILDER.comment("Push distance multiplier = charge * multiplier.")
+                        .defineInRange("Shoot Power Multiplier", 0.1D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Eucharist");
+        EUCHARIST_MINIMUM_HUNGER =
+                BUILDER.comment("The minimum hunger point to obtain the buff.")
+                        .defineInRange("Minimum Hunger", 6, 0, Integer.MAX_VALUE);
+        EUCHARIST_DURATION_MULTIPLIER =
+                BUILDER.comment("The effect duration = multiplier * foodSaturation (second).")
+                        .defineInRange("Duration Multiplier", 3, 0, Integer.MAX_VALUE);
+        EUCHARIST_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Taken damage *= multiplier.")
+                        .defineInRange("Damage Multiplier", 0.1D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Falling Stone");
+        FALLING_STONE_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage = (1 + level * multiplier) * fallingDistance.")
+                        .defineInRange("Damage Multiplier", 0.5D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

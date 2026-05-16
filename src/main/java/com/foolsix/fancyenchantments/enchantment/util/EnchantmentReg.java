@@ -42,6 +42,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> DOWNWIND = key("downwind");
     public static final ResourceKey<Enchantment> DROWNING = key("drowning");
     public static final ResourceKey<Enchantment> DUELLISTS_PREROGATIVE = key("duellists_prerogative");
+    public static final ResourceKey<Enchantment> EATER_OF_SOULS = key("eater_of_souls");
+    public static final ResourceKey<Enchantment> EMPATHY = key("empathy");
+    public static final ResourceKey<Enchantment> ERODING = key("eroding");
+    public static final ResourceKey<Enchantment> EUCHARIST = key("eucharist");
+    public static final ResourceKey<Enchantment> FALLING_STONE = key("falling_stone");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -76,11 +81,11 @@ public final class EnchantmentReg {
             DOWNWIND,
             DROWNING,
             DUELLISTS_PREROGATIVE,
-            key("eater_of_souls"),
-            key("empathy"),
-            key("eroding"),
-            key("eucharist"),
-            key("falling_stone"),
+            EATER_OF_SOULS,
+            EMPATHY,
+            ERODING,
+            EUCHARIST,
+            FALLING_STONE,
             key("fearless_challenger"),
             key("feather_fall"),
             key("feint_attack"),

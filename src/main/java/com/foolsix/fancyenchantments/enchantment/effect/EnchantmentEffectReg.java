@@ -21,6 +21,8 @@ public final class EnchantmentEffectReg {
             ENTITY_EFFECT_TYPES.register("calmer", () -> CalmerEffect.CODEC);
     public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<DrowningEffect>> DROWNING =
             ENTITY_EFFECT_TYPES.register("drowning", () -> DrowningEffect.CODEC);
+    public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<ErodingEffect>> ERODING =
+            ENTITY_EFFECT_TYPES.register("eroding", () -> ErodingEffect.CODEC);
     public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<ApplyMobEffectWithChanceEffect>> APPLY_MOB_EFFECT_WITH_CHANCE =
             ENTITY_EFFECT_TYPES.register("apply_mob_effect_with_chance", () -> ApplyMobEffectWithChanceEffect.CODEC);
     public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<ApplyMobEffectIfAbsentEffect>> APPLY_MOB_EFFECT_IF_ABSENT =

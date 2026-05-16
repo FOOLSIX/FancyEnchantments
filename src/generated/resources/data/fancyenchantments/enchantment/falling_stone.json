@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "color": "green",
+    "translate": "enchantment.fancyenchantments.falling_stone"
+  },
+  "max_cost": {
+    "base": 15,
+    "per_level_above_first": 5
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 5
+  },
+  "slots": [
+    "feet"
+  ],
+  "supported_items": "#minecraft:enchantable/foot_armor",
+  "weight": 5
+}

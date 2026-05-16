@@ -7,6 +7,7 @@ import com.foolsix.fancyenchantments.enchantment.effect.BullyingEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.CalmerEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.ApplyMobEffectWithChanceEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.DrowningEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.ErodingEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
@@ -700,6 +701,96 @@ public final class EnchantmentGenerator {
                                 )
                         )
                         .build(DUELLISTS_PREROGATIVE.location())
+        );
+
+        context.register(
+                EATER_OF_SOULS,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .build(EATER_OF_SOULS.location())
+        );
+
+        context.register(
+                EMPATHY,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.BOW_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .build(EMPATHY.location())
+        );
+
+        context.register(
+                ERODING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new ErodingEffect(0.15F, 1)
+                        )
+                        .build(ERODING.location())
+        );
+
+        context.register(
+                EUCHARIST,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(EUCHARIST.location())
+        );
+
+        context.register(
+                FALLING_STONE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                                        5,
+                                        3,
+                                        Enchantment.dynamicCost(5, 5),
+                                        Enchantment.dynamicCost(15, 5),
+                                        4,
+                                        EquipmentSlotGroup.FEET
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .build(FALLING_STONE.location())
         );
     }
 

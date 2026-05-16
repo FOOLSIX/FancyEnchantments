@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-15T11:31:07.9626015	Registries
+// 1.21.1	2026-05-16T17:36:56.2141965	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -31,3 +31,8 @@ f167872d57e5f03f5b57ec5a3db984a2e1b86637 data/fancyenchantments/enchantment/calm
 f704f87bb73ce5e8f4df4f6f6db6107066901976 data/fancyenchantments/enchantment/downwind.json
 00605d09bf012282998aa6900fc3b61de4857ca4 data/fancyenchantments/enchantment/drowning.json
 0509615deee6f607b969bcd80ffe88dc8ff6719c data/fancyenchantments/enchantment/duellists_prerogative.json
+275700c6b5f8c205463d71daea53a58e077c78a9 data/fancyenchantments/enchantment/eater_of_souls.json
+12cbad5cd4652e5c65a2eb63cb40866f7695b000 data/fancyenchantments/enchantment/empathy.json
+7bfcc22585fcaef47883fd08c61bc7927b744e6c data/fancyenchantments/enchantment/eroding.json
+efc7b6e244295ac48bf39c3f4dd6c645fc2f3dd9 data/fancyenchantments/enchantment/eucharist.json
+6b6af9ce31570e727ed751617ccb2a8551e2e56f data/fancyenchantments/enchantment/falling_stone.json
