@@ -1210,6 +1210,91 @@ public final class EnchantmentGenerator {
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
                         .build(NIGHTMARE.location())
         );
+
+        context.register(
+                NIRVANA,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .build(NIRVANA.location())
+        );
+
+        context.register(
+                OCEAN_CURRENT,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(15, 5),
+                                        Enchantment.dynamicCost(65, 5),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .build(OCEAN_CURRENT.location())
+        );
+
+        context.register(
+                OVERFLOW,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .build(OVERFLOW.location())
+        );
+
+        context.register(
+                OVER_HEALING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(25, 20),
+                                        Enchantment.dynamicCost(75, 20),
+                                        8,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(OVER_HEALING.location())
+        );
+
+        context.register(
+                PALADINS_SHIELD,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(Tags.Items.TOOLS_SHIELD),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(5, 5),
+                                        Enchantment.dynamicCost(15, 5),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(PALADINS_SHIELD.location())
+        );
     }
 
     private static net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder nonBypassInvulnerabilityRequirement() {

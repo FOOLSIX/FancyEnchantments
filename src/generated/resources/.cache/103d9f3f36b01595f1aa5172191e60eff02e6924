@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-17T11:33:44.9980468	Registries
+// 1.21.1	2026-05-17T16:38:20.364383	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -56,3 +56,8 @@ dde44fc946af244ad881b79e59f2564c238c2764 data/fancyenchantments/enchantment/hung
 349d703fcc5f513a7a6e36df115a555451e295ab data/fancyenchantments/enchantment/mountain_supreme_protection.json
 aa1d54faccb4a5a9be0c71ccce04372decb8d8c1 data/fancyenchantments/enchantment/multiple_shot.json
 d2f5a57c0cf803ee344c6657253b648dbbc918aa data/fancyenchantments/enchantment/nightmare.json
+67a45680a72381485b0031ede34f1c89e3e61eb1 data/fancyenchantments/enchantment/nirvana.json
+528b7499ecbe54436cf02bdc0ebc4a4411b71635 data/fancyenchantments/enchantment/ocean_current.json
+2d500abc22db33179dadf199f69a37383b254b79 data/fancyenchantments/enchantment/overflow.json
+55c24292f0a014571b276ca851a7f5a8f44e1e57 data/fancyenchantments/enchantment/over_healing.json
+ad99dd650941814ec53856cf205582ae571539af data/fancyenchantments/enchantment/paladins_shield.json

@@ -65,7 +65,12 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ICY_BURST)
                 .add(LIGHTNESS)
                 .add(MELTER)
-                .add(NIGHTMARE);
+                .add(NIGHTMARE)
+                .add(NIRVANA)
+                .add(OCEAN_CURRENT)
+                .add(OVERFLOW)
+                .add(OVER_HEALING)
+                .add(PALADINS_SHIELD);
         this.tag(EnchantmentTags.TREASURE)
                 .add(AFTERIMAGE)
                 .add(ARMOR_FORGING)
@@ -124,7 +129,12 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ICY_BURST)
                 .add(LIGHTNESS)
                 .add(MELTER)
-                .add(NIGHTMARE);
+                .add(NIGHTMARE)
+                .add(NIRVANA)
+                .add(OCEAN_CURRENT)
+                .add(OVERFLOW)
+                .add(OVER_HEALING)
+                .add(PALADINS_SHIELD);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -170,7 +180,12 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ICY_BURST)
                 .add(LIGHTNESS)
                 .add(MELTER)
-                .add(NIGHTMARE);
+                .add(NIGHTMARE)
+                .add(NIRVANA)
+                .add(OCEAN_CURRENT)
+                .add(OVERFLOW)
+                .add(OVER_HEALING)
+                .add(PALADINS_SHIELD);
         this.tag(EnchantmentTags.CURSE)
                 .add(CRACKED_CROWN)
                 .add(CUMBERSOME)
@@ -179,7 +194,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ERODING)
                 .add(FIRE_DISASTER)
                 .add(FLOATING)
-                .add(NIGHTMARE);
+                .add(NIGHTMARE)
+                .add(OVERFLOW);
         this.tag(EnchantmentTags.BOW_EXCLUSIVE)
                 .add(ADVANCED_FLAME);
         this.tag(EnchantmentTags.ARMOR_EXCLUSIVE)
@@ -203,20 +219,25 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(CALMER)
                 .add(DROWNING)
                 .add(FROZEN_HEART)
-                .add(ICY_BURST);
+                .add(ICY_BURST)
+                .add(OCEAN_CURRENT)
+                .add(OVERFLOW);
         this.tag(HOLY.tag())
                 .add(AILMENT_DEVOURER)
                 .add(CRACKED_CROWN)
                 .add(DEDICATION)
                 .add(EUCHARIST)
-                .add(FEARLESS_CHALLENGER);
+                .add(FEARLESS_CHALLENGER)
+                .add(OVER_HEALING)
+                .add(PALADINS_SHIELD);
         this.tag(IGNIS.tag())
                 .add(ADVANCED_FIRE_ASPECT)
                 .add(ADVANCED_FLAME)
                 .add(FIRE_DISASTER)
                 .add(GIFT_OF_FIRE)
                 .add(LAVA_BURST)
-                .add(MELTER);
+                .add(MELTER)
+                .add(NIRVANA);
         this.tag(TERRA.tag())
                 .add(CUMBERSOME)
                 .add(ERODING)

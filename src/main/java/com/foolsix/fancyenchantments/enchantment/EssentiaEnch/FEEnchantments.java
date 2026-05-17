@@ -106,6 +106,21 @@ public final class FEEnchantments {
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.NIGHTMARE)) {
             return new FEBaseEnchantment(key, Element.TWISTED, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
         }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.NIRVANA)) {
+            return new FEBaseEnchantment(key, Element.IGNIS, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.OCEAN_CURRENT)) {
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.OVERFLOW)) {
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.OVER_HEALING)) {
+            return new FEBaseEnchantment(key, Element.HOLY, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.PALADINS_SHIELD)) {
+            return new FEBaseEnchantment(key, Element.HOLY, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
         return new FEBaseEnchantment(key, null, DEFAULT_MAX_LEVEL, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
     }
 }

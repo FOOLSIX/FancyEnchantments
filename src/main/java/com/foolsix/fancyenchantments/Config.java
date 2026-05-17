@@ -124,6 +124,18 @@ public final class Config {
     public static final ModConfigSpec.DoubleValue NIGHTMARE_EXPLODE_RADIUS_PER_LEVEL;
     public static final ModConfigSpec.DoubleValue NIGHTMARE_EXPLODE_DAMAGE_BASE;
     public static final ModConfigSpec.DoubleValue NIGHTMARE_EXPLODE_DAMAGE_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue NIRVANA_MINIMUM_HEALTH_RATIO;
+    public static final ModConfigSpec.IntValue NIRVANA_INTERVAL_SECONDS;
+    public static final ModConfigSpec.IntValue NIRVANA_HEAL_DURATION_TICKS;
+    public static final ModConfigSpec.DoubleValue OCEAN_CURRENT_SPEED_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue OCEAN_CURRENT_EXTRA_SPEED_MULTIPLIER;
+    public static final ModConfigSpec.BooleanValue OCEAN_CURRENT_INEFFECTIVE_WHEN_ON_FIRE;
+    public static final ModConfigSpec.DoubleValue OVERFLOW_PROBABILITY;
+    public static final ModConfigSpec.IntValue OVER_HEALING_CAP;
+    public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_DAMAGE_TRANSFER_RATIO;
+    public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_BASE_DAMAGE_REDUCTION_RATIO;
+    public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_TRANSFERRED_DAMAGE_RATIO;
+    public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_UPPER_LIMIT;
 
     static final ModConfigSpec SPEC;
 
@@ -484,7 +496,59 @@ public final class Config {
                 BUILDER.comment("Explosion entity damage = base + (level - 1) * per level.")
                         .defineInRange("Explode Damage Base", 8.0D, 0.0D, Double.MAX_VALUE);
         NIGHTMARE_EXPLODE_DAMAGE_PER_LEVEL =
-                BUILDER.defineInRange("Explode Damage Step", 4.0D, 0.0D, Double.MAX_VALUE);
+                BUILDER.comment("Explosion entity damage = base + (level - 1) * per level.")
+                        .defineInRange("Explode Damage Step", 4.0D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Nirvana");
+        NIRVANA_MINIMUM_HEALTH_RATIO =
+                BUILDER.comment("Minimum health ratio to trigger the effect.")
+                        .defineInRange("Minimum Health Ratio", 0.5D, 0.0D, 1.0D);
+        NIRVANA_INTERVAL_SECONDS =
+                BUILDER.comment("Trigger interval in seconds.")
+                        .defineInRange("Interval Seconds", 10, 1, Integer.MAX_VALUE);
+        NIRVANA_HEAL_DURATION_TICKS =
+                BUILDER.comment("Instant health effect duration in ticks.")
+                        .defineInRange("Heal Duration Ticks", 3, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Ocean Current");
+        OCEAN_CURRENT_SPEED_MULTIPLIER =
+                BUILDER.comment("Attack speed += level * multiplier.")
+                        .defineInRange("Speed Multiplier", 0.2D, 0.0D, Double.MAX_VALUE);
+        OCEAN_CURRENT_EXTRA_SPEED_MULTIPLIER =
+                BUILDER.comment("Attack speed while in water += level * multiplier * extra multiplier.")
+                        .defineInRange("Extra Speed Multiplier", 1.5D, 0.0D, Double.MAX_VALUE);
+        OCEAN_CURRENT_INEFFECTIVE_WHEN_ON_FIRE =
+                BUILDER.comment("Whether the effect is disabled while on fire.")
+                        .define("Ineffective When On Fire", true);
+        BUILDER.pop();
+
+        BUILDER.push("Overflow");
+        OVERFLOW_PROBABILITY =
+                BUILDER.comment("The probability of generating a puddle of water (per level).")
+                        .defineInRange("Probability", 0.1D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Over Healing");
+        OVER_HEALING_CAP =
+                BUILDER.comment("Maximum absorption added per level.")
+                        .defineInRange("Cap", 10, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Paladins Shield");
+        PALADINS_SHIELD_DAMAGE_TRANSFER_RATIO =
+                BUILDER.comment("Transferred damage amount = damage * ratio.")
+                        .defineInRange("Damage Transfer Ratio", 0.5D, 0.0D, 1.0D);
+        PALADINS_SHIELD_BASE_DAMAGE_REDUCTION_RATIO =
+                BUILDER.comment("Damage reduction while holding a shield -= base damage reduction ratio * level.")
+                        .defineInRange("Base Damage Reduction Ratio", 0.05D, 0.0D, 1.0D);
+        PALADINS_SHIELD_TRANSFERRED_DAMAGE_RATIO =
+                BUILDER.comment("Damage the enchantment holder receives = damage * damage transfer ratio * transferred damage ratio.")
+                        .defineInRange("Transferred Damage Ratio", 0.5D, 0.0D, Double.MAX_VALUE);
+        PALADINS_SHIELD_UPPER_LIMIT =
+                BUILDER.comment("If the final damage exceeds the upper limit * receiver's max health, it will not be transferred.")
+                        .defineInRange("Upper Limit", 0.5D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

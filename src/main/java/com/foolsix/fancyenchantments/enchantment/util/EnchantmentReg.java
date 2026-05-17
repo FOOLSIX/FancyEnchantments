@@ -67,6 +67,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> MOUNTAIN_SUPREME_PROTECTION = key("mountain_supreme_protection");
     public static final ResourceKey<Enchantment> MULTIPLE_SHOT = key("multiple_shot");
     public static final ResourceKey<Enchantment> NIGHTMARE = key("nightmare");
+    public static final ResourceKey<Enchantment> NIRVANA = key("nirvana");
+    public static final ResourceKey<Enchantment> OCEAN_CURRENT = key("ocean_current");
+    public static final ResourceKey<Enchantment> OVERFLOW = key("overflow");
+    public static final ResourceKey<Enchantment> OVER_HEALING = key("over_healing");
+    public static final ResourceKey<Enchantment> PALADINS_SHIELD = key("paladins_shield");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -126,11 +131,11 @@ public final class EnchantmentReg {
             MOUNTAIN_SUPREME_PROTECTION,
             MULTIPLE_SHOT,
             NIGHTMARE,
-            key("nirvana"),
-            key("ocean_current"),
-            key("overflow"),
-            key("over_healing"),
-            key("paladins_shield"),
+            NIRVANA,
+            OCEAN_CURRENT,
+            OVERFLOW,
+            OVER_HEALING,
+            PALADINS_SHIELD,
             key("pervert"),
             key("pure_fate"),
             key("purification_slash"),

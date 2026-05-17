@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "color": "white",
+    "translate": "enchantment.fancyenchantments.paladins_shield"
+  },
+  "max_cost": {
+    "base": 15,
+    "per_level_above_first": 5
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 5
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#c:tools/shield",
+  "weight": 1
+}
