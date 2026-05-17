@@ -87,6 +87,18 @@ public final class Config {
 
     public static final ModConfigSpec.DoubleValue FIRE_DISASTER_PROBABILITY;
 
+    public static final ModConfigSpec.IntValue FROZEN_HEART_DURATION;
+
+    public static final ModConfigSpec.IntValue GALE_DURATION_SECONDS;
+
+    public static final ModConfigSpec.DoubleValue GIFT_OF_FIRE_BENEFICIAL_MULTIPLIER;
+
+    public static final ModConfigSpec.IntValue GREED_SUPREME_LOOTING_LEVEL_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue GREED_SUPREME_PROBABILITY_OF_DOUBLING;
+
+    public static final ModConfigSpec.DoubleValue HEAVY_ARROW_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.IntValue HEAVY_ARROW_KNOCKBACK_ADDON;
+
     static final ModConfigSpec SPEC;
 
     static {
@@ -334,6 +346,42 @@ public final class Config {
         FIRE_DISASTER_PROBABILITY =
                 BUILDER.comment("The probability of generating a fire (per level).")
                         .defineInRange("Probability", 0.05D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Frozen Heart");
+        FROZEN_HEART_DURATION =
+                BUILDER.comment("Slowness duration in seconds.")
+                        .defineInRange("Duration", 5, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Gale");
+        GALE_DURATION_SECONDS =
+                BUILDER.comment("Haste duration in seconds after breaking a block.")
+                        .defineInRange("Duration Seconds", 2, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Gift of Fire");
+        GIFT_OF_FIRE_BENEFICIAL_MULTIPLIER =
+                BUILDER.comment("Damage += level * multiplier when the target is on fire.")
+                        .defineInRange("Beneficial Multiplier", 2.5D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Greed Supreme Looting");
+        GREED_SUPREME_LOOTING_LEVEL_MULTIPLIER =
+                BUILDER.comment("Looting level += level * multiplier. On trigger, the same amount is added again.")
+                        .defineInRange("Loot Level Multiplier", 3, 0, Integer.MAX_VALUE);
+        GREED_SUPREME_PROBABILITY_OF_DOUBLING =
+                BUILDER.comment("Probability of applying the additional looting bonus again.")
+                        .defineInRange("Probability Of Doubling", 0.05D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Heavy Arrow");
+        HEAVY_ARROW_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Arrow base damage *= 1 + damage multiplier * level.")
+                        .defineInRange("Damage Multiplier", 0.15D, 0.0D, Double.MAX_VALUE);
+        HEAVY_ARROW_KNOCKBACK_ADDON =
+                BUILDER.comment("Arrow knockback += knockback addon * level.")
+                        .defineInRange("Knockback Addon", 1, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-16T18:10:00.8634531	Registries
+// 1.21.1	2026-05-16T19:09:19.4107412	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -40,4 +40,9 @@ bc6d25874e9f1fd28acce0a8daa8d65e091ab3f5 data/fancyenchantments/enchantment/fear
 1e024d394d48e303a005f587ad819a9227532aac data/fancyenchantments/enchantment/feather_fall.json
 ef0651b027519208dbe4c28c1a0dd9c521992818 data/fancyenchantments/enchantment/feint_attack.json
 9abbc5fbc76ce2bb9c48183d83e27ed190cf3071 data/fancyenchantments/enchantment/fire_disaster.json
-9092c81109a741015402a8b00a2264e428c23954 data/fancyenchantments/enchantment/floating.json
+4d2bc54513c719ad2c86312bb4b22da343f282ae data/fancyenchantments/enchantment/floating.json
+c9b22983ecff5822658a1dbe0be55e01813bed77 data/fancyenchantments/enchantment/frozen_heart.json
+13bd9c42ea5c6865437baa3b29b088c7b6236aca data/fancyenchantments/enchantment/gale.json
+9e08a6660e8ae3fd70faf9546604082c0af14651 data/fancyenchantments/enchantment/gift_of_fire.json
+37c4c1601222d8c4da9aa865e3ad698071b5c72a data/fancyenchantments/enchantment/greed_supreme_looting.json
+208e8fab2c28abcc4a3f4409fa0e60c41f8db432 data/fancyenchantments/enchantment/heavy_arrow.json

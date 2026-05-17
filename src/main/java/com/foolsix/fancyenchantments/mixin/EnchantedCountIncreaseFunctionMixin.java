@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.mixin;
 
+import com.foolsix.fancyenchantments.Config;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ADVANCED_LOOTING;
+import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.GREED_SUPREME_LOOTING;
 
 
 @Mixin(EnchantedCountIncreaseFunction.class)
@@ -37,7 +39,7 @@ abstract class EnchantedCountIncreaseFunctionMixin {
     @Final
     private int limit;
 
-    @Inject(method = "run", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "run", at = @At("HEAD"), cancellable = true)
     private void fancyenchantments$extraLooting(ItemStack stack, LootContext context, CallbackInfoReturnable<ItemStack> cir) {
         if (!this.enchantment.is(Enchantments.LOOTING)) {
             return;
@@ -50,14 +52,23 @@ abstract class EnchantedCountIncreaseFunctionMixin {
 
         HolderLookup.RegistryLookup<Enchantment> enchantments = livingEntity.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
         int advancedLevel = EnchantmentHelper.getEnchantmentLevel(enchantments.getOrThrow(ADVANCED_LOOTING), livingEntity);
-        if (advancedLevel <= 0) {
+        int greedyLevel = EnchantmentHelper.getEnchantmentLevel(enchantments.getOrThrow(GREED_SUPREME_LOOTING), livingEntity);
+        int sumLevel = advancedLevel * 2 + greedyLevel * 3;
+        if (sumLevel <= 0) {
             return;
         }
 
         ItemStack result = cir.getReturnValue();
-        result.grow(Math.round(advancedLevel * this.value.getFloat(context)));
+        result.grow(Math.round(sumLevel * this.value.getFloat(context)));
         if (this.limit > 0) {
-            result.limitSize(this.limit);
+            boolean doubled = greedyLevel > 0
+                    && Math.random() < greedyLevel * Config.GREED_SUPREME_PROBABILITY_OF_DOUBLING.get();
+            if (doubled) {
+                //break limit on purpose
+                result.grow(result.getCount());
+            } else {
+                result.limitSize(this.limit);
+            }
         }
         cir.setReturnValue(result);
     }

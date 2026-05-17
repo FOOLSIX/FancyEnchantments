@@ -52,6 +52,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> FEINT_ATTACK = key("feint_attack");
     public static final ResourceKey<Enchantment> FIRE_DISASTER = key("fire_disaster");
     public static final ResourceKey<Enchantment> FLOATING = key("floating");
+    public static final ResourceKey<Enchantment> FROZEN_HEART = key("frozen_heart");
+    public static final ResourceKey<Enchantment> GALE = key("gale");
+    public static final ResourceKey<Enchantment> GIFT_OF_FIRE = key("gift_of_fire");
+    public static final ResourceKey<Enchantment> GREED_SUPREME_LOOTING = key("greed_supreme_looting");
+    public static final ResourceKey<Enchantment> HEAVY_ARROW = key("heavy_arrow");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -96,11 +101,11 @@ public final class EnchantmentReg {
             FEINT_ATTACK,
             FIRE_DISASTER,
             FLOATING,
-            key("frozen_heart"),
-            key("gale"),
-            key("gift_of_fire"),
-            key("greed_supreme_looting"),
-            key("heavy_arrow"),
+            FROZEN_HEART,
+            GALE,
+            GIFT_OF_FIRE,
+            GREED_SUPREME_LOOTING,
+            HEAVY_ARROW,
             key("heavy_blow"),
             key("hungry"),
             key("icy_burst"),

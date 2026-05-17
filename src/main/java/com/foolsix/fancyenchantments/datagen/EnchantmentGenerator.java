@@ -912,6 +912,109 @@ public final class EnchantmentGenerator {
                         )
                         .build(FLOATING.location())
         );
+
+        context.register(
+                FROZEN_HEART,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.VICTIM,
+                                EnchantmentTarget.ATTACKER,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN),
+                                        LevelBasedValue.constant(5.0F),
+                                        LevelBasedValue.constant(5.0F),
+                                        LevelBasedValue.perLevel(1.0F),
+                                        LevelBasedValue.perLevel(1.0F)
+                                )
+                        )
+                        .build(FROZEN_HEART.location())
+        );
+
+        context.register(
+                GALE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.MINING_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(GALE.location())
+        );
+
+        context.register(
+                GIFT_OF_FIRE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        10,
+                                        5,
+                                        Enchantment.dynamicCost(5, 8),
+                                        Enchantment.dynamicCost(15, 8),
+                                        2,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .build(GIFT_OF_FIRE.location())
+        );
+
+        context.register(
+                GREED_SUPREME_LOOTING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        items.getOrThrow(ItemTags.AXES),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.LOOTING)))
+                        .build(GREED_SUPREME_LOOTING.location())
+        );
+
+        context.register(
+                HEAVY_ARROW,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.BOW_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.KNOCKBACK,
+                                new AddValue(LevelBasedValue.perLevel(1.0F))
+                        )
+                        .build(HEAVY_ARROW.location())
+        );
     }
 
     private static net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder nonBypassInvulnerabilityRequirement() {
