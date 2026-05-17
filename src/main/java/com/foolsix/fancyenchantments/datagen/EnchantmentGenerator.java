@@ -1,4 +1,5 @@
 package com.foolsix.fancyenchantments.datagen;
+
 import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.effect.AddFireTimeEffect;
@@ -8,6 +9,7 @@ import com.foolsix.fancyenchantments.enchantment.effect.CalmerEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.ApplyMobEffectWithChanceEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.DrowningEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.ErodingEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.LavaBurstEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
@@ -1014,6 +1016,97 @@ public final class EnchantmentGenerator {
                                 new AddValue(LevelBasedValue.perLevel(1.0F))
                         )
                         .build(HEAVY_ARROW.location())
+        );
+
+        context.register(
+                HEAVY_BLOW,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(15, 5),
+                                        Enchantment.dynamicCost(65, 5),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .build(HEAVY_BLOW.location())
+        );
+
+        context.register(
+                HUNGRY,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(8, 5),
+                                        Enchantment.dynamicCost(18, 5),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .build(HUNGRY.location())
+        );
+
+        context.register(
+                ICY_BURST,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .build(ICY_BURST.location())
+        );
+
+        context.register(
+                LAVA_BURST,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(25, 20),
+                                        Enchantment.dynamicCost(75, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new LavaBurstEffect()
+                        )
+                        .build(LAVA_BURST.location())
+        );
+
+        context.register(
+                LIGHTNESS,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(Tags.Items.TOOLS_SHIELD),
+                                        10,
+                                        3,
+                                        Enchantment.dynamicCost(8, 5),
+                                        Enchantment.dynamicCost(23, 5),
+                                        2,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(LIGHTNESS.location())
         );
     }
 

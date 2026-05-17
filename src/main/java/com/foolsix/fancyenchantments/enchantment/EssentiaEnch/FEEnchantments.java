@@ -71,6 +71,24 @@ public final class FEEnchantments {
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUELLISTS_PREROGATIVE)) {
             return new FEBaseEnchantment(key, null, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
         }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.HEAVY_BLOW)) {
+            return new FEBaseEnchantment(key, Element.TERRA, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.HUNGRY)) {
+            return new FEBaseEnchantment(key, Element.TWISTED, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ICY_BURST)) {
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LAVA_BURST)) {
+            int[] condition = new int[Element.values().length];
+            condition[Element.IGNIS.ordinal()] = 5;
+            condition[Element.TERRA.ordinal()] = 3;
+            return new FEBaseEnchantment(key, null, 3, true, false, true, false, true, 0.25D, condition);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LIGHTNESS)) {
+            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
         return new FEBaseEnchantment(key, null, DEFAULT_MAX_LEVEL, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
     }
 }

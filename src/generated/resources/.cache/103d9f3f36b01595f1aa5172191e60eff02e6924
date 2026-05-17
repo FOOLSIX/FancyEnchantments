@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-16T19:09:19.4107412	Registries
+// 1.21.1	2026-05-17T10:49:12.3971771	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -46,3 +46,8 @@ c9b22983ecff5822658a1dbe0be55e01813bed77 data/fancyenchantments/enchantment/froz
 9e08a6660e8ae3fd70faf9546604082c0af14651 data/fancyenchantments/enchantment/gift_of_fire.json
 37c4c1601222d8c4da9aa865e3ad698071b5c72a data/fancyenchantments/enchantment/greed_supreme_looting.json
 208e8fab2c28abcc4a3f4409fa0e60c41f8db432 data/fancyenchantments/enchantment/heavy_arrow.json
+2e32329e57b371b9c8372eb44197d55c4d7c8ad6 data/fancyenchantments/enchantment/heavy_blow.json
+dde44fc946af244ad881b79e59f2564c238c2764 data/fancyenchantments/enchantment/hungry.json
+3dcbea6565790f2d36c8c82075c848a33245d0fb data/fancyenchantments/enchantment/icy_burst.json
+3885371b3d547a6eafe53f7c00744196c5a20fe9 data/fancyenchantments/enchantment/lava_burst.json
+1ef8737705506314a0e823663e93e350b6995411 data/fancyenchantments/enchantment/lightness.json

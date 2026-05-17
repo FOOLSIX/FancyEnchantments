@@ -1,15 +1,15 @@
-// 1.21.1	2026-05-16T19:09:19.416743	Tags for minecraft:enchantment mod id fancyenchantments
-24d7dd6ca31f7dbaf3a7de84721a5d2ced9987fc data/fancyenchantments/tags/enchantment/element/aer.json
-15c032791822f30763d69e0a2ea625581501b751 data/fancyenchantments/tags/enchantment/element/aqua.json
+// 1.21.1	2026-05-17T10:49:12.4011796	Tags for minecraft:enchantment mod id fancyenchantments
+7d1f50fdf7c33cb5fb286e5089ab030dcf209b4f data/fancyenchantments/tags/enchantment/element/aer.json
+6ffe53a66086d2651624c46870d1212b05fc7c42 data/fancyenchantments/tags/enchantment/element/aqua.json
 1c71835a9fcc011e71e8487f23764340ad95d7a2 data/fancyenchantments/tags/enchantment/element/holy.json
-7f36da59a7828fe2e70207b571afc90c1eac4824 data/fancyenchantments/tags/enchantment/element/ignis.json
-0924bf67af4869606f07e60d0df79b129888e311 data/fancyenchantments/tags/enchantment/element/terra.json
-3f888380b44015b0e240fc94ebcc12c3119887bd data/fancyenchantments/tags/enchantment/element/twisted.json
+d95f7ad8550e6f4c5b506f32b9d5552408f4dd86 data/fancyenchantments/tags/enchantment/element/ignis.json
+78eaa9ee745e0baf0a18aa700ff4da693dc84133 data/fancyenchantments/tags/enchantment/element/terra.json
+2abc22c78838fdafb55661eeb8e74184f135e0ea data/fancyenchantments/tags/enchantment/element/twisted.json
 b5e470fd064f8cebca768cd27c251632820cf476 data/minecraft/tags/enchantment/curse.json
 e300e3257b3a77590924b6aaf56aca151317d2be data/minecraft/tags/enchantment/exclusive_set/armor.json
 acdd48d4fedcaedfccd7fd0eef8e7c9d2d360c53 data/minecraft/tags/enchantment/exclusive_set/bow.json
 92400afe00c80a12985c2996be62cb3cf0af1b82 data/minecraft/tags/enchantment/exclusive_set/damage.json
-d12d724a8ae762d7259e248f4b0ac2f9a89b9d7d data/minecraft/tags/enchantment/in_enchanting_table.json
-395631015b4619271def3670e5258bb9fac20d1f data/minecraft/tags/enchantment/non_treasure.json
-29061e0ad53b45f316bfbb1acd45a93e5f267748 data/minecraft/tags/enchantment/tradeable.json
-2e95b9eb7c25bcf89443ec77b1d2c43a75655b80 data/minecraft/tags/enchantment/treasure.json
+a105f47ca233ea303b1f609acadc5e72334eaf0a data/minecraft/tags/enchantment/in_enchanting_table.json
+451f03f2bd4da01536e0a90dbc1fe0ad9cd3eb45 data/minecraft/tags/enchantment/non_treasure.json
+d754f23abd6a2a8bd9653a2ea64c844a13403c3b data/minecraft/tags/enchantment/tradeable.json
+6cb1541a3bd6f6d82b3d33a521a458c5bc0df4c4 data/minecraft/tags/enchantment/treasure.json

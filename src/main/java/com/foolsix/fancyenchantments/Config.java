@@ -99,6 +99,19 @@ public final class Config {
     public static final ModConfigSpec.DoubleValue HEAVY_ARROW_DAMAGE_MULTIPLIER;
     public static final ModConfigSpec.IntValue HEAVY_ARROW_KNOCKBACK_ADDON;
 
+    public static final ModConfigSpec.DoubleValue HEAVY_BLOW_BASE_RATE;
+    public static final ModConfigSpec.DoubleValue HEAVY_BLOW_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue HEAVY_BLOW_SPEED_REDUCER;
+
+    public static final ModConfigSpec.DoubleValue HUNGRY_PROBABILITY;
+
+    public static final ModConfigSpec.DoubleValue ICY_BURST_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.IntValue ICY_BURST_DURATION_PER_LEVEL;
+
+    public static final ModConfigSpec.DoubleValue LAVA_BURST_PROBABILITY;
+
+    public static final ModConfigSpec.DoubleValue LIGHTNESS_SPEED_MULTIPLIER;
+
     static final ModConfigSpec SPEC;
 
     static {
@@ -382,6 +395,45 @@ public final class Config {
         HEAVY_ARROW_KNOCKBACK_ADDON =
                 BUILDER.comment("Arrow knockback += knockback addon * level.")
                         .defineInRange("Knockback Addon", 1, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Heavy Blow");
+        HEAVY_BLOW_BASE_RATE =
+                BUILDER.comment("rate = baseRate * level")
+                        .defineInRange("Base Rate", 0.1D, 0.0D, 1.0D);
+        HEAVY_BLOW_DAMAGE_MULTIPLIER =
+                BUILDER.comment("damage *= 1 + level * multiplier")
+                        .defineInRange("Damage Multiplier", 1.0D, 0.0D, Double.MAX_VALUE);
+        HEAVY_BLOW_SPEED_REDUCER =
+                BUILDER.comment("attackSpeed *= 1 - reducer")
+                        .defineInRange("Speed Reducer", 0.1D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Hungry");
+        HUNGRY_PROBABILITY =
+                BUILDER.comment("The probability of generating a copy = level * probability")
+                        .defineInRange("Probability", 0.2D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Icy Burst");
+        ICY_BURST_DAMAGE_MULTIPLIER =
+                BUILDER.comment("damage = target'sMaxHealth * multiplier * level")
+                        .defineInRange("Damage Multiplier", 0.15D, 0.0D, Double.MAX_VALUE);
+        ICY_BURST_DURATION_PER_LEVEL =
+                BUILDER.comment("Duration per level in seconds.")
+                        .defineInRange("Duration Per Level", 3, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Lava Burst");
+        LAVA_BURST_PROBABILITY =
+                BUILDER.comment("The probability of generating a burst = level * probability")
+                        .defineInRange("Probability", 0.2D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Lightness");
+        LIGHTNESS_SPEED_MULTIPLIER =
+                BUILDER.comment("speed while blocking *= 1 + level * multiplier")
+                        .defineInRange("Speed Multiplier", 0.8D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

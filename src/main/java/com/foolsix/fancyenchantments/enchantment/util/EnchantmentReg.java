@@ -57,6 +57,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> GIFT_OF_FIRE = key("gift_of_fire");
     public static final ResourceKey<Enchantment> GREED_SUPREME_LOOTING = key("greed_supreme_looting");
     public static final ResourceKey<Enchantment> HEAVY_ARROW = key("heavy_arrow");
+    public static final ResourceKey<Enchantment> HEAVY_BLOW = key("heavy_blow");
+    public static final ResourceKey<Enchantment> HUNGRY = key("hungry");
+    public static final ResourceKey<Enchantment> ICY_BURST = key("icy_burst");
+    public static final ResourceKey<Enchantment> LAVA_BURST = key("lava_burst");
+    public static final ResourceKey<Enchantment> LIGHTNESS = key("lightness");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -106,11 +111,11 @@ public final class EnchantmentReg {
             GIFT_OF_FIRE,
             GREED_SUPREME_LOOTING,
             HEAVY_ARROW,
-            key("heavy_blow"),
-            key("hungry"),
-            key("icy_burst"),
-            key("lava_burst"),
-            key("lightness"),
+            HEAVY_BLOW,
+            HUNGRY,
+            ICY_BURST,
+            LAVA_BURST,
+            LIGHTNESS,
             key("lithic_siphon"),
             key("melter"),
             key("mountain_supreme_protection"),
