@@ -89,6 +89,23 @@ public final class FEEnchantments {
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LIGHTNESS)) {
             return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
         }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LITHIC_SIPHON)) {
+            return new FEBaseEnchantment(key, Element.TERRA, 3, true, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.MELTER)) {
+            return new FEBaseEnchantment(key, Element.IGNIS, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.MOUNTAIN_SUPREME_PROTECTION)) {
+            int[] condition = new int[Element.values().length];
+            condition[Element.TERRA.ordinal()] = 5;
+            return new FEBaseEnchantment(key, Element.TERRA, 4, true, false, true, false, true, 0.2D, condition);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.MULTIPLE_SHOT)) {
+            return new FEBaseEnchantment(key, null, 3, true, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
+        if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.NIGHTMARE)) {
+            return new FEBaseEnchantment(key, Element.TWISTED, 3, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
+        }
         return new FEBaseEnchantment(key, null, DEFAULT_MAX_LEVEL, false, true, true, true, true, 0.0D, EMPTY_CONDITION);
     }
 }

@@ -62,6 +62,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> ICY_BURST = key("icy_burst");
     public static final ResourceKey<Enchantment> LAVA_BURST = key("lava_burst");
     public static final ResourceKey<Enchantment> LIGHTNESS = key("lightness");
+    public static final ResourceKey<Enchantment> LITHIC_SIPHON = key("lithic_siphon");
+    public static final ResourceKey<Enchantment> MELTER = key("melter");
+    public static final ResourceKey<Enchantment> MOUNTAIN_SUPREME_PROTECTION = key("mountain_supreme_protection");
+    public static final ResourceKey<Enchantment> MULTIPLE_SHOT = key("multiple_shot");
+    public static final ResourceKey<Enchantment> NIGHTMARE = key("nightmare");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -116,11 +121,11 @@ public final class EnchantmentReg {
             ICY_BURST,
             LAVA_BURST,
             LIGHTNESS,
-            key("lithic_siphon"),
-            key("melter"),
-            key("mountain_supreme_protection"),
-            key("multiple_shot"),
-            key("nightmare"),
+            LITHIC_SIPHON,
+            MELTER,
+            MOUNTAIN_SUPREME_PROTECTION,
+            MULTIPLE_SHOT,
+            NIGHTMARE,
             key("nirvana"),
             key("ocean_current"),
             key("overflow"),

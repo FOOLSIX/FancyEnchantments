@@ -63,7 +63,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(HEAVY_BLOW)
                 .add(HUNGRY)
                 .add(ICY_BURST)
-                .add(LIGHTNESS);
+                .add(LIGHTNESS)
+                .add(MELTER)
+                .add(NIGHTMARE);
         this.tag(EnchantmentTags.TREASURE)
                 .add(AFTERIMAGE)
                 .add(ARMOR_FORGING)
@@ -81,7 +83,10 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(FEINT_ATTACK)
                 .add(GREED_SUPREME_LOOTING)
                 .add(HEAVY_ARROW)
-                .add(LAVA_BURST);
+                .add(LAVA_BURST)
+                .add(LITHIC_SIPHON)
+                .add(MOUNTAIN_SUPREME_PROTECTION)
+                .add(MULTIPLE_SHOT);
         this.tag(EnchantmentTags.NON_TREASURE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -117,7 +122,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(HEAVY_BLOW)
                 .add(HUNGRY)
                 .add(ICY_BURST)
-                .add(LIGHTNESS);
+                .add(LIGHTNESS)
+                .add(MELTER)
+                .add(NIGHTMARE);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -161,7 +168,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(HEAVY_BLOW)
                 .add(HUNGRY)
                 .add(ICY_BURST)
-                .add(LIGHTNESS);
+                .add(LIGHTNESS)
+                .add(MELTER)
+                .add(NIGHTMARE);
         this.tag(EnchantmentTags.CURSE)
                 .add(CRACKED_CROWN)
                 .add(CUMBERSOME)
@@ -169,11 +178,13 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(EMPATHY)
                 .add(ERODING)
                 .add(FIRE_DISASTER)
-                .add(FLOATING);
+                .add(FLOATING)
+                .add(NIGHTMARE);
         this.tag(EnchantmentTags.BOW_EXCLUSIVE)
                 .add(ADVANCED_FLAME);
         this.tag(EnchantmentTags.ARMOR_EXCLUSIVE)
-                .add(ADVANCED_PROTECTION);
+                .add(ADVANCED_PROTECTION)
+                .add(MOUNTAIN_SUPREME_PROTECTION);
         this.tag(EnchantmentTags.DAMAGE_EXCLUSIVE)
                 .add(ADVANCED_SHARPNESS);
         this.tag(AER.tag())
@@ -204,13 +215,16 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ADVANCED_FLAME)
                 .add(FIRE_DISASTER)
                 .add(GIFT_OF_FIRE)
-                .add(LAVA_BURST);
+                .add(LAVA_BURST)
+                .add(MELTER);
         this.tag(TERRA.tag())
                 .add(CUMBERSOME)
                 .add(ERODING)
                 .add(FALLING_STONE)
                 .add(HEAVY_ARROW)
-                .add(HEAVY_BLOW);
+                .add(HEAVY_BLOW)
+                .add(LITHIC_SIPHON)
+                .add(MOUNTAIN_SUPREME_PROTECTION);
         this.tag(TWISTED.tag())
                 .add(BLOOD_SACRIFICE)
                 .add(BLOODTHIRSTY)
@@ -218,6 +232,7 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(CURSED_GAZE)
                 .add(EATER_OF_SOULS)
                 .add(GREED_SUPREME_LOOTING)
-                .add(HUNGRY);
+                .add(HUNGRY)
+                .add(NIGHTMARE);
     }
 }

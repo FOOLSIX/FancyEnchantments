@@ -112,6 +112,19 @@ public final class Config {
 
     public static final ModConfigSpec.DoubleValue LIGHTNESS_SPEED_MULTIPLIER;
 
+    public static final ModConfigSpec.DoubleValue LITHIC_SIPHON_PROBABILITY_PER_LEVEL;
+
+    public static final ModConfigSpec.DoubleValue MELTER_DAMAGE_REDUCER;
+    public static final ModConfigSpec.DoubleValue MELTER_ARMOR_REDUCER;
+    public static final ModConfigSpec.IntValue MELTER_DURATION;
+
+    public static final ModConfigSpec.DoubleValue MOUNTAIN_SUPREME_PROTECTION_REDUCER;
+
+    public static final ModConfigSpec.DoubleValue NIGHTMARE_EXPLODE_RADIUS_BASE;
+    public static final ModConfigSpec.DoubleValue NIGHTMARE_EXPLODE_RADIUS_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue NIGHTMARE_EXPLODE_DAMAGE_BASE;
+    public static final ModConfigSpec.DoubleValue NIGHTMARE_EXPLODE_DAMAGE_PER_LEVEL;
+
     static final ModConfigSpec SPEC;
 
     static {
@@ -139,7 +152,7 @@ public final class Config {
                         .defineInRange("Probability Multiplier", 0.5D, 0.0D, Double.MAX_VALUE);
         AFTERIMAGE_PROBABILITY_CAP_PER_LEVEL =
                 BUILDER.comment("Probability cap per enchantment level.")
-                        .defineInRange("Probability Cap Per Level", 0.3D, 0.0D, Double.MAX_VALUE);
+                        .defineInRange("Probability Cap", 0.3D, 0.0D, Double.MAX_VALUE);
         AFTERIMAGE_PROBABILITY_MAX_CAP =
                 BUILDER.comment("Maximum dodge probability cap.")
                         .defineInRange("Probability Max Cap", 0.8D, 0.0D, 1.0D);
@@ -154,7 +167,7 @@ public final class Config {
         BUILDER.push("Armor Forging");
         ARMOR_FORGING_VALUE_CAP_PER_LEVEL =
                 BUILDER.comment("Upper limit of forging value = value cap per level * level.")
-                        .defineInRange("Value Cap Per Level", 1000, 0, Integer.MAX_VALUE);
+                        .defineInRange("Value Cap", 1000, 0, Integer.MAX_VALUE);
         ARMOR_FORGING_ARMOR_BASE =
                 BUILDER.comment("Increased armor = forging value / armor base * 100%.")
                         .defineInRange("Armor Base", 5000, 1, Integer.MAX_VALUE);
@@ -172,16 +185,16 @@ public final class Config {
         BUILDER.push("Blood Feed");
         BLOOD_FEED_PROBABILITY_PER_LEVEL =
                 BUILDER.comment("Trigger probability = probability per level * level.")
-                        .defineInRange("Probability Per Level", 0.03D, 0.0D, 1.0D);
+                        .defineInRange("Probability", 0.03D, 0.0D, 1.0D);
         BLOOD_FEED_CAP_PER_LEVEL =
                 BUILDER.comment("Stored stack cap = cap per level * level.")
-                        .defineInRange("Cap Per Level", 10, 0, Integer.MAX_VALUE);
+                        .defineInRange("Cap", 10, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         BUILDER.push("Blood Sacrifice");
         BLOOD_SACRIFICE_SELF_DAMAGE_PER_LEVEL =
                 BUILDER.comment("Damage to player per level.")
-                        .defineInRange("Self Damage Per Level", 2.0D, 0.0D, Double.MAX_VALUE);
+                        .defineInRange("Self Damage", 2.0D, 0.0D, Double.MAX_VALUE);
         BLOOD_SACRIFICE_BASE =
                 BUILDER.comment("Damage *= 1 + (base + lost health / max health) * level.")
                         .defineInRange("Multiplier", 0.1D, 0.0D, Double.MAX_VALUE);
@@ -220,7 +233,7 @@ public final class Config {
                         .defineInRange("Distance Multiplier", 2.0D, 0.0D, Double.MAX_VALUE);
         CHARGE_INVINCIBLE_DURATION_PER_LEVEL =
                 BUILDER.comment("Duration = 5 + invincible duration per level * level (ticks).")
-                        .defineInRange("Invincible Duration Per Level", 5, 0, Integer.MAX_VALUE);
+                        .defineInRange("Invincible Duration", 5, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         BUILDER.push("Condition Overload");
@@ -283,7 +296,7 @@ public final class Config {
                         .defineInRange("Push Force Multiplier", 2.0D, 0.0D, Double.MAX_VALUE);
         DOWNWIND_DAMAGE_MULTIPLIER_PER_LEVEL =
                 BUILDER.comment("Airborne target damage *= 1 + damage multiplier per level. Legacy behavior applies this once and does not scale with enchantment level.")
-                        .defineInRange("Damage Multiplier Per Level", 0.2D, 0.0D, Double.MAX_VALUE);
+                        .defineInRange("Damage Multiplier", 0.2D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         BUILDER.push("Drowning");
@@ -421,7 +434,7 @@ public final class Config {
                         .defineInRange("Damage Multiplier", 0.15D, 0.0D, Double.MAX_VALUE);
         ICY_BURST_DURATION_PER_LEVEL =
                 BUILDER.comment("Duration per level in seconds.")
-                        .defineInRange("Duration Per Level", 3, 0, Integer.MAX_VALUE);
+                        .defineInRange("Duration", 3, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         BUILDER.push("Lava Burst");
@@ -434,6 +447,44 @@ public final class Config {
         LIGHTNESS_SPEED_MULTIPLIER =
                 BUILDER.comment("speed while blocking *= 1 + level * multiplier")
                         .defineInRange("Speed Multiplier", 0.8D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Lithic Siphon");
+        LITHIC_SIPHON_PROBABILITY_PER_LEVEL =
+                BUILDER.comment("Trigger probability = probability per level * level.")
+                        .defineInRange("Probability", 0.03D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Melter");
+        MELTER_DAMAGE_REDUCER =
+                BUILDER.comment("All level, reduce base damage")
+                        .defineInRange("Damage Reducer", 0.5D, 0.0D, Double.MAX_VALUE);
+        MELTER_ARMOR_REDUCER =
+                BUILDER.comment("Armor *= 1 - reducer * level")
+                        .defineInRange("Armor Reducer", 0.2D, 0.0D, Double.MAX_VALUE);
+        MELTER_DURATION =
+                BUILDER.comment("The effect duration = level * duration (second)")
+                        .defineInRange("Duration", 3, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Mountain Supreme Protection");
+        MOUNTAIN_SUPREME_PROTECTION_REDUCER =
+                BUILDER.comment("Fixed damage reduction, per level")
+                        .defineInRange("Reducer", 0.5D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Nightmare");
+        NIGHTMARE_EXPLODE_RADIUS_BASE =
+                BUILDER.comment("Explosion radius = base + (level - 1) * per level.")
+                        .defineInRange("Explode Radius Base", 3.0D, 0.0D, Double.MAX_VALUE);
+        NIGHTMARE_EXPLODE_RADIUS_PER_LEVEL =
+                BUILDER.comment("Explosion radius = base + (level - 1) * per level.")
+                        .defineInRange("Explode Radius Step", 1.0D, 0.0D, Double.MAX_VALUE);
+        NIGHTMARE_EXPLODE_DAMAGE_BASE =
+                BUILDER.comment("Explosion entity damage = base + (level - 1) * per level.")
+                        .defineInRange("Explode Damage Base", 8.0D, 0.0D, Double.MAX_VALUE);
+        NIGHTMARE_EXPLODE_DAMAGE_PER_LEVEL =
+                BUILDER.defineInRange("Explode Damage Step", 4.0D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

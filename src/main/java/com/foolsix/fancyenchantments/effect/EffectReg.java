@@ -18,8 +18,8 @@ public final class EffectReg {
             EFFECTS.register(CumbersomeMobEffect.NAME, CumbersomeMobEffect::new);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> TEMPLAR_SHIELD =
             registerBeneficial("templar_shield", 0xFFF2AA);
-    public static final DeferredHolder<MobEffect, SimpleMobEffect> MELTING =
-            registerHarmful("melting", 0xFF7A00);
+    public static final DeferredHolder<MobEffect, MeltingMobEffect> MELTING =
+            EFFECTS.register(MeltingMobEffect.NAME, MeltingMobEffect::new);
     public static final DeferredHolder<MobEffect, SimpleMobEffect> ATTACK_SPEED_BOOST =
             registerBeneficial("attack_speed_boost", 0x55FFFF);
     public static final DeferredHolder<MobEffect, Invincible> INVINCIBLE =

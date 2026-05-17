@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-17T10:49:12.3971771	Registries
+// 1.21.1	2026-05-17T11:33:44.9980468	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -51,3 +51,8 @@ dde44fc946af244ad881b79e59f2564c238c2764 data/fancyenchantments/enchantment/hung
 3dcbea6565790f2d36c8c82075c848a33245d0fb data/fancyenchantments/enchantment/icy_burst.json
 3885371b3d547a6eafe53f7c00744196c5a20fe9 data/fancyenchantments/enchantment/lava_burst.json
 1ef8737705506314a0e823663e93e350b6995411 data/fancyenchantments/enchantment/lightness.json
+7f655c10f428b21fe8d4307c57d46de72f8a022f data/fancyenchantments/enchantment/lithic_siphon.json
+242300950425b310ed8c841f800af0a095336d2e data/fancyenchantments/enchantment/melter.json
+349d703fcc5f513a7a6e36df115a555451e295ab data/fancyenchantments/enchantment/mountain_supreme_protection.json
+aa1d54faccb4a5a9be0c71ccce04372decb8d8c1 data/fancyenchantments/enchantment/multiple_shot.json
+d2f5a57c0cf803ee344c6657253b648dbbc918aa data/fancyenchantments/enchantment/nightmare.json

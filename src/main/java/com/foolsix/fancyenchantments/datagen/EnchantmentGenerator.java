@@ -1108,6 +1108,108 @@ public final class EnchantmentGenerator {
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
                         .build(LIGHTNESS.location())
         );
+
+        context.register(
+                LITHIC_SIPHON,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.MINING_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .build(LITHIC_SIPHON.location())
+        );
+
+        context.register(
+                MELTER,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(mobEffects.getOrThrow(EffectReg.MELTING.getKey())),
+                                        LevelBasedValue.perLevel(3.0F),
+                                        LevelBasedValue.perLevel(3.0F),
+                                        LevelBasedValue.perLevel(0.0F, 1.0F),
+                                        LevelBasedValue.perLevel(0.0F, 1.0F)
+                                )
+                        )
+                        .build(MELTER.location())
+        );
+
+        context.register(
+                MOUNTAIN_SUPREME_PROTECTION,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.ARMOR_ENCHANTABLE),
+                                        1,
+                                        4,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.ARMOR
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE_PROTECTION,
+                                new AddValue(LevelBasedValue.perLevel(3.0F)),
+                                nonBypassInvulnerabilityRequirement()
+                        )
+                        .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.ARMOR_EXCLUSIVE))
+                        .build(MOUNTAIN_SUPREME_PROTECTION.location())
+        );
+
+        context.register(
+                MULTIPLE_SHOT,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.BOW_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .build(MULTIPLE_SHOT.location())
+        );
+
+        context.register(
+                NIGHTMARE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(60, 10),
+                                        4,
+                                        EquipmentSlotGroup.HEAD
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .build(NIGHTMARE.location())
+        );
     }
 
     private static net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder nonBypassInvulnerabilityRequirement() {
