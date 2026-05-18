@@ -137,6 +137,13 @@ public final class Config {
     public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_TRANSFERRED_DAMAGE_RATIO;
     public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_UPPER_LIMIT;
 
+    public static final ModConfigSpec.DoubleValue DROP_PROBABILITY;
+    public static final ModConfigSpec.DoubleValue CURSE_REMOVAL_PROBABILITY;
+    public static final ModConfigSpec.DoubleValue UNDEAD_DAMAGE_ADDON;
+    public static final ModConfigSpec.DoubleValue EXPLOSION_HEAL_MULTIPLIER;
+    public static final ModConfigSpec.IntValue EXPLOSION_ARMOR_BASE_DAMAGE;
+    public static final ModConfigSpec.DoubleValue EXPLOSION_DAMAGE_MULTIPLIER;
+
     static final ModConfigSpec SPEC;
 
     static {
@@ -549,6 +556,36 @@ public final class Config {
         PALADINS_SHIELD_UPPER_LIMIT =
                 BUILDER.comment("If the final damage exceeds the upper limit * receiver's max health, it will not be transferred.")
                         .defineInRange("Upper Limit", 0.5D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Pervert");
+        DROP_PROBABILITY =
+                BUILDER.comment("Probability to drop the cursed item upon equipping.")
+                        .defineInRange("Drop Probability", 0.9D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Pure Fate");
+        CURSE_REMOVAL_PROBABILITY =
+                BUILDER.comment("Probability of removing a curse = probability * level.")
+                        .defineInRange("Curse Removal Probability", 0.1D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Purifying");
+        UNDEAD_DAMAGE_ADDON =
+                BUILDER.comment("Damage to undead += addon * level.")
+                        .defineInRange("Undead Damage Addon", 3.0D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Pyromaniac");
+        EXPLOSION_HEAL_MULTIPLIER =
+                BUILDER.comment("Heal amount = explosive damage * multiplier * level.")
+                        .defineInRange("Explosion Heal Multiplier", 0.1D, 0.0D, Double.MAX_VALUE);
+        EXPLOSION_ARMOR_BASE_DAMAGE =
+                BUILDER.comment("Durability value of armor -= base + heal amount * multiplier.")
+                        .defineInRange("Armor Base Damage", 3, 0, Integer.MAX_VALUE);
+        EXPLOSION_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Durability value of armor -= base + heal amount * multiplier.")
+                        .defineInRange("Explosion Damage Multiplier", 1.0D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

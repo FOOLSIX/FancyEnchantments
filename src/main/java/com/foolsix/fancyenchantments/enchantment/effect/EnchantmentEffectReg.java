@@ -29,6 +29,8 @@ public final class EnchantmentEffectReg {
             ENTITY_EFFECT_TYPES.register("apply_mob_effect_if_absent", () -> ApplyMobEffectIfAbsentEffect.CODEC);
     public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<LavaBurstEffect>> LAVA_BURST =
             ENTITY_EFFECT_TYPES.register("lava_burst", () -> LavaBurstEffect.CODEC);
+    public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<PurificationSlashEffect>> PURIFICATION_SLASH =
+            ENTITY_EFFECT_TYPES.register("purification_slash", () -> PurificationSlashEffect.CODEC);
 
     private EnchantmentEffectReg() {
     }

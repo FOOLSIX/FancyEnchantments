@@ -10,10 +10,12 @@ import com.foolsix.fancyenchantments.enchantment.effect.ApplyMobEffectWithChance
 import com.foolsix.fancyenchantments.enchantment.effect.DrowningEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.ErodingEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.LavaBurstEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.PurificationSlashEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.EntityTypePredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +23,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
@@ -1294,6 +1297,108 @@ public final class EnchantmentGenerator {
                         )
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
                         .build(PALADINS_SHIELD.location())
+        );
+
+        context.register(
+                PERVERT,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.LEG_ARMOR_ENCHANTABLE),
+                                        1,
+                                        1,
+                                        Enchantment.dynamicCost(15, 10),
+                                        Enchantment.dynamicCost(65, 10),
+                                        8,
+                                        EquipmentSlotGroup.LEGS
+                                )
+                        )
+                        .build(PERVERT.location())
+        );
+
+        context.register(
+                PURE_FATE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        1,
+                                        3,
+                                        Enchantment.dynamicCost(25, 20),
+                                        Enchantment.dynamicCost(75, 20),
+                                        8,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(PURE_FATE.location())
+        );
+
+        context.register(
+                PURIFICATION_SLASH,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        1,
+                                        1,
+                                        Enchantment.dynamicCost(15, 10),
+                                        Enchantment.dynamicCost(65, 10),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new PurificationSlashEffect()
+                        )
+                        .build(PURIFICATION_SLASH.location())
+        );
+
+        context.register(
+                PURIFYING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE),
+                                        5,
+                                        5,
+                                        Enchantment.dynamicCost(20, 2),
+                                        Enchantment.dynamicCost(70, 2),
+                                        4,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new AddValue(LevelBasedValue.perLevel(3.0F)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.entity()
+                                                .entityType(EntityTypePredicate.of(EntityTypeTags.SENSITIVE_TO_SMITE))
+                                                .build()
+                                )
+                        )
+                        .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.SMITE)))
+                        .build(PURIFYING.location())
+        );
+
+        context.register(
+                PYROMANIAC,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                                        1,
+                                        5,
+                                        Enchantment.dynamicCost(5, 5),
+                                        Enchantment.dynamicCost(55, 5),
+                                        8,
+                                        EquipmentSlotGroup.CHEST
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.BLAST_PROTECTION)))
+                        .build(PYROMANIAC.location())
         );
     }
 

@@ -72,6 +72,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> OVERFLOW = key("overflow");
     public static final ResourceKey<Enchantment> OVER_HEALING = key("over_healing");
     public static final ResourceKey<Enchantment> PALADINS_SHIELD = key("paladins_shield");
+    public static final ResourceKey<Enchantment> PERVERT = key("pervert");
+    public static final ResourceKey<Enchantment> PURE_FATE = key("pure_fate");
+    public static final ResourceKey<Enchantment> PURIFICATION_SLASH = key("purification_slash");
+    public static final ResourceKey<Enchantment> PURIFYING = key("purifying");
+    public static final ResourceKey<Enchantment> PYROMANIAC = key("pyromaniac");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -136,11 +141,11 @@ public final class EnchantmentReg {
             OVERFLOW,
             OVER_HEALING,
             PALADINS_SHIELD,
-            key("pervert"),
-            key("pure_fate"),
-            key("purification_slash"),
-            key("purifying"),
-            key("pyromaniac"),
+            PERVERT,
+            PURE_FATE,
+            PURIFICATION_SLASH,
+            PURIFYING,
+            PYROMANIAC,
             key("recoil"),
             key("reflecting"),
             key("rocket_jump"),

@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-17T16:38:20.364383	Registries
+// 1.21.1	2026-05-18T19:03:49.0995769	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -61,3 +61,8 @@ d2f5a57c0cf803ee344c6657253b648dbbc918aa data/fancyenchantments/enchantment/nigh
 2d500abc22db33179dadf199f69a37383b254b79 data/fancyenchantments/enchantment/overflow.json
 55c24292f0a014571b276ca851a7f5a8f44e1e57 data/fancyenchantments/enchantment/over_healing.json
 ad99dd650941814ec53856cf205582ae571539af data/fancyenchantments/enchantment/paladins_shield.json
+cc70f76c1c25278938145cdc35eb3d0cdb36bbc3 data/fancyenchantments/enchantment/pervert.json
+c1baadad34e2d7605ceb9c790f318295de0eea2c data/fancyenchantments/enchantment/pure_fate.json
+78054cd3664251480d95f095e713717d6df4d441 data/fancyenchantments/enchantment/purification_slash.json
+0b71f6cee1ec8cf9688a0608edb932e7f79897a8 data/fancyenchantments/enchantment/purifying.json
+4bd2a5d5a55721f77fcf017f07f6c91159164d51 data/fancyenchantments/enchantment/pyromaniac.json
