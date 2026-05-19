@@ -1,0 +1,55 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "color": "green",
+    "translate": "enchantment.fancyenchantments.solid_as_a_rock"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.15,
+          "per_level_above_first": 0.15
+        },
+        "attribute": "minecraft:generic.armor",
+        "id": "fancyenchantments:solid_as_a_rock/armor",
+        "operation": "add_multiplied_total"
+      },
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.1,
+          "per_level_above_first": 0.1
+        },
+        "attribute": "minecraft:generic.armor_toughness",
+        "id": "fancyenchantments:solid_as_a_rock/armor_toughness",
+        "operation": "add_multiplied_total"
+      },
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": -0.1,
+          "per_level_above_first": -0.1
+        },
+        "attribute": "minecraft:generic.movement_speed",
+        "id": "fancyenchantments:solid_as_a_rock/movement_speed",
+        "operation": "add_multiplied_total"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 70,
+    "per_level_above_first": 20
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 13,
+    "per_level_above_first": 5
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#c:tools/shield",
+  "weight": 2
+}

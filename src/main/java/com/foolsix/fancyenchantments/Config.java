@@ -144,6 +144,18 @@ public final class Config {
     public static final ModConfigSpec.IntValue EXPLOSION_ARMOR_BASE_DAMAGE;
     public static final ModConfigSpec.DoubleValue EXPLOSION_DAMAGE_MULTIPLIER;
 
+    public static final ModConfigSpec.DoubleValue REFLECTING_BASE_VELOCITY;
+    public static final ModConfigSpec.IntValue REFLECTING_BASE_DAMAGE;
+
+    public static final ModConfigSpec.DoubleValue ROLLING_STONE_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue ROLLING_STONE_DAMAGE_REDUCER;
+    public static final ModConfigSpec.DoubleValue ROLLING_STONE_LOWER_LIMIT;
+
+    public static final ModConfigSpec.DoubleValue SANDER_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue SHARP_ROCK_SHIELD_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue SHARP_ROCK_WEAPON_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue SIGHS_OF_ASHES_DAMAGE_PER_SECOND;
+
     static final ModConfigSpec SPEC;
 
     static {
@@ -586,6 +598,48 @@ public final class Config {
         EXPLOSION_DAMAGE_MULTIPLIER =
                 BUILDER.comment("Durability value of armor -= base + heal amount * multiplier.")
                         .defineInRange("Explosion Damage Multiplier", 1.0D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Reflecting");
+        REFLECTING_BASE_VELOCITY =
+                BUILDER.comment("Reflected projectile velocity = 1.0 + baseVelocity * level.")
+                        .defineInRange("Base Velocity", 0.5D, 0.0D, Double.MAX_VALUE);
+        REFLECTING_BASE_DAMAGE =
+                BUILDER.comment("Durability value of shield -= base.")
+                        .defineInRange("Base Damage", 3, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Rolling Stone");
+        ROLLING_STONE_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage += multiplier * level * speed.")
+                        .defineInRange("Damage Multiplier", 25.0D, 0.0D, Double.MAX_VALUE);
+        ROLLING_STONE_DAMAGE_REDUCER =
+                BUILDER.comment("Damage taken *= 1 - reducer * level.")
+                        .defineInRange("Damage Reducer", 0.1D, 0.0D, 1.0D);
+        ROLLING_STONE_LOWER_LIMIT =
+                BUILDER.comment("Lower limit, minimum percentage of damage taken.")
+                        .defineInRange("Lower Limit", 0.5D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Sander");
+        SANDER_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage *= 1 + (damageValue / maxDamage) * level * multiplier.")
+                        .defineInRange("Damage Multiplier", 1.0D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Sharp Rock");
+        SHARP_ROCK_SHIELD_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Shield damage = armor * multiplier * level.")
+                        .defineInRange("Shield Damage Multiplier", 0.4D, 0.0D, Double.MAX_VALUE);
+        SHARP_ROCK_WEAPON_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage += armor * multiplier * level.")
+                        .defineInRange("Weapon Damage Multiplier", 0.2D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Sighs of Ashes");
+        SIGHS_OF_ASHES_DAMAGE_PER_SECOND =
+                BUILDER.comment("Damage += remaining fire seconds * multiplier.")
+                        .defineInRange("Damage Per Second", 0.2D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

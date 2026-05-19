@@ -77,6 +77,16 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> PURIFICATION_SLASH = key("purification_slash");
     public static final ResourceKey<Enchantment> PURIFYING = key("purifying");
     public static final ResourceKey<Enchantment> PYROMANIAC = key("pyromaniac");
+    public static final ResourceKey<Enchantment> RECOIL = key("recoil");
+    public static final ResourceKey<Enchantment> REFLECTING = key("reflecting");
+    public static final ResourceKey<Enchantment> ROCKET_JUMP = key("rocket_jump");
+    public static final ResourceKey<Enchantment> ROLLING_STONE = key("rolling_stone");
+    public static final ResourceKey<Enchantment> SACRED_SUPREME_SHARPNESS = key("sacred_supreme_sharpness");
+    public static final ResourceKey<Enchantment> SANDER = key("sander");
+    public static final ResourceKey<Enchantment> SELF_IMMOLATION = key("self_immolation");
+    public static final ResourceKey<Enchantment> SHARP_ROCK = key("sharp_rock");
+    public static final ResourceKey<Enchantment> SIGHS_OF_ASHES = key("sighs_of_ashes");
+    public static final ResourceKey<Enchantment> SOLID_AS_A_ROCK = key("solid_as_a_rock");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -146,16 +156,16 @@ public final class EnchantmentReg {
             PURIFICATION_SLASH,
             PURIFYING,
             PYROMANIAC,
-            key("recoil"),
-            key("reflecting"),
-            key("rocket_jump"),
-            key("rolling_stone"),
-            key("sacred_supreme_sharpness"),
-            key("sander"),
-            key("self_immolation"),
-            key("sharp_rock"),
-            key("sighs_of_ashes"),
-            key("solid_as_a_rock"),
+            RECOIL,
+            REFLECTING,
+            ROCKET_JUMP,
+            ROLLING_STONE,
+            SACRED_SUPREME_SHARPNESS,
+            SANDER,
+            SELF_IMMOLATION,
+            SHARP_ROCK,
+            SIGHS_OF_ASHES,
+            SOLID_AS_A_ROCK,
             key("spreading_spores"),
             key("stacking_waves"),
             key("standing_wall"),

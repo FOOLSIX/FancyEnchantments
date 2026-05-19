@@ -31,6 +31,8 @@ public final class EnchantmentEffectReg {
             ENTITY_EFFECT_TYPES.register("lava_burst", () -> LavaBurstEffect.CODEC);
     public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<PurificationSlashEffect>> PURIFICATION_SLASH =
             ENTITY_EFFECT_TYPES.register("purification_slash", () -> PurificationSlashEffect.CODEC);
+    public static final DeferredHolder<MapCodec<? extends EnchantmentEntityEffect>, MapCodec<RecoilEffect>> RECOIL =
+            ENTITY_EFFECT_TYPES.register("recoil", () -> RecoilEffect.CODEC);
 
     private EnchantmentEffectReg() {
     }

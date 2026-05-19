@@ -11,6 +11,7 @@ import com.foolsix.fancyenchantments.enchantment.effect.DrowningEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.ErodingEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.LavaBurstEffect;
 import com.foolsix.fancyenchantments.enchantment.effect.PurificationSlashEffect;
+import com.foolsix.fancyenchantments.enchantment.effect.RecoilEffect;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
@@ -1399,6 +1400,226 @@ public final class EnchantmentGenerator {
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
                         .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(Enchantments.BLAST_PROTECTION)))
                         .build(PYROMANIAC.location())
+        );
+
+        context.register(
+                RECOIL,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        3,
+                                        3,
+                                        Enchantment.dynamicCost(11, 10),
+                                        Enchantment.dynamicCost(61, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.ATTACKER,
+                                new RecoilEffect(0.2F, LevelBasedValue.perLevel(0.5F))
+                        )
+                        .build(RECOIL.location())
+        );
+
+        context.register(
+                REFLECTING,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(Tags.Items.TOOLS_SHIELD),
+                                        5,
+                                        5,
+                                        Enchantment.dynamicCost(10, 5),
+                                        Enchantment.dynamicCost(20, 5),
+                                        4,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(REFLECTING.location())
+        );
+
+        context.register(
+                ROCKET_JUMP,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                                        3,
+                                        3,
+                                        Enchantment.dynamicCost(11, 10),
+                                        Enchantment.dynamicCost(61, 10),
+                                        8,
+                                        EquipmentSlotGroup.FEET
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .build(ROCKET_JUMP.location())
+        );
+
+        context.register(
+                ROLLING_STONE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                                        3,
+                                        3,
+                                        Enchantment.dynamicCost(9, 8),
+                                        Enchantment.dynamicCost(54, 8),
+                                        4,
+                                        EquipmentSlotGroup.FEET
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .build(ROLLING_STONE.location())
+        );
+
+        context.register(
+                SACRED_SUPREME_SHARPNESS,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE),
+                                        items.getOrThrow(ItemTags.AXES),
+                                        2,
+                                        5,
+                                        Enchantment.dynamicCost(11, 10),
+                                        Enchantment.dynamicCost(61, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new AddValue(LevelBasedValue.perLevel(1.5F, 5.0F))
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new AddValue(LevelBasedValue.perLevel(1.5F, 0.0F)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.entity()
+                                                .entityType(EntityTypePredicate.of(EntityTypeTags.SENSITIVE_TO_SMITE))
+                                                .build()
+                                )
+                        )
+                        .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
+                        .build(SACRED_SUPREME_SHARPNESS.location())
+        );
+
+        context.register(
+                SANDER,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        3,
+                                        3,
+                                        Enchantment.dynamicCost(11, 10),
+                                        Enchantment.dynamicCost(61, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .build(SANDER.location())
+        );
+
+        context.register(
+                SELF_IMMOLATION,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        3,
+                                        1,
+                                        Enchantment.dynamicCost(11, 10),
+                                        Enchantment.dynamicCost(61, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .build(SELF_IMMOLATION.location())
+        );
+
+        context.register(
+                SHARP_ROCK,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        items.getOrThrow(Tags.Items.TOOLS_SHIELD),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .build(SHARP_ROCK.location())
+        );
+
+        context.register(
+                SIGHS_OF_ASHES,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.IGNIS, c))
+                        .build(SIGHS_OF_ASHES.location())
+        );
+
+        context.register(
+                SOLID_AS_A_ROCK,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(Tags.Items.TOOLS_SHIELD),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(13, 5),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "solid_as_a_rock/armor"),
+                                        Attributes.ARMOR,
+                                        LevelBasedValue.perLevel(0.15F),
+                                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "solid_as_a_rock/armor_toughness"),
+                                        Attributes.ARMOR_TOUGHNESS,
+                                        LevelBasedValue.perLevel(0.1F),
+                                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "solid_as_a_rock/movement_speed"),
+                                        Attributes.MOVEMENT_SPEED,
+                                        LevelBasedValue.perLevel(-0.1F),
+                                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                )
+                        )
+                        .build(SOLID_AS_A_ROCK.location())
         );
     }
 
