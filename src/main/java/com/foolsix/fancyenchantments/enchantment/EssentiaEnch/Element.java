@@ -1,5 +1,6 @@
 package com.foolsix.fancyenchantments.enchantment.EssentiaEnch;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +16,11 @@ public enum Element {
     TERRA(ChatFormatting.GREEN, 0x55FF55, "element/terra"),
     HOLY(ChatFormatting.WHITE, 0xFFFFFF, "element/holy"),
     TWISTED(ChatFormatting.DARK_PURPLE, 0xAA00AA, "element/twisted");
+
+    public static final Codec<Element> CODEC = Codec.STRING.xmap(
+            s -> valueOf(s.toUpperCase()),
+            e -> e.name().toLowerCase()
+    );
 
     private final ChatFormatting chatFormatting;
     private final int color;

@@ -20,6 +20,7 @@ public final class DataGenerator {
         if (event.includeServer()) {
             event.createDatapackRegistryObjects(BUILDER);
             event.createProvider(EnchantmentTagsProvider::new);
+            event.createProvider(ElementConditionProvider::new);
         }
     }
 }

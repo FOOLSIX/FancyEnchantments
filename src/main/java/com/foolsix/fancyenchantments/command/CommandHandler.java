@@ -14,5 +14,6 @@ public final class CommandHandler {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         ElementStatCommand.register(event.getDispatcher());
+        ElementConditionCommand.register(event.getDispatcher());
     }
 }

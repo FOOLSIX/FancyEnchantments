@@ -6,8 +6,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-
 public record FEBaseEnchantment(
         ResourceKey<Enchantment> key,
         @Nullable Element element,
@@ -17,13 +15,8 @@ public record FEBaseEnchantment(
         boolean allowedOnBooks,
         boolean discoverable,
         boolean inElementalTable,
-        double chestGenerationProbability,
-        int[] chestGenerationCondition
+        double chestGenerationProbability
 ) {
-    public FEBaseEnchantment {
-        chestGenerationCondition = Arrays.copyOf(chestGenerationCondition, EnchUtils.ELEMENT_COUNT);
-    }
-
     public boolean is(ResourceKey<Enchantment> other) {
         return this.key.equals(other);
     }
@@ -36,9 +29,9 @@ public record FEBaseEnchantment(
         return this.chestGenerationProbability > 0.0D;
     }
 
-    public boolean tryGenerateOnce(int[] elementalStats) {
+    public boolean tryGenerateOnce(int[] elementalStats, int[] condition) {
         return this.isSpecialLoot()
                 && Math.random() <= this.chestGenerationProbability
-                && EnchUtils.matchesElementCondition(elementalStats, this.chestGenerationCondition);
+                && EnchUtils.matchesElementCondition(elementalStats, condition);
     }
 }

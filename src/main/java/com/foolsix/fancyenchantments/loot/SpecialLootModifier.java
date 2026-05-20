@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.loot;
 
 import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.util.ElementConditionManager;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -55,7 +56,7 @@ public final class SpecialLootModifier extends LootModifier {
         int[] elementStats = EnchUtils.getElementStatsFromEquipment(player);
         List<FEBaseEnchantment> candidates = new ArrayList<>();
         for (FEBaseEnchantment enchantment : EnchUtils.getAllSpecialLootEnchantments()) {
-            if (enchantment.tryGenerateOnce(elementStats)) {
+            if (enchantment.tryGenerateOnce(elementStats, ElementConditionManager.getCondition(enchantment.key().location()))) {
                 candidates.add(enchantment);
             }
         }

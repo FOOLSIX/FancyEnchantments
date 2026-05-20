@@ -1,0 +1,7 @@
+{
+  "enchantment": "fancyenchantments:lava_burst",
+  "values": {
+    "ignis": 5,
+    "terra": 3
+  }
+}
