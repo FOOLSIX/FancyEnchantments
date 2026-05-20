@@ -101,11 +101,6 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
 
-    // Cloth Config
-    implementation "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
-
-
-
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html

@@ -87,6 +87,11 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> SHARP_ROCK = key("sharp_rock");
     public static final ResourceKey<Enchantment> SIGHS_OF_ASHES = key("sighs_of_ashes");
     public static final ResourceKey<Enchantment> SOLID_AS_A_ROCK = key("solid_as_a_rock");
+    public static final ResourceKey<Enchantment> SPREADING_SPORES = key("spreading_spores");
+    public static final ResourceKey<Enchantment> STACKING_WAVES = key("stacking_waves");
+    public static final ResourceKey<Enchantment> STANDING_WALL = key("standing_wall");
+    public static final ResourceKey<Enchantment> STREAMLINE = key("streamline");
+    public static final ResourceKey<Enchantment> THE_FALLEN = key("the_fallen");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -166,11 +171,11 @@ public final class EnchantmentReg {
             SHARP_ROCK,
             SIGHS_OF_ASHES,
             SOLID_AS_A_ROCK,
-            key("spreading_spores"),
-            key("stacking_waves"),
-            key("standing_wall"),
-            key("streamline"),
-            key("the_fallen"),
+            SPREADING_SPORES,
+            STACKING_WAVES,
+            STANDING_WALL,
+            STREAMLINE,
+            THE_FALLEN,
             key("thrilling_thunder"),
             key("unyielding_spirit"),
             key("wind_blade"),

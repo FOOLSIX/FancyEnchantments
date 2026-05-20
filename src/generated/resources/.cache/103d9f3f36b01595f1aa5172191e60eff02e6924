@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-19T15:40:27.6307001	Registries
+// 1.21.1	2026-05-19T16:40:12.6561964	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -76,3 +76,8 @@ cb612de4bdf71005309da545497657a60fc6e730 data/fancyenchantments/enchantment/sand
 8f6971f42a95124e1df5ddc3f08e8e3ca2b7083a data/fancyenchantments/enchantment/sharp_rock.json
 adb716854e7088e49b56f5c265a6109f62f1dbc9 data/fancyenchantments/enchantment/sighs_of_ashes.json
 01d23a68d0bf5f54a2328c80386fb11dac211713 data/fancyenchantments/enchantment/solid_as_a_rock.json
+71ca8b511f31035324ae7a2936d206a60ee98d8b data/fancyenchantments/enchantment/spreading_spores.json
+c7af4d427ca2e98655807a77f83739157798c593 data/fancyenchantments/enchantment/stacking_waves.json
+0eae05155eca07b006b9db019fce1cffd6243b7d data/fancyenchantments/enchantment/standing_wall.json
+fba960bed29f8281f621c365951db73474c463d6 data/fancyenchantments/enchantment/streamline.json
+96858b560bcfdbfd6561e6f7a64b983582962c02 data/fancyenchantments/enchantment/the_fallen.json

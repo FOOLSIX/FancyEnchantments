@@ -1621,6 +1621,100 @@ public final class EnchantmentGenerator {
                         )
                         .build(SOLID_AS_A_ROCK.location())
         );
+
+        context.register(
+                SPREADING_SPORES,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .build(SPREADING_SPORES.location())
+        );
+
+        context.register(
+                STACKING_WAVES,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        3,
+                                        3,
+                                        Enchantment.dynamicCost(11, 10),
+                                        Enchantment.dynamicCost(61, 10),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AQUA, c))
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath("fancyenchantments", "stacking_waves/attack_speed"),
+                                        Attributes.ATTACK_SPEED,
+                                        LevelBasedValue.perLevel(-0.1F),
+                                        AttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                )
+                        )
+                        .build(STACKING_WAVES.location())
+        );
+
+        context.register(
+                STANDING_WALL,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(Tags.Items.TOOLS_SHIELD),
+                                        3,
+                                        1,
+                                        Enchantment.dynamicCost(11, 10),
+                                        Enchantment.dynamicCost(61, 10),
+                                        8,
+                                        EquipmentSlotGroup.HAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TERRA, c))
+                        .build(STANDING_WALL.location())
+        );
+
+        context.register(
+                STREAMLINE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.BOW_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(STREAMLINE.location())
+        );
+
+        context.register(
+                THE_FALLEN,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
+                        .build(THE_FALLEN.location())
+        );
     }
 
     private static net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder nonBypassInvulnerabilityRequirement() {

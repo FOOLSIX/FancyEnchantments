@@ -155,6 +155,12 @@ public final class Config {
     public static final ModConfigSpec.DoubleValue SHARP_ROCK_SHIELD_DAMAGE_MULTIPLIER;
     public static final ModConfigSpec.DoubleValue SHARP_ROCK_WEAPON_DAMAGE_MULTIPLIER;
     public static final ModConfigSpec.DoubleValue SIGHS_OF_ASHES_DAMAGE_PER_SECOND;
+    public static final ModConfigSpec.IntValue SPREADING_SPORES_SPORE_CAP;
+    public static final ModConfigSpec.DoubleValue SPREADING_SPORES_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.IntValue STACKING_WAVES_DURATION;
+    public static final ModConfigSpec.DoubleValue STACKING_WAVES_ATTACK_SPEED_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue STREAMLINE_SPEED_MULTIPLIER_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue THE_FALLEN_DAMAGE_MULTIPLIER;
 
     static final ModConfigSpec SPEC;
 
@@ -640,6 +646,36 @@ public final class Config {
         SIGHS_OF_ASHES_DAMAGE_PER_SECOND =
                 BUILDER.comment("Damage += remaining fire seconds * multiplier.")
                         .defineInRange("Damage Per Second", 0.2D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Spreading Spores");
+        SPREADING_SPORES_SPORE_CAP =
+                BUILDER.comment("Reaching the cap triggers the damage.")
+                        .defineInRange("Spore Cap", 10, 0, Integer.MAX_VALUE);
+        SPREADING_SPORES_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage *= multiplier on spore cap trigger.")
+                        .defineInRange("Damage Multiplier", 3.0D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Stacking Waves");
+        STACKING_WAVES_DURATION =
+                BUILDER.comment("Effect duration in seconds.")
+                        .defineInRange("Duration", 2, 0, Integer.MAX_VALUE);
+        STACKING_WAVES_ATTACK_SPEED_MULTIPLIER =
+                BUILDER.comment("Attack speed += attack speed multiplier * (effect amplifier + 1).")
+                        .defineInRange("Attack Speed Multiplier", 0.3D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Streamline");
+        STREAMLINE_SPEED_MULTIPLIER_PER_LEVEL =
+                BUILDER.comment("Arrow speed boost per enchantment level.")
+                        .defineInRange("Speed Multiplier", 0.5D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("The Fallen");
+        THE_FALLEN_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage *= 1 + multiplier * level * curse count.")
+                        .defineInRange("Damage Multiplier", 0.3D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

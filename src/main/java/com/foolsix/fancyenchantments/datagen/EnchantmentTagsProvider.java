@@ -80,7 +80,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ROCKET_JUMP)
                 .add(ROLLING_STONE)
                 .add(SANDER)
-                .add(SELF_IMMOLATION);
+                .add(SELF_IMMOLATION)
+                .add(STACKING_WAVES);
         this.tag(EnchantmentTags.TREASURE)
                 .add(AFTERIMAGE)
                 .add(ARMOR_FORGING)
@@ -106,7 +107,11 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(SACRED_SUPREME_SHARPNESS)
                 .add(SHARP_ROCK)
                 .add(SIGHS_OF_ASHES)
-                .add(SOLID_AS_A_ROCK);
+                .add(SOLID_AS_A_ROCK)
+                .add(SPREADING_SPORES)
+                .add(STANDING_WALL)
+                .add(STREAMLINE)
+                .add(THE_FALLEN);
         this.tag(EnchantmentTags.NON_TREASURE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -159,7 +164,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ROCKET_JUMP)
                 .add(ROLLING_STONE)
                 .add(SANDER)
-                .add(SELF_IMMOLATION);
+                .add(SELF_IMMOLATION)
+                .add(STACKING_WAVES);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -221,7 +227,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ROCKET_JUMP)
                 .add(ROLLING_STONE)
                 .add(SANDER)
-                .add(SELF_IMMOLATION);
+                .add(SELF_IMMOLATION)
+                .add(STACKING_WAVES);
         this.tag(EnchantmentTags.CURSE)
                 .add(CRACKED_CROWN)
                 .add(CUMBERSOME)
@@ -254,7 +261,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(GALE)
                 .add(LIGHTNESS)
                 .add(RECOIL)
-                .add(REFLECTING);
+                .add(REFLECTING)
+                .add(STREAMLINE);
         this.tag(AQUA.tag())
                 .add(ABYSSAL_MAELSTROM)
                 .add(BUBBLE_SHIELD)
@@ -263,7 +271,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(FROZEN_HEART)
                 .add(ICY_BURST)
                 .add(OCEAN_CURRENT)
-                .add(OVERFLOW);
+                .add(OVERFLOW)
+                .add(SPREADING_SPORES)
+                .add(STACKING_WAVES);
         this.tag(HOLY.tag())
                 .add(AILMENT_DEVOURER)
                 .add(CRACKED_CROWN)
@@ -299,7 +309,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ROLLING_STONE)
                 .add(SANDER)
                 .add(SHARP_ROCK)
-                .add(SOLID_AS_A_ROCK);
+                .add(SOLID_AS_A_ROCK)
+                .add(SPREADING_SPORES)
+                .add(STANDING_WALL);
         this.tag(TWISTED.tag())
                 .add(BLOOD_SACRIFICE)
                 .add(BLOODTHIRSTY)
@@ -308,6 +320,7 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(EATER_OF_SOULS)
                 .add(GREED_SUPREME_LOOTING)
                 .add(HUNGRY)
-                .add(NIGHTMARE);
+                .add(NIGHTMARE)
+                .add(THE_FALLEN);
     }
 }

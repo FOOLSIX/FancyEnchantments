@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Skill(femigration)"
+      "Skill(femigration)",
+      "Bash(./gradlew runData)",
+      "Bash(stack)",
+      "Bash(stand)",
+      "Bash(stream)",
+      "Bash(fallen\")"
     ]
   }
 }
