@@ -1715,6 +1715,74 @@ public final class EnchantmentGenerator {
                         .withCustomName(c -> EnchUtils.applyElementStyle(Element.TWISTED, c))
                         .build(THE_FALLEN.location())
         );
+
+        context.register(
+                THRILLING_THUNDER,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(THRILLING_THUNDER.location())
+        );
+
+        context.register(
+                UNYIELDING_SPIRIT,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.constantCost(25),
+                                        Enchantment.constantCost(75),
+                                        8,
+                                        EquipmentSlotGroup.HEAD
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.HOLY, c))
+                        .build(UNYIELDING_SPIRIT.location())
+        );
+
+        context.register(
+                WIND_BLADE,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        3,
+                                        Enchantment.dynamicCost(15, 5),
+                                        Enchantment.dynamicCost(65, 5),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(WIND_BLADE.location())
+        );
+
+        context.register(
+                WIND_FIRE_WHEELS,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.dynamicCost(20, 20),
+                                        Enchantment.dynamicCost(70, 20),
+                                        8,
+                                        EquipmentSlotGroup.FEET
+                                )
+                        )
+                        .withCustomName(c -> EnchUtils.applyElementStyle(Element.AER, c))
+                        .build(WIND_FIRE_WHEELS.location())
+        );
     }
 
     private static net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder nonBypassInvulnerabilityRequirement() {

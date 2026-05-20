@@ -92,6 +92,10 @@ public final class EnchantmentReg {
     public static final ResourceKey<Enchantment> STANDING_WALL = key("standing_wall");
     public static final ResourceKey<Enchantment> STREAMLINE = key("streamline");
     public static final ResourceKey<Enchantment> THE_FALLEN = key("the_fallen");
+    public static final ResourceKey<Enchantment> THRILLING_THUNDER = key("thrilling_thunder");
+    public static final ResourceKey<Enchantment> UNYIELDING_SPIRIT = key("unyielding_spirit");
+    public static final ResourceKey<Enchantment> WIND_BLADE = key("wind_blade");
+    public static final ResourceKey<Enchantment> WIND_FIRE_WHEELS = key("wind_fire_wheels");
 
     public static final List<ResourceKey<Enchantment>> ALL = List.of(
             ABYSSAL_MAELSTROM,
@@ -176,10 +180,10 @@ public final class EnchantmentReg {
             STANDING_WALL,
             STREAMLINE,
             THE_FALLEN,
-            key("thrilling_thunder"),
-            key("unyielding_spirit"),
-            key("wind_blade"),
-            key("wind_fire_wheels")
+            THRILLING_THUNDER,
+            UNYIELDING_SPIRIT,
+            WIND_BLADE,
+            WIND_FIRE_WHEELS
     );
 
     private EnchantmentReg() {

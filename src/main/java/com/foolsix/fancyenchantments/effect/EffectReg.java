@@ -26,8 +26,8 @@ public final class EffectReg {
             EFFECTS.register(Invincible.NAME, Invincible::new);
     public static final DeferredHolder<MobEffect, PrisonCageEffect> PRISON_CAGE =
             EFFECTS.register(PrisonCageEffect.NAME, PrisonCageEffect::new);
-    public static final DeferredHolder<MobEffect, SimpleMobEffect> TREMBLING =
-            registerHarmful("trembling", 0xB7B7B7);
+    public static final DeferredHolder<MobEffect, TremblingMobEffect> TREMBLING =
+            EFFECTS.register(TremblingMobEffect.NAME, TremblingMobEffect::new);
     public static final DeferredHolder<MobEffect, Maelstrom> MAELSTROM =
             EFFECTS.register("maelstrom", Maelstrom::new);
 

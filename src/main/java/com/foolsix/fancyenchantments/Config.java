@@ -161,6 +161,17 @@ public final class Config {
     public static final ModConfigSpec.DoubleValue STACKING_WAVES_ATTACK_SPEED_MULTIPLIER;
     public static final ModConfigSpec.DoubleValue STREAMLINE_SPEED_MULTIPLIER_PER_LEVEL;
     public static final ModConfigSpec.DoubleValue THE_FALLEN_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.IntValue THRILLING_THUNDER_TICK_GAP;
+    public static final ModConfigSpec.DoubleValue THRILLING_THUNDER_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue THRILLING_THUNDER_PROBABILITY_PER_LEVEL;
+    public static final ModConfigSpec.IntValue UNYIELDING_SPIRIT_EXTRA_TIME_SECONDS;
+    public static final ModConfigSpec.IntValue UNYIELDING_SPIRIT_BASE_DAMAGE;
+    public static final ModConfigSpec.DoubleValue UNYIELDING_SPIRIT_HEALTH_PERCENTAGE;
+    public static final ModConfigSpec.IntValue UNYIELDING_SPIRIT_SLOWNESS_LEVEL;
+    public static final ModConfigSpec.IntValue UNYIELDING_SPIRIT_DAMAGE_RESISTANCE_LEVEL;
+    public static final ModConfigSpec.BooleanValue UNYIELDING_SPIRIT_ENABLE_BLINDNESS;
+    public static final ModConfigSpec.DoubleValue WIND_BLADE_BASE_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue WIND_FIRE_WHEELS_SPEED_MULTIPLIER;
 
     static final ModConfigSpec SPEC;
 
@@ -676,6 +687,51 @@ public final class Config {
         THE_FALLEN_DAMAGE_MULTIPLIER =
                 BUILDER.comment("Damage *= 1 + multiplier * level * curse count.")
                         .defineInRange("Damage Multiplier", 0.3D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Thrilling Thunder");
+        THRILLING_THUNDER_TICK_GAP =
+                BUILDER.comment("Time gap of causing damage.")
+                        .defineInRange("Tick Gap", 10, 1, Integer.MAX_VALUE);
+        THRILLING_THUNDER_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage = effect level * multiplier.")
+                        .defineInRange("Damage Multiplier", 1.0D, 0.0D, Double.MAX_VALUE);
+        THRILLING_THUNDER_PROBABILITY_PER_LEVEL =
+                BUILDER.comment("Trigger probability = probability per level * level.")
+                        .defineInRange("Probability", 0.1D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("Unyielding Spirit");
+        UNYIELDING_SPIRIT_EXTRA_TIME_SECONDS =
+                BUILDER.comment("Extra Time To Live (second).")
+                        .defineInRange("Extra Time", 8, 0, Integer.MAX_VALUE);
+        UNYIELDING_SPIRIT_BASE_DAMAGE =
+                BUILDER.comment("Durability value of helmet -= base.")
+                        .defineInRange("Base Damage", 5, 0, Integer.MAX_VALUE);
+        UNYIELDING_SPIRIT_HEALTH_PERCENTAGE =
+                BUILDER.comment("The health set when enchantment takes effect, percentage.")
+                        .defineInRange("Health Percentage", 0.5D, 0.0D, 1.0D);
+        UNYIELDING_SPIRIT_SLOWNESS_LEVEL =
+                BUILDER.comment("Slowness effect level, set 0 to disable.")
+                        .defineInRange("Slowness Level", 3, 0, Integer.MAX_VALUE);
+        UNYIELDING_SPIRIT_DAMAGE_RESISTANCE_LEVEL =
+                BUILDER.comment("Damage resistance effect level, set 0 to disable.")
+                        .defineInRange("Damage Resistance Level", 3, 0, Integer.MAX_VALUE);
+        UNYIELDING_SPIRIT_ENABLE_BLINDNESS =
+                BUILDER.comment("Whether blindness is applied during the extra time.")
+                        .define("Enable Blindness", false);
+        BUILDER.pop();
+
+        BUILDER.push("Wind Blade");
+        WIND_BLADE_BASE_DAMAGE_MULTIPLIER =
+                BUILDER.comment("Damage *= 1 + extraSpeedAttributeValue * level * base multiplier.")
+                        .defineInRange("Base Damage Multiplier", 0.5D, 0.0D, Double.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Wind Fire Wheels");
+        WIND_FIRE_WHEELS_SPEED_MULTIPLIER =
+                BUILDER.comment("Horizontal push along look direction while sprinting midair.")
+                        .defineInRange("Speed Multiplier", 0.06D, 0.0D, Double.MAX_VALUE);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-19T16:40:12.6561964	Registries
+// 1.21.1	2026-05-20T13:02:07.5943343	Registries
 a82cb6c6f8e8d3ba61b302eff978d4bd32c30169 data/fancyenchantments/enchantment/abyssal_maelstrom.json
 7d218e00d2062328ca8ae2fb79d6fda70a7e94e9 data/fancyenchantments/enchantment/advanced_fire_aspect.json
 1c208ae16857c5dbdf32dfcb5345605c0d11cf3d data/fancyenchantments/enchantment/advanced_flame.json
@@ -81,3 +81,7 @@ c7af4d427ca2e98655807a77f83739157798c593 data/fancyenchantments/enchantment/stac
 0eae05155eca07b006b9db019fce1cffd6243b7d data/fancyenchantments/enchantment/standing_wall.json
 fba960bed29f8281f621c365951db73474c463d6 data/fancyenchantments/enchantment/streamline.json
 96858b560bcfdbfd6561e6f7a64b983582962c02 data/fancyenchantments/enchantment/the_fallen.json
+789690a3e26ea2f95d5af30ce3605d5096d9ddbd data/fancyenchantments/enchantment/thrilling_thunder.json
+4feb2723c634924632752cc883658bc40b1d8b97 data/fancyenchantments/enchantment/unyielding_spirit.json
+30a543464302a96497be70dbf4a6ad7de8e47223 data/fancyenchantments/enchantment/wind_blade.json
+5d3a76700d4531262f83557406e9d262ea92e007 data/fancyenchantments/enchantment/wind_fire_wheels.json

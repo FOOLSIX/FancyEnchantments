@@ -81,7 +81,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ROLLING_STONE)
                 .add(SANDER)
                 .add(SELF_IMMOLATION)
-                .add(STACKING_WAVES);
+                .add(STACKING_WAVES)
+                .add(UNYIELDING_SPIRIT)
+                .add(WIND_BLADE);
         this.tag(EnchantmentTags.TREASURE)
                 .add(AFTERIMAGE)
                 .add(ARMOR_FORGING)
@@ -111,7 +113,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(SPREADING_SPORES)
                 .add(STANDING_WALL)
                 .add(STREAMLINE)
-                .add(THE_FALLEN);
+                .add(THE_FALLEN)
+                .add(THRILLING_THUNDER)
+                .add(WIND_FIRE_WHEELS);
         this.tag(EnchantmentTags.NON_TREASURE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -165,7 +169,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ROLLING_STONE)
                 .add(SANDER)
                 .add(SELF_IMMOLATION)
-                .add(STACKING_WAVES);
+                .add(STACKING_WAVES)
+                .add(UNYIELDING_SPIRIT)
+                .add(WIND_BLADE);
         this.tag(EnchantmentTags.TRADEABLE)
                 .add(ABYSSAL_MAELSTROM)
                 .add(ADVANCED_FIRE_ASPECT)
@@ -228,7 +234,9 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(ROLLING_STONE)
                 .add(SANDER)
                 .add(SELF_IMMOLATION)
-                .add(STACKING_WAVES);
+                .add(STACKING_WAVES)
+                .add(UNYIELDING_SPIRIT)
+                .add(WIND_BLADE);
         this.tag(EnchantmentTags.CURSE)
                 .add(CRACKED_CROWN)
                 .add(CUMBERSOME)
@@ -262,7 +270,10 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(LIGHTNESS)
                 .add(RECOIL)
                 .add(REFLECTING)
-                .add(STREAMLINE);
+                .add(STREAMLINE)
+                .add(THRILLING_THUNDER)
+                .add(WIND_BLADE)
+                .add(WIND_FIRE_WHEELS);
         this.tag(AQUA.tag())
                 .add(ABYSSAL_MAELSTROM)
                 .add(BUBBLE_SHIELD)
@@ -273,7 +284,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(OCEAN_CURRENT)
                 .add(OVERFLOW)
                 .add(SPREADING_SPORES)
-                .add(STACKING_WAVES);
+                .add(STACKING_WAVES)
+                .add(THRILLING_THUNDER);
         this.tag(HOLY.tag())
                 .add(AILMENT_DEVOURER)
                 .add(CRACKED_CROWN)
@@ -285,7 +297,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(PURE_FATE)
                 .add(PURIFICATION_SLASH)
                 .add(PURIFYING)
-                .add(SACRED_SUPREME_SHARPNESS);
+                .add(SACRED_SUPREME_SHARPNESS)
+                .add(UNYIELDING_SPIRIT);
         this.tag(IGNIS.tag())
                 .add(ADVANCED_FIRE_ASPECT)
                 .add(ADVANCED_FLAME)
@@ -297,7 +310,8 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(PYROMANIAC)
                 .add(ROCKET_JUMP)
                 .add(SELF_IMMOLATION)
-                .add(SIGHS_OF_ASHES);
+                .add(SIGHS_OF_ASHES)
+                .add(WIND_FIRE_WHEELS);
         this.tag(TERRA.tag())
                 .add(CUMBERSOME)
                 .add(ERODING)
