@@ -8,6 +8,23 @@ public final class Config {
     public static final ModConfigSpec.BooleanValue ENABLE_INCOMPATIBILITY;
     public static final ModConfigSpec.BooleanValue ENABLE_MOD_BOOK_TEXTURE;
 
+    public static final ModConfigSpec.ConfigValue<String> ELEMENT_STAT_AER_BUFF;
+    public static final ModConfigSpec.ConfigValue<String> ELEMENT_STAT_AQUA_BUFF;
+    public static final ModConfigSpec.ConfigValue<String> ELEMENT_STAT_IGNIS_BUFF;
+    public static final ModConfigSpec.ConfigValue<String> ELEMENT_STAT_TERRA_BUFF;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_AER_CONDITION;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_AQUA_CONDITION;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_IGNIS_CONDITION;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_TERRA_CONDITION;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_AER_MAX_EFFECT_LEVEL;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_AQUA_MAX_EFFECT_LEVEL;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_IGNIS_MAX_EFFECT_LEVEL;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_TERRA_MAX_EFFECT_LEVEL;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_IGNIS_FIRE_RESISTANCE_CONDITION;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_TWISTED_DEBUFF_CONDITION;
+    public static final ModConfigSpec.DoubleValue ELEMENT_STAT_TWISTED_DEBUFF_PROBABILITY_PER_SECOND;
+    public static final ModConfigSpec.IntValue ELEMENT_STAT_TWISTED_DEBUFF_DURATION_SECONDS;
+
     public static final ModConfigSpec.IntValue ADVANCED_FLAME_PROJECTILE_FIRE_SECONDS;
     public static final ModConfigSpec.IntValue ADVANCED_FLAME_HIT_FIRE_SECONDS;
 
@@ -136,6 +153,11 @@ public final class Config {
     public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_BASE_DAMAGE_REDUCTION_RATIO;
     public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_TRANSFERRED_DAMAGE_RATIO;
     public static final ModConfigSpec.DoubleValue PALADINS_SHIELD_UPPER_LIMIT;
+    public static final ModConfigSpec.DoubleValue CHEST_LOOT_MOD_BOOK_CHANCE;
+    public static final ModConfigSpec.DoubleValue CHEST_LOOT_COMMON_CHANCE;
+    public static final ModConfigSpec.DoubleValue CHEST_LOOT_UNCOMMON_CHANCE;
+    public static final ModConfigSpec.DoubleValue CHEST_LOOT_RARE_CHANCE;
+    public static final ModConfigSpec.DoubleValue CHEST_LOOT_VERY_RARE_CHANCE;
 
     public static final ModConfigSpec.DoubleValue DROP_PROBABILITY;
     public static final ModConfigSpec.DoubleValue CURSE_REMOVAL_PROBABILITY;
@@ -183,6 +205,57 @@ public final class Config {
         ENABLE_MOD_BOOK_TEXTURE =
                 BUILDER.comment("Whether enchanted books use Fancy Enchantments custom element textures on the client.")
                         .define("Enable Mod Book Texture", true);
+        BUILDER.pop();
+
+        BUILDER.push("Element Stat");
+        ELEMENT_STAT_AER_BUFF =
+                BUILDER.comment("Buff effect id for Aer.")
+                        .define("Aer Buff", "minecraft:speed");
+        ELEMENT_STAT_AQUA_BUFF =
+                BUILDER.comment("Buff effect id for Aqua.")
+                        .define("Aqua Buff", "minecraft:regeneration");
+        ELEMENT_STAT_IGNIS_BUFF =
+                BUILDER.comment("Buff effect id for Ignis.")
+                        .define("Ignis Buff", "minecraft:strength");
+        ELEMENT_STAT_TERRA_BUFF =
+                BUILDER.comment("Buff effect id for Terra.")
+                        .define("Terra Buff", "minecraft:resistance");
+        ELEMENT_STAT_AER_CONDITION =
+                BUILDER.comment("Aer buff condition.")
+                        .defineInRange("Aer Condition", 5, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_AQUA_CONDITION =
+                BUILDER.comment("Aqua buff condition.")
+                        .defineInRange("Aqua Condition", 6, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_IGNIS_CONDITION =
+                BUILDER.comment("Ignis buff condition.")
+                        .defineInRange("Ignis Condition", 4, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_TERRA_CONDITION =
+                BUILDER.comment("Terra buff condition.")
+                        .defineInRange("Terra Condition", 9, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_AER_MAX_EFFECT_LEVEL =
+                BUILDER.comment("Aer buff maximum amplifier + 1.")
+                        .defineInRange("Aer Max Effect Level", 6, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_AQUA_MAX_EFFECT_LEVEL =
+                BUILDER.comment("Aqua buff maximum amplifier + 1.")
+                        .defineInRange("Aqua Max Effect Level", 6, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_IGNIS_MAX_EFFECT_LEVEL =
+                BUILDER.comment("Ignis buff maximum amplifier + 1.")
+                        .defineInRange("Ignis Max Effect Level", 6, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_TERRA_MAX_EFFECT_LEVEL =
+                BUILDER.comment("Terra buff maximum amplifier + 1.")
+                        .defineInRange("Terra Max Effect Level", 4, 1, Integer.MAX_VALUE);
+        ELEMENT_STAT_IGNIS_FIRE_RESISTANCE_CONDITION =
+                BUILDER.comment("Ignis point condition for fire resistance.")
+                        .defineInRange("Ignis Fire Resistance Condition", 10, 0, Integer.MAX_VALUE);
+        ELEMENT_STAT_TWISTED_DEBUFF_CONDITION =
+                BUILDER.comment("Debuff condition = twisted points - holy points.")
+                        .defineInRange("Twisted Debuff Condition", 10, 0, Integer.MAX_VALUE);
+        ELEMENT_STAT_TWISTED_DEBUFF_PROBABILITY_PER_SECOND =
+                BUILDER.comment("Probability per second to receive a random debuff when twisted points exceed the condition.")
+                        .defineInRange("Twisted Debuff Probability", 0.02D, 0.0D, 1.0D);
+        ELEMENT_STAT_TWISTED_DEBUFF_DURATION_SECONDS =
+                BUILDER.comment("Random debuff duration in seconds.")
+                        .defineInRange("Twisted Debuff Duration", 3, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         BUILDER.push("Advanced Flame");
@@ -570,6 +643,24 @@ public final class Config {
         OVER_HEALING_CAP =
                 BUILDER.comment("Maximum absorption added per level.")
                         .defineInRange("Cap", 10, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
+        BUILDER.push("Chest Loot");
+        CHEST_LOOT_MOD_BOOK_CHANCE =
+                BUILDER.comment("Chance of spawning a Fancy Enchantments enchanted book.")
+                        .defineInRange("Mod Book Chance", 0.3D, 0.0D, 1.0D);
+        CHEST_LOOT_COMMON_CHANCE =
+                BUILDER.comment("Final spawn probability = base chance * common rarity chance.")
+                        .defineInRange("Common Chance", 0.9D, 0.0D, 1.0D);
+        CHEST_LOOT_UNCOMMON_CHANCE =
+                BUILDER.comment("Final spawn probability = base chance * uncommon rarity chance.")
+                        .defineInRange("Uncommon Chance", 0.75D, 0.0D, 1.0D);
+        CHEST_LOOT_RARE_CHANCE =
+                BUILDER.comment("Final spawn probability = base chance * rare rarity chance.")
+                        .defineInRange("Rare Chance", 0.6D, 0.0D, 1.0D);
+        CHEST_LOOT_VERY_RARE_CHANCE =
+                BUILDER.comment("Final spawn probability = base chance * very rare rarity chance.")
+                        .defineInRange("Very Rare Chance", 0.5D, 0.0D, 1.0D);
         BUILDER.pop();
 
         BUILDER.push("Paladins Shield");

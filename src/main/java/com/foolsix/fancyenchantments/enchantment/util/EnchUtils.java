@@ -1,5 +1,7 @@
 package com.foolsix.fancyenchantments.enchantment.util;
 
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
+import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -38,6 +40,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -194,6 +197,22 @@ public final class EnchUtils {
             }
         }
         return true;
+    }
+
+    public static Collection<FEBaseEnchantment> getAllSpecialLootEnchantments() {
+        return FEEnchantments.all()
+                .stream()
+                .filter(FEBaseEnchantment::isSpecialLoot)
+                .toList();
+    }
+
+    public static Optional<FEBaseEnchantment> getRandomModEnchantment(RandomSource random) {
+        List<FEBaseEnchantment> enchantments = new ArrayList<>(FEEnchantments.all());
+        if (enchantments.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(enchantments.get(random.nextInt(enchantments.size())));
     }
 
     public static ItemEnchantments enchantmentsOn(ItemStack stack) {
