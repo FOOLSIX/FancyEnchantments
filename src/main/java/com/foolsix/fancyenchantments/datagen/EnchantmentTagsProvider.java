@@ -276,6 +276,7 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(WIND_FIRE_WHEELS);
         this.tag(AQUA.tag())
                 .add(ABYSSAL_MAELSTROM)
+                .add(BLOOD_FEED)
                 .add(BUBBLE_SHIELD)
                 .add(CALMER)
                 .add(DROWNING)
@@ -302,6 +303,7 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
         this.tag(IGNIS.tag())
                 .add(ADVANCED_FIRE_ASPECT)
                 .add(ADVANCED_FLAME)
+                .add(ARMOR_FORGING)
                 .add(FIRE_DISASTER)
                 .add(GIFT_OF_FIRE)
                 .add(LAVA_BURST)
@@ -313,6 +315,7 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(SIGHS_OF_ASHES)
                 .add(WIND_FIRE_WHEELS);
         this.tag(TERRA.tag())
+                .add(ARMOR_FORGING)
                 .add(CUMBERSOME)
                 .add(ERODING)
                 .add(FALLING_STONE)
@@ -327,6 +330,7 @@ public final class EnchantmentTagsProvider extends net.minecraft.data.tags.Encha
                 .add(SPREADING_SPORES)
                 .add(STANDING_WALL);
         this.tag(TWISTED.tag())
+                .add(BLOOD_FEED)
                 .add(BLOOD_SACRIFICE)
                 .add(BLOODTHIRSTY)
                 .add(BULLYING)

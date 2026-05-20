@@ -1,10 +1,10 @@
-// 1.21.1	2026-05-20T13:02:07.5993361	Tags for minecraft:enchantment mod id fancyenchantments
+// 1.21.1	2026-05-20T14:17:45.8749176	Tags for minecraft:enchantment mod id fancyenchantments
 ee108c2d7d8dcb0612d27a2917e6af27ad4df4a4 data/fancyenchantments/tags/enchantment/element/aer.json
-dfa2d64079c6c7d7c3e6ce1e7e0a58e34fe405cf data/fancyenchantments/tags/enchantment/element/aqua.json
+5cc5174e6faecf8e9094aad509ee5fafd52fca71 data/fancyenchantments/tags/enchantment/element/aqua.json
 d60599e72b9aba4a141b0d83bc0723162e44a075 data/fancyenchantments/tags/enchantment/element/holy.json
-e962c2a59faf17937494ff471881e8c151961283 data/fancyenchantments/tags/enchantment/element/ignis.json
-e2e87b540bdf0d967f2371f6191d19e49a5f9282 data/fancyenchantments/tags/enchantment/element/terra.json
-fa6fc086c2d0bec03328b773edaa82b1ee65131b data/fancyenchantments/tags/enchantment/element/twisted.json
+70458dd9bf27e7be6d548373e1946f930fd09d6b data/fancyenchantments/tags/enchantment/element/ignis.json
+0cd36b16fc66b35800176ec3aa8068150f49a9ab data/fancyenchantments/tags/enchantment/element/terra.json
+6bf68dc9da95b455f879f207e6b4b5b681191776 data/fancyenchantments/tags/enchantment/element/twisted.json
 4bb2427c7b32d6c5ed75b5f23aaddf8f2a656db7 data/minecraft/tags/enchantment/curse.json
 efb63b151a57958719419b16547d2b3c8d3b282a data/minecraft/tags/enchantment/exclusive_set/armor.json
 acdd48d4fedcaedfccd7fd0eef8e7c9d2d360c53 data/minecraft/tags/enchantment/exclusive_set/bow.json
