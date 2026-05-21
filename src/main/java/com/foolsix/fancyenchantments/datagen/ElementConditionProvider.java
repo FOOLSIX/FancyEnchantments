@@ -25,6 +25,8 @@ public final class ElementConditionProvider implements DataProvider {
                     .setPrettyPrinting()
                     .create();
 
+    private static final List<ElementConditionData> list = new ArrayList<>();
+
     private final PackOutput.PathProvider pathProvider;
 
     public ElementConditionProvider(PackOutput output) {
@@ -66,31 +68,84 @@ public final class ElementConditionProvider implements DataProvider {
 
     private static List<ElementConditionData> collectConditions() {
 
-        List<ElementConditionData> list = new ArrayList<>();
-
-        put(list, BLOOD_FEED.location(), Map.of(
+        put(BLOOD_FEED.location(), Map.of(
                 Element.TWISTED, 5,
                 Element.AQUA, 5
         ));
 
-        put(list, BLOOD_SACRIFICE.location(), Map.of(
+        put(BLOOD_SACRIFICE.location(), Map.of(
                 Element.TWISTED, 3
         ));
 
-        put(list, LAVA_BURST.location(), Map.of(
+        put(LAVA_BURST.location(), Map.of(
                 Element.IGNIS, 5,
                 Element.TERRA, 3
         ));
 
-        put(list, MOUNTAIN_SUPREME_PROTECTION.location(), Map.of(
+        put(MOUNTAIN_SUPREME_PROTECTION.location(), Map.of(
                 Element.TERRA, 5
+        ));
+
+        put(EATER_OF_SOULS.location(), Map.of(
+                Element.TWISTED, 10
+        ));
+
+        put(SOLID_AS_A_ROCK.location(), Map.of(
+                Element.TERRA, 6
+        ));
+
+        put(ARMOR_FORGING.location(), Map.of(
+                Element.IGNIS, 6,
+                Element.TERRA, 6
+        ));
+
+        put(PURE_FATE.location(), Map.of(
+                Element.HOLY, 3
+        ));
+
+        put(SHARP_ROCK.location(), Map.of(
+                Element.TERRA, 5
+        ));
+
+        put(SACRED_SUPREME_SHARPNESS.location(), Map.of(
+                Element.HOLY, 3
+        ));
+
+        put(GREED_SUPREME_LOOTING.location(), Map.of(
+                Element.TWISTED, 3
+        ));
+
+        put(WIND_FIRE_WHEELS.location(), Map.of(
+                Element.AER, 5,
+                Element.IGNIS, 5
+        ));
+
+        put(SPREADING_SPORES.location(), Map.of(
+                Element.AQUA, 5,
+                Element.TERRA, 5
+        ));
+
+        put(THRILLING_THUNDER.location(), Map.of(
+                Element.AER, 5,
+                Element.AQUA, 5
+        ));
+
+        put(STANDING_WALL.location(), Map.of(
+                Element.TERRA, 8
+        ));
+
+        put(FEARLESS_CHALLENGER.location(), Map.of(
+                Element.HOLY, 8
+        ));
+
+        put(SIGHS_OF_ASHES.location(), Map.of(
+                Element.IGNIS, 8
         ));
 
         return list;
     }
 
     private static void put(
-            List<ElementConditionData> list,
             ResourceLocation enchantment,
             Map<Element, Integer> values
     ) {
