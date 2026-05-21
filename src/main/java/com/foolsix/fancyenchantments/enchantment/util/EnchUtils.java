@@ -102,6 +102,12 @@ public final class EnchUtils {
         return null;
     }
 
+    public static boolean hasElementalConflict(Holder<Enchantment> first, Holder<Enchantment> second) {
+        Element firstElement = elementOf(first);
+        Element secondElement = elementOf(second);
+        return firstElement != null && secondElement != null && firstElement.conflictsWith(secondElement);
+    }
+
 
     public static MutableComponent applyElementStyle(Element element, MutableComponent component) {
         return component.withStyle(element.chatFormatting());

@@ -4,6 +4,7 @@
   "package": "com.foolsix.fancyenchantments.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EnchantmentCompatibilityMixin",
     "EnchantedCountIncreaseFunctionMixin",
     "LootItemRandomChanceWithEnchantedBonusConditionMixin",
   ],
