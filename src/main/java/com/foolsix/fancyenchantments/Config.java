@@ -218,19 +218,15 @@ public final class Config {
                         .defineInRange("Max Upgrade Bonus", 30, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
-        BUILDER.push("Element Stat");
+        BUILDER.push("Element Stat Effect");
         ELEMENT_STAT_AER_BUFF =
-                BUILDER.comment("Buff effect id for Aer.")
-                        .define("Aer Buff", "minecraft:speed");
+                BUILDER.define("Aer Buff", "minecraft:speed");
         ELEMENT_STAT_AQUA_BUFF =
-                BUILDER.comment("Buff effect id for Aqua.")
-                        .define("Aqua Buff", "minecraft:regeneration");
+                BUILDER.define("Aqua Buff", "minecraft:regeneration");
         ELEMENT_STAT_IGNIS_BUFF =
-                BUILDER.comment("Buff effect id for Ignis.")
-                        .define("Ignis Buff", "minecraft:strength");
+                BUILDER.define("Ignis Buff", "minecraft:strength");
         ELEMENT_STAT_TERRA_BUFF =
-                BUILDER.comment("Buff effect id for Terra.")
-                        .define("Terra Buff", "minecraft:resistance");
+                BUILDER.define("Terra Buff", "minecraft:resistance");
         ELEMENT_STAT_AER_CONDITION =
                 BUILDER.comment("Aer buff condition.")
                         .defineInRange("Aer Condition", 5, 1, Integer.MAX_VALUE);
@@ -244,17 +240,13 @@ public final class Config {
                 BUILDER.comment("Terra buff condition.")
                         .defineInRange("Terra Condition", 9, 1, Integer.MAX_VALUE);
         ELEMENT_STAT_AER_MAX_EFFECT_LEVEL =
-                BUILDER.comment("Aer buff maximum amplifier + 1.")
-                        .defineInRange("Aer Max Effect Level", 6, 1, Integer.MAX_VALUE);
+                BUILDER.defineInRange("Aer Max Effect Level", 6, 1, Integer.MAX_VALUE);
         ELEMENT_STAT_AQUA_MAX_EFFECT_LEVEL =
-                BUILDER.comment("Aqua buff maximum amplifier + 1.")
-                        .defineInRange("Aqua Max Effect Level", 6, 1, Integer.MAX_VALUE);
+                BUILDER.defineInRange("Aqua Max Effect Level", 6, 1, Integer.MAX_VALUE);
         ELEMENT_STAT_IGNIS_MAX_EFFECT_LEVEL =
-                BUILDER.comment("Ignis buff maximum amplifier + 1.")
-                        .defineInRange("Ignis Max Effect Level", 6, 1, Integer.MAX_VALUE);
+                BUILDER.defineInRange("Ignis Max Effect Level", 6, 1, Integer.MAX_VALUE);
         ELEMENT_STAT_TERRA_MAX_EFFECT_LEVEL =
-                BUILDER.comment("Terra buff maximum amplifier + 1.")
-                        .defineInRange("Terra Max Effect Level", 4, 1, Integer.MAX_VALUE);
+                BUILDER.defineInRange("Terra Max Effect Level", 4, 1, Integer.MAX_VALUE);
         ELEMENT_STAT_IGNIS_FIRE_RESISTANCE_CONDITION =
                 BUILDER.comment("Ignis point condition for fire resistance.")
                         .defineInRange("Ignis Fire Resistance Condition", 10, 0, Integer.MAX_VALUE);
