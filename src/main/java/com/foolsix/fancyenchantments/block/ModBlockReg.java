@@ -4,8 +4,8 @@ import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentMenu;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableBlock;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableBlockEntity;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -19,6 +19,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 
@@ -39,7 +40,7 @@ public final class ModBlockReg {
                     () -> BlockEntityType.Builder.of(ElementalEnchantmentTableBlockEntity::new, ELEMENTAL_ENCHANTING_TABLE.get()).build(null));
     public static final DeferredHolder<MenuType<?>, MenuType<ElementalEnchantmentMenu>> ELEMENTAL_ENCHANTMENT_MENU =
             MENUS.register("elemental_enchantment_menu",
-                    () -> new MenuType<>(ElementalEnchantmentMenu::new, FeatureFlags.DEFAULT_FLAGS));
+                    () -> IMenuTypeExtension.create(ElementalEnchantmentMenu::new));
 
     private ModBlockReg() {
     }

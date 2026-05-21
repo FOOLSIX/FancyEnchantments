@@ -1,5 +1,8 @@
 package com.foolsix.fancyenchantments;
 
+import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentScreen;
+import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableRenderer;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEEnchantments;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -10,6 +13,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @EventBusSubscriber(modid = FancyEnchantments.MODID, value = Dist.CLIENT)
 public final class ClientSetup {
@@ -42,5 +47,15 @@ public final class ClientSetup {
                     }
             );
         });
+    }
+
+    @SubscribeEvent
+    public static void registerMenuScreens(RegisterMenuScreensEvent event) {
+        event.register(ModBlockReg.ELEMENTAL_ENCHANTMENT_MENU.get(), ElementalEnchantmentScreen::new);
+    }
+
+    @SubscribeEvent
+    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(), ElementalEnchantmentTableRenderer::new);
     }
 }

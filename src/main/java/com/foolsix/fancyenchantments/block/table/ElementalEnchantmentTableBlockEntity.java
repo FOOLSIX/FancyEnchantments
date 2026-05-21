@@ -2,6 +2,7 @@ package com.foolsix.fancyenchantments.block.table;
 
 import com.foolsix.fancyenchantments.block.ModBlockReg;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -10,7 +11,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements Nameable {
     private static final RandomSource RANDOM = RandomSource.create();
@@ -25,10 +30,47 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
     public float rot;
     public float oRot;
     public float tRot;
+    private int storedUpgradeBonus;
+    private Map<Integer, Integer> storedCatalystData = new HashMap<>();
     private Component name;
 
     public ElementalEnchantmentTableBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(), pos, state);
+    }
+
+    @Override
+    protected void saveAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        if (this.hasCustomName()) {
+            tag.putString("CustomName", Component.Serializer.toJson(this.name, registries));
+        }
+        tag.putInt("StoredUpgradeBonus", this.storedUpgradeBonus);
+        int[] catalystKeys = new int[this.storedCatalystData.size()];
+        int[] catalystValues = new int[this.storedCatalystData.size()];
+        int index = 0;
+        for (Map.Entry<Integer, Integer> entry : this.storedCatalystData.entrySet()) {
+            catalystKeys[index] = entry.getKey();
+            catalystValues[index] = entry.getValue();
+            index++;
+        }
+        tag.putIntArray("StoredCatalystKeys", catalystKeys);
+        tag.putIntArray("StoredCatalystValues", catalystValues);
+    }
+
+    @Override
+    protected void loadAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        if (tag.contains("CustomName", 8)) {
+            this.name = Component.Serializer.fromJson(tag.getString("CustomName"), registries);
+        }
+        this.storedUpgradeBonus = Mth.clamp(tag.getInt("StoredUpgradeBonus"), 0, ElementalEnchantmentMenu.MAX_STORED_UPGRADE_BONUS);
+        this.storedCatalystData = new HashMap<>();
+        int[] catalystKeys = tag.getIntArray("StoredCatalystKeys");
+        int[] catalystValues = tag.getIntArray("StoredCatalystValues");
+        int size = Math.min(catalystKeys.length, catalystValues.length);
+        for (int index = 0; index < size; index++) {
+            this.storedCatalystData.put(catalystKeys[index], catalystValues[index]);
+        }
     }
 
     public static void bookAnimationTick(Level level, BlockPos pos, BlockState state, ElementalEnchantmentTableBlockEntity blockEntity) {
@@ -90,6 +132,42 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
     public void setCustomName(Component name) {
         this.name = name;
         this.setChanged();
+    }
+
+    public int getStoredUpgradeBonus() {
+        return this.storedUpgradeBonus;
+    }
+
+    public void setStoredUpgradeBonus(int storedUpgradeBonus) {
+        int clamped = Mth.clamp(storedUpgradeBonus, 0, ElementalEnchantmentMenu.MAX_STORED_UPGRADE_BONUS);
+        if (this.storedUpgradeBonus == clamped) {
+            return;
+        }
+        this.storedUpgradeBonus = clamped;
+        this.setChanged();
+        if (this.level != null) {
+            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
+        }
+    }
+
+    public void clearStoredUpgradeBonus() {
+        this.setStoredUpgradeBonus(0);
+    }
+
+    public Map<Integer, Integer> getStoredCatalystData() {
+        return new HashMap<>(this.storedCatalystData);
+    }
+
+    public void setStoredCatalystData(Map<Integer, Integer> storedCatalystData) {
+        this.storedCatalystData = storedCatalystData == null ? new HashMap<>() : new HashMap<>(storedCatalystData);
+        this.setChanged();
+        if (this.level != null) {
+            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
+        }
+    }
+
+    public void clearStoredCatalystData() {
+        this.setStoredCatalystData(Map.of());
     }
 
     @Override

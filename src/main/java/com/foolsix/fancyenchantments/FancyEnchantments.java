@@ -7,6 +7,7 @@ import com.foolsix.fancyenchantments.enchantment.effect.EnchantmentEffectReg;
 import com.foolsix.fancyenchantments.item.ModItemReg;
 import com.foolsix.fancyenchantments.enchantment.util.ElementConditionManager;
 import com.foolsix.fancyenchantments.loot.LootModifierReg;
+import com.foolsix.fancyenchantments.resource.catalyst.CatalystResourceLoader;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -31,6 +32,9 @@ public class FancyEnchantments {
 
         NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent.class, event -> event.addListener(
                 new ElementConditionManager()
+        ));
+        NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent.class, event -> event.addListener(
+                new CatalystResourceLoader()
         ));
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

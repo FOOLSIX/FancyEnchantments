@@ -213,6 +213,27 @@ public final class EnchUtils {
         return ElementConditionManager.getConditionalEnchantments();
     }
 
+    public static int[] getElementCondition(ResourceLocation enchantment) {
+        return ElementConditionManager.getCondition(enchantment);
+    }
+
+    public static double getChanceForElementCondition(ResourceLocation enchantment) {
+        return ElementConditionManager.getChance(enchantment);
+    }
+
+    public static boolean matchesElementCondition(int[] elementStats, int[] condition) {
+        if (elementStats.length != condition.length) {
+            return false;
+        }
+
+        for (int index = 0; index < condition.length; ++index) {
+            if (condition[index] > elementStats[index]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static Optional<ResourceKey<Enchantment>> getRandomModEnchantment(RandomSource random) {
         List<ResourceKey<Enchantment>> enchantments = EnchantmentReg.ALL;
         if (enchantments.isEmpty()) {

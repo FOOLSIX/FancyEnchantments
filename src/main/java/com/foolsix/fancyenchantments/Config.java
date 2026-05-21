@@ -7,6 +7,8 @@ public final class Config {
 
     public static final ModConfigSpec.BooleanValue ENABLE_INCOMPATIBILITY;
     public static final ModConfigSpec.BooleanValue ENABLE_MOD_BOOK_TEXTURE;
+    public static final ModConfigSpec.IntValue ENCHANTING_TABLE_MAX_BOOKSHELF_LEVEL;
+    public static final ModConfigSpec.IntValue ENCHANTING_TABLE_MAX_UPGRADE_BONUS;
 
     public static final ModConfigSpec.ConfigValue<String> ELEMENT_STAT_AER_BUFF;
     public static final ModConfigSpec.ConfigValue<String> ELEMENT_STAT_AQUA_BUFF;
@@ -205,6 +207,15 @@ public final class Config {
         ENABLE_MOD_BOOK_TEXTURE =
                 BUILDER.comment("Whether enchanted books use Fancy Enchantments custom element textures on the client.")
                         .define("Enable Mod Book Texture", true);
+        BUILDER.pop();
+
+        BUILDER.push("Enchanting Table");
+        ENCHANTING_TABLE_MAX_BOOKSHELF_LEVEL =
+                BUILDER.comment("Maximum bookshelf power counted by the elemental enchanting table.")
+                        .defineInRange("Max Bookshelf Level", 30, 0, Integer.MAX_VALUE);
+        ENCHANTING_TABLE_MAX_UPGRADE_BONUS =
+                BUILDER.comment("Maximum stored upgrade bonus added by upgrade materials.")
+                        .defineInRange("Max Upgrade Bonus", 30, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         BUILDER.push("Element Stat");
