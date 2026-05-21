@@ -14,8 +14,7 @@ public record FEBaseEnchantment(
         boolean tradeable,
         boolean allowedOnBooks,
         boolean discoverable,
-        boolean inElementalTable,
-        double chestGenerationProbability
+        boolean inElementalTable
 ) {
     public boolean is(ResourceKey<Enchantment> other) {
         return this.key.equals(other);
@@ -25,13 +24,4 @@ public record FEBaseEnchantment(
         return EnchUtils.matchesKey(enchantment, this.key);
     }
 
-    public boolean isSpecialLoot() {
-        return this.chestGenerationProbability > 0.0D;
-    }
-
-    public boolean tryGenerateOnce(int[] elementalStats, int[] condition) {
-        return this.isSpecialLoot()
-                && Math.random() <= this.chestGenerationProbability
-                && EnchUtils.matchesElementCondition(elementalStats, condition);
-    }
 }

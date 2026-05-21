@@ -1,4 +1,5 @@
 {
+  "chance": 0.1,
   "enchantment": "fancyenchantments:fearless_challenger",
   "values": {
     "holy": 8

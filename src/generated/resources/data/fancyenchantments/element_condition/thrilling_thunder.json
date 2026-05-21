@@ -1,4 +1,5 @@
 {
+  "chance": 0.2,
   "enchantment": "fancyenchantments:thrilling_thunder",
   "values": {
     "aer": 5,

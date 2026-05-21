@@ -1,4 +1,5 @@
 {
+  "chance": 0.05,
   "enchantment": "fancyenchantments:sharp_rock",
   "values": {
     "terra": 5

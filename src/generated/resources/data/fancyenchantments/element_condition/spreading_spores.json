@@ -1,4 +1,5 @@
 {
+  "chance": 0.2,
   "enchantment": "fancyenchantments:spreading_spores",
   "values": {
     "aqua": 5,

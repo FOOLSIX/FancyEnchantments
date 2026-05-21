@@ -36,80 +36,80 @@ public final class FEEnchantments {
 
     private static FEBaseEnchantment definition(ResourceKey<Enchantment> key) {
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLIND_LOYALTY)) {
-            return new FEBaseEnchantment(key, null, 1, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, null, 1, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOOD_FEED)) {
-            return new FEBaseEnchantment(key, null, 3, true, false, true, false, true, 0.1D);
+            return new FEBaseEnchantment(key, null, 3, true, false, true, false, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOOD_SACRIFICE)) {
-            return new FEBaseEnchantment(key, Element.TWISTED, 3, true, false, true, false, true, 0.1D);
+            return new FEBaseEnchantment(key, Element.TWISTED, 3, true, false, true, false, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BLOODTHIRSTY)) {
-            return new FEBaseEnchantment(key, Element.TWISTED, 1, true, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.TWISTED, 1, true, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.BUBBLE_SHIELD)) {
-            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DEXTERITY)) {
-            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DOMINION)) {
-            return new FEBaseEnchantment(key, null, 1, true, false, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, null, 1, true, false, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DOWNWIND)) {
-            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DROWNING)) {
-            return new FEBaseEnchantment(key, Element.AQUA, 1, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AQUA, 1, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.DUELLISTS_PREROGATIVE)) {
-            return new FEBaseEnchantment(key, null, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, null, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.HEAVY_BLOW)) {
-            return new FEBaseEnchantment(key, Element.TERRA, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.TERRA, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.HUNGRY)) {
-            return new FEBaseEnchantment(key, Element.TWISTED, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.TWISTED, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.ICY_BURST)) {
-            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LAVA_BURST)) {
-            return new FEBaseEnchantment(key, null, 3, true, false, true, false, true, 0.25D);
+            return new FEBaseEnchantment(key, null, 3, true, false, true, false, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LIGHTNESS)) {
-            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AER, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.LITHIC_SIPHON)) {
-            return new FEBaseEnchantment(key, Element.TERRA, 3, true, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.TERRA, 3, true, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.MELTER)) {
-            return new FEBaseEnchantment(key, Element.IGNIS, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.IGNIS, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.MOUNTAIN_SUPREME_PROTECTION)) {
-            return new FEBaseEnchantment(key, Element.TERRA, 4, true, false, true, false, true, 0.2D);
+            return new FEBaseEnchantment(key, Element.TERRA, 4, true, false, true, false, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.MULTIPLE_SHOT)) {
-            return new FEBaseEnchantment(key, null, 3, true, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, null, 3, true, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.NIGHTMARE)) {
-            return new FEBaseEnchantment(key, Element.TWISTED, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.TWISTED, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.NIRVANA)) {
-            return new FEBaseEnchantment(key, Element.IGNIS, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.IGNIS, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.OCEAN_CURRENT)) {
-            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.OVERFLOW)) {
-            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.AQUA, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.OVER_HEALING)) {
-            return new FEBaseEnchantment(key, Element.HOLY, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.HOLY, 3, false, true, true, true, true);
         }
         if (key.equals(com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.PALADINS_SHIELD)) {
-            return new FEBaseEnchantment(key, Element.HOLY, 3, false, true, true, true, true, 0.0D);
+            return new FEBaseEnchantment(key, Element.HOLY, 3, false, true, true, true, true);
         }
-        return new FEBaseEnchantment(key, null, DEFAULT_MAX_LEVEL, false, true, true, true, true, 0.0D);
+        return new FEBaseEnchantment(key, null, DEFAULT_MAX_LEVEL, false, true, true, true, true);
     }
 }

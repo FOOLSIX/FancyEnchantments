@@ -1,4 +1,5 @@
 {
+  "chance": 0.1,
   "enchantment": "fancyenchantments:standing_wall",
   "values": {
     "terra": 8

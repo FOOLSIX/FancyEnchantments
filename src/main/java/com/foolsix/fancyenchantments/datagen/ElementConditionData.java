@@ -9,7 +9,8 @@ import java.util.Map;
 
 public record ElementConditionData(
         ResourceLocation enchantment,
-        Map<Element, Integer> values
+        Map<Element, Integer> values,
+        double chance
 ) {
 
     public static final Codec<ElementConditionData> CODEC =
@@ -23,7 +24,10 @@ public record ElementConditionData(
                                             Element.CODEC,
                                             Codec.INT
                                     ).fieldOf("values")
-                                    .forGetter(ElementConditionData::values)
+                                    .forGetter(ElementConditionData::values),
+                            Codec.DOUBLE
+                                    .fieldOf("chance")
+                                    .forGetter(ElementConditionData::chance)
 
                     ).apply(instance, ElementConditionData::new)
             );

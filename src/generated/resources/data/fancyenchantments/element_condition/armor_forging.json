@@ -1,4 +1,5 @@
 {
+  "chance": 0.1,
   "enchantment": "fancyenchantments:armor_forging",
   "values": {
     "ignis": 6,

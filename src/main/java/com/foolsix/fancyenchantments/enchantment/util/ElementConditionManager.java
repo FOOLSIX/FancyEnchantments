@@ -22,8 +22,8 @@ public final class ElementConditionManager extends SimpleJsonResourceReloadListe
 
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    private static final Map<ResourceLocation, int[]> CONDITIONS =
-            new HashMap<>();
+    private static final Map<ResourceLocation, int[]> CONDITIONS = new HashMap<>();
+    private static final Map<ResourceLocation, Double> CHANCES = new HashMap<>();
 
     public ElementConditionManager() {
         super(
@@ -47,6 +47,10 @@ public final class ElementConditionManager extends SimpleJsonResourceReloadListe
         return CONDITIONS.keySet();
     }
 
+    public static double getChance(ResourceLocation id) {
+        return CHANCES.getOrDefault(id, 0.0);
+    }
+
     @Override
     protected void apply(
             Map<ResourceLocation, JsonElement> entries,
@@ -55,6 +59,7 @@ public final class ElementConditionManager extends SimpleJsonResourceReloadListe
     ) {
 
         CONDITIONS.clear();
+        CHANCES.clear();
 
         for (Map.Entry<ResourceLocation, JsonElement> entry : entries.entrySet()) {
 
@@ -77,20 +82,17 @@ public final class ElementConditionManager extends SimpleJsonResourceReloadListe
                     )
                     .ifPresent(data -> {
 
-                        int[] arr =
-                                new int[EnchUtils.ELEMENT_COUNT];
+                        int[] arr = new int[EnchUtils.ELEMENT_COUNT];
 
-                        for (Map.Entry<Element, Integer> e :
-                                data.values().entrySet()) {
-
-                            arr[e.getKey().ordinal()] =
-                                    e.getValue();
+                        for (Map.Entry<Element, Integer> e : data.values().entrySet()) {
+                            arr[e.getKey().ordinal()] = e.getValue();
                         }
 
                         CONDITIONS.put(
                                 data.enchantment(),
                                 arr
                         );
+                        CHANCES.put(data.enchantment(), data.chance());
                     });
         }
 

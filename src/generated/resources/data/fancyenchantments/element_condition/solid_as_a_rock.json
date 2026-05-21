@@ -1,4 +1,5 @@
 {
+  "chance": 0.1,
   "enchantment": "fancyenchantments:solid_as_a_rock",
   "values": {
     "terra": 6

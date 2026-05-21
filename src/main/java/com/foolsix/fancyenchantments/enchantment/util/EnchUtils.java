@@ -15,6 +15,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -187,7 +188,16 @@ public final class EnchUtils {
         return stats;
     }
 
-    public static boolean matchesElementCondition(int[] elementStats, int[] condition) {
+
+    public static boolean tryGenerateOnce(int[] elementStats, ResourceLocation resourceLocation) {
+        double chance = ElementConditionManager.getChance(resourceLocation);
+
+        if (chance < Math.random()) {
+            return false;
+        }
+
+        int[] condition = ElementConditionManager.getCondition(resourceLocation);
+
         if (elementStats.length != condition.length) {
             return false;
         }
@@ -199,15 +209,12 @@ public final class EnchUtils {
         return true;
     }
 
-    public static Collection<FEBaseEnchantment> getAllSpecialLootEnchantments() {
-        return FEEnchantments.all()
-                .stream()
-                .filter(FEBaseEnchantment::isSpecialLoot)
-                .toList();
+    public static Collection<ResourceLocation> getAllSpecialLootEnchantments() {
+        return ElementConditionManager.getConditionalEnchantments();
     }
 
-    public static Optional<FEBaseEnchantment> getRandomModEnchantment(RandomSource random) {
-        List<FEBaseEnchantment> enchantments = new ArrayList<>(FEEnchantments.all());
+    public static Optional<ResourceKey<Enchantment>> getRandomModEnchantment(RandomSource random) {
+        List<ResourceKey<Enchantment>> enchantments = EnchantmentReg.ALL;
         if (enchantments.isEmpty()) {
             return Optional.empty();
         }
@@ -276,4 +283,5 @@ public final class EnchUtils {
     private static int lerp(int start, int end, double amount) {
         return (int) (start + (end - start) * amount);
     }
+
 }

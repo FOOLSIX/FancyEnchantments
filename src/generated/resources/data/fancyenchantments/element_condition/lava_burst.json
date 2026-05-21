@@ -1,4 +1,5 @@
 {
+  "chance": 0.25,
   "enchantment": "fancyenchantments:lava_burst",
   "values": {
     "ignis": 5,

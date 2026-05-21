@@ -49,8 +49,7 @@ public final class ElementConditionProvider implements DataProvider {
                             .encodeStart(JsonOps.INSTANCE, data)
                             .getOrThrow();
 
-            Path path =
-                    pathProvider.json(data.enchantment());
+            Path path = pathProvider.json(data.enchantment());
 
             futures.add(
                     DataProvider.saveStable(
@@ -61,9 +60,7 @@ public final class ElementConditionProvider implements DataProvider {
             );
         }
 
-        return CompletableFuture.allOf(
-                futures.toArray(CompletableFuture[]::new)
-        );
+        return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
     private static List<ElementConditionData> collectConditions() {
@@ -71,85 +68,86 @@ public final class ElementConditionProvider implements DataProvider {
         put(BLOOD_FEED.location(), Map.of(
                 Element.TWISTED, 5,
                 Element.AQUA, 5
-        ));
+        ), 0.1);
 
         put(BLOOD_SACRIFICE.location(), Map.of(
                 Element.TWISTED, 3
-        ));
+        ), 0.1);
 
         put(LAVA_BURST.location(), Map.of(
                 Element.IGNIS, 5,
                 Element.TERRA, 3
-        ));
+        ), 0.25);
 
         put(MOUNTAIN_SUPREME_PROTECTION.location(), Map.of(
                 Element.TERRA, 5
-        ));
+        ), 0.2);
 
         put(EATER_OF_SOULS.location(), Map.of(
                 Element.TWISTED, 10
-        ));
+        ), 0.05);
 
         put(SOLID_AS_A_ROCK.location(), Map.of(
                 Element.TERRA, 6
-        ));
+        ), 0.1);
 
         put(ARMOR_FORGING.location(), Map.of(
                 Element.IGNIS, 6,
                 Element.TERRA, 6
-        ));
+        ), 0.1);
 
         put(PURE_FATE.location(), Map.of(
                 Element.HOLY, 3
-        ));
+        ), 0.1);
 
         put(SHARP_ROCK.location(), Map.of(
                 Element.TERRA, 5
-        ));
+        ), 0.05);
 
         put(SACRED_SUPREME_SHARPNESS.location(), Map.of(
                 Element.HOLY, 3
-        ));
+        ), 0.25);
 
         put(GREED_SUPREME_LOOTING.location(), Map.of(
                 Element.TWISTED, 3
-        ));
+        ), 0.25);
 
         put(WIND_FIRE_WHEELS.location(), Map.of(
                 Element.AER, 5,
                 Element.IGNIS, 5
-        ));
+        ), 0.1);
 
         put(SPREADING_SPORES.location(), Map.of(
                 Element.AQUA, 5,
                 Element.TERRA, 5
-        ));
+        ), 0.2);
 
         put(THRILLING_THUNDER.location(), Map.of(
                 Element.AER, 5,
                 Element.AQUA, 5
-        ));
+        ), 0.2);
 
         put(STANDING_WALL.location(), Map.of(
                 Element.TERRA, 8
-        ));
+        ), 0.1);
 
         put(FEARLESS_CHALLENGER.location(), Map.of(
                 Element.HOLY, 8
-        ));
+        ), 0.1);
 
         put(SIGHS_OF_ASHES.location(), Map.of(
                 Element.IGNIS, 8
-        ));
+        ), 0.1);
 
         return list;
     }
 
     private static void put(
             ResourceLocation enchantment,
-            Map<Element, Integer> values
+            Map<Element, Integer> values,
+            double chance
     ) {
-        list.add(new ElementConditionData(enchantment, values));
+        list.add(new ElementConditionData(enchantment, values, chance));
     }
 
     @Override

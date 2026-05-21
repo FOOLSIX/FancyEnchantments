@@ -1,18 +1,19 @@
 package com.foolsix.fancyenchantments.loot;
 
 import com.foolsix.fancyenchantments.Config;
-import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEBaseEnchantment;
-import com.foolsix.fancyenchantments.enchantment.util.ElementConditionManager;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -54,17 +55,19 @@ public final class SpecialLootModifier extends LootModifier {
         }
 
         int[] elementStats = EnchUtils.getElementStatsFromEquipment(player);
-        List<FEBaseEnchantment> candidates = new ArrayList<>();
-        for (FEBaseEnchantment enchantment : EnchUtils.getAllSpecialLootEnchantments()) {
-            if (enchantment.tryGenerateOnce(elementStats, ElementConditionManager.getCondition(enchantment.key().location()))) {
-                candidates.add(enchantment);
+        List<ResourceKey<Enchantment>> candidates = new ArrayList<>();
+        for (ResourceLocation enchantment : EnchUtils.getAllSpecialLootEnchantments()) {
+            if (EnchUtils.tryGenerateOnce(elementStats, enchantment)) {
+                ResourceKey<Enchantment> key = ResourceKey.create(Registries.ENCHANTMENT, enchantment);
+                candidates.add(key);
             }
         }
+
         if (candidates.isEmpty()) {
             return generatedLoot;
         }
 
-        FEBaseEnchantment enchantment = candidates.get(random.nextInt(candidates.size()));
+        ResourceKey<Enchantment> enchantment = candidates.get(random.nextInt(candidates.size()));
         generatedLoot.add(createRandomBook(enchantment, random, registries));
         return generatedLoot;
     }
@@ -84,14 +87,14 @@ public final class SpecialLootModifier extends LootModifier {
         return false;
     }
 
-    private static ItemStack createRandomBook(FEBaseEnchantment enchantment, RandomSource random, HolderLookup.Provider registries) {
-        var holder = registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(enchantment.key());
-        int level = random.nextInt(Math.max(enchantment.maxLevel(), 1)) + 1;
+    private static ItemStack createRandomBook(ResourceKey<Enchantment> enchantment, RandomSource random, HolderLookup.Provider registries) {
+        var holder = registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(enchantment);
+        int level = random.nextInt(Math.max(holder.value().getMaxLevel(), 1)) + 1;
         return EnchantedBookItem.createForEnchantment(new EnchantmentInstance(holder, level));
     }
 
-    private static double getChanceOfRarity(FEBaseEnchantment enchantment, HolderLookup.Provider registries) {
-        int weight = registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(enchantment.key()).value().getWeight();
+    private static double getChanceOfRarity(ResourceKey<Enchantment> enchantment, HolderLookup.Provider registries) {
+        int weight = registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(enchantment).value().getWeight();
         if (weight <= 1) {
             return Config.CHEST_LOOT_VERY_RARE_CHANCE.get();
         }

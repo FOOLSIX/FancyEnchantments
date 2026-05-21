@@ -1,4 +1,5 @@
 {
+  "chance": 0.25,
   "enchantment": "fancyenchantments:greed_supreme_looting",
   "values": {
     "twisted": 3

@@ -1,4 +1,5 @@
 {
+  "chance": 0.1,
   "enchantment": "fancyenchantments:wind_fire_wheels",
   "values": {
     "aer": 5,
