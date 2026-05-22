@@ -7,6 +7,9 @@ public final class Config {
 
     public static final ModConfigSpec.BooleanValue ENABLE_INCOMPATIBILITY;
     public static final ModConfigSpec.BooleanValue ENABLE_MOD_BOOK_TEXTURE;
+    public static final ModConfigSpec.BooleanValue JEI_ENABLE_DESCRIPTION;
+    public static final ModConfigSpec.BooleanValue JEI_ENABLE_MAX_LEVEL;
+    public static final ModConfigSpec.BooleanValue JEI_ENABLE_RARITY;
     public static final ModConfigSpec.IntValue ENCHANTING_TABLE_MAX_BOOKSHELF_LEVEL;
     public static final ModConfigSpec.IntValue ENCHANTING_TABLE_MAX_UPGRADE_BONUS;
 
@@ -207,6 +210,18 @@ public final class Config {
         ENABLE_MOD_BOOK_TEXTURE =
                 BUILDER.comment("Whether enchanted books use Fancy Enchantments custom element textures on the client.")
                         .define("Enable Mod Book Texture", true);
+        BUILDER.pop();
+
+        BUILDER.push("JEI");
+        JEI_ENABLE_DESCRIPTION =
+                BUILDER.comment("Whether JEI shows the translated enchantment description line.")
+                        .define("Enable Description", true);
+        JEI_ENABLE_MAX_LEVEL =
+                BUILDER.comment("Whether JEI shows the enchantment maximum level line.")
+                        .define("Enable Max Level", true);
+        JEI_ENABLE_RARITY =
+                BUILDER.comment("Whether JEI shows the enchantment rarity line.")
+                        .define("Enable Rarity", true);
         BUILDER.pop();
 
         BUILDER.push("Enchanting Table");
