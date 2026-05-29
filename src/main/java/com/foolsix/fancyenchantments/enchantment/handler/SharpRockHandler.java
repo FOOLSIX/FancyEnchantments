@@ -37,7 +37,7 @@ public final class SharpRockHandler {
             double armor = armorAttr != null ? armorAttr.getValue() : 0;
             stack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY,
                     data -> data.update(tag -> tag.putDouble(ARMOR_TAG, armor)));
-        } else {
+        } else if (stack.has(DataComponents.CUSTOM_DATA)) {
             stack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY,
                     data -> data.update(tag -> tag.remove(ARMOR_TAG)));
         }
