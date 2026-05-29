@@ -1,6 +1,6 @@
 package com.foolsix.fancyenchantments.block.table;
 
-import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.block.BlockReg;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -35,7 +35,7 @@ public class ElementalEnchantmentTableBlockEntity extends BlockEntity implements
     private Component name;
 
     public ElementalEnchantmentTableBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(), pos, state);
+        super(BlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(), pos, state);
     }
 
     @Override

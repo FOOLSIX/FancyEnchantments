@@ -1,6 +1,6 @@
 package com.foolsix.fancyenchantments.compat.jei;
 
-import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.block.BlockReg;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -37,7 +37,7 @@ public class ElementalEnchantingJeiCategory implements IRecipeCategory<Elemental
 
     public ElementalEnchantingJeiCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createBlankDrawable(WIDTH, HEIGHT);
-        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlockReg.ELEMENTAL_ENCHANTING_TABLE_ITEM.get()));
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockReg.ELEMENTAL_ENCHANTING_TABLE_ITEM.get()));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ElementalEnchantingJeiCategory implements IRecipeCategory<Elemental
         builder.addSlot(RecipeIngredientRole.INPUT, INPUT_X, SLOT_Y)
                 .addIngredients(VanillaTypes.ITEM_STACK, recipe.inputs());
         builder.addSlot(RecipeIngredientRole.CATALYST, TABLE_X, SLOT_Y)
-                .addItemStack(new ItemStack(ModBlockReg.ELEMENTAL_ENCHANTING_TABLE_ITEM.get()));
+                .addItemStack(new ItemStack(BlockReg.ELEMENTAL_ENCHANTING_TABLE_ITEM.get()));
     }
 
     @Override

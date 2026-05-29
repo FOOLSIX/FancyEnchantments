@@ -1,7 +1,7 @@
 package com.foolsix.fancyenchantments.block.table;
 
 import com.foolsix.fancyenchantments.Config;
-import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.block.BlockReg;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg;
@@ -17,8 +17,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.EnchantmentTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
@@ -32,7 +30,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.EnchantedBookItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -44,6 +41,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.*;
+
+import static com.foolsix.fancyenchantments.tag.FETags.Items.UPGRADE_MATERIALS;
 
 public class ElementalEnchantmentMenu extends AbstractContainerMenu implements ContainerListener {
     private static final int OFFER_COUNT = 3;
@@ -74,7 +73,6 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu implements C
     static final int UPGRADE_SLOT_Y = 27;
     static final int CATALYST_SLOT_X = UPGRADE_SLOT_X - SLOT_SPACING - 2;
     static final int CATALYST_SLOT_Y = UPGRADE_SLOT_Y;
-    public static final TagKey<Item> UPGRADE_MATERIALS = ItemTags.create(ResourceLocation.fromNamespaceAndPath("fancyenchantments", "upgrade_materials"));
 
     private static List<Holder<Enchantment>> enchantmentCandidates;
     private static Map<ResourceKey<Enchantment>, Integer> enchantmentCandidateIndices;
@@ -96,7 +94,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu implements C
     }
 
     public ElementalEnchantmentMenu(int windowId, Inventory inventory, ContainerLevelAccess access) {
-        super(ModBlockReg.ELEMENTAL_ENCHANTMENT_MENU.get(), windowId);
+        super(BlockReg.ELEMENTAL_ENCHANTMENT_MENU.get(), windowId);
         final int playerInventoryX = 8;
         final int playerInventoryY = 84;
         final int hotbarY = 142;
@@ -177,7 +175,7 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu implements C
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(this.access, player, ModBlockReg.ELEMENTAL_ENCHANTING_TABLE.get());
+        return stillValid(this.access, player, BlockReg.ELEMENTAL_ENCHANTING_TABLE.get());
     }
 
     @Override

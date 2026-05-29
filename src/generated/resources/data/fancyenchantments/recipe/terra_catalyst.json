@@ -1,23 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "pattern": [
-    "LDL",
-    "DED",
-    "LDL"
-  ],
   "key": {
-    "L": {
-      "item": "minecraft:lapis_lazuli"
-    },
     "D": {
       "item": "minecraft:diamond"
     },
     "E": {
       "item": "minecraft:ender_pearl"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
     }
   },
+  "pattern": [
+    "LDL",
+    "DED",
+    "LDL"
+  ],
   "result": {
+    "count": 1,
     "id": "fancyenchantments:terra_catalyst"
   }
 }

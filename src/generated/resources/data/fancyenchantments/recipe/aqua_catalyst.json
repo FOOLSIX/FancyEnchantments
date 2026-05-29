@@ -1,23 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "pattern": [
-    "LPL",
-    "PEP",
-    "LPL"
-  ],
   "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
     "L": {
       "item": "minecraft:lapis_lazuli"
     },
     "P": {
       "item": "minecraft:prismarine_crystals"
-    },
-    "E": {
-      "item": "minecraft:ender_pearl"
     }
   },
+  "pattern": [
+    "LPL",
+    "PEP",
+    "LPL"
+  ],
   "result": {
+    "count": 1,
     "id": "fancyenchantments:aqua_catalyst"
   }
 }

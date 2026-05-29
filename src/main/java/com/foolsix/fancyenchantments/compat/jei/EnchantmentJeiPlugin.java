@@ -2,12 +2,12 @@ package com.foolsix.fancyenchantments.compat.jei;
 
 import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.FancyEnchantments;
-import com.foolsix.fancyenchantments.block.ModBlockReg;
-import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentMenu;
+import com.foolsix.fancyenchantments.block.BlockReg;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.Element;
 import com.foolsix.fancyenchantments.enchantment.util.ElementConditionManager;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
 import com.foolsix.fancyenchantments.resource.catalyst.Catalyst;
+import com.foolsix.fancyenchantments.tag.FETags;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -59,7 +59,7 @@ public final class EnchantmentJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
         try {
-            registration.addRecipeCatalyst(new ItemStack(ModBlockReg.ELEMENTAL_ENCHANTING_TABLE_ITEM.get()), ElementalEnchantingJeiCategory.RECIPE_TYPE);
+            registration.addRecipeCatalyst(new ItemStack(BlockReg.ELEMENTAL_ENCHANTING_TABLE_ITEM.get()), ElementalEnchantingJeiCategory.RECIPE_TYPE);
         } catch (Exception exception) {
             FancyEnchantments.LOGGER.error(JEI_LOG_PREFIX + "Failed to register JEI recipe catalysts.", exception);
         }
@@ -154,7 +154,7 @@ public final class EnchantmentJeiPlugin implements IModPlugin {
             FancyEnchantments.LOGGER.error(JEI_LOG_PREFIX + "Failed to build catalyst JEI recipes.", exception);
         }
 
-        for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(ElementalEnchantmentMenu.UPGRADE_MATERIALS)) {
+        for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(FETags.Items.UPGRADE_MATERIALS)) {
             Item item = holder.value();
             if (item != null) {
                 ElementalEnchantingJeiRecipe recipe = this.createUpgradeRecipe(item);

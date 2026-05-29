@@ -17,10 +17,21 @@ public final class DataGenerator {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
+        var generator = event.getGenerator();
+        var packOutput = generator.getPackOutput();
+        var lookupProvider = event.getLookupProvider();
+        var existingFileHelper = event.getExistingFileHelper();
+        var blockTagsProvider = new BlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
+
         if (event.includeServer()) {
+            generator.addProvider(true, blockTagsProvider);
             event.createDatapackRegistryObjects(BUILDER);
             event.createProvider(EnchantmentTagsProvider::new);
             event.createProvider(ElementConditionProvider::new);
+            event.createProvider(FERecipeProvider::new);
+            event.createProvider(LootModifierProvider::new);
+            generator.addProvider(true, new FEItemTagsProvider(packOutput, lookupProvider,blockTagsProvider.contentsGetter(), existingFileHelper));
+            generator.addProvider(true, new FELootTableProvider(packOutput, lookupProvider));
         }
     }
 }

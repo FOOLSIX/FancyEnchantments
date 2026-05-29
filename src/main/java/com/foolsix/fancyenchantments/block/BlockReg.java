@@ -5,7 +5,6 @@ import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableBlock;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -23,7 +22,7 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 
 import static com.foolsix.fancyenchantments.FancyEnchantments.MODID;
 
-public final class ModBlockReg {
+public final class BlockReg {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, MODID);
@@ -42,7 +41,7 @@ public final class ModBlockReg {
             MENUS.register("elemental_enchantment_menu",
                     () -> IMenuTypeExtension.create(ElementalEnchantmentMenu::new));
 
-    private ModBlockReg() {
+    private BlockReg() {
     }
 
     public static void register(IEventBus eventBus) {

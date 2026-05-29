@@ -1,6 +1,6 @@
 package com.foolsix.fancyenchantments.block.table;
 
-import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.block.BlockReg;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -103,7 +103,7 @@ public class ElementalEnchantmentTableBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
         return level.isClientSide
-                ? createTickerHelper(blockEntityType, ModBlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(),
+                ? createTickerHelper(blockEntityType, BlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(),
                 ElementalEnchantmentTableBlockEntity::bookAnimationTick)
                 : null;
     }

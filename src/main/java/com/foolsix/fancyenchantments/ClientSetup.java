@@ -1,6 +1,6 @@
 package com.foolsix.fancyenchantments;
 
-import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.block.BlockReg;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentScreen;
 import com.foolsix.fancyenchantments.block.table.ElementalEnchantmentTableRenderer;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.FEEnchantments;
@@ -51,11 +51,11 @@ public final class ClientSetup {
 
     @SubscribeEvent
     public static void registerMenuScreens(RegisterMenuScreensEvent event) {
-        event.register(ModBlockReg.ELEMENTAL_ENCHANTMENT_MENU.get(), ElementalEnchantmentScreen::new);
+        event.register(BlockReg.ELEMENTAL_ENCHANTMENT_MENU.get(), ElementalEnchantmentScreen::new);
     }
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(), ElementalEnchantmentTableRenderer::new);
+        event.registerBlockEntityRenderer(BlockReg.ELEMENTAL_ENCHANTMENT_TABLE_BLOCK_ENTITY.get(), ElementalEnchantmentTableRenderer::new);
     }
 }

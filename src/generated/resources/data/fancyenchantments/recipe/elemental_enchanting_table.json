@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "APC",
-    "BED",
-    "OOO"
-  ],
+  "category": "misc",
   "key": {
     "A": {
       "item": "fancyenchantments:aer_catalyst"
@@ -18,17 +14,23 @@
     "D": {
       "item": "fancyenchantments:terra_catalyst"
     },
-    "P": {
-      "item": "minecraft:ender_pearl"
-    },
     "E": {
       "item": "minecraft:enchanting_table"
     },
     "O": {
       "item": "minecraft:obsidian"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
     }
   },
+  "pattern": [
+    "APC",
+    "BED",
+    "OOO"
+  ],
   "result": {
+    "count": 1,
     "id": "fancyenchantments:elemental_enchanting_table"
   }
 }

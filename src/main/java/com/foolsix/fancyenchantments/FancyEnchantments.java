@@ -1,7 +1,7 @@
 package com.foolsix.fancyenchantments;
 
 import com.foolsix.fancyenchantments.attachment.AttachmentReg;
-import com.foolsix.fancyenchantments.block.ModBlockReg;
+import com.foolsix.fancyenchantments.block.BlockReg;
 import com.foolsix.fancyenchantments.effect.EffectReg;
 import com.foolsix.fancyenchantments.enchantment.effect.EnchantmentEffectReg;
 import com.foolsix.fancyenchantments.item.ModItemReg;
@@ -24,7 +24,7 @@ public class FancyEnchantments {
 
     public FancyEnchantments(IEventBus modEventBus, ModContainer modContainer) {
         ModItemReg.register(modEventBus);
-        ModBlockReg.register(modEventBus);
+        BlockReg.register(modEventBus);
         EffectReg.register(modEventBus);
         EnchantmentEffectReg.register(modEventBus);
         AttachmentReg.register(modEventBus);
