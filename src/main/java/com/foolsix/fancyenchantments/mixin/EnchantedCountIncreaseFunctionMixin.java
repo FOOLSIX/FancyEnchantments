@@ -41,7 +41,7 @@ abstract class EnchantedCountIncreaseFunctionMixin {
 
     @Inject(method = "run", at = @At("HEAD"), cancellable = true)
     private void fancyenchantments$extraLooting(ItemStack stack, LootContext context, CallbackInfoReturnable<ItemStack> cir) {
-        if (!this.enchantment.is(Enchantments.LOOTING)) {
+         if (!this.enchantment.is(Enchantments.LOOTING)) {
             return;
         }
 
@@ -58,18 +58,18 @@ abstract class EnchantedCountIncreaseFunctionMixin {
             return;
         }
 
-        ItemStack result = cir.getReturnValue();
-        result.grow(Math.round(sumLevel * this.value.getFloat(context)));
+        if (stack == null) return;
+        stack.grow(Math.round(sumLevel * this.value.getFloat(context)));
         if (this.limit > 0) {
             boolean doubled = greedyLevel > 0
                     && Math.random() < greedyLevel * Config.GREED_SUPREME_PROBABILITY_OF_DOUBLING.get();
             if (doubled) {
                 //break limit on purpose
-                result.grow(result.getCount());
+                stack.grow(stack.getCount());
             } else {
-                result.limitSize(this.limit);
+                stack.limitSize(this.limit);
             }
         }
-        cir.setReturnValue(result);
+        cir.setReturnValue(stack);
     }
 }
