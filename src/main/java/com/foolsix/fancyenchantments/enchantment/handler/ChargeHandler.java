@@ -36,6 +36,6 @@ public final class ChargeHandler {
                     new ClientboundSetEntityMotionPacket(player)
             );
         }
-        living.addEffect(new MobEffectInstance(EffectReg.INVINCIBLE, 5 + Config.CHARGE_INVINCIBLE_DURATION_PER_LEVEL.get() * level));
+        living.addEffect(new MobEffectInstance(EffectReg.INVINCIBLE, 5 + Config.CHARGE_INVINCIBLE_DURATION_PER_LEVEL.get() * level,0, false, false));
     }
 }

@@ -29,7 +29,7 @@ public final class UnyieldingSpiritClientHandler {
         Font font = minecraft.font;
         Component text = Component.translatable("enchantment.fancyenchantments.unyielding_spirit.hud")
                 .append(" ")
-                .append(String.valueOf(ttl / 20));
+                .append(String.valueOf(ttl / 20.0));
         int x = (event.getGuiGraphics().guiWidth() - font.width(text)) / 2;
         int y = event.getGuiGraphics().guiHeight() / 2 + 10;
         event.getGuiGraphics().drawString(font, text, x, y, 0xFFFFFF);
