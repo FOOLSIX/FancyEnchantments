@@ -2,6 +2,8 @@ package com.foolsix.fancyenchantments.enchantment.handler;
 
 import com.foolsix.fancyenchantments.Config;
 import com.foolsix.fancyenchantments.enchantment.util.EnchUtils;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -17,8 +19,8 @@ import static com.foolsix.fancyenchantments.enchantment.util.EnchantmentReg.PYRO
 public final class PyromaniacHandler {
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
-        if (!(event.getEntity() instanceof Player player)
-                || !event.getSource().is(DamageTypes.EXPLOSION)) {
+        if (!(event.getEntity() instanceof Player player) ||
+                (!event.getSource().is(DamageTypeTags.IS_EXPLOSION))) {
             return;
         }
 
@@ -39,6 +41,6 @@ public final class PyromaniacHandler {
         );
 
         player.heal(healValue);
-        event.setAmount(0);
+        event.setCanceled(true);
     }
 }
