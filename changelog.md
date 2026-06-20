@@ -1,3 +1,20 @@
+# 1.7.3
+
+## change:
+- Adjusted the configuration options for Serenity (more granular settings)
+
+- 调整了平静的配置项(粒度更细了)
+
+## fix:
+- Fixed Duelist's Privilege not taking effect
+- Fixed Pyromaniac not taking effect in some cases
+- Fixed compatibility issues with Overhealing
+
+- 决斗者的特权不生效
+- 纵火狂某些情况下不生效
+- 过量治疗的兼容性问题
+
+
 # 1.7.2
 ## add:
 - Added several configuration options for the enchanting table
