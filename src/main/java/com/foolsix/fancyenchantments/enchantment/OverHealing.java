@@ -17,8 +17,12 @@ public class OverHealing extends HolyEnchantment {
 
     public void overHeal(LivingHealEvent e) {
         LivingEntity living = e.getEntity();
-        float val = e.getAmount();
         if (living != null) {
+            float missingHealth = living.getMaxHealth() - living.getHealth();
+            float val = Math.max(0, e.getAmount() - missingHealth);
+            if (val <= 0.01f) {
+                return;
+            }
             int cap = EnchantmentHelper.getEnchantmentLevel(this, living) * CONFIG.cap;
             float maxHealth = living.getMaxHealth();
             float currentHealth = living.getHealth();
