@@ -45,20 +45,19 @@ public final class OverHealingHandler {
     @SubscribeEvent
     public static void onLivingHeal(LivingHealEvent event) {
         LivingEntity living = event.getEntity();
+        int level = EnchUtils.getEnchantmentLevel(OVER_HEALING, living);
+        if (level <= 0) {
+            return;
+        }
         float missingHealth = living.getMaxHealth() - living.getHealth();
         float overflow = Math.max(0.0F, event.getAmount() - missingHealth);
         if (overflow <= 0.0F) {
             return;
         }
 
-        int level = EnchUtils.getEnchantmentLevel(OVER_HEALING, living);
-        if (level <= 0) {
-            return;
-        }
-
-        float cap = level * Config.OVER_HEALING_CAP.get();
-        if (living.getAbsorptionAmount() < cap) {
-            living.setAbsorptionAmount(Math.min(cap, living.getAbsorptionAmount() + overflow));
+        float maxAbsorption = living.getMaxAbsorption();
+        if (living.getAbsorptionAmount() < maxAbsorption) {
+            living.setAbsorptionAmount(Math.min(maxAbsorption, living.getAbsorptionAmount() + overflow));
         }
     }
 }
