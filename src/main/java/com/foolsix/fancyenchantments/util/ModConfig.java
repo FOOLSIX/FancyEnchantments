@@ -572,10 +572,10 @@ public class ModConfig implements ConfigData {
     }
 
     public static class CalmerOptions extends BaseOptions {
-        @Comment("Cooldown (second)")
-        public int cooldown = 5;
-        @Comment("Duration (second)")
-        public int duration = 3;
+        @Comment("Cooldown (tick)")
+        public int cooldown = 100;
+        @Comment("Duration (tick)")
+        public int duration = 60;
 
         CalmerOptions() {
             super(5, Rarity.RARE);

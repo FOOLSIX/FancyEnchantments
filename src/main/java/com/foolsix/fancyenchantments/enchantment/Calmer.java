@@ -34,8 +34,8 @@ public class Calmer extends AquaEnchantment {
         if (pTarget instanceof Player player) {
             Item chest = player.getItemBySlot(EquipmentSlot.CHEST).getItem();
             if (!player.getCooldowns().isOnCooldown(chest)) {
-                player.getCooldowns().addCooldown(chest, CONFIG.cooldown * 20);
-                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, CONFIG.duration * 20, pLevel - 1));
+                player.getCooldowns().addCooldown(chest, CONFIG.cooldown);
+                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, CONFIG.duration, pLevel - 1));
             }
         }
     }
