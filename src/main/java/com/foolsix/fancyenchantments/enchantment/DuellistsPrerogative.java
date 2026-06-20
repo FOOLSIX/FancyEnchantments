@@ -46,7 +46,7 @@ public class DuellistsPrerogative extends FEBaseEnchantment implements LivingHur
                 float multiplier = 1.0f;
                 List<LivingEntity> entities1 = victim.level().getEntitiesOfClass(LivingEntity.class, victim.getBoundingBox().inflate(2));
                 List<LivingEntity> entities2 = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(2));
-                multiplier = entities1.size() <= 1 && entities2.size() <= 1 ? (1 + CONFIG.damageMultiplier * level) : multiplier;
+                multiplier = entities1.size() <= 2 && entities2.size() <= 2 ? (1 + CONFIG.damageMultiplier * level) : multiplier;
                 e.setAmount(e.getAmount() * multiplier);
             }
         }
