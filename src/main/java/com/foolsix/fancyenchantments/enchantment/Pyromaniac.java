@@ -4,7 +4,7 @@ import com.foolsix.fancyenchantments.FancyEnchantments;
 import com.foolsix.fancyenchantments.enchantment.EssentiaEnch.IgnisEnchantment;
 import com.foolsix.fancyenchantments.enchantment.handler.LivingHurtEventHandler;
 import com.foolsix.fancyenchantments.util.ModConfig;
-import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -47,7 +47,7 @@ public class Pyromaniac extends IgnisEnchantment implements LivingHurtEventHandl
     }
 
     public void receiveExplosive(LivingHurtEvent e) {
-        if (e.getEntity() instanceof Player player && e.getSource().is(DamageTypes.EXPLOSION)) {
+        if (e.getEntity() instanceof Player player && e.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
             int level = EnchantmentHelper.getEnchantmentLevel(this, player);
             if (level > 0) {
                 float healValue = CONFIG.healMultiplier * e.getAmount() * level;
