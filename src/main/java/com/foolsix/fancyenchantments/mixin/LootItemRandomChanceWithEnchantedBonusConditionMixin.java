@@ -1,8 +1,9 @@
 package com.foolsix.fancyenchantments.mixin;
 
+import com.foolsix.fancyenchantments.Config;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWit
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -46,15 +48,31 @@ abstract class LootItemRandomChanceWithEnchantedBonusConditionMixin {
             return;
         }
 
-        HolderLookup.RegistryLookup<Enchantment> enchantments = livingEntity.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
-        int advancedLevel = EnchantmentHelper.getEnchantmentLevel(enchantments.getOrThrow(ADVANCED_LOOTING), livingEntity);
-        int greedyLevel = EnchantmentHelper.getEnchantmentLevel(enchantments.getOrThrow(GREED_SUPREME_LOOTING), livingEntity);
-        int sumLevel = advancedLevel * 2 + greedyLevel * 3;
-        if (sumLevel == 0) {
+        int advancedLevel = fancyEnchantments$getEnchantmentLevel(ADVANCED_LOOTING, livingEntity);
+        int greedyLevel = fancyEnchantments$getEnchantmentLevel(GREED_SUPREME_LOOTING, livingEntity);
+        int extraLevel = advancedLevel * 2
+                + greedyLevel * Config.GREED_SUPREME_LOOTING_LEVEL_MULTIPLIER.get();
+        if (extraLevel <= 0) {
+            return;
+        }
+
+        int sumLevel = EnchantmentHelper.getEnchantmentLevel(this.enchantment(), livingEntity)
+                + extraLevel;
+        if (sumLevel <= 0) {
+            cir.setReturnValue(context.getRandom().nextFloat() < this.unenchantedChance);
             return;
         }
 
         float chance = this.enchantedChance().calculate(sumLevel);
         cir.setReturnValue(context.getRandom().nextFloat() < chance);
+    }
+
+    @Unique
+    private static int fancyEnchantments$getEnchantmentLevel(ResourceKey<Enchantment> enchantment, LivingEntity livingEntity) {
+        return livingEntity.registryAccess()
+                .lookup(Registries.ENCHANTMENT)
+                .flatMap(registry -> registry.get(enchantment))
+                .map(holder -> EnchantmentHelper.getEnchantmentLevel(holder, livingEntity))
+                .orElse(0);
     }
 }
