@@ -74,9 +74,6 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu implements C
     static final int CATALYST_SLOT_X = UPGRADE_SLOT_X - SLOT_SPACING - 2;
     static final int CATALYST_SLOT_Y = UPGRADE_SLOT_Y;
 
-    private static List<Holder<Enchantment>> enchantmentCandidates;
-    private static Map<ResourceKey<Enchantment>, Integer> enchantmentCandidateIndices;
-
     private final Container enchantSlots = new SimpleContainer(ENCHANT_SLOT_COUNT) {
         @Override
         public void setChanged() {
@@ -616,34 +613,44 @@ public class ElementalEnchantmentMenu extends AbstractContainerMenu implements C
         return weight + catalystBonusWeights.getOrDefault(enchantment, 0);
     }
 
-    private static List<Holder<Enchantment>> getEnchantmentCandidates(HolderLookup.Provider provider) {
-        if (enchantmentCandidates == null) {
-            HolderLookup.RegistryLookup<Enchantment> enchantments = provider.lookupOrThrow(Registries.ENCHANTMENT);
-            List<Holder<Enchantment>> holders = new ArrayList<>();
-            for (ResourceKey<Enchantment> key : EnchantmentReg.ALL) {
-                Holder.Reference<Enchantment> holder = enchantments.getOrThrow(key);
-                if (holder.is(EnchantmentTags.IN_ENCHANTING_TABLE)) {
-                    holders.add(holder);
-                }
+    private static List<Holder<Enchantment>> getEnchantmentCandidates(
+            HolderLookup.Provider provider
+    ) {
+        HolderLookup.RegistryLookup<Enchantment> enchantments =
+                provider.lookupOrThrow(Registries.ENCHANTMENT);
+
+        List<Holder<Enchantment>> holders = new ArrayList<>();
+
+        for (ResourceKey<Enchantment> key : EnchantmentReg.ALL) {
+            Holder.Reference<Enchantment> holder =
+                    enchantments.getOrThrow(key);
+
+            if (holder.is(EnchantmentTags.IN_ENCHANTING_TABLE)) {
+                holders.add(holder);
             }
-            enchantmentCandidates = List.copyOf(holders);
         }
-        return enchantmentCandidates;
+
+        return List.copyOf(holders);
     }
 
-    private static Map<ResourceKey<Enchantment>, Integer> getEnchantmentCandidateIndices(HolderLookup.Provider provider) {
-        if (enchantmentCandidateIndices == null) {
-            Map<ResourceKey<Enchantment>, Integer> indices = new HashMap<>();
-            List<Holder<Enchantment>> candidates = getEnchantmentCandidates(provider);
-            for (int index = 0; index < candidates.size(); ++index) {
-                ResourceKey<Enchantment> key = candidates.get(index).unwrapKey().orElse(null);
-                if (key != null) {
-                    indices.put(key, index);
-                }
+    private static Map<ResourceKey<Enchantment>, Integer> getEnchantmentCandidateIndices(
+            HolderLookup.Provider provider
+    ) {
+        Map<ResourceKey<Enchantment>, Integer> indices = new HashMap<>();
+
+        List<Holder<Enchantment>> candidates =
+                getEnchantmentCandidates(provider);
+
+        for (int index = 0; index < candidates.size(); ++index) {
+            ResourceKey<Enchantment> key =
+                    candidates.get(index).unwrapKey().orElse(null);
+
+            if (key != null) {
+                indices.put(key, index);
             }
-            enchantmentCandidateIndices = indices;
         }
-        return enchantmentCandidateIndices;
+
+        return indices;
     }
 
     private boolean canStoreCatalyst() {
